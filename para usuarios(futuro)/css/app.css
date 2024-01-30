@@ -1,0 +1,99 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f5f5f5;
+}
+
+.container {
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    width: 500px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+    border: 1px solid #ddd;
+    margin: 0 auto;
+    max-width: 90%;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.form1 {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.form-group {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+select {
+    flex-basis: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#adultos{
+    margin-bottom: 10px;
+}
+
+.form-actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.botones{
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-top: 0;
+    margin-left: 10px;
+}
+
+#boton1{
+    background-color: #f5a623;
+}
+
+#boton2{
+    background-color: #333;
+}
+
+.form2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
