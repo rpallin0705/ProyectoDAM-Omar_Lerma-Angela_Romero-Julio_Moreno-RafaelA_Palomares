@@ -8,3 +8,15 @@ services:
       - ./db:/data/db
     stdin_open: true
     tty: true
+
+  sql-explorer:
+    image: linuxserver/sqlitebrowser
+    ports:
+      - "8080:8080"
+    depends_on:
+      - sqlite
+    environment:
+      - TZ=UTC
+    volumes:
+      - ./db:/data
+    container_name: sql_explorer
