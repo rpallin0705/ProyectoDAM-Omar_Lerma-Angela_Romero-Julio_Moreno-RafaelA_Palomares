@@ -4,7 +4,7 @@ RUN apk --no-cache add sqlite
 
 WORKDIR /data
 
-EXPOSE 3000 3000
+EXPOSE 8080 8080
 
 COPY ./db/db.sql /data/db.sql
 
