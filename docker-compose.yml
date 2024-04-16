@@ -16,7 +16,10 @@ services:
     depends_on:
       - sqlite
     environment:
+      - PUID=1000
+      - PGID=1000
       - TZ=UTC
+      - ENABLE_UWSGI=true
     volumes:
       - ./db:/data
     container_name: sql_explorer
