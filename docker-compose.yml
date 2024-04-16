@@ -5,7 +5,7 @@ services:
     build: .
     container_name: sqlite_container
     volumes:
-      - ./db:/data/db
+      - database:/data
     stdin_open: true
     tty: true
 
@@ -21,5 +21,10 @@ services:
       - TZ=UTC
       - ENABLE_UWSGI=true
     volumes:
-      - ./db:/data
+      - database:/data
+
     container_name: sql_explorer
+volumes:
+  proyecto:
+    external: true
+    name: database
