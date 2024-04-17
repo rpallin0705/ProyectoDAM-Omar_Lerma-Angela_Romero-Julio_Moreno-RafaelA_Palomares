@@ -4,9 +4,77 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservas</title>
+
 </head>
 
 <body>
-    <h1 style="text-align: center;">AQUÍ IRÍAN LAS RESERVAS</h1>
+    <h1 style="text-align: center;">NOMBRE HOTEL</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Email</th>
+                <th>Teléfono</th>
+                <th>Código de Alojamiento</th>
+                <th>Fecha de Inicio</th>
+                <th>Fecha de Fin</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>cliente1@example.com</td>
+                <td>123456789</td>
+                <td>ABC123</td>
+                <td>2024-04-01</td>
+                <td>2024-04-05</td>
+                <td><button>Gestionar Reserva</button></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>cliente2@example.com</td>
+                <td>987654321</td>
+                <td>DEF456</td>
+                <td>2024-04-10</td>
+                <td>2024-04-15</td>
+                <td><button>Gestionar Reserva</button></td>
+            </tr>
+            <!-- Agrega más filas según sea necesario -->
+        </tbody>
+    </table>
 </body>
 </html>
+<style>
+    table {
+        border-collapse: separate;
+        border-spacing: 0;
+        width: 100%;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+    th, td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 15px;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    
+    button {
+            border: none;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        button:hover {
+            transform: scale(1.1); /* Aumenta el tamaño en un 10% */
+        }
+    </style>
+</style>
