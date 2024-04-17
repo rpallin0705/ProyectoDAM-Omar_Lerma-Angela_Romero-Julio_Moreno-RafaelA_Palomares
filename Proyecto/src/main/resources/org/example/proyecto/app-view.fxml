@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.collections.FXCollections?>
+<?import javafx.geometry.Insets?>
+
+<?import java.lang.String?>
+<VBox xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" spacing="10" alignment="CENTER">
+    <Label text="Nombre de la Empresa"/>
+
+    <VBox alignment="CENTER_LEFT" spacing="5" padding="10" style="-fx-border-color: #ddd; -fx-border-radius: 5px;">
+        <Label text="Nombre:"/>
+        <TextField fx:id="nombreField" promptText="Nombre"/>
+
+        <Label text="Email:"/>
+        <TextField fx:id="emailField" promptText="Email"/>
+
+        <Label text="Fecha de Entrada:"/>
+        <DatePicker fx:id="entradaPicker"/>
+
+        <Label text="Fecha de Salida:"/>
+        <DatePicker fx:id="salidaPicker"/>
+
+        <Label text="Tipo de Estancia:"/>
+        <ComboBox fx:id="tipoEstanciaCombo" promptText="Seleccione el tipo de estancia">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Sólo Habitación">Sólo Habitación</String>
+                    <String fx:value="Todo Incluido">Todo Incluido</String>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <Label text="Tipo de Habitación:"/>
+        <ComboBox fx:id="tipoHabitacionCombo" promptText="Seleccione el tipo de habitación">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Habitación Estandar">Habitación Estandar</String>
+                    <String fx:value="Suite">Suite</String>
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <Label text="Número de Adultos:"/>
+        <TextField fx:id="adultosField" promptText="Número de Adultos"/>
+
+        <Label text="Número de Niños:"/>
+        <TextField fx:id="niñosField" promptText="Número de Niños"/>
+    </VBox>
+
+    <VBox spacing="10">
+        <Button text="Ver Reservas" style="-fx-background-color: #f5a623; -fx-text-fill: white;"/>
+        <Button text="Crear Reserva" style="-fx-background-color: #333; -fx-text-fill: white;"/>
+    </VBox>
+</VBox>

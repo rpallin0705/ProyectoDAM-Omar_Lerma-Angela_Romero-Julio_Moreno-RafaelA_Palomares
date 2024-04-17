@@ -27,7 +27,8 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
                 </PasswordField>
-                <Button fx:id="login" mnemonicParsing="false" onAction="#app" text="Login" style="-fx-background-color: #f5a623; -fx-text-fill: #ffffff;">
+                <!--onAction="#app"-->
+                <Button fx:id="login" mnemonicParsing="false" text="Login" style="-fx-background-color: #f5a623; -fx-text-fill: #ffffff;">
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
