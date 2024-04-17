@@ -9,3 +9,5 @@ h
 8src/main/java/org/example/proyecto/LoginApplication.java,2\f\2f8117098d8a734ef829c819ed8b6008ff11c50f
 g
 7src/main/java/org/example/proyecto/LoginController.java,c\b\cb1dcdd77e4df4385bb4ea0618725b6fd4620ff4
+e
+5src/main/java/org/example/proyecto/AppController.java,1\b\1b9a02259d28f50acb966a296f2e021d62da68fc
