@@ -8,7 +8,6 @@ services:
       - proyecto:/data
     stdin_open: true
     tty: true
-    entrypoint: ["sqlite3 /data/proyecto.db < /data/db.sql && tail -f /dev/null"]
 
   sql-explorer:
     image: linuxserver/sqlitebrowser
@@ -27,5 +26,4 @@ services:
     container_name: sql_explorer
 volumes:
   proyecto:
-    
-  
+    name: database
