@@ -3,78 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservas</title>
-
-</head>
-
-<body>
-    <h1 style="text-align: center;">NOMBRE HOTEL</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Email</th>
-                <th>Teléfono</th>
-                <th>Código de Alojamiento</th>
-                <th>Fecha de Inicio</th>
-                <th>Fecha de Fin</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>1</td>
-                <td>cliente1@example.com</td>
-                <td>123456789</td>
-                <td>ABC123</td>
-                <td>2024-04-01</td>
-                <td>2024-04-05</td>
-                <td><button>Gestionar Reserva</button></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>cliente2@example.com</td>
-                <td>987654321</td>
-                <td>DEF456</td>
-                <td>2024-04-10</td>
-                <td>2024-04-15</td>
-                <td><button>Gestionar Reserva</button></td>
-            </tr>
-            <!-- Agrega más filas según sea necesario -->
-        </tbody>
-    </table>
-</body>
-</html>
-<style>
-    table {
-        border-collapse: separate;
-        border-spacing: 0;
-        width: 100%;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    th, td {
-        border: 1px solid #dddddd;
-        text-align: left;
-        padding: 15px;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-    
-    button {
-            border: none;
-            padding: 15px 32px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: transform 0.3s ease;
+    <title>Reservas del Hotel</title>
+    <style>
+        .reservas-container {
+            display: flex;
+            flex-direction: column;
         }
 
-        button:hover {
-            transform: scale(1.1); /* Aumenta el tamaño en un 10% */
+        .reserva {
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .reserva-info {
+            width: 50%;
+            margin-bottom: 10px;
+        }
+
+        .reserva-info label {
+            font-weight: bold;
+        }
+
+        .boton-gestionar {
+            padding: 8px 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
         }
     </style>
-</style>
+</head>
+<body>
+    <h1 style="text-align: center;">Reservas del Hotel</h1>
+
+    <div class="reservas-container">
+        <div class="reserva">
+            <div class="reserva-info">
+                <label>ID:</label>
+                <span>1</span>
+            </div>
+            <div class="reserva-info">
+                <label>Email:</label>
+                <span>cliente1@example.com</span>
+            </div>
+            <div class="reserva-info">
+                <label>Teléfono:</label>
+                <span>123456789</span>
+            </div>
+            <div class="reserva-info">
+                <label>Código de Alojamiento:</label>
+                <span>ABC123</span>
+            </div>
+            <div class="reserva-info">
+                <label>Fecha de Inicio:</label>
+                <span>2024-04-01</span>
+            </div>
+            <div class="reserva-info">
+                <label>Fecha de Fin:</label>
+                <span>2024-04-05</span>
+            </div>
+            <button class="boton-gestionar">Gestionar Reserva</button>
+        </div>
+
+        <div class="reserva">
+            <div class="reserva-info">
+                <label>ID:</label>
+                <span>2</span>
+            </div>
+            <div class="reserva-info">
+                <label>Email:</label>
+                <span>cliente2@example.com</span>
+            </div>
+            <div class="reserva-info">
+                <label>Teléfono:</label>
+                <span>987654321</span>
+            </div>
+            <div class="reserva-info">
+                <label>Código de Alojamiento:</label>
+                <span>DEF456</span>
+            </div>
+            <div class="reserva-info">
+                <label>Fecha de Inicio:</label>
+                <span>2024-04-10</span>
+            </div>
+            <div class="reserva-info">
+                <label>Fecha de Fin:</label>
+                <span>2024-04-15</span>
+            </div>
+            <button class="boton-gestionar">Gestionar Reserva</button>
+        </div>
+    </div>
+</body>
+</html>
