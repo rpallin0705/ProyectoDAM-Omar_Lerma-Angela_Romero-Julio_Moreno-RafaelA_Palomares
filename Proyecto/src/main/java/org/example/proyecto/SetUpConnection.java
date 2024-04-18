@@ -1,4 +1,4 @@
-package org.example.proyecto.model;
+package org.example.proyecto;
 
 import org.sqlite.SQLiteConfig;
 
@@ -8,7 +8,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.Set;
 
 public class SetUpConnection {
     private static SetUpConnection setUpConnection;
@@ -24,7 +23,7 @@ public class SetUpConnection {
         properties.load(input);
         String driver = properties.getProperty("DRIVER");
         String db = properties.getProperty("DB");
-        url = driver + "://" + db;
+        url = driver + ":" + db;
         connection = DriverManager.getConnection(url, config.toProperties());
         System.out.println("Connected...");
     }

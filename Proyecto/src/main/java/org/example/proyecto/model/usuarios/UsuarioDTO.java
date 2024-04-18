@@ -1,17 +1,24 @@
 package org.example.proyecto.model.usuarios;
 
-public class UsuariosDTO {
+public class UsuarioDTO {
     private String email;
     private String telefono;
     private String nombreApellidos;
-    private String contrasenhagen;
+    private String contrasenha;
     private String direccion;
 
-    public UsuariosDTO(String email, String telefono, String nombreApellidos, String contrasenhagen, String direccion) {
+    public UsuarioDTO(String email, String telefono, String nombreApellidos, String contrasenha, String direccion) {
         this.email = email;
         this.telefono = telefono;
         this.nombreApellidos = nombreApellidos;
-        this.contrasenhagen = contrasenhagen;
+        this.contrasenha = contrasenha;
+        this.direccion = direccion;
+    }
+
+    public UsuarioDTO(String email, String telefono, String nombreApellidos, String direccion) {
+        this.email = email;
+        this.telefono = telefono;
+        this.nombreApellidos = nombreApellidos;
         this.direccion = direccion;
     }
 
@@ -39,12 +46,12 @@ public class UsuariosDTO {
         this.nombreApellidos = nombreApellidos;
     }
 
-    public String getContrasenhagen() {
-        return contrasenhagen;
+    public String getContrasenha() {
+        return contrasenha;
     }
 
-    public void setContrasenhagen(String contrasenhagen) {
-        this.contrasenhagen = contrasenhagen;
+    public void setContrasenha(String contrasenha) {
+        this.contrasenha = contrasenha;
     }
 
     public String getDireccion() {
