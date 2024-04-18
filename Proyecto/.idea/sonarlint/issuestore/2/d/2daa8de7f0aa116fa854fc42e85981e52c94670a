@@ -1,0 +1,11 @@
+
+¨
+java:S1450"`Remove the "preparedStatement" field and declare it as a local variable in the relevant methods.(¿ä Óşÿÿÿÿ8Û½‹ï1J$fc5d9a37-f6e6-45ca-b682-6f7341c4f659
+ 
+java:S1450"XRemove the "statement" field and declare it as a local variable in the relevant methods.(„£„÷øÿÿÿÿ8‘Û½‹ï1J$ffee9489-b74b-4463-a425-47e65de89906
+z
+java:S1135,"2Complete the task associated to this TODO comment.(ìöÊøÿÿÿÿ8—Û½‹ï1J$e4434532-9f1d-4836-90a9-49a9e340f0f8
+~	java:S125X"<This block of commented-out lines of code should be removed.(÷Ä±‡8šÛ½‹ï1J$99236dd7-f105-4b92-8e2a-327803da534d
+ƒ	java:S125q"<This block of commented-out lines of code should be removed.(Ãö€ûÿÿÿÿ8šÛ½‹ï1J$b6935871-a95e-46ae-aa78-6027961187e4
+t
+java:S1128	",Remove this unused import 'java.util.Stack'.(ŞÈ†üúÿÿÿÿ8¬­Á‹ï1J$750ef1e6-ea7d-4825-a2f4-44efc59e5322
