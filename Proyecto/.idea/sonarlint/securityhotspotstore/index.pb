@@ -25,3 +25,7 @@ q
 Asrc/main/java/org/example/proyecto/model/usuarios/UsuarioDAO.java,c/6/c6f63049854547130a5b8555485b39a609095b61
 p
 @src/main/java/org/example/proyecto/model/usuarios/UsuarioDB.java,2/d/2daa8de7f0aa116fa854fc42e85981e52c94670a
+p
+@src/main/java/org/example/proyecto/model/usuario/UsuarioDAO.java,2/6/263b048efc1128a459b597f0a81608eedc66dd25
+o
+?src/main/java/org/example/proyecto/model/usuario/UsuarioDB.java,a/0/a013cd8bcb5118fc2090d357aec9ea2821d8cec2

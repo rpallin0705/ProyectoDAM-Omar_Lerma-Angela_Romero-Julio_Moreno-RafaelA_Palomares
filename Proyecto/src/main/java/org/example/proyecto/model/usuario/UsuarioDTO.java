@@ -1,4 +1,4 @@
-package org.example.proyecto.model.usuarios;
+package org.example.proyecto.model.usuario;
 
 public class UsuarioDTO {
     private String email;
