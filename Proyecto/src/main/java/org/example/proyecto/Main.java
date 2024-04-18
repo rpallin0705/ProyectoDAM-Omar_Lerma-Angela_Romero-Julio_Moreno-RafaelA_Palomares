@@ -10,13 +10,15 @@ public class Main {
     public static void main(String[] args) {
         try {
             UsuarioDB usuarioDB = new UsuarioDB();
-            //UsuarioDTO usuario = usuarioDB.loginUsuario("usuaro1@example.com", "contraseña1");
+            /*UsuarioDTO usuario = usuarioDB.loginUsuario("usuario1@example.com", "contraseña1");
+            System.out.println(usuario.toString());*/
             //System.out.println(usuario.toString());
 
-            /*UsuarioDTO usuarioDTO = new UsuarioDTO("hola", "asios", "adfadfad", "adgad", "dagdg");
-            System.out.printf("usuario insertado -> %B",usuarioDB.insertUsuario(usuarioDTO));*/
+            UsuarioDTO usuarioDTO = new UsuarioDTO("hola", "asios", "adfadfad", "adgad", "dagdg");
+            System.out.printf("usuario insertado -> %B%n",usuarioDB.insertUsuario(usuarioDTO));
+            System.out.printf("usuario actualizado -> %B%n", usuarioDB.updateUsuario(usuarioDTO));
 
-            System.out.printf("usuario borrado -> %B", usuarioDB.deleteUsuariobyEmail("hola"));
+            System.out.printf("usuario borrado -> %B%n", usuarioDB.deleteUsuariobyEmail("hola"));
         } catch (SQLException e) {
             System.err.println(e);
         } catch (IOException e) {

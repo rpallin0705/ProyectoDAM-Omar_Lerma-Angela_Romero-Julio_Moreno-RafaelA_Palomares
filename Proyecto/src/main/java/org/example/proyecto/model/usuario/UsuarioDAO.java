@@ -8,5 +8,5 @@ public interface UsuarioDAO {
     UsuarioDTO loginUsuario(String email, String contrasenha) throws SQLException;
     boolean insertUsuario(UsuarioDTO usuarioNuevo) throws SQLException;
     boolean deleteUsuariobyEmail(String emailUsuarioABorrar) throws SQLException;
-    boolean updateUsuario(UsuarioDTO usuarioAActualizado);
+    boolean updateUsuario(UsuarioDTO usuarioAActualizado) throws SQLException;
 }

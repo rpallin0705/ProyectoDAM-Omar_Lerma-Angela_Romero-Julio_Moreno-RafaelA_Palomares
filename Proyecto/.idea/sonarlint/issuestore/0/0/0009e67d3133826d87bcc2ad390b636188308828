@@ -1,5 +1,8 @@
 
-~	java:S125"<This block of commented-out lines of code should be removed.(Ù©êÔ8Ì€½Œï1J$1cb219c8-9c14-44fb-8d74-abf74521912d
-ƒ	java:S125"<This block of commented-out lines of code should be removed.(¿àÇªÿÿÿÿÿ8Í€½Œï1J$78735825-56a1-4af4-aaa1-fa7a593d93a8
-g
-java:S1128"JRemove this unused import 'org.example.proyecto.model.usuario.UsuarioDTO'.(ÔèÈ¤8Ñá½Œï1
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8­„–ï1J$dac43b8a-9969-456e-a530-fbdaa3127cd5
+}	java:S125"<This block of commented-out lines of code should be removed.(õ¢¶l8üüï1J$48694b62-435f-4566-b9ca-b1c039f66736
+~	java:S125"<This block of commented-out lines of code should be removed.(¤¾‹Ó8ô‹˜ï1J$4b4f829a-b8c9-46d0-bc41-46e73a797d37
+l	java:S106"+Replace this use of System.out by a logger.(ıÁ:8ï1J$18fa54b3-909e-4ab4-b30d-05939b1e6e0e
+r	java:S106"+Replace this use of System.out by a logger.(›™›Ğûÿÿÿÿ8£­Æï1J$388a3f3e-41d5-4257-9a35-18970a8846c0
+m	java:S106"+Replace this use of System.out by a logger.(¨ñ‘8´ÖÔï1J$132f167c-6c11-4d28-8f97-9bce45558b80
+r	java:S106"+Replace this use of System.err by a logger.(Şàš¬øÿÿÿÿ8Ä„–ï1J$a8eb950d-30bd-4e40-83aa-9cdd1727af45

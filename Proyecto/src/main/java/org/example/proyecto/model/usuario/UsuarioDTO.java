@@ -4,14 +4,14 @@ public class UsuarioDTO {
     private String email;
     private String telefono;
     private String nombreApellidos;
-    private String contrasenha;
+    private String contrasena;
     private String direccion;
 
-    public UsuarioDTO(String email, String telefono, String nombreApellidos, String contrasenha, String direccion) {
+    public UsuarioDTO(String email, String telefono, String nombreApellidos, String contrasena, String direccion) {
         this.email = email;
         this.telefono = telefono;
         this.nombreApellidos = nombreApellidos;
-        this.contrasenha = contrasenha;
+        this.contrasena = contrasena;
         this.direccion = direccion;
     }
 
@@ -46,12 +46,12 @@ public class UsuarioDTO {
         this.nombreApellidos = nombreApellidos;
     }
 
-    public String getContrasenha() {
-        return contrasenha;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContrasenha(String contrasenha) {
-        this.contrasenha = contrasenha;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
     public String getDireccion() {
