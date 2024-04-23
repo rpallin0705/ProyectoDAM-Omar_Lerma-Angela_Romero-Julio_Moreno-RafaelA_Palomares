@@ -28,6 +28,9 @@ create table alojamientos (
     direccion_alojamiento   varchar2(50),
     num_huespedes           number(10),
     tipo_alojamiento        varchar2(20),
+    tipo_habitacion             varchar2(10),
+    clasificacion               number(1),
+    dist_al_centro_km           number(5),
     constraint pk_alojamientos primary key(id_alojamiento)
 );
 
@@ -49,17 +52,18 @@ create table hoteles (
     tipo_habitacion             varchar2(10),
     clasificacion               number(1),
     constraint pk_hoteles primary key(id_alojamiento),
-    constraint fk4 foreign key(id_alojamiento) references alojamientos(id_alojamiento)
+    constraint fk_hotel_alojamientos foreign key(id_alojamiento) references alojamientos(id_alojamiento)
 );
 
 create table aps_turisticos (
     id_alojamiento     number,
     dist_al_centro_km   number(5),
     constraint pk_aps_turisticos primary key(id_alojamiento),
-    constraint fk5 foreign key(id_alojamiento) references alojamientos(id_alojamiento)
+    constraint fk_aps_alojamientos foreign key(id_alojamiento) references alojamientos(id_alojamiento)
 );
 
---TRIGGER
+--TRIGGERS
+    --crear hoteles y aps_turisticos automaticamente
 CREATE OR REPLACE TRIGGER crear_alojamientos
 AFTER INSERT ON alojamientos
 FOR EACH ROW
@@ -67,10 +71,32 @@ BEGIN
     CASE
         WHEN :NEW.tipo_alojamiento = 'HOTEL' THEN
             INSERT INTO hoteles (id_alojamiento, numero_huespedes_hoteles, tipo_habitacion, clasificacion)
-            VALUES (:NEW.id_alojamiento, DEFAULT, DEFAULT, DEFAULT);
+            VALUES (:NEW.id_alojamiento, :NEW.numero_huespedes, :NEW.tipo_habitacion, :NEW.clasificacion);
         WHEN :NEW.tipo_alojamiento = 'APARTAMENTOS_TURISTICOS' THEN
             INSERT INTO aps_turisticos (id_alojamiento, dist_al_centro_km)
-            VALUES (:NEW.id_alojamiento, DEFAULT);
+            VALUES (:NEW.id_alojamiento, :NEW.dist_al_centro_km);
+    END CASE;
+END;
+/
+
+    --actualizar hoteles y aps_turisticos automaticamente
+CREATE OR REPLACE TRIGGER actualizar_alojamientos
+AFTER UPDATE ON alojamientos
+FOR EACH ROW
+BEGIN
+    CASE
+        WHEN tipo_alojamiento = 'HOTEL' THEN
+        UPDATE hoteles
+        SET 
+            numero_huespedes_hoteles = COALESCE(:NEW.num_huespedes, numero_huespedes_hoteles),
+            clasificacion = COALESCE(:NEW.clasificacion, clasificacion)
+        WHERE id_alojamiento = :NEW.id_alojamiento;
+        
+        WHEN tipo_alojamiento = 'APARTAMENTOS_TURISTICOS' THEN
+        UPDATE aps_turisticos
+        SET 
+            dist_al_centro_km = COALESCE(:NEW.dist_al_centro_km, dist_al_centro_km)
+        WHERE id_alojamiento = :NEW.id_alojamiento;
     END CASE;
 END;
 /
@@ -95,17 +121,19 @@ VALUES ('cliente1@example.com', '123456789', 'John Doe', 'password1', '123 Main 
        ('cliente10@example.com', '555444333', 'Andrew Thomas', 'password10', '123 Spruce St');
 
     --alojamientos
-INSERT INTO alojamientos (nom_alojamiento, direccion_alojamiento, num_huespedes, tipo_alojamiento)
-VALUES ('Hotel Ejemplo', 'Calle Principal 123', 50, 'HOTEL'),
-       ('Cabaña de Montaña', 'Camino del Bosque 45', 4, 'HOTEL'),
-       ('Apartamento Costero', 'Paseo Marítimo 67', 6, 'APARTAMENTOS_TURISTICOS'),
-       ('Villa del Lago', 'Avenida del Lago 89', 8, 'HOTEL'),
-       ('Hostal La Plaza', 'Plaza Mayor 12', 20, 'HOTEL'),
-       ('Albergue del Bosque', 'Sendero Verde s/n', 30, 'HOTEL'),
-       ('Resort Paradise', 'Carretera del Paraíso km 10', 200, 'HOTEL'),
-       ('Pensión del Sol', 'Calle del Sol 34', 15, 'HOTEL'),
-       ('Casa Rural El Encanto', 'Camino Viejo 56', 10, 'HOTEL'),
-       ('Apartahotel Playa Azul', 'Avenida de la Playa 78', 40, 'APARTAMENTOS_TURISTICOS');
+INSERT INTO alojamientos (nom_alojamiento, direccion_alojamiento, num_huespedes, tipo_alojamiento, tipo_habitacion, clasificacion, dist_al_centro_km)
+VALUES 
+    ('Hotel Ejemplo', 'Calle Principal 123', 50, 'HOTEL', 'Suite', 3, NULL),
+    ('Cabaña de Montaña', 'Camino del Bosque 45', 4, 'HOTEL', 'Habitación Doble', 2, 4),
+    ('Apartamento Costero', 'Paseo Marítimo 67', NULL, 'APARTAMENTOS_TURISTICOS', NULL, NULL, 2),
+    ('Villa del Lago', 'Avenida del Lago 89', 8, 'HOTEL', 'Suite', 4, 8),
+    ('Hostal La Plaza', 'Plaza Mayor 12', 20, 'HOTEL', 'Habitación Individual', 1, 20),
+    ('Albergue del Bosque', 'Sendero Verde s/n', 30, 'HOTEL', 'Dormitorio Compartido', 2, 30),
+    ('Resort Paradise', 'Carretera del Paraíso km 10', 200, 'HOTEL', 'Suite', 5, 200),
+    ('Pensión del Sol', 'Calle del Sol 34', 15, 'HOTEL', 'Habitación Doble', 3, 15),
+    ('Casa Rural El Encanto', 'Camino Viejo 56', 10, 'HOTEL', 'Cabaña', 3, 10),
+    ('Apartahotel Playa Azul', 'Avenida de la Playa 78', NULL, 'APARTAMENTOS_TURISTICOS', NULL, NULL, 1);
+
     
     --reserva
 INSERT INTO reserva (fecha_ini, fecha_fin, id_cliente, id_alojamiento)
