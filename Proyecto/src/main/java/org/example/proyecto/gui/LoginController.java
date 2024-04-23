@@ -1,4 +1,4 @@
-package org.example.proyecto;
+package org.example.proyecto.gui;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

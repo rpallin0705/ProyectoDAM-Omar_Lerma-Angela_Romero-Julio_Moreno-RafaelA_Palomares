@@ -3,11 +3,11 @@ package org.example.proyecto.model.hoteles;
 import org.example.proyecto.model.alojamientos.TipoAlojamiento;
 import org.example.proyecto.model.alojamientos.AlojamientosDTO;
 
-public class HotelesDTO extends AlojamientosDTO {
+public class HotelDTO extends AlojamientosDTO {
     private String tipoHabitacion;
     private int clasificacion;
 
-    public HotelesDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numeHuespedes, String tipoHabitacion, int clasificacion) {
+    public HotelDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numeHuespedes, String tipoHabitacion, int clasificacion) {
         super(codAlojamiento, nombreAlojamiento, direccionAlojamiento, numeHuespedes, TipoAlojamiento.HOTELES);
         this.tipoHabitacion = tipoHabitacion;
         this.clasificacion = clasificacion;

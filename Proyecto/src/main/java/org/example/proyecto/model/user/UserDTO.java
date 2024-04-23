@@ -1,13 +1,13 @@
-package org.example.proyecto.model.usuario;
+package org.example.proyecto.model.user;
 
-public class UsuarioDTO {
+public class UserDTO {
     private String email;
     private String telefono;
     private String nombreApellidos;
     private String contrasena;
     private String direccion;
 
-    public UsuarioDTO(String email, String telefono, String nombreApellidos, String contrasena, String direccion) {
+    public UserDTO(String email, String telefono, String nombreApellidos, String contrasena, String direccion) {
         this.email = email;
         this.telefono = telefono;
         this.nombreApellidos = nombreApellidos;
@@ -15,7 +15,7 @@ public class UsuarioDTO {
         this.direccion = direccion;
     }
 
-    public UsuarioDTO(String email, String telefono, String nombreApellidos, String direccion) {
+    public UserDTO(String email, String telefono, String nombreApellidos, String direccion) {
         this.email = email;
         this.telefono = telefono;
         this.nombreApellidos = nombreApellidos;

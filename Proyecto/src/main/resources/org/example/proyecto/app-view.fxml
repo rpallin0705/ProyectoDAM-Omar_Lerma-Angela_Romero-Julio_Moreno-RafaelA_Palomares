@@ -11,7 +11,7 @@
 <?import java.lang.String?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="org.example.proyecto.AppController"
+            fx:controller="org.example.proyecto.gui.AppController"
             prefWidth="500" prefHeight="400">
 
     <center>

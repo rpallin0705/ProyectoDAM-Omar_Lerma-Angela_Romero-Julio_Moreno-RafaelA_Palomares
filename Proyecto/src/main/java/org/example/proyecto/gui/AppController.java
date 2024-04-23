@@ -1,4 +1,4 @@
-package org.example.proyecto;
+package org.example.proyecto.gui;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.ComboBox;
