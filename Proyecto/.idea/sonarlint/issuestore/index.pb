@@ -6,7 +6,7 @@ N
 h
 8src/main/java/org/example/proyecto/LoginApplication.java,2/f/2f8117098d8a734ef829c819ed8b6008ff11c50f
 g
-7src/main/java/org/example/proyecto/LoginController.java,c\b\cb1dcdd77e4df4385bb4ea0618725b6fd4620ff4
+7src/main/java/org/example/proyecto/LoginController.java,c/b/cb1dcdd77e4df4385bb4ea0618725b6fd4620ff4
 e
 5src/main/java/org/example/proyecto/AppController.java,1/b/1b9a02259d28f50acb966a296f2e021d62da68fc
 g
@@ -20,4 +20,10 @@ p
 o
 ?src/main/java/org/example/proyecto/model/usuario/UsuarioDB.java,a/0/a013cd8bcb5118fc2090d357aec9ea2821d8cec2
 p
-@src/main/java/org/example/proyecto/model/usuario/UsuarioDTO.java,0\6\0654afa8db08eda3878c71ef0d34cd4575d38df0
+@src/main/java/org/example/proyecto/model/usuario/UsuarioDTO.java,0/6/0654afa8db08eda3878c71ef0d34cd4575d38df0
+z
+Jsrc/main/java/org/example/proyecto/model/alojamientos/AlojamientosDTO.java,1/7/17e84260806e287e2bcc106a28da6de020fef29c
+p
+@src/main/java/org/example/proyecto/model/hoteles/HotelesDTO.java,e/a/eabc4f2b615c8a238280a7ab45ad3a01b8fc787d
+z
+Jsrc/main/java/org/example/proyecto/model/alojamientos/TipoAlojamiento.java,6/4/64e75f6e18c4c3fb18b9f9f4cfb96a558a94ec93
