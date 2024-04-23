@@ -4,14 +4,14 @@ public class HousingDTO {
     private String codAlojamiento;
     private String nombreAlojamiento;
     private String direccionAlojamiento;
-    private int numeHuespedes;
+    private int numHuespedes;
     private HousingType housingType;
 
-    public HousingDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numeHuespedes, HousingType housingType) {
+    public HousingDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numHuespedes, HousingType housingType) {
         this.codAlojamiento = codAlojamiento;
         this.nombreAlojamiento = nombreAlojamiento;
         this.direccionAlojamiento = direccionAlojamiento;
-        this.numeHuespedes = numeHuespedes;
+        this.numHuespedes = numHuespedes;
         this.housingType = housingType;
     }
 
@@ -39,12 +39,12 @@ public class HousingDTO {
         this.direccionAlojamiento = direccionAlojamiento;
     }
 
-    public int getNumeHuespedes() {
-        return numeHuespedes;
+    public int getNumHuespedes() {
+        return numHuespedes;
     }
 
-    public void setNumeHuespedes(int numeHuespedes) {
-        this.numeHuespedes = numeHuespedes;
+    public void setNumHuespedes(int numHuespedes) {
+        this.numHuespedes = numHuespedes;
     }
 
     public HousingType getTipoAlojamiento() {
@@ -57,6 +57,6 @@ public class HousingDTO {
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%d,%s", codAlojamiento, nombreAlojamiento, direccionAlojamiento, numeHuespedes, housingType);
+        return String.format("%s,%s,%s,%d,%s", codAlojamiento, nombreAlojamiento, direccionAlojamiento, numHuespedes, housingType);
     }
 }

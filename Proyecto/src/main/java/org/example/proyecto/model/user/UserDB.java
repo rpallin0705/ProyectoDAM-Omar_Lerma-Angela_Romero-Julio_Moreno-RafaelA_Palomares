@@ -58,7 +58,6 @@ public class UserDB implements UserDAO {
         UserDTO usuarioLoged = null;
         if (resultSet.next() && resultSet.getString("contrasena").equals(password)) {
             email = resultSet.getString("email");
-            System.out.println("hola" + email);
             String telefono = resultSet.getString("telefono");
             String nombreApellidos = resultSet.getString("nombre_apellidos");
             String direccion = resultSet.getString("direccion");

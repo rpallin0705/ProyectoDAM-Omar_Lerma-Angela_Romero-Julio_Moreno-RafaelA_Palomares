@@ -11,3 +11,13 @@ i
 9src/main/java/org/example/proyecto/model/user/UserDB.java,4\7\47826f592b6ddb4441f47c02c2f7636407a64bbc
 ?
 database/db.sql,b\6\b6c55971850f9a61160c365d15e09c82d8541663
+q
+Asrc/main/java/org/example/proyecto/model/housing/HousingType.java,c\0\c00384c1066d1a030e1882d9adb2d59694c4c491
+p
+@src/main/java/org/example/proyecto/model/housing/HousingDTO.java,b\9\b9282c78b411296be69d30f23d583c89a8bca4ef
+l
+<src/main/java/org/example/proyecto/model/hotel/HotelDTO.java,8\5\850d9dce11ea7b196e5301f26903757291c013ae
+p
+@src/main/java/org/example/proyecto/model/housing/HousingDAO.java,c\f\cf2cbbf1f4c474c850edd665d242b3247c5f18e7
+o
+?src/main/java/org/example/proyecto/model/housing/HousingDB.java,6\d\6d5885cebc063a3b55e4c0a8065d569a0be1e7e4
