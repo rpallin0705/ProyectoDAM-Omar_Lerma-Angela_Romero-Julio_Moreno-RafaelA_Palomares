@@ -18,6 +18,7 @@ public class UserDB implements UserDAO {
 
     /**
      * Obtiene la lista de todos los usuarios almacenados en la base de datos.
+     *
      * @return Lista de objetos UsuarioDTO que representan a los usuarios almacenados en la base de datos.
      * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
      */
@@ -41,6 +42,7 @@ public class UserDB implements UserDAO {
 
     /**
      * Funcion que realiza la lógica del inicio de sesion de un usuario
+     *
      * @param email del usuario que va a iniciar sesion
      * @param password contraseña del usuario que va a iniciar sesion
      * @return los datos del usuario que ha iniciado sesion, menos la contraseña
@@ -69,6 +71,7 @@ public class UserDB implements UserDAO {
 
     /**
      * Inserta un nuevo usuario en la base de datos.
+     *
      * @param newUser Objeto UsuarioDTO que representa al nuevo usuario a insertar.
      * @return true si el usuario fue insertado exitosamente, false en caso contrario.
      * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
@@ -88,13 +91,15 @@ public class UserDB implements UserDAO {
 
     /**
      * Elimina un usuario de la base de datos utilizando su email como identificador.
+     *
      * @param userEmailDelete Email del usuario que se va a eliminar.
      * @return true si el usuario fue eliminado exitosamente, false en caso contrario.
      * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @todo Cuando se actualice el script de la base de datos hacer la logica para que sea por id
      */
     @Override
-    public boolean deleteUserByEmail(String userEmailDelete) throws SQLException {
-        String sql = "DELETE FROM usuarios WHERE email = ?";
+    public boolean deleteUserByID(String userEmailDelete) throws SQLException {
+        String sql = "DELETE FROM usuarios WHERE id_usuario = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, userEmailDelete);
         int result = preparedStatement.executeUpdate();
