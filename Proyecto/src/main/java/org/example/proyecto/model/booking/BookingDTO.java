@@ -1,15 +1,15 @@
-package org.example.proyecto.model.reserva;
+package org.example.proyecto.model.booking;
 
 import java.time.LocalDate;
 
-public class ReservaDTO {
+public class BookingDTO {
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private String email;
     private String telefono;
     private String codAlojamiento;
 
-    public ReservaDTO(LocalDate fechaInicio, LocalDate fechaFin, String email, String telefono, String codAlojamiento) {
+    public BookingDTO(LocalDate fechaInicio, LocalDate fechaFin, String email, String telefono, String codAlojamiento) {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.email = email;
