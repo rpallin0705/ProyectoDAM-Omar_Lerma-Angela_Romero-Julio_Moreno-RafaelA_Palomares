@@ -1,18 +1,18 @@
-package org.example.proyecto.model.alojamientos;
+package org.example.proyecto.model.housing;
 
-public class AlojamientosDTO {
+public class HousingDTO {
     private String codAlojamiento;
     private String nombreAlojamiento;
     private String direccionAlojamiento;
     private int numeHuespedes;
-    private TipoAlojamiento tipoAlojamiento;
+    private HousingType housingType;
 
-    public AlojamientosDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numeHuespedes, TipoAlojamiento tipoAlojamiento) {
+    public HousingDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numeHuespedes, HousingType housingType) {
         this.codAlojamiento = codAlojamiento;
         this.nombreAlojamiento = nombreAlojamiento;
         this.direccionAlojamiento = direccionAlojamiento;
         this.numeHuespedes = numeHuespedes;
-        this.tipoAlojamiento = tipoAlojamiento;
+        this.housingType = housingType;
     }
 
     public String getCodAlojamiento() {
@@ -47,16 +47,16 @@ public class AlojamientosDTO {
         this.numeHuespedes = numeHuespedes;
     }
 
-    public TipoAlojamiento getTipoAlojamiento() {
-        return tipoAlojamiento;
+    public HousingType getTipoAlojamiento() {
+        return housingType;
     }
 
-    public void setTipoAlojamiento(TipoAlojamiento tipoAlojamiento) {
-        this.tipoAlojamiento = tipoAlojamiento;
+    public void setTipoAlojamiento(HousingType housingType) {
+        this.housingType = housingType;
     }
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%d,%s", codAlojamiento, nombreAlojamiento, direccionAlojamiento, numeHuespedes, tipoAlojamiento);
+        return String.format("%s,%s,%s,%d,%s", codAlojamiento, nombreAlojamiento, direccionAlojamiento, numeHuespedes, housingType);
     }
 }

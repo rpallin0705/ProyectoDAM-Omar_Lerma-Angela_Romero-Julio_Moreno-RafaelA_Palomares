@@ -1,14 +1,14 @@
-package org.example.proyecto.model.hoteles;
+package org.example.proyecto.model.hotel;
 
-import org.example.proyecto.model.alojamientos.TipoAlojamiento;
-import org.example.proyecto.model.alojamientos.AlojamientosDTO;
+import org.example.proyecto.model.housing.HousingType;
+import org.example.proyecto.model.housing.HousingDTO;
 
-public class HotelDTO extends AlojamientosDTO {
+public class HotelDTO extends HousingDTO {
     private String tipoHabitacion;
     private int clasificacion;
 
     public HotelDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numeHuespedes, String tipoHabitacion, int clasificacion) {
-        super(codAlojamiento, nombreAlojamiento, direccionAlojamiento, numeHuespedes, TipoAlojamiento.HOTELES);
+        super(codAlojamiento, nombreAlojamiento, direccionAlojamiento, numeHuespedes, HousingType.HOTELES);
         this.tipoHabitacion = tipoHabitacion;
         this.clasificacion = clasificacion;
     }
