@@ -8,7 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 
 <?import javafx.geometry.Insets?>
-<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.example.proyecto.gui.LoginController">
     <children>
         <VBox layoutX="50.0" layoutY="50.0" prefHeight="200.0" prefWidth="200.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-padding: 20px;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="50.0" AnchorPane.rightAnchor="50.0" AnchorPane.topAnchor="50.0">
             <children>
@@ -27,7 +29,8 @@
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
                 </PasswordField>
-                <Button fx:id="login" mnemonicParsing="false" onAction="#app" text="Login" style="-fx-background-color: #f5a623; -fx-text-fill: #ffffff;">
+                <!--onAction="#app"-->
+                <Button fx:id="login" onAction="#login" mnemonicParsing="false" text="Login" style="-fx-background-color: #f5a623; -fx-text-fill: #ffffff;">
                     <VBox.margin>
                         <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                     </VBox.margin>
