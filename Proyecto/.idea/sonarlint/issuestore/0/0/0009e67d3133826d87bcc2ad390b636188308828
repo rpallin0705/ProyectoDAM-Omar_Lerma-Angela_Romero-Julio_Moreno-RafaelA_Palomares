@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8­„–ï1J$4a6f59a7-75c4-4f05-a2f3-37a5f7658d77
 }	java:S125"<This block of commented-out lines of code should be removed.(õ¢¶l8üüï1J$13845680-9917-4b1c-9756-a5a8ae13c3b5
 ~	java:S125"<This block of commented-out lines of code should be removed.(¤¾‹Ó8ô‹˜ï1J$a9b0d7d7-7d49-48a8-b7ff-3c422befe28a
@@ -6,3 +7,7 @@ m	java:S106"+Replace this use of System.out by a logger.(±ŠÞˆ8Žï1J$f44046
 m	java:S106"+Replace this use of System.out by a logger.(È³õï8£­Æï1J$3f3365ea-bf2e-44dc-861a-890327f3b2a9
 r	java:S106"+Replace this use of System.out by a logger.(¾­Ü¦üÿÿÿÿ8´ÖÔï1J$5bf95eaf-fe94-4190-bb7b-4a064ff5f46d
 r	java:S106"+Replace this use of System.err by a logger.(Þàš¬øÿÿÿÿ8Ä„–ï1J$92e3d442-5891-4398-98e6-cddf36ac9cbf
+=======
+}	java:S125"<This block of commented-out lines of code should be removed.(õ¢¶l8üüï1J$c6565ab1-f6c9-41b3-b5fb-e9d9cad305ac
+~	java:S125"<This block of commented-out lines of code should be removed.(¤¾‹Ó8ô‹˜ï1J$4ce7baa0-761a-4344-825e-7c5b51256f8d
+>>>>>>> 1acf6506555916932cc48b4092b007b1d6cdf36a
