@@ -22,6 +22,7 @@ public class BookingDB implements BookingDAO{
      *
      * @return Lista de objetos BookingDTO que representan las reservas almacenadas en la base de datos.
      * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @todo Hacer las fechas LocalDate y hacer el cambio a String
      */
     @Override
     public List<BookingDTO> getBookings() throws SQLException {
