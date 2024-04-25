@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header y Aside</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 24px;
+            text-align: center;
+            margin-right: auto;
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+        .user-info img {
+            width: 30px;
+            height: 30px;
+            margin-right: 5px;
+        }
+        aside {
+            background-color: #f4f4f4;
+            width: 200px;
+            height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        aside button {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: none;
+            background-color: #ddd;
+            cursor: pointer;
+            text-align: left;
+        }
+        aside button:hover {
+            background-color: #ccc;
+        }
+        form {
+            margin-top: auto;
+        }
+        form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            margin-bottom: 10px;
+        }
+        form input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        form input[type="submit"]:hover {
+            background-color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">Título de la página</div>
+        <div class="user-info">
+            <img src="user-icon.png" alt="Usuario">
+            <span>Nombre de Usuario</span>
+        </div>
+    </header>
+    <aside>
+        <button>Clientes</button>
+        <button>Reservas</button>
+        <button>Alojamientos</button>
+        <button>Cerrar Sesión</button>
+        <form>
+            <input type="text" placeholder="Introduce correo, teléfono o DNI">
+            <input type="submit" value="Buscar">
+        </form>
+    </aside>
+</body>
+</html>

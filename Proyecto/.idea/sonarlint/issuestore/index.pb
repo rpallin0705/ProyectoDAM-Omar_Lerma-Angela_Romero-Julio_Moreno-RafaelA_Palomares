@@ -22,4 +22,12 @@ p
 o
 ?src/main/java/org/example/proyecto/model/housing/HousingDB.java,6\d\6d5885cebc063a3b55e4c0a8065d569a0be1e7e4
 \
-,src/main/java/org/example/proyecto/Main.java,0/0/0009e67d3133826d87bcc2ad390b636188308828
+,src/main/java/org/example/proyecto/Main.java,0\0\0009e67d3133826d87bcc2ad390b636188308828
+j
+:src/main/java/org/example/proyecto/model/user/UserDTO.java,a\d\adb0d12a76d92fe23b5091a68e0401e2f17f244c
+m
+=src/main/java/org/example/proyecto/model/client/ClientDB.java,4\0\4053052421d310bb74ea4a50433e7a3adc17000c
+n
+>src/main/java/org/example/proyecto/model/client/ClientDAO.java,0\d\0d7934d9f478f7315a88610d488f224bd05539e3
+n
+>src/main/java/org/example/proyecto/model/client/ClientDTO.java,d\7\d75d2b5f82b23491c839f2c3004f0e0b4c566541

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="600.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+         <children>
+            <Label prefHeight="53.0" prefWidth="393.0" style="-fx-label-padding: 10;" text="Encarni's Resort" textFill="WHITE">
+               <font>
+                  <Font name="Calibri Light" size="31.0" />
+               </font>
+            </Label>
+            <Label alignment="TOP_RIGHT" prefHeight="81.0" prefWidth="280.0" />
+            <Label alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="108.0" text="Usuario" textFill="WHITE">
+               <font>
+                  <Font size="22.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="20.0" />
+               </HBox.margin>
+            </Label>
+         </children>
+      </HBox>
+   </top>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="441.0" prefWidth="130.0" style="-fx-padding: 10; -fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
+         <children>
+            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Clientes">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <VBox.margin>
+                  <Insets bottom="20.0" top="30.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="24.0" layoutY="20.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Alojamientos">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="24.0" layoutY="80.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Reservas">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <VBox.margin>
+                  <Insets bottom="20.0" />
+               </VBox.margin>
+            </Button>
+            <Button layoutX="24.0" layoutY="140.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Cerrar Sesion">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox alignment="CENTER" prefHeight="441.0" prefWidth="519.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="39.0" prefWidth="251.0" style="-fx-background-color: orange; -fx-background-radius: 20;" text="Introduce el correo del cliente">
+               <font>
+                  <Font size="18.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="30.0" />
+               </VBox.margin>
+            </Label>
+            <TextField alignment="CENTER" minWidth="100.0" prefHeight="34.0" prefWidth="465.0" promptText="email">
+               <padding>
+                  <Insets left="100.0" right="100.0" />
+               </padding></TextField>
+            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="103.0" style="-fx-background-color: #ddd; -fx-background-radius: 15;" text="Buscar cliente">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+         <padding>
+            <Insets left="100.0" right="100.0" />
+         </padding>
+      </VBox>
+   </center>
+</BorderPane>
