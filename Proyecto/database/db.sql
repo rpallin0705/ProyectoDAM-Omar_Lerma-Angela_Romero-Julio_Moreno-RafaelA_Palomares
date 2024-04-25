@@ -16,7 +16,7 @@ create table clientes (
     email_cliente               varchar2(30),
     telefono_cliente            varchar2(9),
     nombre_apellidos_cliente    varchar2(50),
-    contrasena_cliente          varchar2(16),
+    -- contrasena_cliente          varchar2(16),
     direccion_cliente           varchar2(50),
     constraint pk_clientes primary key(id_clientes)
 );
