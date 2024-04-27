@@ -75,27 +75,6 @@
       </VBox>
    </left>
    <center>
-      <VBox alignment="CENTER" fillWidth="false" prefHeight="441.0" prefWidth="519.0" spacing="30.0" BorderPane.alignment="CENTER">
-         <children>
-            <Label alignment="CENTER" prefHeight="39.0" prefWidth="251.0" style="-fx-background-radius: 20;" text="Introduce el correo del cliente">
-               <font>
-                  <Font size="18.0" />
-               </font>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Label>
-            <TextField alignment="CENTER" minWidth="100.0" prefHeight="34.0" prefWidth="465.0" promptText="email" />
-            <Button mnemonicParsing="false" prefHeight="31.0" prefWidth="103.0" style="-fx-background-color: #f5a623; -fx-background-radius: 15;" text="Buscar cliente">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button layoutX="269.0" layoutY="282.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="103.0" style="-fx-background-color: #dddd; -fx-background-radius: 15;" text="Registrar Cliente" />
-         </children>
-         <padding>
-            <Insets left="100.0" right="100.0" />
-         </padding>
-      </VBox>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
