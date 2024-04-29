@@ -15,12 +15,12 @@ public class MainScreenController {
     public AnchorPane componenteMultiusos;
 
     @FXML
-    public void buscarClientes(ActionEvent actionEvent) {
+    public void menuClientes(ActionEvent actionEvent) {
         try {
             // Cargar el archivo FXML
             FXMLLoader loader = new FXMLLoader(getClass().getResource("search-client.fxml"));
             AnchorPane newPane = loader.load();
-            buscarClientesBTN.setStyle("-fx-background-color:  #f5a623;");
+            buscarClientesBTN.setStyle("-fx-background-color:  #f5a623; -fx-background-radius: 30px;");
 
             // Reemplazar el contenido actual del componenteMultiusos con el contenido del archivo FXML cargado
             componenteMultiusos.getChildren().setAll(newPane);
