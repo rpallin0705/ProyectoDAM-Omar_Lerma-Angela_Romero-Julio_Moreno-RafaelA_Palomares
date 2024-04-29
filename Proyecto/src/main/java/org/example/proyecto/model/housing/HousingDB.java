@@ -1,14 +1,14 @@
 package org.example.proyecto.model.housing;
 
 import org.example.proyecto.SetUpConnection;
-import org.example.proyecto.model.booking.BookingDTO;
 
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HousingDB implements HousingDAO{
+public class HousingDB implements HousingDAO
+{
     private Connection connection;
     private Statement statement;
     private PreparedStatement preparedStatement;
@@ -31,9 +31,9 @@ public class HousingDB implements HousingDAO{
             int numHuespedes= resultSet.getInt("num_huespedes");
             String housingType = resultSet.getString("tipo_alojamiento");
             if (housingType.equals("HOTELES"))
-                housingDTO = new HousingDTO(codAlojamiento, nombre, direccionAlojamiento, numHuespedes, HousingType.HOTELES);
+                //housingDTO = new HousingDTO(codAlojamiento, nombre, direccionAlojamiento, numHuespedes, HousingType.HOTELES);
             else
-                housingDTO = new HousingDTO(codAlojamiento, nombre, direccionAlojamiento, numHuespedes, HousingType.APARTAMENTOS_TURISTICOS);
+                //housingDTO = new HousingDTO(codAlojamiento, nombre, direccionAlojamiento, numHuespedes, HousingType.APARTAMENTOS_TURISTICOS);
 
             housings.add(housingDTO);
         }
@@ -44,7 +44,7 @@ public class HousingDB implements HousingDAO{
     public boolean insertHousing(HousingDTO newHousing) throws SQLException {
         String sql = "INSERT INTO alojamientos (cod_alojamiento, nom_alojamiento, direccion_alojamiento, num_huespedes, tipo_alojamiento) VALUES (?, ?, ?, ?, ?)";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, newHousing.getCodAlojamiento());
+        preparedStatement.setString(1, newHousing.getId_alojamiento());
         preparedStatement.setString(2, newHousing.getNombreAlojamiento());
         preparedStatement.setString(3, newHousing.getDireccionAlojamiento());
         preparedStatement.setInt(4, newHousing.getNumHuespedes());
@@ -61,7 +61,7 @@ public class HousingDB implements HousingDAO{
         preparedStatement.setString(2, updatedHousing.getDireccionAlojamiento());
         preparedStatement.setInt(3, updatedHousing.getNumHuespedes());
         preparedStatement.setString(4, updatedHousing.getTipoAlojamiento().toString());
-        preparedStatement.setString(5, updatedHousing.getCodAlojamiento());
+        preparedStatement.setString(5, updatedHousing.getId_alojamiento());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
