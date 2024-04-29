@@ -86,7 +86,7 @@ BEGIN
 END;
 
 /*
-/*INSERCION DATOS*/
+/*INSERCION DATOS
 -- Registros para la tabla usuarios
 INSERT INTO usuarios (email, telefono, nombre_apellidos, contrasena, direccion)
 VALUES ('johndoe@example.com', '123456789', 'John Doe', 'contrasena1', '123 Main St');
