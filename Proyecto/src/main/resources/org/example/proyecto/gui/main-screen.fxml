@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.MainScreenController">
    <top>
       <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="600.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
@@ -30,7 +30,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="441.0" prefWidth="130.0" style="-fx-padding: 10; -fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
          <children>
-            <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Clientes">
+            <Button fx:id="buscarClientesBTN" mnemonicParsing="false" onAction="#buscarClientes" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30; -fx-border-radius: 30;" text="Clientes">
                <font>
                   <Font size="15.0" />
                </font>
@@ -75,6 +75,6 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="componenteMultiusos" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
