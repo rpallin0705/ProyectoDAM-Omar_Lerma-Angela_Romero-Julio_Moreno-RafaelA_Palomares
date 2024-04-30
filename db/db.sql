@@ -9,12 +9,12 @@ CREATE TABLE cuentas(
 
 DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios(
-    id_cuenta           INT NOT NULL IDENTITY(1,1) PRIMARY KEY FOREIGN KEY REFERENCES cuentas(id_cuenta)
+    id_cuenta           INT NOT NULL IDENTITY(1,1) PRIMARY KEY FOREIGN KEY REFERENCES cuentas(id_cuenta) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS clientes;
 CREATE TABLE clientes(
-    id_cuenta           INT NOT NULL IDENTITY(1,1) PRIMARY KEY FOREIGN KEY REFERENCES cuentas(id_cuenta),
+    id_cuenta           INT NOT NULL IDENTITY(1,1) PRIMARY KEY FOREIGN KEY REFERENCES cuentas(id_cuenta) ON DELETE CASCADE,
     direccion           VARCHAR2(30)
 );
 
@@ -35,7 +35,7 @@ CREATE TABLE alojamientos(
 
 DROP TABLE IF EXISTS hoteles;
 CREATE TABLE hoteles(
-    id_alojamiento      INT NOT NULL IDENTITY(1,1) PRIMARY KEY FOREIGN KEY REFERENCES alojamientos(id_alojamiento),
+    id_alojamiento      INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES alojamientos(id_alojamiento) ON DELETE CASCADE,
     clasificacion       NUMBER(1),
     tipo_habitacion     VARCHAR(15),
     numero_huespedes    NUMBER(1)
@@ -43,8 +43,8 @@ CREATE TABLE hoteles(
 
 DROP TABLE IF EXISTS aps_turisticos;
 CREATE TABLE aps_turisticos(
-    id_alojamiento  INT NOT NULL IDENTITY(1,1) PRIMARY KEY FOREIGN KEY REFERENCES alojamientos(id_alojamiento),
-    dist_centro_km  NUMBER(5)      
+    id_alojamiento  INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES alojamientos(id_alojamiento) ON DELETE CASCADE,
+    dist_centro_km  NUMBER(5)
 );
 -- Vista para atributos de hoteles
 CREATE OR REPLACE VIEW vista_hoteles AS
