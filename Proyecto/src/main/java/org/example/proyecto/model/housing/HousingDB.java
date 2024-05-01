@@ -17,6 +17,12 @@ public class HousingDB implements HousingDAO
         connection = SetUpConnection.getInstance().getConnection();
     }
 
+    /**
+     * HousingDB
+     * method that connects with the DataBase and gets a list of housings
+     * @return list of housings
+     * @throws SQLException
+     */
     @Override
     public List<HousingDTO> getHousings() throws SQLException {
         List<HousingDTO> housings = new ArrayList<>();
@@ -33,7 +39,12 @@ public class HousingDB implements HousingDAO
         }
         return housings;
     }
-
+    /**
+     * HousingDB
+     * method that connects with the DataBase and updates a concrete Housing searching by ID
+     * @return true if the rows affected are not 0
+     * @throws SQLException
+     */
     @Override
     public boolean updateHousing(HousingDTO updatedHousing) throws SQLException {
         String sql = "UPDATE alojamientos SET  nombre = ?, calle = ? WHERE id_alojamiento = ?";

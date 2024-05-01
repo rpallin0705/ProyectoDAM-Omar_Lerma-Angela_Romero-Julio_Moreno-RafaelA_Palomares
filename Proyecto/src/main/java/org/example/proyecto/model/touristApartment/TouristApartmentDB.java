@@ -1,7 +1,5 @@
 package org.example.proyecto.model.touristApartment;
 
-import org.example.proyecto.model.hotel.HotelDTO;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,8 +8,15 @@ public class TouristApartmentDB implements TouristApartmentDAO{
     private PreparedStatement preparedStatement;
     private Connection connection;
     private Statement statement;
+
+    /**
+     * TouristApartmentDB
+     * method that connects with the DataBase and gets a list of apartments, looking in a view, not directly the tables
+     * @return list of tourist apartments
+     * @throws SQLException
+     */
     @Override
-    public List<TouristApartmentDTO> getHotels() throws SQLException {
+    public List<TouristApartmentDTO> getTouristApartments() throws SQLException {
         ArrayList<TouristApartmentDTO> apartments = new ArrayList<>();
         TouristApartmentDTO touristApartmentDTO= null;
         String sql = "SELECT * FROM vista_aps_turisticos";
@@ -23,7 +28,13 @@ public class TouristApartmentDB implements TouristApartmentDAO{
         }
         return apartments;
     }
-
+    /**
+     * TouristApartmentDB
+     * method that connects with the DataBase and updates a concrete record in the housing table
+     * and then updates a concrete record in the tourist apartments table (both searching by ID)
+     * @return true if the rows affected are not 0
+     * @throws SQLException
+     */
     @Override
     public boolean updateTourisApartment(TouristApartmentDTO updatedApartment) throws SQLException {
         //alojamientos
@@ -39,7 +50,12 @@ public class TouristApartmentDB implements TouristApartmentDAO{
         rowsAffected += preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
-
+    /**
+     * TouristApartmentDB
+     * method that connects with the DataBase and deletes a concrete apartment from the housing table (on cascade) searching by ID
+     * @return true if the rows affected are not 0
+     * @throws SQLException
+     */
     @Override
     public boolean deleteTouristApartment(TouristApartmentDTO deletedApartment) throws SQLException {
         String sql = "DELETE FROM alojamientos WHERE id_alojamiento = ?";
@@ -48,7 +64,13 @@ public class TouristApartmentDB implements TouristApartmentDAO{
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
-
+    /**
+     * TouristApartmentDB
+     * method that connects with the DataBase and insert a record into the housing table, then takes de ID
+     * (autoincremental) and insert a record into the tourist apartments table
+     * @return true if the rows affected are not 0
+     * @throws SQLException
+     */
     @Override
     public boolean insertTouristApartment(TouristApartmentDTO insertedApartment) throws SQLException {
         //alojamientos
@@ -65,5 +87,7 @@ public class TouristApartmentDB implements TouristApartmentDAO{
         preparedStatement = connection.prepareStatement(sql2);
         preparedStatement.setInt(1,idGenerado);
         preparedStatement.setInt(2,insertedApartment.getDistanciaCentros());
+        rowsAffected += preparedStatement.executeUpdate();
+        return rowsAffected != 0;
     }
 }

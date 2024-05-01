@@ -1,10 +1,7 @@
 package org.example.proyecto.model.hotel;
 
 import org.example.proyecto.SetUpConnection;
-import org.example.proyecto.model.housing.HousingDAO;
-
 import java.io.IOException;
-import java.io.StringReader;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +14,12 @@ private Statement statement;
     public HotelDB(Connection connection) throws SQLException, IOException {
         this.connection = SetUpConnection.getInstance().getConnection();
     }
-
+    /**
+     * HotelDB
+     * method that connects with the DataBase and gets a list of hotels, looking in a view, not directly the tables
+     * @return list of hotels
+     * @throws SQLException
+     */
     @Override
     public List<HotelDTO> getHotels() throws SQLException {
         ArrayList<HotelDTO> hotels = new ArrayList<>();
@@ -49,7 +51,13 @@ private Statement statement;
         }
         return hotels;
     }
-
+    /**
+     * HotelDB
+     * method that connects with the DataBase and updates a concrete record in the housing table
+     * and then updates a concrete record in the hotel table (both searching by ID)
+     * @return true if the rows affected are not 0
+     * @throws SQLException
+     */
     @Override
     public boolean updateHotel(HotelDTO updatedHotel) throws SQLException {
         //alojamientos
@@ -71,7 +79,12 @@ private Statement statement;
         connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
-
+    /**
+     * HotelDB
+     * method that connects with the DataBase and deletes a concrete hotel from the housing table (on cascade) searching by ID
+     * @return true if the rows affected are not 0
+     * @throws SQLException
+     */
     @Override
     public boolean deleteHotel(HotelDTO deletedHotel) throws SQLException {
         String sql = "DELETE FROM alojamientos WHERE id_alojamiento = ?";
@@ -80,7 +93,13 @@ private Statement statement;
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
-
+    /**
+     * HotelDB
+     * method that connects with the DataBase and insert a record into the housing table, then takes de ID
+     * (autoincremental) and insert a record into the hotels apartments table
+     * @return true if the rows affected are not 0
+     * @throws SQLException
+     */
     @Override
     public boolean insertHotel(HotelDTO insertedHotel) throws SQLException {
         //alojamientos
