@@ -7,4 +7,6 @@ module org.example.proyecto {
 
     opens org.example.proyecto to javafx.fxml;
     exports org.example.proyecto;
+    exports org.example.proyecto.gui;
+    opens org.example.proyecto.gui to javafx.fxml;
 }

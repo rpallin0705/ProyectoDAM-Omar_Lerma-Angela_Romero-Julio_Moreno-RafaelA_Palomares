@@ -3,10 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reservas</title>
-</head>
+    <title>Reservas del Hotel</title>
+    <style>
+        .reservas-container {
+            display: flex;
+            flex-direction: column;
+        }
 
+        .reserva {
+            display: flex;
+            flex-wrap: wrap;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .reserva-info {
+            width: 50%;
+            margin-bottom: 10px;
+        }
+
+        .reserva-info label {
+            font-weight: bold;
+        }
+
+        .boton-gestionar {
+            padding: 8px 16px;
+            background-color: #f37d0f;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+    </style>
+</head>
 <body>
-    <h1 style="text-align: center;">AQUÍ IRÍAN LAS RESERVAS</h1>
+    <h1 style="text-align: center;">Reservas del Hotel</h1>
+
+    <div class="reservas-container">
+        <div class="reserva">
+            <div class="reserva-info">
+                <label>ID:</label>
+                <span>1</span>
+            </div>
+            <div class="reserva-info">
+                <label>Email:</label>
+                <span>cliente1@example.com</span>
+            </div>
+            <div class="reserva-info">
+                <label>Teléfono:</label>
+                <span>123456789</span>
+            </div>
+            <div class="reserva-info">
+                <label>Código de Alojamiento:</label>
+                <span>ABC123</span>
+            </div>
+            <div class="reserva-info">
+                <label>Fecha de Inicio:</label>
+                <span>2024-04-01</span>
+            </div>
+            <div class="reserva-info">
+                <label>Fecha de Fin:</label>
+                <span>2024-04-05</span>
+            </div>
+            <button class="boton-gestionar">Gestionar Reserva</button>
+        </div>
+
+        <div class="reserva">
+            <div class="reserva-info">
+                <label>ID:</label>
+                <span>2</span>
+            </div>
+            <div class="reserva-info">
+                <label>Email:</label>
+                <span>cliente2@example.com</span>
+            </div>
+            <div class="reserva-info">
+                <label>Teléfono:</label>
+                <span>987654321</span>
+            </div>
+            <div class="reserva-info">
+                <label>Código de Alojamiento:</label>
+                <span>DEF456</span>
+            </div>
+            <div class="reserva-info">
+                <label>Fecha de Inicio:</label>
+                <span>2024-04-10</span>
+            </div>
+            <div class="reserva-info">
+                <label>Fecha de Fin:</label>
+                <span>2024-04-15</span>
+            </div>
+            <button class="boton-gestionar">Gestionar Reserva</button>
+        </div>
+    </div>
 </body>
 </html>
