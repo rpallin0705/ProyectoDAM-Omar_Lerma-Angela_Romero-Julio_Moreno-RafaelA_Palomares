@@ -9,7 +9,7 @@ CREATE TABLE cuentas(
 
 DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios(
-    id_cuenta           INT NOT NULL IDENTITY(1,1) PRIMARY KEY FOREIGN KEY REFERENCES cuentas(id_cuenta) ON DELETE CASCADE
+    id_cuenta           INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES cuentas(id_cuenta) ON DELETE CASCADE
 );
 
 DROP TABLE IF EXISTS clientes;
@@ -23,7 +23,7 @@ CREATE TABLE reservas(
     id_reserva  INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
     fecha_ini   DATE,
     fecha_fin   DATE,
-    id_cuenta   INT NOT NULL IDENTITY(1,1) FOREIGN KEY REFERENCES usuarios(id_cuenta)    
+    id_cuenta   INT NOT NULL FOREIGN KEY REFERENCES usuarios(id_cuenta)
 );
 
 DROP TABLE IF EXISTS alojamientos;
