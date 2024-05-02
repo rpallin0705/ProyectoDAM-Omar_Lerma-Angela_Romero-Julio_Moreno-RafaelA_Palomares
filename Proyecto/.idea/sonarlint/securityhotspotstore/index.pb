@@ -31,3 +31,9 @@ n
 >src/main/java/org/example/proyecto/model/client/ClientDAO.java,0\d\0d7934d9f478f7315a88610d488f224bd05539e3
 n
 >src/main/java/org/example/proyecto/model/client/ClientDTO.java,d\7\d75d2b5f82b23491c839f2c3004f0e0b4c566541
+p
+@src/main/java/org/example/proyecto/gui/MainScreenController.java,2\4\24a3e44fd3fe6aee38bc2a16d6faa5dbc3b5592f
+k
+;src/main/java/org/example/proyecto/gui/LoginController.java,8\5\8557ad88fa9faba6a44a66417a1715e955eb3b6f
+l
+<src/main/java/org/example/proyecto/gui/LoginApplication.java,a\9\a97b929eccf5fd391708ba08876854e561c12624
