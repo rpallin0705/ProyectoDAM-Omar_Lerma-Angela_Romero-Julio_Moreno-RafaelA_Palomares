@@ -1,6 +1,6 @@
 package org.example.proyecto.model.touristApartment;
 
-import org.example.proyecto.model.housing.HousingType;
+import org.example.proyecto.model.hotel_aps.HousingType;
 import org.example.proyecto.model.housing.HousingDTO;
 
 public class TouristApartmentDTO extends HousingDTO {
