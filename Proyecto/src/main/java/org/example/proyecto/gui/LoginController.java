@@ -18,7 +18,7 @@ public class LoginController {
     private void login() {
         try {
             // Cargar el archivo FXML de la nueva ventana
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("login-view.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("main-screen.fxml"));
             Parent root = loader.<Parent>load();
 
             // Crear una nueva escena con el contenido cargado desde el archivo FXML
