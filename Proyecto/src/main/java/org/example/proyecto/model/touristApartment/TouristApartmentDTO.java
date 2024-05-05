@@ -36,6 +36,6 @@ public class TouristApartmentDTO extends HousingDTO {
      */
     @Override
     public String toString() {
-        return String.format("%d,%s,%s,%s",super.getId_alojamiento(),super.getNombre(),super.getCalle(),distanciaCentros);
+        return String.format("%d,%s,%s,%s",super.getHousingId(),super.getNombre(),super.getCalle(),distanciaCentros);
     }
 }

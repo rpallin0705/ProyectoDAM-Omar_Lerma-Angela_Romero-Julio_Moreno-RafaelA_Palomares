@@ -18,16 +18,10 @@ public class HousingDB implements HousingDAO
     }
 
     /**
-<<<<<<< HEAD
-     * Get a list of housings from the database.
-     * @return List<HousingDTO> stored in the database.
-     * @throws SQLException if an error occurs duringq the execution of the query.
-=======
      * HousingDB
      * method that connects with the DataBase and gets a list of housings
      * @return list of housings
      * @throws SQLException
->>>>>>> a3722196b5bd945b50e0c8b9c391e23138175651
      */
     @Override
     public List<HousingDTO> getHousings() throws SQLException {
@@ -45,39 +39,12 @@ public class HousingDB implements HousingDAO
         }
         return housings;
     }
-<<<<<<< HEAD
 
-    /**
-     * Insert a new housing in the database.
-     * @param newHousing the housing information to insert.
-     * @return true if the housing was inserted successfully, false otherwise.
-     * @throws SQLException if an error occurs duringq the execution of the query.
-     */
-    @Override
-    public boolean insertHousing(HousingDTO newHousing) throws SQLException {
-        String sql = "INSERT INTO alojamientos (cod_alojamiento, nom_alojamiento, direccion_alojamiento, num_huespedes, tipo_alojamiento) VALUES (?, ?, ?, ?, ?)";
-        preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, newHousing.getId_alojamiento());
-        preparedStatement.setString(2, newHousing.getNombreAlojamiento());
-        preparedStatement.setString(3, newHousing.getDireccionAlojamiento());
-        preparedStatement.setInt(4, newHousing.getNumHuespedes());
-        preparedStatement.setString(5, newHousing.getTipoAlojamiento().toString());
-        int rowsAffected = preparedStatement.executeUpdate();
-        return rowsAffected != 0;
-    }
-
-    /**
-     * Update an existing housing in the database.
-     * @param updatedHousing the new housing information to update.
-     * @return true if the housing was updated successfully, false otherwise.
-     * @throws SQLException if error occurs duringq the execution of the query.
-=======
     /**
      * HousingDB
      * method that connects with the DataBase and updates a concrete Housing searching by ID
      * @return true if the rows affected are not 0
      * @throws SQLException
->>>>>>> a3722196b5bd945b50e0c8b9c391e23138175651
      */
     @Override
     public boolean updateHousing(HousingDTO updatedHousing) throws SQLException {
@@ -85,7 +52,7 @@ public class HousingDB implements HousingDAO
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,updatedHousing.getNombre());
         preparedStatement.setString(2,updatedHousing.getCalle());
-        preparedStatement.setInt(3,updatedHousing.getId_alojamiento());
+        preparedStatement.setInt(3,updatedHousing.getHousingId());
         preparedStatement = connection.prepareStatement(sql);
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;

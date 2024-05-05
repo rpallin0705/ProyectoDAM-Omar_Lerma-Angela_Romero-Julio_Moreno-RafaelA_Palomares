@@ -11,8 +11,6 @@ i
 9src/main/java/org/example/proyecto/model/user/UserDB.java,4\7\47826f592b6ddb4441f47c02c2f7636407a64bbc
 ?
 database/db.sql,b\6\b6c55971850f9a61160c365d15e09c82d8541663
-q
-Asrc/main/java/org/example/proyecto/model/housing/HousingType.java,c\0\c00384c1066d1a030e1882d9adb2d59694c4c491
 p
 @src/main/java/org/example/proyecto/model/housing/HousingDTO.java,b\9\b9282c78b411296be69d30f23d583c89a8bca4ef
 l
@@ -37,7 +35,13 @@ k
 ;src/main/java/org/example/proyecto/gui/LoginController.java,8\5\8557ad88fa9faba6a44a66417a1715e955eb3b6f
 l
 <src/main/java/org/example/proyecto/gui/LoginApplication.java,a\9\a97b929eccf5fd391708ba08876854e561c12624
-s
-Csrc/main/java/org/example/proyecto/model/hotel_aps/HousingType.java,d\b\dbdfa78d0972579acbef2a89db089e7f0dc97244
 ‚
 Rsrc/main/java/org/example/proyecto/model/touristApartment/TouristApartmentDTO.java,c\7\c7acf3e861a4333a6046a40da98ec6d794f71519
+r
+Bsrc/main/java/org/example/proyecto/model/hotel/TipoHabitacion.java,f\7\f7fa29817c1cfdf97aa5e5eecbfffb2dd54acb2c
+l
+<src/main/java/org/example/proyecto/model/hotel/HotelDAO.java,f\1\f1383f5f00b22202c0b1539464876752ad5429a5
+k
+;src/main/java/org/example/proyecto/model/hotel/HotelDB.java,1\5\1536b46595e822a47398606aeaeb6cd9005e88aa
+l
+<src/main/java/org/example/proyecto/model/hotel/RoomType.java,5\2\52abbf4abaa78de9dc26b025904222928dc329ea

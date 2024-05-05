@@ -60,7 +60,7 @@ public class TouristApartmentDB implements TouristApartmentDAO{
     public boolean deleteTouristApartment(TouristApartmentDTO deletedApartment) throws SQLException {
         String sql = "DELETE FROM alojamientos WHERE id_alojamiento = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, deletedApartment.getId_alojamiento());
+        preparedStatement.setInt(1, deletedApartment.getHousingId());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }

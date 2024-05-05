@@ -50,18 +50,18 @@ public class UserDB implements UserDAO {
      * @todo own exceptions when password is incorrect or email not registered
      */
     @Override
-    public UserDTO userLogin(String email, String password) throws SQLException {
+    public UserDTO userLogin(String userEmail, String userPassword) throws SQLException {
         String sql = "SELECT * FROM usuarios WHERE email = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, email);
+        preparedStatement.setString(1, userEmail);
         ResultSet resultSet =  preparedStatement.executeQuery();
         UserDTO usuarioLoged = null;
-        if (resultSet.next() && resultSet.getString("contrasena").equals(password)) {
-            email = resultSet.getString("email");
+        if (resultSet.next() && resultSet.getString("contrasena").equals(userPassword)) {
+            userEmail = resultSet.getString("email");
             String telefono = resultSet.getString("telefono");
             String nombreApellidos = resultSet.getString("nombre_apellidos");
             String direccion = resultSet.getString("direccion");
-            usuarioLoged = new UserDTO(email, telefono, nombreApellidos, direccion);
+            usuarioLoged = new UserDTO(userEmail, telefono, nombreApellidos, direccion);
         } else
             throw new SQLException("Contraseña o Email incorrectos");
         return usuarioLoged;
