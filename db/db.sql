@@ -10,6 +10,7 @@ CREATE TABLE cuentas(
 DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios(
     id_cuenta           INT NOT NULL PRIMARY KEY FOREIGN KEY REFERENCES cuentas(id_cuenta) ON DELETE CASCADE
+    admin               BOOLEAN NOT NULL
 );
 
 DROP TABLE IF EXISTS clientes;
