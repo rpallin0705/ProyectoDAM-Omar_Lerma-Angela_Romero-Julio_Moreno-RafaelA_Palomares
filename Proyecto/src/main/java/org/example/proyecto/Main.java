@@ -18,7 +18,9 @@ public class Main {
             System.out.printf("usuario insertado -> %B%n",usuarioDB.insertUser(userDTO));
             System.out.printf("usuario actualizado -> %B%n", usuarioDB.updateUser(userDTO));
 
+
         //    System.out.printf("usuario borrado -> %B%n", usuarioDB.deleteUserByEmail("hola"));
+
         } catch (SQLException e) {
             System.err.println(e);
         } catch (IOException e) {
