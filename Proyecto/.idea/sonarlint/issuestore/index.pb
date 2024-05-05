@@ -4,7 +4,7 @@ p
 p
 @src/main/java/org/example/proyecto/model/booking/BookingDAO.java,e\7\e7cd31cd4ffb74f2d73c2820544885df0850fda2
 o
-?src/main/java/org/example/proyecto/model/booking/BookingDB.java,6/1/61eed0d6d6680d4c5db8930f66df64ddec879a52
+?src/main/java/org/example/proyecto/model/booking/BookingDB.java,6\1\61eed0d6d6680d4c5db8930f66df64ddec879a52
 j
 :src/main/java/org/example/proyecto/model/user/UserDAO.java,a\f\afa2c6a4b8d863f8a442112e005ffb7b4f9d3afa
 i
@@ -37,3 +37,7 @@ k
 ;src/main/java/org/example/proyecto/gui/LoginController.java,8\5\8557ad88fa9faba6a44a66417a1715e955eb3b6f
 l
 <src/main/java/org/example/proyecto/gui/LoginApplication.java,a\9\a97b929eccf5fd391708ba08876854e561c12624
+s
+Csrc/main/java/org/example/proyecto/model/hotel_aps/HousingType.java,d\b\dbdfa78d0972579acbef2a89db089e7f0dc97244
+‚
+Rsrc/main/java/org/example/proyecto/model/touristApartment/TouristApartmentDTO.java,c\7\c7acf3e861a4333a6046a40da98ec6d794f71519

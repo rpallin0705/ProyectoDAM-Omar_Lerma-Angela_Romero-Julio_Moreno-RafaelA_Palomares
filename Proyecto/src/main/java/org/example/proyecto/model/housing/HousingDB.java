@@ -17,6 +17,11 @@ public class HousingDB implements HousingDAO
         connection = SetUpConnection.getInstance().getConnection();
     }
 
+    /**
+     * Get a list of housings from the database.
+     * @return List<HousingDTO> stored in the database.
+     * @throws SQLException if an error occurs duringq the execution of the query.
+     */
     @Override
     public List<HousingDTO> getHousings() throws SQLException {
         List<HousingDTO> housings = new ArrayList<>();
@@ -40,6 +45,12 @@ public class HousingDB implements HousingDAO
         return housings;
     }
 
+    /**
+     * Insert a new housing in the database.
+     * @param newHousing the housing information to insert.
+     * @return true if the housing was inserted successfully, false otherwise.
+     * @throws SQLException if an error occurs duringq the execution of the query.
+     */
     @Override
     public boolean insertHousing(HousingDTO newHousing) throws SQLException {
         String sql = "INSERT INTO alojamientos (cod_alojamiento, nom_alojamiento, direccion_alojamiento, num_huespedes, tipo_alojamiento) VALUES (?, ?, ?, ?, ?)";
@@ -53,6 +64,12 @@ public class HousingDB implements HousingDAO
         return rowsAffected != 0;
     }
 
+    /**
+     * Update an existing housing in the database.
+     * @param updatedHousing the new housing information to update.
+     * @return true if the housing was updated successfully, false otherwise.
+     * @throws SQLException if error occurs duringq the execution of the query.
+     */
     @Override
     public boolean updateHousing(HousingDTO updatedHousing) throws SQLException {
         String sql = "UPDATE alojamientos SET nom_alojamiento = ?, direccion_alojamiento = ?, num_huespedes = ?, tipo_alojamiento = ? WHERE cod_alojamiento = ?";

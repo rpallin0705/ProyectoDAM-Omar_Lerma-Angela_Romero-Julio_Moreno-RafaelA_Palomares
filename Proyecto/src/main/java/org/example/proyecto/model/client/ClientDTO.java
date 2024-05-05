@@ -2,15 +2,15 @@ package org.example.proyecto.model.client;
 
 public class ClientDTO {
     private String email;
-    private String telefono;
-    private String nombreApellidos;
-    private String direccion;
+    private String phoneNumber;
+    private String fullName;
+    private String clientAddress;
 
-    public ClientDTO(String email, String telefono, String nombreApellidos, String direccion) {
+    public ClientDTO(String email, String phoneNumber, String fullName, String clientAddress) {
         this.email = email;
-        this.telefono = telefono;
-        this.nombreApellidos = nombreApellidos;
-        this.direccion = direccion;
+        this.phoneNumber = phoneNumber;
+        this.fullName = fullName;
+        this.clientAddress = clientAddress;
     }
 
     public String getEmail() {
@@ -21,32 +21,32 @@ public class ClientDTO {
         this.email = email;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getNombreApellidos() {
-        return nombreApellidos;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setNombreApellidos(String nombreApellidos) {
-        this.nombreApellidos = nombreApellidos;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public String getDireccion() {
-        return direccion;
+    public String getClientAddress() {
+        return clientAddress;
     }
 
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setClientAddress(String clientAddress) {
+        this.clientAddress = clientAddress;
     }
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s", email, telefono, nombreApellidos, direccion);
+        return String.format("%s,%s,%s,%s", email, phoneNumber, fullName, clientAddress);
     }
 }

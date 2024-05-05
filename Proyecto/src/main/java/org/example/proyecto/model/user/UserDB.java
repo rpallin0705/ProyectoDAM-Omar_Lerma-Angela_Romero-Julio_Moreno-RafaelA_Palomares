@@ -17,10 +17,10 @@ public class UserDB implements UserDAO {
     }
 
     /**
-     * Obtiene la lista de todos los usuarios almacenados en la base de datos.
+     * Get list of all users/workers from the database.
      *
-     * @return Lista de objetos UsuarioDTO que representan a los usuarios almacenados en la base de datos.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @return List<UserDTO> Of all users/workers in the database.
+     * @throws SQLException if an error occurs during the execution of the query.
      */
     @Override
     public List<UserDTO> getUsers() throws SQLException {
@@ -41,13 +41,13 @@ public class UserDB implements UserDAO {
     }
 
     /**
-     * Funcion que realiza la lógica del inicio de sesion de un usuario
+     * Function that works on the user login process.
      *
-     * @param email del usuario que va a iniciar sesion
-     * @param password contraseña del usuario que va a iniciar sesion
-     * @return los datos del usuario que ha iniciado sesion, menos la contraseña
-     * @throws SQLException Si el email no está en la base de datos o la contraseña es incorrecta
-     * @todo excepciones propias para cuando se introduzca la contraseña incorrecta o no exista el usuario
+     * @param userEmail from the user loging in
+     * @param userPassword from the user loging in
+     * @return data from the user loged in, excluding the password
+     * @throws SQLException if email is not registeres or password is incorrect
+     * @todo own exceptions when password is incorrect or email not registered
      */
     @Override
     public UserDTO userLogin(String email, String password) throws SQLException {
@@ -69,31 +69,31 @@ public class UserDB implements UserDAO {
     }
 
     /**
-     * Inserta un nuevo usuario en la base de datos.
+     * Insert a new user in the database
      *
-     * @param newUser Objeto UsuarioDTO que representa al nuevo usuario a insertar.
-     * @return true si el usuario fue insertado exitosamente, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @param newUser UserDTO whith new user data
+     * @return true if user is inserted, false if not
+     * @throws SQLException if an error occurs during the execution of the query.
      */
     @Override
     public boolean insertUser(UserDTO newUser) throws SQLException {
         String sql = "INSERT INTO usuarios (email, telefono, nombre_apellidos, contrasena, direccion) VALUES (?, ?, ?, ?, ?)";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, newUser.getEmail());
-        preparedStatement.setString(2, newUser.getTelefono());
-        preparedStatement.setString(3, newUser.getNombreApellidos());
-        preparedStatement.setString(4, newUser.getContrasena());
+        preparedStatement.setString(1, newUser.getUserEmail());
+        preparedStatement.setString(2, newUser.getUserPhoneNumber());
+        preparedStatement.setString(3, newUser.getUserFullName());
+        preparedStatement.setString(4, newUser.getUserPassword());
         preparedStatement.setString(5, newUser.getDireccion());
         int usuarioInsertado = preparedStatement.executeUpdate();
         return usuarioInsertado != 0;
     }
 
     /**
-     * Elimina un usuario de la base de datos utilizando su email como identificador.
+     * Delete a user from the database using its email address as identifer
      *
-     * @param userEmailDelete Email del usuario que se va a eliminar.
-     * @return true si el usuario fue eliminado exitosamente, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @param userEmailDelete Email from user to be deleted
+     * @return true if user is deleted, false if not
+     * @throws SQLException if an error occurs during the execution of the query.
      * @todo Cuando se actualice el script de la base de datos hacer la logica para que sea por id
      */
     @Override
@@ -107,20 +107,20 @@ public class UserDB implements UserDAO {
 
 
     /**
-     * Actualiza la información de un usuario en la base de datos.
-     * @param updatedUser Objeto UsuarioDTO que contiene la información actualizada del usuario.
-     * @return true si la actualización fue exitosa, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * Update the information of user saved in database
+     * @param updatedUser UserDTO with the new information of the user to be updated
+     * @return true if user is updated, false if not
+     * @throws SQLException if an error occurs during the execution of the query.
      */
     @Override
     public boolean updateUser(UserDTO updatedUser) throws SQLException {
         String sql = "UPDATE usuarios SET telefono = ?, nombre_apellidos = ?, contrasena = ?, direccion = ? WHERE email = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, updatedUser.getTelefono());
-        preparedStatement.setString(2, updatedUser.getNombreApellidos());
-        preparedStatement.setString(3, updatedUser.getContrasena());
+        preparedStatement.setString(1, updatedUser.getUserPhoneNumber());
+        preparedStatement.setString(2, updatedUser.getUserFullName());
+        preparedStatement.setString(3, updatedUser.getUserPassword());
         preparedStatement.setString(4, updatedUser.getDireccion());
-        preparedStatement.setString(5, updatedUser.getEmail());
+        preparedStatement.setString(5, updatedUser.getUserEmail());
         int result = preparedStatement.executeUpdate();
         return result != 0;
     }

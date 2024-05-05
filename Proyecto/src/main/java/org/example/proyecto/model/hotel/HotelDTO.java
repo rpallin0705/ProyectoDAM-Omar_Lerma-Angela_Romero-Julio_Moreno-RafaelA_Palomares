@@ -4,33 +4,33 @@ import org.example.proyecto.model.hotel_aps.HousingType;
 import org.example.proyecto.model.housing.HousingDTO;
 
 public class HotelDTO extends HousingDTO {
-    private String tipoHabitacion;
-    private int clasificacion;
+    private String roomType;
+    private int classification;
 
-    public HotelDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numeHuespedes, String tipoHabitacion, int clasificacion) {
-        super(codAlojamiento, nombreAlojamiento, direccionAlojamiento, numeHuespedes, HousingType.HOTELES);
-        this.tipoHabitacion = tipoHabitacion;
-        this.clasificacion = clasificacion;
+    public HotelDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numeHuespedes, String roomType, int classification) {
+        super(codAlojamiento, nombreAlojamiento, direccionAlojamiento, numeHuespedes, HousingType.HOTELS);
+        this.roomType = roomType;
+        this.classification = classification;
     }
 
-    public String getTipoHabitacion() {
-        return tipoHabitacion;
+    public String getRoomType() {
+        return roomType;
     }
 
-    public void setTipoHabitacion(String tipoHabitacion) {
-        this.tipoHabitacion = tipoHabitacion;
+    public void setRoomType(String roomType) {
+        this.roomType = roomType;
     }
 
-    public int getClasificacion() {
-        return clasificacion;
+    public int getClassification() {
+        return classification;
     }
 
-    public void setClasificacion(int clasificacion) {
-        this.clasificacion = clasificacion;
+    public void setClassification(int classification) {
+        this.classification = classification;
     }
 
     @Override
     public String toString() {
-        return String.format("%s,%s %s", super.toString(), tipoHabitacion, clasificacion);
+        return String.format("%s,%s %s", super.toString(), roomType, classification);
     }
 }

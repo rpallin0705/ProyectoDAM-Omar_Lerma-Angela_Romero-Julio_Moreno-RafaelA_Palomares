@@ -1,7 +1,6 @@
 package org.example.proyecto.model.booking;
 
 import org.example.proyecto.SetUpConnection;
-import org.example.proyecto.model.user.UserDTO;
 
 import java.io.IOException;
 import java.sql.*;
@@ -18,11 +17,11 @@ public class BookingDB implements BookingDAO{
     }
 
     /**
-     * Obtiene la lista de todas las reservas almacenadas en la base de datos.
+     * Gets the list of all bookings stored in the database.
      *
-     * @return Lista de objetos BookingDTO que representan las reservas almacenadas en la base de datos.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
-     * @todo Hacer las fechas LocalDate y hacer el cambio a String
+     * @return List of BookingDTO objects representing the bookings stored in the database.
+     * @throws SQLException If an error occurs while executing the SQL query.
+     * @todo Convert dates to LocalDate and change to String format.
      */
     @Override
     public List<BookingDTO> getBookings() throws SQLException {
@@ -43,34 +42,28 @@ public class BookingDB implements BookingDAO{
         return bookings;
     }
 
+
     /**
-     * Inserta una nueva reserva en la base de datos.
+     * Inserts a new booking into the database.
      *
-     * @param newBooking Objeto BookingDTO que representa la nueva reserva a insertar.
-     * @return true si la reserva fue insertada exitosamente, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @param newBooking The BookingDTO object representing the new booking to insert.
+     * @return true if the booking was successfully inserted, false otherwise.
+     * @throws SQLException If an error occurs while executing the SQL query.
      */
     @Override
     public boolean insertBooking(BookingDTO newBooking) throws SQLException {
         String sql = "INSERT INTO reservas (fecha_ini, fecha_fin, email, telefono, cod_alojamiento) VALUES (?, ?, ?, ?, ?)";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, newBooking.getFechaInicio());
-        preparedStatement.setString(2, newBooking.getFechaFin());
+        preparedStatement.setString(1, newBooking.getCheckInDate());
+        preparedStatement.setString(2, newBooking.getCheckOutDate());
         preparedStatement.setString(3, newBooking.getEmail());
-        preparedStatement.setString(4, newBooking.getTelefono());
-        preparedStatement.setString(5, newBooking.getCodAlojamiento());
+        preparedStatement.setString(4, newBooking.getPhoneNumber());
+        preparedStatement.setString(5, newBooking.getHousingCode());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
 
-    /**
-     * Elimina una reserva de la base de datos utilizando su identificador.
-     *
-     * @param bookingId Identificador de la reserva que se va a eliminar.
-     * @return true si la reserva fue eliminada exitosamente, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
-     * * @todo excepciones propias para cuando se introduzca la contraseña incorrecta o no exista el usuario
-     */
+
     @Override
     public boolean deleteBookingByID(String bookingId) throws SQLException {
         String sql = "DELETE FROM reservas WHERE id_reserva = ?";
@@ -81,20 +74,21 @@ public class BookingDB implements BookingDAO{
     }
 
     /**
-     * Actualiza la información de una reserva en la base de datos.
+     * Deletes a booking from the database using its identifier.
      *
-     * @param updatedBooking Objeto BookingDTO que contiene la información actualizada de la reserva.
-     * @return true si la actualización fue exitosa, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @param bookingId The identifier of the booking to be deleted.
+     * @return true if the booking was successfully deleted, false otherwise.
+     * @throws SQLException If an error occurs while executing the SQL query.
+     * @todo Custom exceptions for when the incorrect password is entered or the user does not exist.
      */
     @Override
     public boolean updateBooking(BookingDTO updatedBooking) throws SQLException {
         String sql = "UPDATE reservas SET fecha_ini = ?, fecha_fin = ?, telefono = ?, cod_alojamiento = ? WHERE email = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, updatedBooking.getFechaInicio());
-        preparedStatement.setString(2, updatedBooking.getFechaFin());
-        preparedStatement.setString(3, updatedBooking.getTelefono());
-        preparedStatement.setString(4, updatedBooking.getCodAlojamiento());
+        preparedStatement.setString(1, updatedBooking.getCheckInDate());
+        preparedStatement.setString(2, updatedBooking.getCheckOutDate());
+        preparedStatement.setString(3, updatedBooking.getPhoneNumber());
+        preparedStatement.setString(4, updatedBooking.getHousingCode());
         preparedStatement.setString(5, updatedBooking.getEmail());
         int result = preparedStatement.executeUpdate();
         return result != 0;

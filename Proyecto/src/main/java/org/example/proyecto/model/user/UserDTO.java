@@ -1,69 +1,69 @@
 package org.example.proyecto.model.user;
 
 public class UserDTO {
-    private String email;
-    private String telefono;
-    private String nombreApellidos;
-    private String contrasena;
-    private String direccion;
+    private String userEmail;
+    private String userPhoneNumber;
+    private String userFullName;
+    private String userPassword;
+    private String userAddress;
 
-    public UserDTO(String email, String telefono, String nombreApellidos, String contrasena, String direccion) {
-        this.email = email;
-        this.telefono = telefono;
-        this.nombreApellidos = nombreApellidos;
-        this.contrasena = contrasena;
-        this.direccion = direccion;
+    public UserDTO(String userEmail, String userPhoneNumber, String userFullName, String userPassword, String direccion) {
+        this.userEmail = userEmail;
+        this.userPhoneNumber = userPhoneNumber;
+        this.userFullName = userFullName;
+        this.userPassword = userPassword;
+        this.userAddress = direccion;
     }
 
-    public UserDTO(String email, String telefono, String nombreApellidos, String direccion) {
-        this.email = email;
-        this.telefono = telefono;
-        this.nombreApellidos = nombreApellidos;
-        this.direccion = direccion;
+    public UserDTO(String userEmail, String userPhoneNumber, String userFullName, String direccion) {
+        this.userEmail = userEmail;
+        this.userPhoneNumber = userPhoneNumber;
+        this.userFullName = userFullName;
+        this.userAddress = direccion;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUserEmail() {
+        return userEmail;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getUserPhoneNumber() {
+        return userPhoneNumber;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setUserPhoneNumber(String userPhoneNumber) {
+        this.userPhoneNumber = userPhoneNumber;
     }
 
-    public String getNombreApellidos() {
-        return nombreApellidos;
+    public String getUserFullName() {
+        return userFullName;
     }
 
-    public void setNombreApellidos(String nombreApellidos) {
-        this.nombreApellidos = nombreApellidos;
+    public void setUserFullName(String userFullName) {
+        this.userFullName = userFullName;
     }
 
-    public String getContrasena() {
-        return contrasena;
+    public String getUserPassword() {
+        return userPassword;
     }
 
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public String getDireccion() {
-        return direccion;
+        return userAddress;
     }
 
     public void setDireccion(String direccion) {
-        this.direccion = direccion;
+        this.userAddress = direccion;
     }
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s", email, telefono, nombreApellidos, direccion);
+        return String.format("%s,%s,%s,%s", userEmail, userPhoneNumber, userFullName, userAddress);
     }
 }

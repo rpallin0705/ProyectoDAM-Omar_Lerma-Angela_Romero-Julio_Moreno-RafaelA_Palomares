@@ -1,34 +1,34 @@
 package org.example.proyecto.model.booking;
 
 public class BookingDTO {
-    private String fechaInicio;
-    private String fechaFin;
+    private String checkInDate;
+    private String checkOutDate;
     private String email;
-    private String telefono;
-    private String codAlojamiento;
+    private String phoneNumber;
+    private String housingCode;
 
-    public BookingDTO(String fechaInicio, String fechaFin, String email, String telefono, String codAlojamiento) {
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
+    public BookingDTO(String checkInDate, String checkOutDate, String email, String phoneNumber, String housingCode) {
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
         this.email = email;
-        this.telefono = telefono;
-        this.codAlojamiento = codAlojamiento;
+        this.phoneNumber = phoneNumber;
+        this.housingCode = housingCode;
     }
 
-    public String getFechaInicio() {
-        return fechaInicio;
+    public String getCheckInDate() {
+        return checkInDate;
     }
 
-    public void setFechaInicio(String fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public void setCheckInDate(String checkInDate) {
+        this.checkInDate = checkInDate;
     }
 
-    public String getFechaFin() {
-        return fechaFin;
+    public String getCheckOutDate() {
+        return checkOutDate;
     }
 
-    public void setFechaFin(String fechaFin) {
-        this.fechaFin = fechaFin;
+    public void setCheckOutDate(String checkOutDate) {
+        this.checkOutDate = checkOutDate;
     }
 
     public String getEmail() {
@@ -39,24 +39,24 @@ public class BookingDTO {
         this.email = email;
     }
 
-    public String getTelefono() {
-        return telefono;
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
-    public String getCodAlojamiento() {
-        return codAlojamiento;
+    public String getHousingCode() {
+        return housingCode;
     }
 
-    public void setCodAlojamiento(String codAlojamiento) {
-        this.codAlojamiento = codAlojamiento;
+    public void setHousingCode(String housingCode) {
+        this.housingCode = housingCode;
     }
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s,%s", fechaInicio, fechaFin, email, telefono, codAlojamiento);
+        return String.format("%s,%s,%s,%s,%s", checkInDate, checkOutDate, email, phoneNumber, housingCode);
     }
 }
