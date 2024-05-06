@@ -17,10 +17,10 @@ public class UserDB implements UserDAO {
     }
 
     /**
-     * Obtiene la lista de todos los usuarios almacenados en la base de datos.
+     * Get list of all users/workers from the database.
      *
-     * @return Lista de objetos UsuarioDTO que representan a los usuarios almacenados en la base de datos.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @return List<UserDTO> Of all users/workers in the database.
+     * @throws SQLException if an error occurs during the execution of the query.
      */
     @Override
     public List<UserDTO> getUsers() throws SQLException {
@@ -42,7 +42,7 @@ public class UserDB implements UserDAO {
     }
 
     /**
-     * Funcion que realiza la lógica del inicio de sesion de un usuario
+     * Function that works on the user login process.
      *
      * @param user user who try to log in
      * @return los datos del usuario que ha iniciado sesion, menos la contraseña
@@ -70,11 +70,11 @@ public class UserDB implements UserDAO {
     }
 
     /**
-     * Inserta un nuevo usuario en la base de datos.
+     * Insert a new user in the database
      *
-     * @param newUser Objeto UsuarioDTO que representa al nuevo usuario a insertar.
-     * @return true si el usuario fue insertado exitosamente, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @param newUser UserDTO whith new user data
+     * @return true if user is inserted, false if not
+     * @throws SQLException if an error occurs during the execution of the query.
      */
     @Override
     public boolean insertUser(UserDTO newUser) throws SQLException {
@@ -109,7 +109,7 @@ public class UserDB implements UserDAO {
     }
 
     /**
-     * Elimina un usuario de la base de datos utilizando su email como identificador.
+     * Delete a user from the database using its email address as identifer
      *
      * @param deletedUser user who is going to be deleted.
      * @return true si el usuario fue eliminado exitosamente, false en caso contrario.
@@ -135,10 +135,10 @@ public class UserDB implements UserDAO {
 
 
     /**
-     * Actualiza la información de un usuario en la base de datos.
-     * @param updatedUser Objeto UsuarioDTO que contiene la información actualizada del usuario.
-     * @return true si la actualización fue exitosa, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * Update the information of user saved in database
+     * @param updatedUser UserDTO with the new information of the user to be updated
+     * @return true if user is updated, false if not
+     * @throws SQLException if an error occurs during the execution of the query.
      */
     @Override
     public boolean updateUser(UserDTO updatedUser) throws SQLException {

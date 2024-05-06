@@ -20,11 +20,11 @@ public class BookingDB implements BookingDAO{
     }
 
     /**
-     * Obtiene la lista de todas las reservas almacenadas en la base de datos.
+     * Gets the list of all bookings stored in the database.
      *
-     * @return Lista de objetos BookingDTO que representan las reservas almacenadas en la base de datos.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
-     * @todo Hacer las fechas LocalDate y hacer el cambio a String
+     * @return List of BookingDTO objects representing the bookings stored in the database.
+     * @throws SQLException If an error occurs while executing the SQL query.
+     * @todo Convert dates to LocalDate and change to String format.
      */
     @Override
     public List<BookingDTO> getBookings() throws SQLException {
@@ -45,18 +45,18 @@ public class BookingDB implements BookingDAO{
     }
 
     /**
-     * Inserta una nueva reserva en la base de datos.
+     * Inserts a new booking into the database.
      *
-     * @param newBooking Objeto BookingDTO que representa la nueva reserva a insertar.
-     * @return true si la reserva fue insertada exitosamente, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @param newBooking The BookingDTO object representing the new booking to insert.
+     * @return true if the booking was successfully inserted, false otherwise.
+     * @throws SQLException If an error occurs while executing the SQL query.
      */
     @Override
     public boolean insertBooking(BookingDTO newBooking) throws SQLException {
         String sql = "INSERT INTO reservas (fecha_ini, fecha_fin, id_cuenta) VALUES(?, ?, ?);";
-        preparedStatement.setDate(1, java.sql.Date.valueOf(newBooking.getFechaInicio()));
-        preparedStatement.setDate(2, java.sql.Date.valueOf(newBooking.getFechaFin()));
-        preparedStatement.setInt(3, newBooking.getId_cuenta());
+        preparedStatement.setDate(1, java.sql.Date.valueOf(newBooking.getCheckInDate()));
+        preparedStatement.setDate(2, java.sql.Date.valueOf(newBooking.getCheckOutDate()));
+        preparedStatement.setInt(3, newBooking.getCountId());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
@@ -73,7 +73,7 @@ public class BookingDB implements BookingDAO{
     public boolean deleteBookingByID(BookingDTO deletedBooking) throws SQLException {
         String sql = "DELETE FROM reservas WHERE id_reserva = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, deletedBooking.getId_reserva());
+        preparedStatement.setInt(1, deletedBooking.getBookingId());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
@@ -89,12 +89,13 @@ public class BookingDB implements BookingDAO{
     public boolean updateBooking(BookingDTO updatedBooking) throws SQLException {
         String sql = "UPDATE reservas SET fecha_ini = ?, fecha_fin = ?, id_cuenta = ? WHERE id_reserva = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setDate(1,java.sql.Date.valueOf(updatedBooking.getFechaInicio()));
-        preparedStatement.setDate(2,java.sql.Date.valueOf(updatedBooking.getFechaFin()));
-        preparedStatement.setInt(3,updatedBooking.getId_cuenta());
-        preparedStatement.setInt(4,updatedBooking.getId_reserva());
+        preparedStatement.setDate(1,java.sql.Date.valueOf(updatedBooking.getCheckInDate()));
+        preparedStatement.setDate(2,java.sql.Date.valueOf(updatedBooking.getCheckOutDate()));
+        preparedStatement.setInt(3,updatedBooking.getCountId());
+        preparedStatement.setInt(4,updatedBooking.getBookingId());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
+
     }
 
 }

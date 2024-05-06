@@ -3,6 +3,13 @@ package org.example.proyecto.model.touristApartment;
 import org.example.proyecto.model.housing.HousingDTO;
 
 public class TouristApartmentDTO extends HousingDTO {
+<<<<<<< HEAD
+    private float downtownDistance;
+
+    public TouristApartmentDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numeHuespedes, float downtownDistance) {
+        super(codAlojamiento, nombreAlojamiento, direccionAlojamiento, numeHuespedes, HousingType.TOURIST_APARTMENT);
+        this.downtownDistance = downtownDistance;
+=======
     /*attribute*/
     private int distanciaCentros;
     /**
@@ -15,6 +22,7 @@ public class TouristApartmentDTO extends HousingDTO {
     public TouristApartmentDTO(int id_alojamiento, String nombre, String calle, int distanciaCentros) {
         super(id_alojamiento, nombre, calle);
         this.distanciaCentros = distanciaCentros;
+>>>>>>> a3722196b5bd945b50e0c8b9c391e23138175651
     }
 
     /*getter*/
@@ -28,6 +36,6 @@ public class TouristApartmentDTO extends HousingDTO {
      */
     @Override
     public String toString() {
-        return String.format("%d,%s,%s,%s",super.getId_alojamiento(),super.getNombre(),super.getCalle(),distanciaCentros);
+        return String.format("%d,%s,%s,%s",super.getHousingId(),super.getNombre(),super.getCalle(),distanciaCentros);
     }
 }

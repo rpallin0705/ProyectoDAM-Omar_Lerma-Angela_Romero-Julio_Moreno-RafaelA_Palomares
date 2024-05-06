@@ -17,10 +17,10 @@ public class ClientDB implements ClientDAO {
     }
 
     /**
-     * Obtiene la lista de todos los clientes almacenados en la base de datos.
+     * Get a list of al clients saved in database.
      *
-     * @return Lista de objetos ClienteDTO que representan a los clientes almacenados en la base de datos.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @return List<ClientDTO> of saved clients.
+     * @throws SQLException Error ocurred during execution of SQL query.
      */
     @Override
     public List<ClientDTO> getClients() throws SQLException {
@@ -42,11 +42,11 @@ public class ClientDB implements ClientDAO {
     }
 
     /**
-     * Inserta un nuevo cliente en la base de datos.
+     * Insert a new client in database.
      *
-     * @param newClient Objeto ClienteDTO que representa al nuevo cliente a insertar.
-     * @return true si el cliente fue insertado exitosamente, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @param newClient ClientDTO object to be saved in database.
+     * @return true if inserted successfully, false otherwise.
+     * @throws SQLException error ocurred during execution of SQL query.
      */
     @Override
     public boolean insertClient(ClientDTO newClient) throws SQLException {
@@ -80,7 +80,7 @@ public class ClientDB implements ClientDAO {
     }
 
     /**
-     * Elimina un cliente de la base de datos utilizando su email como identificador.
+     * Elimina un cliente de la base de datos utilizando su email como identificador. Delete a client from database using its email as identifier.
      *
      * @param deletedClient client who is going to be deleted.
      * @return true si el cliente fue eliminado exitosamente, false en caso contrario.
@@ -104,10 +104,10 @@ public class ClientDB implements ClientDAO {
 
 
     /**
-     * Actualiza la información de un cliente en la base de datos.
-     * @param updatedClient Objeto ClienteDTO que contiene la información actualizada del cliente.
-     * @return true si la actualización fue exitosa, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * Update client information in database.
+     * @param updatedClient ClientDTO object with the new information.
+     * @return true if the client information was successfully updated, false otherwise.
+     * @throws SQLException if an error occurs while executing the SQL query.
      */
     @Override
     public boolean updateClient(ClientDTO updatedClient) throws SQLException {

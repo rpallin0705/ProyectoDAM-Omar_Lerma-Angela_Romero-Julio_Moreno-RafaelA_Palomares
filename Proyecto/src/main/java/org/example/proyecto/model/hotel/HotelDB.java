@@ -37,15 +37,15 @@ private Statement statement;
             int numero_huespedes = resultSet.getInt("numero_huespedes");
             switch (tipo_habitacion.toUpperCase()){
                 case "INDIVIDUAL" -> {
-                    hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion,TipoHabitacion.INDIVIDUAL,numero_huespedes);
+                    hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion, RoomType.INDIVIDUAL,numero_huespedes);
                     hotels.add(hotelDTO);
                 }
                 case "DOBLE" -> {
-                    hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion,TipoHabitacion.DOBLE,numero_huespedes);
+                    hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion, RoomType.DOUBLE,numero_huespedes);
                     hotels.add(hotelDTO);
                 }
                 case "SUPLEMENTO" -> {
-                    hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion,TipoHabitacion.SUPLEMENTO,numero_huespedes);
+                    hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion, RoomType.SUPPLEMENT,numero_huespedes);
                     hotels.add(hotelDTO);
                 }
             }
@@ -66,15 +66,15 @@ private Statement statement;
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, updatedHotel.getNombre());
         preparedStatement.setString(2, updatedHotel.getCalle());
-        preparedStatement.setInt(3,updatedHotel.getId_alojamiento());
+        preparedStatement.setInt(3,updatedHotel.getHousingId());
         int rowsAffected = preparedStatement.executeUpdate();
         //hoteles
         String sql2 = "UPDATE hoteles SET clasificacion = ?, tipo_habitacion = ?, numero_huespedes = ? WHERE id_alojamiento = ?";
         preparedStatement = connection.prepareStatement(sql2);
-        preparedStatement.setInt(1,updatedHotel.getClasificacion());
-        preparedStatement.setString(2,updatedHotel.getTipo_habitacion().toString());
-        preparedStatement.setInt(3,updatedHotel.getNumero_huespedes());
-        preparedStatement.setInt(4,updatedHotel.getId_alojamiento());
+        preparedStatement.setInt(1,updatedHotel.getHotelClassification());
+        preparedStatement.setString(2,updatedHotel.getRoomType().toString());
+        preparedStatement.setInt(3,updatedHotel.getHostNumber());
+        preparedStatement.setInt(4,updatedHotel.getHousingId());
         rowsAffected += preparedStatement.executeUpdate();
         //vista_hoteles
         String sql3 = "UPDATE vista_hoteles SET nombre = ?, calle = ?,clasificacion = ?, tipo_habitacion = ?, numero_huespedes = ? WHERE id_alojamiento = ?";
@@ -99,7 +99,7 @@ private Statement statement;
     public boolean deleteHotel(HotelDTO deletedHotel) throws SQLException {
         String sql = "DELETE FROM alojamientos WHERE id_alojamiento = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1,deletedHotel.getId_alojamiento());
+        preparedStatement.setInt(1,deletedHotel.getHousingId());
         int rowsAffected = preparedStatement.executeUpdate();
         //vista_aps_turisticos
         String sql2 = "DELETE FROM vista_aps_turisticos WHERE id_alojamiento = ?";
@@ -132,9 +132,9 @@ private Statement statement;
         String sql2 = "INSERT INTO hoteles (id_alojamiento, clasificacion, tipo_habitacion, numero_huespedes) VALUES (?, ?, ?, ?)";
         preparedStatement = connection.prepareStatement(sql2);
         preparedStatement.setInt(1,idConseguido);
-        preparedStatement.setInt(2, insertedHotel.getClasificacion());
-        preparedStatement.setString(3,insertedHotel.getTipo_habitacion().toString());
-        preparedStatement.setInt(4,insertedHotel.getNumero_huespedes());
+        preparedStatement.setInt(2, insertedHotel.getHotelClassification());
+        preparedStatement.setString(3,insertedHotel.getRoomType().toString());
+        preparedStatement.setInt(4,insertedHotel.getHostNumber());
         rowsAffected += preparedStatement.executeUpdate();
         //vista_hoteles
         String sql3 = "INSERT INTO vista_hoteles (id_alojamiento, nombre, calle, clasificacion, tipo_habitacion, numero_huespedes) VALUES (?, ?, ?, ?, ?, ?)";

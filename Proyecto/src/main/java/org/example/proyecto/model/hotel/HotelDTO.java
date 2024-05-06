@@ -4,43 +4,44 @@ import org.example.proyecto.model.housing.HousingDTO;
 
 public class HotelDTO extends HousingDTO {
     /*attributes*/
-    private int clasificacion;
-    private TipoHabitacion tipo_habitacion;
-    private int numero_huespedes;
+    private int hotelClassification;
+    private RoomType roomType;
+    private int hostNumber;
 
     /**
      * HotelDTO builder
      * @param id_alojamiento id
      * @param nombre name
      * @param calle address
-     * @param clasificacion rating
-     * @param tipo_habitacion room type
-     * @param numero_huespedes guests number
+     * @param hotelClassification rating
+     * @param roomType room type
+     * @param hostNumber guests number
      */
-    public HotelDTO(int id_alojamiento, String nombre, String calle, int clasificacion, TipoHabitacion tipo_habitacion, int numero_huespedes) {
+    public HotelDTO(int id_alojamiento, String nombre, String calle, int hotelClassification, RoomType roomType, int hostNumber) {
         super(id_alojamiento, nombre, calle);
-        this.clasificacion = clasificacion;
-        this.tipo_habitacion = tipo_habitacion;
-        this.numero_huespedes = numero_huespedes;
+        this.hotelClassification = hotelClassification;
+        this.roomType = roomType;
+        this.hostNumber = hostNumber;
     }
 
     /*getters*/
-    public int getClasificacion() {
-        return clasificacion;
+    public int getHotelClassification() {
+        return hotelClassification;
     }
 
-    public int getNumero_huespedes() {
-        return numero_huespedes;
+    public int getHostNumber() {
+        return hostNumber;
     }
-    public TipoHabitacion getTipo_habitacion() {
-        return tipo_habitacion;
+    public RoomType getRoomType() {
+        return roomType;
     }
     /*setters*/
-    public void setClasificacion(int clasificacion) {
-        this.clasificacion = clasificacion;
+    public void setHotelClassification(int hotelClassification) {
+        this.hotelClassification = hotelClassification;
+
     }
-    public void setNumero_huespedes(int numero_huespedes) {
-        this.numero_huespedes = numero_huespedes;
+    public void setHostNumber(int hostNumber) {
+        this.hostNumber = hostNumber;
     }
 
     /**
@@ -49,6 +50,6 @@ public class HotelDTO extends HousingDTO {
      */
     @Override
     public String toString() {
-        return String.format("%d,%s,%s,%d,%s,%d",super.getId_alojamiento(),super.getNombre(),super.getCalle(),clasificacion,tipo_habitacion,numero_huespedes);
+        return String.format("%d,%s,%s,%d,%s,%d",super.getHousingId(),super.getNombre(),super.getCalle(), hotelClassification, roomType, hostNumber);
     }
 }

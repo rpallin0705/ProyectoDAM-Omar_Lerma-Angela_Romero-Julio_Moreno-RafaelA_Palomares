@@ -39,6 +39,7 @@ public class HousingDB implements HousingDAO
         }
         return housings;
     }
+
     /**
      * HousingDB
      * method that connects with the DataBase and updates a concrete Housing searching by ID
@@ -51,7 +52,7 @@ public class HousingDB implements HousingDAO
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,updatedHousing.getNombre());
         preparedStatement.setString(2,updatedHousing.getCalle());
-        preparedStatement.setInt(3,updatedHousing.getId_alojamiento());
+        preparedStatement.setInt(3,updatedHousing.getHousingId());
         preparedStatement = connection.prepareStatement(sql);
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;

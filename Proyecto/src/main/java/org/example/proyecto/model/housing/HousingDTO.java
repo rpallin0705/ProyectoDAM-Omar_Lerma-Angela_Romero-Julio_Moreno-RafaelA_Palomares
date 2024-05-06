@@ -4,28 +4,29 @@ import java.util.Objects;
 
 public class HousingDTO{
     /*attributes*/
-    private int id_alojamiento;
+    private int housingId;
     private String nombre;
     private String calle;
 
     /**
      * HousingDTO builder
-     * @param id_alojamiento id
+     * @param housingId id
      * @param nombre name
      * @param calle address
      */
-    public HousingDTO(int id_alojamiento, String nombre, String calle) {
-        this.id_alojamiento = id_alojamiento;
+    public HousingDTO(int housingId, String nombre, String calle) {
+        this.housingId = housingId;
         this.nombre = nombre;
         this.calle = calle;
     }
     /*getters*/
-    public int getId_alojamiento() {
-        return id_alojamiento;
+    public int getHousingId() {
+        return housingId;
     }
 
     public String getNombre() {
         return nombre;
+
     }
 
     public String getCalle() {
@@ -47,7 +48,7 @@ public class HousingDTO{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         HousingDTO that = (HousingDTO) o;
-        return id_alojamiento == that.id_alojamiento;
+        return housingId == that.housingId;
     }
 
     /**
@@ -56,7 +57,7 @@ public class HousingDTO{
      */
     @Override
     public int hashCode() {
-        return Objects.hash(id_alojamiento);
+        return Objects.hash(housingId);
     }
 
 }

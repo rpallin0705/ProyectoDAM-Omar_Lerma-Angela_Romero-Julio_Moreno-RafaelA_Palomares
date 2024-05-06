@@ -1,5 +1,4 @@
 package org.example.proyecto.model.user;
-
 import org.example.proyecto.model.account.AccountDTO;
 
 public class UserDTO extends AccountDTO {
@@ -15,8 +14,8 @@ public class UserDTO extends AccountDTO {
     public boolean isAdmin() {
         return admin;
     }
+  
     /*SETTERS*/
-
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
@@ -24,5 +23,6 @@ public class UserDTO extends AccountDTO {
     @Override
     public String toString() {
         return String.format("%s,%s",super.toString(),admin);
+
     }
 }

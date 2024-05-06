@@ -70,7 +70,7 @@ public class TouristApartmentDB implements TouristApartmentDAO{
         //aps_turisticos && alojamientos
         String sql = "DELETE FROM alojamientos WHERE id_alojamiento = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setInt(1, deletedApartment.getId_alojamiento());
+        preparedStatement.setInt(1, deletedApartment.getHousingId());
         int rowsAffected = preparedStatement.executeUpdate();
         //vista_aps_turisticos
         String sql2 = "DELETE FROM vista_aps_turisticos WHERE id_alojamiento = ?";
