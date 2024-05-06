@@ -48,6 +48,15 @@ public class TouristApartmentDB implements TouristApartmentDAO{
         preparedStatement = connection.prepareStatement(sql2);
         preparedStatement.setInt(1,updatedApartment.getDistanciaCentros());
         rowsAffected += preparedStatement.executeUpdate();
+        //vista_hoteles
+        String sql3 = "UPDATE vista_aps_turisticos SET nombre = ?, calle = ?, dist_centro_km = ? WHERE id_alojamiento = ?";
+        preparedStatement.setString(1, updatedApartment.getNombre());
+        preparedStatement.setString(2, updatedApartment.getCalle());
+        preparedStatement.setInt(3, updatedApartment.getDistanciaCentros());
+        preparedStatement.setInt(4, updatedApartment.getId_alojamiento());
+        rowsAffected += preparedStatement.executeUpdate();
+        connection.commit();
+        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
     /**
@@ -58,10 +67,18 @@ public class TouristApartmentDB implements TouristApartmentDAO{
      */
     @Override
     public boolean deleteTouristApartment(TouristApartmentDTO deletedApartment) throws SQLException {
+        //aps_turisticos && alojamientos
         String sql = "DELETE FROM alojamientos WHERE id_alojamiento = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, deletedApartment.getHousingId());
         int rowsAffected = preparedStatement.executeUpdate();
+        //vista_aps_turisticos
+        String sql2 = "DELETE FROM vista_aps_turisticos WHERE id_alojamiento = ?";
+        preparedStatement = connection.prepareStatement(sql2);
+        preparedStatement.setInt(1, deletedApartment.getId_alojamiento());
+        rowsAffected += preparedStatement.executeUpdate();
+        connection.commit();
+        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
     /**
@@ -88,6 +105,15 @@ public class TouristApartmentDB implements TouristApartmentDAO{
         preparedStatement.setInt(1,idGenerado);
         preparedStatement.setInt(2,insertedApartment.getDistanciaCentros());
         rowsAffected += preparedStatement.executeUpdate();
+        //vista_hoteles
+        String sql3 = "INSERT INTO vista_aps_turisticos (id_alojamiento, nombre, calle, dist_centro_km) VALUES (?, ?, ?, ?)";
+        preparedStatement.setInt(1, idGenerado);
+        preparedStatement.setString(2, insertedApartment.getNombre());
+        preparedStatement.setString(3, insertedApartment.getCalle());
+        preparedStatement.setInt(4, insertedApartment.getDistanciaCentros());
+        rowsAffected += preparedStatement.executeUpdate();
+        connection.commit();
+        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
 }

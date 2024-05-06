@@ -14,9 +14,9 @@ public class Main {
             System.out.println(usuario.toString());*/
             //System.out.println(usuario.toString());
 
-            UserDTO userDTO = new UserDTO("hola", "asios", "adfadfad", "adgad", "dagdg");
+            /*UserDTO userDTO = new UserDTO("hola", "asios", "adfadfad", "adgad", "dagdg");
             System.out.printf("usuario insertado -> %B%n",usuarioDB.insertUser(userDTO));
-            System.out.printf("usuario actualizado -> %B%n", usuarioDB.updateUser(userDTO));
+            System.out.printf("usuario actualizado -> %B%n", usuarioDB.updateUser(userDTO));*/
 
 
         //    System.out.printf("usuario borrado -> %B%n", usuarioDB.deleteUserByEmail("hola"));

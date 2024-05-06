@@ -1,52 +1,27 @@
 package org.example.proyecto.model.client;
 
-public class ClientDTO {
-    private String email;
-    private String phoneNumber;
-    private String fullName;
-    private String clientAddress;
+import org.example.proyecto.model.account.AccountDTO;
 
-    public ClientDTO(String email, String phoneNumber, String fullName, String clientAddress) {
-        this.email = email;
-        this.phoneNumber = phoneNumber;
-        this.fullName = fullName;
-        this.clientAddress = clientAddress;
+public class ClientDTO extends AccountDTO {
+    private String direccion;
+
+    public ClientDTO(int id_cuenta, String email, String contrasena, String nombre_apellidos, String direccion) {
+        super(id_cuenta, email, contrasena, nombre_apellidos);
+        this.direccion = direccion;
     }
 
-    public String getEmail() {
-        return email;
+    /*GETTERS*/
+    public String getDireccion() {
+        return direccion;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
-
-    public String getClientAddress() {
-        return clientAddress;
-    }
-
-    public void setClientAddress(String clientAddress) {
-        this.clientAddress = clientAddress;
+    /*SETTERS*/
+    public void setDireccion(String direccion) {
+        this.direccion = direccion;
     }
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s", email, phoneNumber, fullName, clientAddress);
+        return String.format("%s,%s",super.toString(),direccion);
     }
 }

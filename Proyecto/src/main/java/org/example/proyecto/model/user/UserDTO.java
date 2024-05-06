@@ -1,69 +1,28 @@
 package org.example.proyecto.model.user;
+import org.example.proyecto.model.account.AccountDTO;
 
-public class UserDTO {
-    private String userEmail;
-    private String userPhoneNumber;
-    private String userFullName;
-    private String userPassword;
-    private String userAddress;
+public class UserDTO extends AccountDTO {
+    private boolean admin;
 
-    public UserDTO(String userEmail, String userPhoneNumber, String userFullName, String userPassword, String direccion) {
-        this.userEmail = userEmail;
-        this.userPhoneNumber = userPhoneNumber;
-        this.userFullName = userFullName;
-        this.userPassword = userPassword;
-        this.userAddress = direccion;
+
+    public UserDTO(int id_cuenta, String email, String contrasena, String nombre_apellidos, boolean admin) {
+        super(id_cuenta, email, contrasena, nombre_apellidos);
+        this.admin = admin;
     }
 
-    public UserDTO(String userEmail, String userPhoneNumber, String userFullName, String direccion) {
-        this.userEmail = userEmail;
-        this.userPhoneNumber = userPhoneNumber;
-        this.userFullName = userFullName;
-        this.userAddress = direccion;
+    /*GETTERS*/
+    public boolean isAdmin() {
+        return admin;
     }
-
-    public String getUserEmail() {
-        return userEmail;
-    }
-
-    public void setUserEmail(String userEmail) {
-        this.userEmail = userEmail;
-    }
-
-    public String getUserPhoneNumber() {
-        return userPhoneNumber;
-    }
-
-    public void setUserPhoneNumber(String userPhoneNumber) {
-        this.userPhoneNumber = userPhoneNumber;
-    }
-
-    public String getUserFullName() {
-        return userFullName;
-    }
-
-    public void setUserFullName(String userFullName) {
-        this.userFullName = userFullName;
-    }
-
-    public String getUserPassword() {
-        return userPassword;
-    }
-
-    public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword;
-    }
-
-    public String getDireccion() {
-        return userAddress;
-    }
-
-    public void setDireccion(String direccion) {
-        this.userAddress = direccion;
+  
+    /*SETTERS*/
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s", userEmail, userPhoneNumber, userFullName, userAddress);
+        return String.format("%s,%s",super.toString(),admin);
+
     }
 }
