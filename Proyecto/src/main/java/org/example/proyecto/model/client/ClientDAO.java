@@ -5,8 +5,8 @@ import java.util.List;
 
 public interface ClientDAO {
     List<ClientDTO> getClients() throws SQLException;
-    boolean insertClient(ClientDTO newUser) throws SQLException;
-    boolean deleteClientByID(String userEmailDelete) throws SQLException;
-    boolean updateClient(ClientDTO updatedUser) throws SQLException;
+    boolean insertClient(ClientDTO newClient) throws SQLException;
+    boolean deleteClient(ClientDTO deletedClient) throws SQLException;
+    boolean updateClient(ClientDTO updatedClient) throws SQLException;
 }
 

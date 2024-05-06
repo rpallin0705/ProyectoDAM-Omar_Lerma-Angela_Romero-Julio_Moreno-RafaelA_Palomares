@@ -74,3 +74,17 @@ FROM
 JOIN
     aps_turisticos ap
 ON a.id_alojamiento = ap.id_alojamiento;
+
+-- Vista para atributos de usuarios
+CREATE OR REPLACE VIEW vista_usuarios AS
+SELECT c.id_cuenta, c.email, c.contrasena, c.nombre_apellidos, u.admin
+FROM cuentas c
+JOIN usuarios u
+ON c.id_cuenta = u.id_cuenta;
+
+-- Vista para atributos de clientes
+CREATE OR REPLACE VIEW vista_clientes AS
+SELECT c.id_cuenta, c.email, c.contrasena, c.nombre_apellidos, cl.direccion
+FROM cuentas c
+JOIN clientes cl
+ON c.id_cuenta = cl.id_cuenta;

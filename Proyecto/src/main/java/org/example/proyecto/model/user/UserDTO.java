@@ -1,69 +1,28 @@
 package org.example.proyecto.model.user;
 
-public class UserDTO {
-    private String email;
-    private String telefono;
-    private String nombreApellidos;
-    private String contrasena;
-    private String direccion;
+import org.example.proyecto.model.account.AccountDTO;
 
-    public UserDTO(String email, String telefono, String nombreApellidos, String contrasena, String direccion) {
-        this.email = email;
-        this.telefono = telefono;
-        this.nombreApellidos = nombreApellidos;
-        this.contrasena = contrasena;
-        this.direccion = direccion;
+public class UserDTO extends AccountDTO {
+    private boolean admin;
+
+
+    public UserDTO(int id_cuenta, String email, String contrasena, String nombre_apellidos, boolean admin) {
+        super(id_cuenta, email, contrasena, nombre_apellidos);
+        this.admin = admin;
     }
 
-    public UserDTO(String email, String telefono, String nombreApellidos, String direccion) {
-        this.email = email;
-        this.telefono = telefono;
-        this.nombreApellidos = nombreApellidos;
-        this.direccion = direccion;
+    /*GETTERS*/
+    public boolean isAdmin() {
+        return admin;
     }
+    /*SETTERS*/
 
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefono() {
-        return telefono;
-    }
-
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getNombreApellidos() {
-        return nombreApellidos;
-    }
-
-    public void setNombreApellidos(String nombreApellidos) {
-        this.nombreApellidos = nombreApellidos;
-    }
-
-    public String getContrasena() {
-        return contrasena;
-    }
-
-    public void setContrasena(String contrasena) {
-        this.contrasena = contrasena;
-    }
-
-    public String getDireccion() {
-        return direccion;
-    }
-
-    public void setDireccion(String direccion) {
-        this.direccion = direccion;
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
     }
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s", email, telefono, nombreApellidos, direccion);
+        return String.format("%s,%s",super.toString(),admin);
     }
 }
