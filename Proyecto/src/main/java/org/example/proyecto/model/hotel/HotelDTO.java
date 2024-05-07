@@ -1,36 +1,55 @@
 package org.example.proyecto.model.hotel;
 
-import org.example.proyecto.model.hotel_aps.HousingType;
 import org.example.proyecto.model.housing.HousingDTO;
 
 public class HotelDTO extends HousingDTO {
-    private String tipoHabitacion;
-    private int clasificacion;
+    /*attributes*/
+    private int hotelClassification;
+    private RoomType roomType;
+    private int hostNumber;
 
-    public HotelDTO(String codAlojamiento, String nombreAlojamiento, String direccionAlojamiento, int numeHuespedes, String tipoHabitacion, int clasificacion) {
-        super(codAlojamiento, nombreAlojamiento, direccionAlojamiento, numeHuespedes, HousingType.HOTELES);
-        this.tipoHabitacion = tipoHabitacion;
-        this.clasificacion = clasificacion;
+    /**
+     * HotelDTO builder
+     * @param id_alojamiento id
+     * @param nombre name
+     * @param calle address
+     * @param hotelClassification rating
+     * @param roomType room type
+     * @param hostNumber guests number
+     */
+    public HotelDTO(int id_alojamiento, String nombre, String calle, int hotelClassification, RoomType roomType, int hostNumber) {
+        super(id_alojamiento, nombre, calle);
+        this.hotelClassification = hotelClassification;
+        this.roomType = roomType;
+        this.hostNumber = hostNumber;
     }
 
-    public String getTipoHabitacion() {
-        return tipoHabitacion;
+    /*getters*/
+    public int getHotelClassification() {
+        return hotelClassification;
     }
 
-    public void setTipoHabitacion(String tipoHabitacion) {
-        this.tipoHabitacion = tipoHabitacion;
+    public int getHostNumber() {
+        return hostNumber;
+    }
+    public RoomType getRoomType() {
+        return roomType;
+    }
+    /*setters*/
+    public void setHotelClassification(int hotelClassification) {
+        this.hotelClassification = hotelClassification;
+
+    }
+    public void setHostNumber(int hostNumber) {
+        this.hostNumber = hostNumber;
     }
 
-    public int getClasificacion() {
-        return clasificacion;
-    }
-
-    public void setClasificacion(int clasificacion) {
-        this.clasificacion = clasificacion;
-    }
-
+    /**
+     * to string
+     * @return String with the attributes of a hotel in CSV format
+     */
     @Override
     public String toString() {
-        return String.format("%s,%s %s", super.toString(), tipoHabitacion, clasificacion);
+        return String.format("%d,%s,%s,%d,%s,%d",super.getHousingId(),super.getNombre(),super.getCalle(), hotelClassification, roomType, hostNumber);
     }
 }

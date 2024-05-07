@@ -1,11 +1,13 @@
 package org.example.proyecto.model.booking;
 
 import org.example.proyecto.SetUpConnection;
-import org.example.proyecto.model.user.UserDTO;
 
 import java.io.IOException;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class BookingDB implements BookingDAO{
@@ -18,11 +20,11 @@ public class BookingDB implements BookingDAO{
     }
 
     /**
-     * Obtiene la lista de todas las reservas almacenadas en la base de datos.
+     * Gets the list of all bookings stored in the database.
      *
-     * @return Lista de objetos BookingDTO que representan las reservas almacenadas en la base de datos.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
-     * @todo Hacer las fechas LocalDate y hacer el cambio a String
+     * @return List of BookingDTO objects representing the bookings stored in the database.
+     * @throws SQLException If an error occurs while executing the SQL query.
+     * @todo Convert dates to LocalDate and change to String format.
      */
     @Override
     public List<BookingDTO> getBookings() throws SQLException {
@@ -32,33 +34,29 @@ public class BookingDB implements BookingDAO{
         ResultSet resultSet = statement.executeQuery(sql);
         BookingDTO bookingDTO = null;
         while (resultSet.next()) {
-            String fecha_ini = resultSet.getString("fecha_ini");
-            String fecha_fin = resultSet.getString("fecha_fin");
-            String email = resultSet.getString("email");
-            String telefono = resultSet.getString("telefono");
-            String codAlojamiento = resultSet.getString("cod_alojamiento");
-            bookingDTO = new BookingDTO(fecha_ini, fecha_fin, email, telefono, codAlojamiento);
+            LocalDate fecha_ini = LocalDate.of(resultSet.getDate("fecha_ini").getYear(),resultSet.getDate("fecha_ini").getMonth(),resultSet.getDate("fecha_ini").getDay());
+            LocalDate fecha_fin =LocalDate.of(resultSet.getDate("fecha_fin").getYear(),resultSet.getDate("fecha_fin").getMonth(),resultSet.getDate("fecha_fin").getDay());
+            int id_cuenta = resultSet.getInt("id_cuenta");
+            int id_reserva = resultSet.getInt("id_reserva");
+            bookingDTO = new BookingDTO(fecha_ini, fecha_fin, id_reserva, id_cuenta );
             bookings.add(bookingDTO);
         }
         return bookings;
     }
 
     /**
-     * Inserta una nueva reserva en la base de datos.
+     * Inserts a new booking into the database.
      *
-     * @param newBooking Objeto BookingDTO que representa la nueva reserva a insertar.
-     * @return true si la reserva fue insertada exitosamente, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @param newBooking The BookingDTO object representing the new booking to insert.
+     * @return true if the booking was successfully inserted, false otherwise.
+     * @throws SQLException If an error occurs while executing the SQL query.
      */
     @Override
     public boolean insertBooking(BookingDTO newBooking) throws SQLException {
-        String sql = "INSERT INTO reservas (fecha_ini, fecha_fin, email, telefono, cod_alojamiento) VALUES (?, ?, ?, ?, ?)";
-        preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, newBooking.getFechaInicio());
-        preparedStatement.setString(2, newBooking.getFechaFin());
-        preparedStatement.setString(3, newBooking.getEmail());
-        preparedStatement.setString(4, newBooking.getTelefono());
-        preparedStatement.setString(5, newBooking.getCodAlojamiento());
+        String sql = "INSERT INTO reservas (fecha_ini, fecha_fin, id_cuenta) VALUES(?, ?, ?);";
+        preparedStatement.setDate(1, java.sql.Date.valueOf(newBooking.getCheckInDate()));
+        preparedStatement.setDate(2, java.sql.Date.valueOf(newBooking.getCheckOutDate()));
+        preparedStatement.setInt(3, newBooking.getCountId());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
@@ -66,18 +64,18 @@ public class BookingDB implements BookingDAO{
     /**
      * Elimina una reserva de la base de datos utilizando su identificador.
      *
-     * @param bookingId Identificador de la reserva que se va a eliminar.
+     * @param deletedBooking Objeto BookingDTO que contiene la información de la reserva que se desea eliminar.
      * @return true si la reserva fue eliminada exitosamente, false en caso contrario.
      * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
      * * @todo excepciones propias para cuando se introduzca la contraseña incorrecta o no exista el usuario
      */
     @Override
-    public boolean deleteBookingByID(String bookingId) throws SQLException {
+    public boolean deleteBookingByID(BookingDTO deletedBooking) throws SQLException {
         String sql = "DELETE FROM reservas WHERE id_reserva = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, bookingId);
-        int result = preparedStatement.executeUpdate();
-        return result != 0;
+        preparedStatement.setInt(1, deletedBooking.getBookingId());
+        int rowsAffected = preparedStatement.executeUpdate();
+        return rowsAffected != 0;
     }
 
     /**
@@ -89,15 +87,15 @@ public class BookingDB implements BookingDAO{
      */
     @Override
     public boolean updateBooking(BookingDTO updatedBooking) throws SQLException {
-        String sql = "UPDATE reservas SET fecha_ini = ?, fecha_fin = ?, telefono = ?, cod_alojamiento = ? WHERE email = ?";
+        String sql = "UPDATE reservas SET fecha_ini = ?, fecha_fin = ?, id_cuenta = ? WHERE id_reserva = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, updatedBooking.getFechaInicio());
-        preparedStatement.setString(2, updatedBooking.getFechaFin());
-        preparedStatement.setString(3, updatedBooking.getTelefono());
-        preparedStatement.setString(4, updatedBooking.getCodAlojamiento());
-        preparedStatement.setString(5, updatedBooking.getEmail());
-        int result = preparedStatement.executeUpdate();
-        return result != 0;
+        preparedStatement.setDate(1,java.sql.Date.valueOf(updatedBooking.getCheckInDate()));
+        preparedStatement.setDate(2,java.sql.Date.valueOf(updatedBooking.getCheckOutDate()));
+        preparedStatement.setInt(3,updatedBooking.getCountId());
+        preparedStatement.setInt(4,updatedBooking.getBookingId());
+        int rowsAffected = preparedStatement.executeUpdate();
+        return rowsAffected != 0;
+
     }
 
 }

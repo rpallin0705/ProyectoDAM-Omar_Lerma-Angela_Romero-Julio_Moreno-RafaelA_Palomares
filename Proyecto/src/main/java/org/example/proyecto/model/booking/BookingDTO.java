@@ -1,62 +1,65 @@
 package org.example.proyecto.model.booking;
 
+import java.time.LocalDate;
+
 public class BookingDTO {
-    private String fechaInicio;
-    private String fechaFin;
-    private String email;
-    private String telefono;
-    private String codAlojamiento;
+    private LocalDate checkInDate;
+    private LocalDate checkOutDate;
+    private int bookingId;
+    private int countId;
 
-    public BookingDTO(String fechaInicio, String fechaFin, String email, String telefono, String codAlojamiento) {
-        this.fechaInicio = fechaInicio;
-        this.fechaFin = fechaFin;
-        this.email = email;
-        this.telefono = telefono;
-        this.codAlojamiento = codAlojamiento;
+    /**
+     *
+     * @param fechaInicio starting date
+     * @param checkOutDate ending date
+     * @param bookingId booking id
+     * @param countId account id
+     */
+    public BookingDTO(LocalDate fechaInicio, LocalDate checkOutDate, int bookingId, int countId) {
+        this.checkInDate = fechaInicio;
+        this.checkOutDate = checkOutDate;
+        this.bookingId = bookingId;
+        this.countId = countId;
     }
 
-    public String getFechaInicio() {
-        return fechaInicio;
+    /*GETTERS*/
+
+    public LocalDate getCheckInDate() {
+        return checkInDate;
     }
 
-    public void setFechaInicio(String fechaInicio) {
-        this.fechaInicio = fechaInicio;
+    public LocalDate getCheckOutDate() {
+        return checkOutDate;
     }
 
-    public String getFechaFin() {
-        return fechaFin;
+    public int getBookingId() {
+        return bookingId;
     }
 
-    public void setFechaFin(String fechaFin) {
-        this.fechaFin = fechaFin;
+    public int getCountId() {
+        return countId;
+    }
+    /*SETTERS*/
+
+    public void setCheckInDate(LocalDate checkInDate) {
+        this.checkInDate = checkInDate;
     }
 
-    public String getEmail() {
-        return email;
+    public void setCheckOutDate(LocalDate checkOutDate) {
+        this.checkOutDate = checkOutDate;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setBookingId(int bookingId) {
+        this.bookingId = bookingId;
     }
 
-    public String getTelefono() {
-        return telefono;
-    }
 
-    public void setTelefono(String telefono) {
-        this.telefono = telefono;
-    }
-
-    public String getCodAlojamiento() {
-        return codAlojamiento;
-    }
-
-    public void setCodAlojamiento(String codAlojamiento) {
-        this.codAlojamiento = codAlojamiento;
+    public void setCountId(int countId) {
+        this.countId = countId;
     }
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s,%s,%s", fechaInicio, fechaFin, email, telefono, codAlojamiento);
+        return String.format("%s,%s,%d,%d", checkInDate, checkOutDate, bookingId, countId);
     }
 }
