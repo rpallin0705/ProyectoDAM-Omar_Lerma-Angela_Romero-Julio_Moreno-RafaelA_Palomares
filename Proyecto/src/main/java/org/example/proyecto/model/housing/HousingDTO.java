@@ -1,21 +1,63 @@
 package org.example.proyecto.model.housing;
 
-import org.example.proyecto.model.hotel_aps.Hotel_apsDTO;
-import org.example.proyecto.model.hotel_aps.HousingType;
+import java.util.Objects;
 
-public class HousingDTO extends Hotel_apsDTO {
-    private int id_alojamiento;
+public class HousingDTO{
+    /*attributes*/
+    private int housingId;
+    private String nombre;
+    private String calle;
 
-    public HousingDTO(int id, String nombre, String direccion, int clasificacion) {
-        super(id, nombre, direccion, null, clasificacion);
+    /**
+     * HousingDTO builder
+     * @param housingId id
+     * @param nombre name
+     * @param calle address
+     */
+    public HousingDTO(int housingId, String nombre, String calle) {
+        this.housingId = housingId;
+        this.nombre = nombre;
+        this.calle = calle;
+    }
+    /*getters*/
+    public int getHousingId() {
+        return housingId;
     }
 
-    public int getId_alojamiento() {
-        return id_alojamiento;
+    public String getNombre() {
+        return nombre;
+
     }
 
+    public String getCalle() {
+        return calle;
+    }
+
+    /*setters*/
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    /**
+     * equals
+     * @param o -> housing id
+     * @return true if both of the housing compared have the same id
+     */
     @Override
-    public String toString() {
-        return String.format("%d,%d,%s,%s,%s",id_alojamiento,super.getId(), super.getNombre(), super.getDireccion(), super.getTipo());
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        HousingDTO that = (HousingDTO) o;
+        return housingId == that.housingId;
     }
+
+    /**
+     * hashCode
+     * @return hashCode associated with the id
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(housingId);
+    }
+
 }
