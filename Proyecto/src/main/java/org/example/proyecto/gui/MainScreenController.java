@@ -26,14 +26,17 @@ public class MainScreenController {
        loadMenu("Clientes", clientMenuBTN);
     }
 
+    @FXML
     public void loadBookingMenu() {
         loadMenu("Reservas", bookingMenuBTN);
     }
 
+    @FXML
     public void loadHotelMenu() {
         loadMenu("Hoteles", hotelMenuBTN);
     }
 
+    @FXML
     public void loadMenu(String buttonPressed, Button button){
         try {
             if (lastButtonPressed != null)
@@ -57,5 +60,14 @@ public class MainScreenController {
         } catch (IOException e) {
             e.printStackTrace(); // Manejar la excepción de carga de FXML
         }
+    }
+
+    // todo Make a generic class to add hover effect to all buttons
+    @FXML
+    public void initialize(){
+        clientMenuBTN.setOnMouseEntered(event -> clientMenuBTN.setStyle("-fx-background-color: orange; -fx-font-size: 1.1em; -fx-background-radius: 30"));
+
+        clientMenuBTN.setOnMouseExited(event -> clientMenuBTN.setStyle("-fx-background-color: #ddd; -fx-font-size: 1.0em; -fx-background-radius: 30;"));
+
     }
 }
