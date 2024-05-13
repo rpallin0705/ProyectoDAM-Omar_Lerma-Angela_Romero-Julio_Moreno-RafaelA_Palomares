@@ -57,8 +57,32 @@ public class MenuComponent {
                 getButton.setOnAction(event -> getHotels());
             }
 
+            case "Apartamentos" -> {
+                /*createButton.setText("Crear Hoteles");
+                updateButton.setText("Modificar Hoteles");
+                deleteButton.setText("Borrar Hoteles");
+                getButton.setText("Buscar Hoteles");*/
+
+                createButton.setOnAction(event -> createApartment());
+                updateButton.setOnAction(event -> updateApartment());
+                deleteButton.setOnAction(event -> deleteApartment());
+                getButton.setOnAction(event -> getApartments());
+            }
+
             default -> { throw new IllegalStateException("El botón presionado no funciona correctamente" + buttonPressed); }
         }
+    }
+
+    private void createApartment() {
+    }
+
+    private void updateApartment() {
+    }
+
+    private void getApartments() {
+    }
+
+    private void deleteApartment() {
     }
 
     private void getHotels() {

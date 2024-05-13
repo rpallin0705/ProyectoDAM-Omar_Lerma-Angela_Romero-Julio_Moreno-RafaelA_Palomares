@@ -7,6 +7,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainScreenController {
 
@@ -18,6 +20,8 @@ public class MainScreenController {
     public Button clientMenuBTN;
     @FXML
     public Button bookingMenuBTN;
+    @FXML
+    public Button apartmentMenuBTN;
 
     private Button lastButtonPressed;
 
@@ -37,6 +41,12 @@ public class MainScreenController {
     }
 
     @FXML
+    public void loadApartmentMenu() {
+        loadMenu("Apartamentos", apartmentMenuBTN);
+    }
+
+
+    @FXML
     public void loadMenu(String buttonPressed, Button button){
         try {
             if (lastButtonPressed != null)
@@ -46,8 +56,10 @@ public class MainScreenController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("menu-component.fxml"));
             AnchorPane menu = loader.load();
 
+
             button.setStyle("-fx-background-color:  #f5a623; -fx-background-radius: 30px;");
 
+            //Guarda el ultimo botón pulsado para mantener cambiar el color cuando se pulse otro
             lastButtonPressed = button;
 
             //Obtiene el controlador del componente cargado y le pasa el String que identifica el botón pulsado
@@ -65,9 +77,13 @@ public class MainScreenController {
     // todo Make a generic class to add hover effect to all buttons
     @FXML
     public void initialize(){
-        clientMenuBTN.setOnMouseEntered(event -> clientMenuBTN.setStyle("-fx-background-color: orange; -fx-font-size: 1.1em; -fx-background-radius: 30"));
+        List<Button> buttonsOnHover = new ArrayList<>();
+        buttonsOnHover.add(clientMenuBTN); buttonsOnHover.add(hotelMenuBTN);
+        buttonsOnHover.add(bookingMenuBTN); buttonsOnHover.add(apartmentMenuBTN);
 
-        clientMenuBTN.setOnMouseExited(event -> clientMenuBTN.setStyle("-fx-background-color: #ddd; -fx-font-size: 1.0em; -fx-background-radius: 30;"));
+        GuiEffectsHelper.addHoverEffectOnButtons(buttonsOnHover);
 
     }
+
+
 }
