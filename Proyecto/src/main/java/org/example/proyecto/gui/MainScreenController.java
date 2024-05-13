@@ -23,7 +23,6 @@ public class MainScreenController {
     @FXML
     public Button apartmentMenuBTN;
 
-    private Button lastButtonPressed;
 
     @FXML
     public void loadClientMenu() {
@@ -49,32 +48,22 @@ public class MainScreenController {
     @FXML
     public void loadMenu(String buttonPressed, Button button){
         try {
-            if (lastButtonPressed != null)
-                lastButtonPressed.setStyle("-fx-background-color:  #ddd; -fx-background-radius: 30px;");
 
-            // Cargar el archivo FXML
+            // Load FXML file
             FXMLLoader loader = new FXMLLoader(getClass().getResource("menu-component.fxml"));
             AnchorPane menu = loader.load();
 
 
-            button.setStyle("-fx-background-color:  #f5a623; -fx-background-radius: 30px;");
-
-            //Guarda el ultimo botón pulsado para mantener cambiar el color cuando se pulse otro
-            lastButtonPressed = button;
-
-            //Obtiene el controlador del componente cargado y le pasa el String que identifica el botón pulsado
+            //Gets controller component and send a string as parameter to identify pressed button
             MenuComponent controller = loader.getController();
             controller.initialize(buttonPressed);
 
-
-            // Reemplazar el contenido actual del componenteMultiusos con el contenido del archivo FXML cargado
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
-            e.printStackTrace(); // Manejar la excepción de carga de FXML
+            e.printStackTrace();
         }
     }
 
-    // todo Make a generic class to add hover effect to all buttons
     @FXML
     public void initialize(){
         List<Button> buttonsOnHover = new ArrayList<>();
