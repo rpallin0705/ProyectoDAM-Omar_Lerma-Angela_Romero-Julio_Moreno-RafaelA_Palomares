@@ -30,7 +30,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="441.0" prefWidth="130.0" spacing="20.0" style="-fx-padding: 10; -fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="buscarClientesBTN" mnemonicParsing="false" onAction="#menuClientes" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30; -fx-border-radius: 30;" text="Clientes">
+            <Button fx:id="clientMenuBTN" mnemonicParsing="false" onAction="#loadClientMenu" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-background-radius: 30; -fx-border-radius: 30;" text="Clientes">
                <font>
                   <Font size="15.0" />
                </font>
@@ -41,7 +41,7 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </Button>
-            <Button layoutX="24.0" layoutY="20.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Hoteles ">
+            <Button fx:id="hotelMenuBTN" layoutX="24.0" layoutY="20.0" mnemonicParsing="false" onAction="#loadHotelMenu" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-background-radius: 30;" text="Hoteles ">
                <font>
                   <Font size="13.0" />
                </font>
@@ -52,7 +52,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button layoutX="24.0" layoutY="80.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Apartamentos">
+            <Button layoutX="24.0" layoutY="80.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-background-radius: 30;" text="Apartamentos">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
@@ -60,7 +60,7 @@
                   <Insets />
                </VBox.margin>
             </Button>
-            <Button layoutX="24.0" layoutY="140.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Reservas">
+            <Button fx:id="bookingMenuBTN" layoutX="24.0" layoutY="140.0" mnemonicParsing="false" onAction="#loadBookingMenu" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-background-radius: 30;" text="Reservas">
                <font>
                   <Font size="14.0" />
                </font>
@@ -83,28 +83,6 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="componenteMultiusos" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="75.0" layoutY="59.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0" text="Crear Reserva">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Button layoutX="350.0" layoutY="59.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0"  text="Modificar Reserva">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Button layoutX="75.0" layoutY="250.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0" text="Eliminar Reserva">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Button layoutX="350.0" layoutY="250.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0" text="Ver Reservas">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-         </children></AnchorPane>
+      <AnchorPane fx:id="templateComponent" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>

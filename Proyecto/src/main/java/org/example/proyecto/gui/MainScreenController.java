@@ -9,21 +9,51 @@ import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
 
 public class MainScreenController {
-    @FXML
-    public Button buscarClientesBTN;
-    @FXML
-    public AnchorPane componenteMultiusos;
 
     @FXML
-    public void menuClientes(ActionEvent actionEvent) {
+    public AnchorPane templateComponent;
+    @FXML
+    public Button hotelMenuBTN;
+    @FXML
+    public Button clientMenuBTN;
+    @FXML
+    public Button bookingMenuBTN;
+
+    private Button lastButtonPressed;
+
+    @FXML
+    public void loadClientMenu() {
+       loadMenu("Clientes", clientMenuBTN);
+    }
+
+    public void loadBookingMenu() {
+        loadMenu("Reservas", bookingMenuBTN);
+    }
+
+    public void loadHotelMenu() {
+        loadMenu("Hoteles", hotelMenuBTN);
+    }
+
+    public void loadMenu(String buttonPressed, Button button){
         try {
+            if (lastButtonPressed != null)
+                lastButtonPressed.setStyle("-fx-background-color:  #ddd; -fx-background-radius: 30px;");
+
             // Cargar el archivo FXML
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("search-client.fxml"));
-            AnchorPane newPane = loader.load();
-            buscarClientesBTN.setStyle("-fx-background-color:  #f5a623; -fx-background-radius: 30px;");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("menu-component.fxml"));
+            AnchorPane menu = loader.load();
+
+            button.setStyle("-fx-background-color:  #f5a623; -fx-background-radius: 30px;");
+
+            lastButtonPressed = button;
+
+            //Obtiene el controlador del componente cargado y le pasa el String que identifica el botón pulsado
+            MenuComponent controller = loader.getController();
+            controller.initialize(buttonPressed);
+
 
             // Reemplazar el contenido actual del componenteMultiusos con el contenido del archivo FXML cargado
-            componenteMultiusos.getChildren().setAll(newPane);
+            templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
             e.printStackTrace(); // Manejar la excepción de carga de FXML
         }
