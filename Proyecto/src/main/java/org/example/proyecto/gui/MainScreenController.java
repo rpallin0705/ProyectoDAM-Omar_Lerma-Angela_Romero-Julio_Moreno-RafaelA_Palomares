@@ -45,8 +45,13 @@ public class MainScreenController {
     }
 
 
+    /**
+     * This function loads the buttonData menu component for CRUD operations in the tables of the database
+     * @param buttonPressed String with the table name of the buttonData pressed
+     * @param buttonData data of the buttonData the user pressed for future operations
+     */
     @FXML
-    public void loadMenu(String buttonPressed, Button button){
+    public void loadMenu(String buttonPressed, Button buttonData){
         try {
 
             // Load FXML file
@@ -54,7 +59,7 @@ public class MainScreenController {
             AnchorPane menu = loader.load();
 
 
-            //Gets controller component and send a string as parameter to identify pressed button
+            //Gets controller component and send a string as parameter to identify pressed buttonData
             MenuComponent controller = loader.getController();
             controller.initialize(buttonPressed);
 
