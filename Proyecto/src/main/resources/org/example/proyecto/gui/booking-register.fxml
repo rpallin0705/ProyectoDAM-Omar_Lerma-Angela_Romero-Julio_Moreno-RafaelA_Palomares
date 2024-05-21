@@ -18,7 +18,7 @@
 
         <VBox alignment="TOP_RIGHT" prefHeight="380.0" prefWidth="187.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Nombre:" alignment="CENTER">
+            <Label alignment="CENTER" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Nombre:">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
@@ -26,17 +26,27 @@
                   <Cursor fx:constant="MOVE" />
                </cursor>
             </Label>
-            <Label layoutX="105.0" layoutY="20.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Email" alignment="CENTER">
+            <Label alignment="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Email">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label layoutX="105.0" layoutY="52.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Fecha Entrada" alignment="CENTER">
+             <Label alignment="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Nombre Aloj.">
+                 <VBox.margin>
+                     <Insets />
+                 </VBox.margin>
+             </Label>
+             <Label alignment="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Calle">
+                 <VBox.margin>
+                     <Insets />
+                 </VBox.margin>
+             </Label>
+            <Label alignment="CENTER" layoutX="105.0" layoutY="52.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Fecha Entrada">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label layoutX="105.0" layoutY="84.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Fecha Salida" alignment="CENTER">
+            <Label alignment="CENTER" layoutX="105.0" layoutY="84.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Fecha Salida">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -52,7 +62,7 @@
          </children></VBox>
     </left>
     <bottom>
-        <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0" BorderPane.alignment="CENTER">
+        <HBox alignment="CENTER" prefHeight="85.0" prefWidth="712.0" spacing="40.0" BorderPane.alignment="CENTER">
             <children>
                 <Button mnemonicParsing="false" prefHeight="41.0" prefWidth="121.0" style="-fx-background-color: #ebb14c;" text="Crear" textFill="WHITE">
                     <font>
@@ -70,10 +80,12 @@
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TextField layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="443.0" promptText="Nombre"/>
-            <TextField layoutX="14.0" layoutY="63.0" prefHeight="25.0" prefWidth="443.0" promptText="Email"/>
-            <DatePicker layoutX="14.0" layoutY="112.0" prefHeight="25.0" prefWidth="234.0" promptText="Fecha Entrada"/>
-            <DatePicker layoutX="14.0" layoutY="162.0" prefHeight="25.0" prefWidth="234.0" promptText="Fecha Salida"/>
+            <TextField layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="443.0" promptText="Nombre" />
+            <TextField layoutX="14.0" layoutY="63.0" prefHeight="25.0" prefWidth="443.0" promptText="Email" />
+             <TextField layoutX="14.0" layoutY="112.0" prefHeight="25.0" prefWidth="443.0" promptText="Nombre Alojamiento" />
+             <TextField layoutX="14.0" layoutY="162.0" prefHeight="25.0" prefWidth="443.0" promptText="Calle" />
+             <DatePicker layoutX="14.0" layoutY="213.0" prefHeight="25.0" prefWidth="234.0" promptText="Fecha Entrada" />
+            <DatePicker layoutX="14.0" layoutY="262" prefHeight="25.0" prefWidth="234.0" promptText="Fecha Salida" />
          </children></Pane>
    </center>
 </BorderPane>

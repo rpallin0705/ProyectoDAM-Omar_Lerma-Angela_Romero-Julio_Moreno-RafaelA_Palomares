@@ -30,14 +30,15 @@
             <Label layoutX="15.0" layoutY="100.0" prefHeight="25.0" prefWidth="65.0" text="Nombre:" />
             <TextField layoutX="79.0" layoutY="100.0" prefHeight="25.0" prefWidth="175.0" />
 
-            <Label layoutX="15.0" layoutY="150.0" prefHeight="25.0" prefWidth="65.0"  text="Dirección:" />
+            <Label layoutX="15.0" layoutY="150.0" prefHeight="25.0" prefWidth="65.0" text="Dirección:" />
             <TextField layoutX="79.0" layoutY="150.0" prefHeight="25.0" prefWidth="175.0" />
 
              <Label layoutX="15.0" layoutY="200.0" prefHeight="25.0" prefWidth="65.0" text="Id Cliente:" />
              <TextField layoutX="79.0" layoutY="200.0" prefHeight="25.0" prefWidth="175.0" />
 
-             <Button layoutX="53.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
-             <Button layoutX="157.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
+             <Button layoutX="50.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
+             <Button layoutX="150.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
+            <Button layoutX="95.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Ver Reservas" />
          </children>
       </Pane>
    </left>
