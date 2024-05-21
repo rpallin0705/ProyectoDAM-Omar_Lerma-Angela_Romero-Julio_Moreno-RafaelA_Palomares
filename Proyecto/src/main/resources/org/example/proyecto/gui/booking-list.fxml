@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="712.0" style="-fx-background-color: black;" text="Reservas" textFill="WHITE" BorderPane.alignment="CENTER">
+            <font>
+                <Font size="35.0" />
+            </font>
+        </Label>
+    </top>
+    <right>
+        <TableView prefHeight="412.0" prefWidth="442.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn prefWidth="111.33334350585938" text="Id Reserva" />
+                <TableColumn prefWidth="100.33331298828125" text="Fecha Ini" />
+                <TableColumn prefWidth="100.33331298828125" text="Fecha Fin" />
+                <TableColumn prefWidth="100.33331298828125" text="Id Cliente" />
+            </columns>
+        </TableView>
+    </right>
+    <left>
+        <Pane prefHeight="412.0" prefWidth="298.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label layoutX="15.0" layoutY="50.0" prefHeight="20.0" prefWidth="65.0" text="Id Reserva: " />
+                <TextField layoutX="80.0" layoutY="50.0" prefHeight="20.0" prefWidth="175.0" />
+
+                <Label layoutX="15.0" layoutY="100.0" prefHeight="20.0" prefWidth="65.0" text="Fecha Ini:" />
+                <DatePicker layoutX="80.0" layoutY="100.0" prefHeight="20.0" prefWidth="175.0" />
+
+                <Label layoutX="15.0" layoutY="150.0" prefHeight="20.0" prefWidth="65.0" text="Fecha Fin:" />
+                <DatePicker layoutX="80.0" layoutY="150.0" prefHeight="20.0" prefWidth="175.0" />
+
+                <Label layoutX="15.0" layoutY="200.0" prefHeight="20.0" prefWidth="65.0" text="Id Cliente:" />
+                <TextField layoutX="80.0" layoutY="200.0" prefHeight="20.0" prefWidth="175.0" />
+            <Button layoutX="53.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
+            <Button layoutX="157.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
+            </children>
+        </Pane>
+    </left>
+</BorderPane>

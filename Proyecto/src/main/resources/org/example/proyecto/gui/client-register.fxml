@@ -7,30 +7,30 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="83.0" prefWidth="712.0" style="-fx-background-color: black;" text="Registrar Usuario" textFill="WHITE" BorderPane.alignment="CENTER">
+      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="712.0" style="-fx-background-color: black;" text="Registrar Usuario" textFill="WHITE" BorderPane.alignment="CENTER">
          <font>
-            <Font size="36.0" />
+            <Font size="35.0" />
          </font>
       </Label>
    </top>
    <left>
       <VBox alignment="TOP_RIGHT" prefHeight="380.0" prefWidth="187.0" spacing="20.0" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="99.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 0 0 20;" text="Email">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="53.0" prefWidth="99.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Email">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin></Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="30.0" prefHeight="53.0" prefWidth="99.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 0 0 20;" text="Telefono">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="30.0" prefHeight="53.0" prefWidth="99.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Telefono">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="83.0" prefHeight="53.0" prefWidth="99.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 0 0 20;" text="Nombre">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="83.0" prefHeight="53.0" prefWidth="99.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Nombre">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="136.0" prefHeight="53.0" prefWidth="99.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 0 0 20;" text="Direccion">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="136.0" prefHeight="53.0" prefWidth="99.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Direccion">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
