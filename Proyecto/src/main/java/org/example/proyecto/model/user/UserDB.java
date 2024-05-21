@@ -50,21 +50,20 @@ public class UserDB implements UserDAO {
      * @todo excepciones propias para cuando se introduzca la contraseña incorrecta o no exista el usuario
      */
     @Override
-    public UserDTO userLogin(UserDTO user) throws SQLException {
+    public UserDTO userLogin(String userEmail, String userPasswd) throws SQLException {
         String sql = "SELECT * FROM vista_usuarios WHERE email = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, user.getEmail());
+        preparedStatement.setString(1, userEmail);
         ResultSet resultSet =  preparedStatement.executeQuery();
         UserDTO logedUser = null;
-        if (resultSet.next() && resultSet.getString("contrasena").equals(user.getContrasena())) {
+        if (resultSet.next() && resultSet.getString("contrasena").equals(userPasswd)) {
             int id_cuenta = resultSet.getInt("id_cuenta");
             String email = resultSet.getString("email");
             String contrasena = resultSet.getString("contrasena");
             String nombreApellidos = resultSet.getString("nombre_apellidos");
             boolean admin = resultSet.getBoolean("admin");
             logedUser = new UserDTO(id_cuenta,email,contrasena,nombreApellidos,admin);
-        } else
-            throw new SQLException("Contraseña o Email incorrectos");
+        }
         return logedUser;
 
     }
