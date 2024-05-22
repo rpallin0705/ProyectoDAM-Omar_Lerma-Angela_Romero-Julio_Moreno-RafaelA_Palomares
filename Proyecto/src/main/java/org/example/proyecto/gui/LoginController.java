@@ -29,7 +29,7 @@ public class LoginController {
         UserDB userDB = new UserDB();
         UserDTO userToLogIn = userDB.userLogin(userName.getText(), userPasswd.getText());
 
-        if (userToLogIn != null || 1 == 1) {
+        if (userToLogIn != null) {
             // Cargar el archivo FXML de la nueva ventana
             FXMLLoader loader = new FXMLLoader(getClass().getResource("main-screen.fxml"));
             Parent root = loader.<Parent>load();

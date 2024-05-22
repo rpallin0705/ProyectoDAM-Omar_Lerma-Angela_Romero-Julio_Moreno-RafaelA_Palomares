@@ -43,8 +43,6 @@ k
 ;src/main/java/org/example/proyecto/model/hotel/HotelDB.java,1\5\1536b46595e822a47398606aeaeb6cd9005e88aa
 l
 <src/main/java/org/example/proyecto/model/hotel/RoomType.java,5\2\52abbf4abaa78de9dc26b025904222928dc329ea
-i
-9src/main/java/org/example/proyecto/gui/MenuComponent.java,5\2\52059e04bfabab009fcfd9db7ea0214099d1fdfe
 l
 <src/main/java/org/example/proyecto/gui/GuiEffectsHelper.java,d\a\dae978be2b3b5538454d2c624d77159a43dfa7cd
 p
