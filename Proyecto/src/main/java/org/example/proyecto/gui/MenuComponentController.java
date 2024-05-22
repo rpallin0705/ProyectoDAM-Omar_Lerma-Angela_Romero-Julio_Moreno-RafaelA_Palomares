@@ -3,7 +3,7 @@ package org.example.proyecto.gui;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 
-public class MenuComponent {
+public class MenuComponentController {
     @FXML
     public Button createButton;
     @FXML
@@ -12,6 +12,12 @@ public class MenuComponent {
     public Button deleteButton;
     @FXML
     public Button getButton;
+    @FXML
+    public MainScreenController mainScreenController;
+
+    public void setMainScreenController(MainScreenController mainScreenController) {
+        this.mainScreenController = mainScreenController;
+    }
 
     public void initialize(String buttonPressed) {
 
@@ -98,6 +104,8 @@ public class MenuComponent {
     }
 
     private void getBooking() {
+        System.out.println("hola");
+        mainScreenController.loadBookingList();
     }
 
     private void deleteBooking() {

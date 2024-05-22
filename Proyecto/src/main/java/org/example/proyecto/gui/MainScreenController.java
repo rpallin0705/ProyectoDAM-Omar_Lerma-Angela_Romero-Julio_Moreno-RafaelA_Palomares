@@ -1,6 +1,5 @@
 package org.example.proyecto.gui;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -60,8 +59,11 @@ public class MainScreenController {
 
 
             //Gets controller component and send a string as parameter to identify pressed buttonData
-            MenuComponent controller = loader.getController();
+            MenuComponentController controller = loader.getController();
             controller.initialize(buttonPressed);
+
+            //Le pasa al menuComponent una referencia del controlador Main para que este pueda cambiar sus componentes
+            controller.setMainScreenController(this);
 
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
@@ -78,6 +80,17 @@ public class MainScreenController {
         GuiEffectsHelper.addHoverEffectOnButtons(buttonsOnHover);
 
     }
+
+    public void loadBookingList() {
+
+
+
+
+        //Gets controller component and send a string as parameter to identify pressed buttonData
+
+
+    }
+
 
 
 }

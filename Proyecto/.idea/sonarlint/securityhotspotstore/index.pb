@@ -47,3 +47,9 @@ i
 9src/main/java/org/example/proyecto/gui/MenuComponent.java,5\2\52059e04bfabab009fcfd9db7ea0214099d1fdfe
 l
 <src/main/java/org/example/proyecto/gui/GuiEffectsHelper.java,d\a\dae978be2b3b5538454d2c624d77159a43dfa7cd
+p
+@src/main/java/org/example/proyecto/model/account/AccountDAO.java,a\5\a52dea14813fe5b5ffebaec2293ec0fbe9c53b78
+o
+?src/main/java/org/example/proyecto/model/account/AccountDB.java,3\a\3ad1c550a222e3b32f51539b9d878c1b8ca47526
+s
+Csrc/main/java/org/example/proyecto/gui/MenuComponentController.java,e\1\e1f963ad69d1ea28f474fe95cb17a6c98b062f45

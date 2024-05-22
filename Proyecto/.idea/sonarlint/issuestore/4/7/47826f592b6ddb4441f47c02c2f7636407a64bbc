@@ -8,6 +8,6 @@ java:S1450"XRemove the "statement" field and declare it as a local variable in
 T
 java:S11352"2Complete the task associated to this TODO comment.(ìöÊøÿÿÿÿ8úÈ•õ1
 ]
-java:S1854}"@Remove this useless assignment to local variable "rowsAffected".(âØŞè8‡É•õ1
+java:S1854|"@Remove this useless assignment to local variable "rowsAffected".(âØŞè8‡É•õ1
 O
-java:S1135u"2Complete the task associated to this TODO comment.(®âó8ˆÉ•õ1
+java:S1135t"2Complete the task associated to this TODO comment.(®âó8ˆÉ•õ1
