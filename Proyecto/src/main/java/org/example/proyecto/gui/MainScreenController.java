@@ -3,6 +3,8 @@ package org.example.proyecto.gui;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -63,7 +65,7 @@ public class MainScreenController {
             controller.initialize(buttonPressed);
 
             //Le pasa al menuComponent una referencia del controlador Main para que este pueda cambiar sus componentes
-            controller.setMainScreenController(this);
+            controller.setTemplateComponent(templateComponent);
 
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
@@ -82,7 +84,6 @@ public class MainScreenController {
     }
 
     public void loadBookingList() {
-
 
 
 

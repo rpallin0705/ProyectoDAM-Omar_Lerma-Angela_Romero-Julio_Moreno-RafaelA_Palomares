@@ -1,7 +1,11 @@
 package org.example.proyecto.gui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+
+import java.io.IOException;
 
 public class MenuComponentController {
     @FXML
@@ -13,10 +17,11 @@ public class MenuComponentController {
     @FXML
     public Button getButton;
     @FXML
-    public MainScreenController mainScreenController;
+    public AnchorPane templateComponent = null;
 
-    public void setMainScreenController(MainScreenController mainScreenController) {
-        this.mainScreenController = mainScreenController;
+
+    public void setTemplateComponent(AnchorPane templateComponent) {
+        this.templateComponent = templateComponent;
     }
 
     public void initialize(String buttonPressed) {
@@ -79,6 +84,17 @@ public class MenuComponentController {
         }
     }
 
+    private void loadComponentInTemplateComponent(String fxmlName){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlName));
+            AnchorPane menu = loader.load();
+
+            templateComponent.getChildren().setAll(menu);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void createApartment() {
     }
 
@@ -91,8 +107,7 @@ public class MenuComponentController {
     private void deleteApartment() {
     }
 
-    private void getHotels() {
-    }
+    private void getHotels() { loadComponentInTemplateComponent("hotel-list.fxml"); }
 
     private void deleteHotel() {
     }
@@ -103,10 +118,7 @@ public class MenuComponentController {
     private void createHotel() {
     }
 
-    private void getBooking() {
-        System.out.println("hola");
-        mainScreenController.loadBookingList();
-    }
+    private void getBooking() { loadComponentInTemplateComponent("booking-list.fxml"); }
 
     private void deleteBooking() {
     }
@@ -114,11 +126,9 @@ public class MenuComponentController {
     private void updateBooking() {
     }
 
-    private void createBooking() {
-    }
+    private void createBooking() { loadComponentInTemplateComponent("booking-register.fxml"); }
 
-    private void getClients() {
-    }
+    private void getClients() { loadComponentInTemplateComponent("client-list.fxml"); }
 
     private void deleteClient() {
     }
@@ -126,6 +136,5 @@ public class MenuComponentController {
     private void updateClient() {
     }
 
-    private void createClient() {
-    }
+    private void createClient() { loadComponentInTemplateComponent("client-register.fxml"); }
 }

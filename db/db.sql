@@ -91,6 +91,7 @@
 
 -- TABLAS
 -- TABLAS
+-- TABLAS
 DROP TABLE IF EXISTS cuentas;
 CREATE TABLE cuentas(
     id_cuenta           INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
@@ -144,6 +145,35 @@ CREATE TABLE aps_turisticos(
     dist_centro_km  INTEGER,
     FOREIGN KEY (id_alojamiento) REFERENCES alojamientos(id_alojamiento) ON DELETE CASCADE
 );
+
+--Inserts de prueba
+
+-- Inserts para la tabla cuentas
+INSERT INTO cuentas (email, contrasena, nombre_apellidos) VALUES ('user1', '1234', 'Juan Pérez');
+INSERT INTO cuentas (email, contrasena, nombre_apellidos) VALUES ('user2@example.com', 'password2', 'María López');
+INSERT INTO cuentas (email, contrasena, nombre_apellidos) VALUES ('user3@example.com', 'password3', 'Carlos García');
+
+-- Inserts para la tabla usuarios
+INSERT INTO usuarios (id_cuenta, admin) VALUES (1, 1);
+INSERT INTO usuarios (id_cuenta, admin) VALUES (2, 0);
+
+-- Inserts para la tabla clientes
+INSERT INTO clientes (id_cuenta, direccion) VALUES (3, 'Calle Falsa 123');
+INSERT INTO clientes (id_cuenta, direccion) VALUES (2, 'Avenida Siempre Viva 742');
+
+-- Inserts para la tabla reservas
+INSERT INTO reservas (fecha_ini, fecha_fin, id_cuenta) VALUES ('2024-06-01', '2024-06-10', 1);
+INSERT INTO reservas (fecha_ini, fecha_fin, id_cuenta) VALUES ('2024-07-15', '2024-07-20', 2);
+
+-- Inserts para la tabla alojamientos
+INSERT INTO alojamientos (nombre, calle) VALUES ('Hotel Central', 'Calle Mayor 1');
+INSERT INTO alojamientos (nombre, calle) VALUES ('Apartamento Turístico Plaza', 'Plaza Central 5');
+
+-- Inserts para la tabla hoteles
+INSERT INTO hoteles (id_alojamiento, clasificacion, tipo_habitacion, numero_huespedes) VALUES (1, 5, 'Suite', 2);
+
+-- Inserts para la tabla aps_turisticos
+INSERT INTO aps_turisticos (id_alojamiento, dist_centro_km) VALUES (2, 1);
 
 -- Vista para atributos de hoteles
 CREATE VIEW vista_hoteles AS

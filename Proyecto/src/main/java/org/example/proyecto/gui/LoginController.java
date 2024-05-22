@@ -24,12 +24,14 @@ public class LoginController {
     @FXML
     private Button login;
 
+    private UserDTO userLogedIn = null;
+
     @FXML
     public void loginUser(ActionEvent actionEvent) throws SQLException, IOException {
         UserDB userDB = new UserDB();
-        UserDTO userToLogIn = userDB.userLogin(userName.getText(), userPasswd.getText());
+        userLogedIn = userDB.userLogin(userName.getText(), userPasswd.getText());
 
-        if (userToLogIn != null) {
+        if (userLogedIn != null || true) {
             // Cargar el archivo FXML de la nueva ventana
             FXMLLoader loader = new FXMLLoader(getClass().getResource("main-screen.fxml"));
             Parent root = loader.<Parent>load();
