@@ -26,27 +26,27 @@
                   <Cursor fx:constant="MOVE" />
                </cursor>
             </Label>
-            <Label alignment="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Email">
+            <Label alignment="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Email:">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Label>
-             <Label alignment="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Nombre Aloj.">
+             <Label alignment="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Nombre Aloj:">
                  <VBox.margin>
                      <Insets />
                  </VBox.margin>
              </Label>
-             <Label alignment="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Calle">
+             <Label alignment="CENTER" layoutX="105.0" layoutY="20.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Calle:">
                  <VBox.margin>
                      <Insets />
                  </VBox.margin>
              </Label>
-            <Label alignment="CENTER" layoutX="105.0" layoutY="52.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Fecha Entrada">
+            <Label alignment="CENTER" layoutX="105.0" layoutY="52.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Fecha Entrada:">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
             </Label>
-            <Label alignment="CENTER" layoutX="105.0" layoutY="84.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Fecha Salida">
+            <Label alignment="CENTER" layoutX="105.0" layoutY="84.0" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #ddd; -fx-background-radius: 20 20 20 20;" text="Fecha Salida:">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
