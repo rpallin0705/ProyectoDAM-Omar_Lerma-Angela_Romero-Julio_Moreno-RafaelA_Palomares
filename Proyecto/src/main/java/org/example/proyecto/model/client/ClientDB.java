@@ -61,21 +61,11 @@ public class ClientDB implements ClientDAO {
         ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
         int idConseguido = generatedKeys.getInt(1);
         //clientes
-        String sql2 = "INSERT INTO clienes (id_cuenta, direccion) VALUES (?, ?)";
+        String sql2 = "INSERT INTO clientes (id_cuenta, direccion) VALUES (?, ?)";
         preparedStatement = connection.prepareStatement(sql2);
-        preparedStatement.setInt(idConseguido, newClient.getId_cuenta());
-        rowsAffected += preparedStatement.executeUpdate();
-        //vista_clientes
-        String sql3 = "INSERT INTO vista_clientes (id_cuenta, email, contrasena, nombre_apellidos, direccion) VALUES (?, ?, ?, ?, ?);";
-        preparedStatement = connection.prepareStatement(sql3);
         preparedStatement.setInt(1, idConseguido);
-        preparedStatement.setString(2, newClient.getEmail());
-        preparedStatement.setString(3, newClient.getContrasena());
-        preparedStatement.setString(4, newClient.getNombre_apellidos());
-        preparedStatement.setString(5, newClient.getDireccion());
+        preparedStatement.setString(2,newClient.getDireccion());
         rowsAffected += preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
 
@@ -90,15 +80,10 @@ public class ClientDB implements ClientDAO {
     @Override
     public boolean deleteClient(ClientDTO deletedClient) throws SQLException {
         //clientes && cuentas
-        String sql = "DELETE FROM clientes WHERE id_cliente = ?";
+        String sql = "DELETE FROM clientes WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, deletedClient.getId_cuenta());
         int rowsAffected = preparedStatement.executeUpdate();
-        //vista_clientes
-        String sql2 = "DELETE FROM vista_clientes WHERE id_cliente = ?";
-        preparedStatement = connection.prepareStatement(sql2);
-        preparedStatement.setInt(1, deletedClient.getId_cuenta());
-        rowsAffected += preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
 
@@ -113,6 +98,7 @@ public class ClientDB implements ClientDAO {
     public boolean updateClient(ClientDTO updatedClient) throws SQLException {
         //cuentas
         String sql = "UPDATE cuentas SET email = ?, contrasena = ?, nombre_apellidos = ? WHERE id_cuenta = ?";
+        preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,updatedClient.getEmail());
         preparedStatement.setString(2,updatedClient.getContrasena());
         preparedStatement.setString(3,updatedClient.getNombre_apellidos());
@@ -124,17 +110,6 @@ public class ClientDB implements ClientDAO {
         preparedStatement.setString(1, updatedClient.getDireccion());
         preparedStatement.setInt(2,updatedClient.getId_cuenta());
         rowsAffected = preparedStatement.executeUpdate();
-        //vista_clientes
-        String sql3 = "UPDATE vista_clientes SET email = ?, contrasena = ?, nombre_apellidos = ?, direccion = ? WHERE id_cuenta = ?;";
-        preparedStatement = connection.prepareStatement(sql3);
-        preparedStatement.setString(1, updatedClient.getEmail());
-        preparedStatement.setString(2, updatedClient.getContrasena());
-        preparedStatement.setString(3, updatedClient.getNombre_apellidos());
-        preparedStatement.setString(4, updatedClient.getDireccion());
-        preparedStatement.setInt(5, updatedClient.getId_cuenta());
-        rowsAffected += preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
 
