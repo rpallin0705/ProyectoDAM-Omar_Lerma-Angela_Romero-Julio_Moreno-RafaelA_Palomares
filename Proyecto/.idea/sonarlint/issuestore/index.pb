@@ -51,6 +51,5 @@ o
 ?src/main/java/org/example/proyecto/model/account/AccountDB.java,3\a\3ad1c550a222e3b32f51539b9d878c1b8ca47526
 s
 Csrc/main/java/org/example/proyecto/gui/MenuComponentController.java,e\1\e1f963ad69d1ea28f474fe95cb17a6c98b062f45
-:
-
-src/assets,4\1\41bfa9ad35ceb2ec95d058ff05b8a80aa2087b0a
+p
+@src/main/java/org/example/proyecto/gui/ClientListController.java,8\1\811e001a1304fba905c0dc509ad3c99d3df22846
