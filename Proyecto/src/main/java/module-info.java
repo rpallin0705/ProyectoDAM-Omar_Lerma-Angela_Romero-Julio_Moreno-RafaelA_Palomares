@@ -9,4 +9,6 @@ module org.example.proyecto {
     exports org.example.proyecto;
     exports org.example.proyecto.gui;
     opens org.example.proyecto.gui to javafx.fxml;
+    opens org.example.proyecto.model.account to javafx.base;
+    opens org.example.proyecto.model.client to javafx.base;
 }

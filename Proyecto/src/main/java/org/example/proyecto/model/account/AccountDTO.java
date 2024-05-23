@@ -1,5 +1,7 @@
 package org.example.proyecto.model.account;
 
+import java.util.Objects;
+
 public class AccountDTO {
     private int id_cuenta;
     private String email;
@@ -46,5 +48,18 @@ public class AccountDTO {
     @Override
     public String toString() {
         return String.format("%d,%s,%s,%s", id_cuenta, email, contrasena, nombre_apellidos);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AccountDTO that = (AccountDTO) o;
+        return id_cuenta == that.id_cuenta && Objects.equals(email, that.email) && Objects.equals(contrasena, that.contrasena) && Objects.equals(nombre_apellidos, that.nombre_apellidos);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id_cuenta, email, contrasena, nombre_apellidos);
     }
 }

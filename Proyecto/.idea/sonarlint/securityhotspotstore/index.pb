@@ -53,3 +53,7 @@ s
 Csrc/main/java/org/example/proyecto/gui/MenuComponentController.java,e\1\e1f963ad69d1ea28f474fe95cb17a6c98b062f45
 p
 @src/main/java/org/example/proyecto/gui/ClientListController.java,8\1\811e001a1304fba905c0dc509ad3c99d3df22846
+p
+@src/main/java/org/example/proyecto/model/account/AccountDTO.java,f\b\fb80e78773dac7f9074e9c5cc9daa882cd483ec2
+N
+src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7

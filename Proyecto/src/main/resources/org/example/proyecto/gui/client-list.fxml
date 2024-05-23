@@ -4,27 +4,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="446.0" prefWidth="742.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.ClientListController">
-    <BorderPane layoutX="-4.0" layoutY="-1.0" prefHeight="446.0" prefWidth="742.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.ClientListController">
+    <BorderPane layoutX="-5.0" prefHeight="640.0" prefWidth="900.0">
         <top>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="745.0" style="-fx-background-color: black;" text="Usuarios" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="58.0" prefWidth="910.0" style="-fx-background-color: grey;" text="Usuarios" textFill="WHITE" BorderPane.alignment="CENTER">
                 <font>
                     <Font size="35.0" />
                 </font>
             </Label>
         </top>
         <right>
-            <TableView fx:id="clientDataTable" prefHeight="388.0" prefWidth="437.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="clientDataTable" prefHeight="582.0" prefWidth="631.0" BorderPane.alignment="CENTER">
                 <columns>
-                    <TableColumn fx:id="clientEmailColumn" prefWidth="111.33334350585938" text="Email" />
-                    <TableColumn fx:id="clientNameColumn" prefWidth="100.33331298828125" text="Nombre" />
-                    <TableColumn fx:id="clientIdColumn" prefWidth="100.33331298828125" text="Id Cliente" />
-               <TableColumn fx:id="clientIdColumn1" prefWidth="122.0" text="Id Cliente" />
+                    <TableColumn fx:id="clientIdColumn" prefWidth="35.0" text="Id" />
+                    <TableColumn fx:id="clientNameColumn" prefWidth="170.0" text="Nombre" />
+               <TableColumn fx:id="clientEmailColumn" prefWidth="163.0" text="Email" />
+               <TableColumn fx:id="clientAddressColumn" prefWidth="261.0" text="Dirección" />
                 </columns>
             </TableView>
         </right>
         <left>
-            <Pane prefHeight="412.0" prefWidth="307.0" BorderPane.alignment="CENTER">
+            <Pane prefHeight="582.0" prefWidth="273.0" BorderPane.alignment="CENTER">
                 <Label layoutX="15.0" layoutY="50.0" prefHeight="25.0" prefWidth="65.0" text="Email:" />
                 <TextField fx:id="clientEmail" layoutX="79.0" layoutY="50.0" prefHeight="25.0" prefWidth="175.0" />
 
