@@ -10,6 +10,7 @@ import org.example.proyecto.model.client.ClientDTO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 
 public class ClientListController {
     @FXML
@@ -90,48 +91,107 @@ public class ClientListController {
     @FXML
     public void getClientId(ActionEvent actionEvent) {
     }
+
     @FXML
     public void updateClientId(ActionEvent actionEvent) throws SQLException, IOException {
+        if (selectedClient == null) {
+            showNoUserSelectedAlert();
+            return;
+        }
+
         ClientDTO updatedClient = new ClientDTO(selectedClient);
+
         updatedClient.setNombre_apellidos(clientName.getText());
         updatedClient.setEmail(clientEmail.getText());
         updatedClient.setDireccion(clientAddress.getText());
         ClientDB clientDB = new ClientDB();
 
-        System.out.println(updatedClient.getNombre_apellidos());
-        System.out.println(selectedClient.getNombre_apellidos());
-        if (selectedClient.equals(updatedClient)) {
-            System.out.println("No has cambiado la información del usuario");
-        } else {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setTitle("Confirmación de Actualización");
-            alert.setHeaderText("Confirmar actualización de cliente");
-            alert.setContentText("¿Deseas actualizar la información del cliente?");
+        if (updatedClient.equals(selectedClient)) {
+            showNoChangesAlert();
+            return;
+        }
 
-            ButtonType buttonTypeYes = new ButtonType("Sí");
-            ButtonType buttonTypeCancel = new ButtonType("Cancelar");
-
-            alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
-
-            alert.showAndWait().ifPresent(response -> {
-                if (response == buttonTypeYes) {
-                    // Realiza la operación de actualización
-                   /* try {
-                        clientDB.updateClient(updatedClient);
-                        setClientList();
-                        clientDataTable.getItems().setAll(clientList);
-                    } catch (SQLException | IOException e) {
-                        e.printStackTrace();
-                    }*/
-                    System.out.println(updatedClient.toString());
-                } else {
-                    // No se realiza la operación de actualización
-                    System.out.println("Operación de actualización cancelada");
-                }
-            });
+        if (showConfirmationDialog()) {
+            try {
+                clientDB.updateClient(updatedClient);
+                setClientList();
+                clientDataTable.getItems().setAll(clientList);
+                selectedClient = updatedClient;
+                showUpdatedUserAlert();
+            } catch (SQLException | IOException e) {
+                e.printStackTrace();
+            }
         }
     }
+
     @FXML
     public void deleteClient(ActionEvent actionEvent) {
+
+        if (selectedClient == null){
+            showNoUserSelectedAlert();
+        }
+        ClientDTO clientToDelete = new ClientDTO(selectedClient);
+
+        try {
+            ClientDB clientDB = new ClientDB();
+            clientDB.deleteClient(clientToDelete);
+            setClientList();
+            clientDataTable.getItems().setAll(clientList);
+            if (showConfirmationDialog())
+                showDeletedUserAlert();
+
+        } catch (SQLException | IOException e) {
+            throw new RuntimeException(e);
+        }
     }
+
+    private void showDeletedUserAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Aviso");
+        alert.setHeaderText(null);
+        alert.setContentText("El usuario ha sido borrado correctamente.");
+        alert.showAndWait();
+    }
+
+    private boolean showConfirmationDialog() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmación de Actualización");
+        alert.setHeaderText("Confirmar actualización de cliente");
+        alert.setContentText("¿Deseas actualizar la información del cliente?");
+
+        ButtonType buttonTypeYes = new ButtonType("Sí");
+        ButtonType buttonTypeCancel = new ButtonType("Cancelar");
+
+        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == buttonTypeYes;
+    }
+
+
+
+    private static void showNoUserSelectedAlert() {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Aviso");
+            alert.setHeaderText(null);
+            alert.setContentText("No hay ningún usuario seleccionado.");
+            alert.showAndWait();
+        }
+
+    private static void showNoChangesAlert() {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Aviso");
+            alert.setHeaderText(null);
+            alert.setContentText("No se ha cambiado la información del usuario.");
+            alert.showAndWait();
+    }
+
+    private static void showUpdatedUserAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
+        alert.setHeaderText(null);
+        alert.setContentText("El cliente ha sido actualizado.");
+        alert.showAndWait();
+    }
+
 }
