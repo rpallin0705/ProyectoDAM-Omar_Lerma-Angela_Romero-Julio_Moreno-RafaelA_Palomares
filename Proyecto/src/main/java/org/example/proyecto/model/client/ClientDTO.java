@@ -13,6 +13,18 @@ public class ClientDTO extends AccountDTO {
     }
 
     /**
+     * Constructor for inserrting clients in the database
+     * @param email new client email
+     * @param contrasena new client password
+     * @param nombre_apellidos new client name and surname
+     * @param direccion new client address
+     */
+    public ClientDTO(String email, String contrasena, String nombre_apellidos, String direccion) {
+        super(email, contrasena, nombre_apellidos);
+        this.direccion = direccion;
+    }
+
+    /**
      * Constructor Copia
      * @param clientToCopy Objeto ClienteDTO que se quiere copiar
      */

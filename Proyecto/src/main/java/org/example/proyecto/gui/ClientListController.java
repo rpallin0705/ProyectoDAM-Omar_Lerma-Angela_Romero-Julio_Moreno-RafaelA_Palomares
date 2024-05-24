@@ -88,10 +88,7 @@ public class ClientListController {
         clientAddress.setText(selectedClient.getDireccion());
     }
 
-    @FXML
-    public void getClientId(ActionEvent actionEvent) {
-    }
-
+    //todo Check when updating that every textfield has data
     @FXML
     public void updateClientId(ActionEvent actionEvent) throws SQLException, IOException {
         if (selectedClient == null) {
@@ -111,8 +108,9 @@ public class ClientListController {
             return;
         }
 
-        if (showConfirmationDialog()) {
+        if (showConfirmationDialog("Confirmación de actualización", "¿Desea realizar la actualización de datos?")) {
             try {
+
                 clientDB.updateClient(updatedClient);
                 setClientList();
                 clientDataTable.getItems().setAll(clientList);
@@ -129,35 +127,63 @@ public class ClientListController {
 
         if (selectedClient == null){
             showNoUserSelectedAlert();
+            return;
         }
+
         ClientDTO clientToDelete = new ClientDTO(selectedClient);
 
-        try {
-            ClientDB clientDB = new ClientDB();
-            clientDB.deleteClient(clientToDelete);
-            setClientList();
-            clientDataTable.getItems().setAll(clientList);
-            if (showConfirmationDialog())
+        if (showConfirmationDialog("Confirmación de eliminacion", "¿Desea insertar al cliente en la base de datos?")) {
+            try {
+                ClientDB clientDB = new ClientDB();
+                clientDB.deleteClient(clientToDelete);
+                setClientList();
+                clientDataTable.getItems().setAll(clientList);
                 showDeletedUserAlert();
 
-        } catch (SQLException | IOException e) {
-            throw new RuntimeException(e);
+
+            } catch(SQLException | IOException e){
+                throw new RuntimeException(e);
+            }
         }
     }
 
-    private void showDeletedUserAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Aviso");
-        alert.setHeaderText(null);
-        alert.setContentText("El usuario ha sido borrado correctamente.");
-        alert.showAndWait();
-    }
+   @FXML
+   public void registerClient(){
+       if (selectedClient != null){
+           selectedClient = null;
+           clientId.setText("");
+           clientEmail.setText("");
+           clientName.setText("");
+           clientAddress.setText("");
+           return;
+       }
 
-    private boolean showConfirmationDialog() {
+       if (clientName.getText().isBlank() || clientEmail.getText().isBlank() || clientAddress.getText().isBlank()){
+           showMissingDataAlert();
+           return;
+       }
+
+       ClientDTO clientToRegister = new ClientDTO(clientEmail.getText(), "" ,clientName.getText(), clientAddress.getText());
+       if (showConfirmationDialog("Confirmación de registro", "¿Desea eliminar al cliente de la base de datos?")) {
+           try {
+               ClientDB clientDB = new ClientDB();
+               clientDB.insertClient(clientToRegister);
+               setClientList();
+               clientDataTable.getItems().setAll(clientList);
+           } catch (SQLException | IOException e) {
+               throw new RuntimeException(e);
+           }
+       }
+   }
+
+
+
+
+    private boolean showConfirmationDialog(String alertTitle, String alertContentText) {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Confirmación de Actualización");
-        alert.setHeaderText("Confirmar actualización de cliente");
-        alert.setContentText("¿Deseas actualizar la información del cliente?");
+        alert.setTitle(alertTitle);
+        alert.setHeaderText(null);
+        alert.setContentText(alertContentText);
 
         ButtonType buttonTypeYes = new ButtonType("Sí");
         ButtonType buttonTypeCancel = new ButtonType("Cancelar");
@@ -167,8 +193,6 @@ public class ClientListController {
         Optional<ButtonType> result = alert.showAndWait();
         return result.isPresent() && result.get() == buttonTypeYes;
     }
-
-
 
     private static void showNoUserSelectedAlert() {
             Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -194,4 +218,31 @@ public class ClientListController {
         alert.showAndWait();
     }
 
+    private static void showInsertedUserAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Información");
+        alert.setHeaderText(null);
+        alert.setContentText("El cliente ha sido insertado.");
+        alert.showAndWait();
+    }
+
+    private void showDeletedUserAlert() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Aviso");
+        alert.setHeaderText(null);
+        alert.setContentText("El usuario ha sido borrado correctamente.");
+        alert.showAndWait();
+    }
+
+    private void showMissingDataAlert() {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Información incompleta");
+        alert.setHeaderText(null);
+        alert.setContentText("Asegurese de que rellena todos los campos.");
+        alert.showAndWait();
+    }
+
+
+    public void getClientId(ActionEvent actionEvent) {
+    }
 }

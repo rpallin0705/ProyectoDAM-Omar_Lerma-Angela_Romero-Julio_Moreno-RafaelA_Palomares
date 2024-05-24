@@ -15,6 +15,18 @@ public class AccountDTO {
         this.nombre_apellidos = nombre_apellidos;
     }
 
+    /**
+     * Constructor for inserting objects in the database
+     * @param email new account emails
+     * @param contrasena new ccount password
+     * @param nombre_apellidos new account name and surname
+     */
+    public AccountDTO(String email, String contrasena, String nombre_apellidos) {
+        this.email = email;
+        this.contrasena = contrasena;
+        this.nombre_apellidos = nombre_apellidos;
+    }
+
     /*GETTERS*/
     public int getId_cuenta() {
         return id_cuenta;
