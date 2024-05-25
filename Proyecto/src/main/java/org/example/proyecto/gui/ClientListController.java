@@ -7,10 +7,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import org.example.proyecto.model.client.ClientDB;
 import org.example.proyecto.model.client.ClientDTO;
 
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Optional;
 
 public class ClientListController {
     @FXML
@@ -34,52 +34,32 @@ public class ClientListController {
     private List<ClientDTO> clientList = null;
     private ClientDTO selectedClient = null;
 
-
-
-
-
-
-
     @FXML
     public void initialize(){
         try {
-            // Assign every client attribute to each Column of the table
             clientIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_cuenta"));
             clientNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre_apellidos"));
             clientEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
             clientAddressColumn.setCellValueFactory(new PropertyValueFactory<>("direccion"));
 
-            //Gets users from the database
             setClientList();
-
-            //Displays users in the table
             clientDataTable.getItems().setAll(clientList);
 
-            //When a user is selected in the table, the details of the user are displayed in the text fields.
             clientDataTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
                     selectClientDetails(newValue);
                 }
-                System.out.println("hola");
             });
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    /**
-     * Gets client data from the database
-     * @throws SQLException if an error occurs during query execution
-     */
     private void setClientList() throws SQLException, IOException {
         ClientDB clientDB = new ClientDB();
         this.clientList = clientDB.getClients();
     }
 
-    /**
-     * When clicking a row on clientDataTable it displays the details of the user in the TextFields
-     * @param selectedClient data of the selected client in the table
-     */
     private void selectClientDetails(ClientDTO selectedClient){
         this.selectedClient = selectedClient;
         clientId.setText(String.valueOf(selectedClient.getId_cuenta()));
@@ -88,11 +68,13 @@ public class ClientListController {
         clientAddress.setText(selectedClient.getDireccion());
     }
 
-    //todo Check when updating that every textfield has data
     @FXML
     public void updateClientId(ActionEvent actionEvent) throws SQLException, IOException {
         if (selectedClient == null) {
-            showNoUserSelectedAlert();
+            AlertHelper.showNoUserSelectedAlert();
+            return;
+        } else if (clientName.getText().isBlank() || clientEmail.getText().isBlank() || clientAddress.getText().isBlank()) {
+            AlertHelper.showMissingDataAlert();
             return;
         }
 
@@ -104,18 +86,17 @@ public class ClientListController {
         ClientDB clientDB = new ClientDB();
 
         if (updatedClient.equals(selectedClient)) {
-            showNoChangesAlert();
+            AlertHelper.showNoChangesAlert();
             return;
         }
 
-        if (showConfirmationDialog("Confirmación de actualización", "¿Desea realizar la actualización de datos?")) {
+        if (AlertHelper.showConfirmationDialog("Confirmación de actualización", "¿Desea realizar la actualización de datos?")) {
             try {
-
                 clientDB.updateClient(updatedClient);
                 setClientList();
                 clientDataTable.getItems().setAll(clientList);
                 selectedClient = updatedClient;
-                showUpdatedUserAlert();
+                AlertHelper.showUpdatedUserAlert();
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }
@@ -124,124 +105,55 @@ public class ClientListController {
 
     @FXML
     public void deleteClient(ActionEvent actionEvent) {
-
-        if (selectedClient == null){
-            showNoUserSelectedAlert();
+        if (selectedClient == null) {
+            AlertHelper.showNoUserSelectedAlert();
             return;
         }
 
         ClientDTO clientToDelete = new ClientDTO(selectedClient);
 
-        if (showConfirmationDialog("Confirmación de eliminacion", "¿Desea insertar al cliente en la base de datos?")) {
+        if (AlertHelper.showConfirmationDialog("Confirmación de eliminación", "¿Desea insertar al cliente en la base de datos?")) {
             try {
                 ClientDB clientDB = new ClientDB();
                 clientDB.deleteClient(clientToDelete);
                 setClientList();
                 clientDataTable.getItems().setAll(clientList);
-                showDeletedUserAlert();
-
-
-            } catch(SQLException | IOException e){
+                AlertHelper.showDeletedUserAlert();
+            } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 
-   @FXML
-   public void registerClient(){
-       if (selectedClient != null){
-           selectedClient = null;
-           clientId.setText("");
-           clientEmail.setText("");
-           clientName.setText("");
-           clientAddress.setText("");
-           return;
-       }
-
-       if (clientName.getText().isBlank() || clientEmail.getText().isBlank() || clientAddress.getText().isBlank()){
-           showMissingDataAlert();
-           return;
-       }
-
-       ClientDTO clientToRegister = new ClientDTO(clientEmail.getText(), "" ,clientName.getText(), clientAddress.getText());
-       if (showConfirmationDialog("Confirmación de registro", "¿Desea eliminar al cliente de la base de datos?")) {
-           try {
-               ClientDB clientDB = new ClientDB();
-               clientDB.insertClient(clientToRegister);
-               setClientList();
-               clientDataTable.getItems().setAll(clientList);
-           } catch (SQLException | IOException e) {
-               throw new RuntimeException(e);
-           }
-       }
-   }
-
-
-
-
-    private boolean showConfirmationDialog(String alertTitle, String alertContentText) {
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle(alertTitle);
-        alert.setHeaderText(null);
-        alert.setContentText(alertContentText);
-
-        ButtonType buttonTypeYes = new ButtonType("Sí");
-        ButtonType buttonTypeCancel = new ButtonType("Cancelar");
-
-        alert.getButtonTypes().setAll(buttonTypeYes, buttonTypeCancel);
-
-        Optional<ButtonType> result = alert.showAndWait();
-        return result.isPresent() && result.get() == buttonTypeYes;
-    }
-
-    private static void showNoUserSelectedAlert() {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aviso");
-            alert.setHeaderText(null);
-            alert.setContentText("No hay ningún usuario seleccionado.");
-            alert.showAndWait();
+    @FXML
+    public void registerClient() {
+        if (selectedClient != null) {
+            selectedClient = null;
+            clientId.setText("");
+            clientEmail.setText("");
+            clientName.setText("");
+            clientAddress.setText("");
+            return;
         }
 
-    private static void showNoChangesAlert() {
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Aviso");
-            alert.setHeaderText(null);
-            alert.setContentText("No se ha cambiado la información del usuario.");
-            alert.showAndWait();
-    }
+        if (clientName.getText().isBlank() || clientEmail.getText().isBlank() || clientAddress.getText().isBlank()) {
+            AlertHelper.showMissingDataAlert();
+            return;
+        }
 
-    private static void showUpdatedUserAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Información");
-        alert.setHeaderText(null);
-        alert.setContentText("El cliente ha sido actualizado.");
-        alert.showAndWait();
+        ClientDTO clientToRegister = new ClientDTO(clientEmail.getText(), "", clientName.getText(), clientAddress.getText());
+        if (AlertHelper.showConfirmationDialog("Confirmación de registro", "¿Desea eliminar al cliente de la base de datos?")) {
+            try {
+                ClientDB clientDB = new ClientDB();
+                clientDB.insertClient(clientToRegister);
+                setClientList();
+                clientDataTable.getItems().setAll(clientList);
+                AlertHelper.showInsertedUserAlert();
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
-
-    private static void showInsertedUserAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Información");
-        alert.setHeaderText(null);
-        alert.setContentText("El cliente ha sido insertado.");
-        alert.showAndWait();
-    }
-
-    private void showDeletedUserAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Aviso");
-        alert.setHeaderText(null);
-        alert.setContentText("El usuario ha sido borrado correctamente.");
-        alert.showAndWait();
-    }
-
-    private void showMissingDataAlert() {
-        Alert alert = new Alert(Alert.AlertType.WARNING);
-        alert.setTitle("Información incompleta");
-        alert.setHeaderText(null);
-        alert.setContentText("Asegurese de que rellena todos los campos.");
-        alert.showAndWait();
-    }
-
 
     public void getClientId(ActionEvent actionEvent) {
     }
