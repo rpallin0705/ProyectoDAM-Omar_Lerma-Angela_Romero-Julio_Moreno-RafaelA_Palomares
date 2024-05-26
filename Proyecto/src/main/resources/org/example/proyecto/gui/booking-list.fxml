@@ -14,12 +14,12 @@
             </Label>
         </top>
         <right>
-            <TableView prefHeight="412.0" prefWidth="631.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="bookingDataTable" prefHeight="412.0" prefWidth="631.0" BorderPane.alignment="CENTER">
                 <columns>
                     <TableColumn fx:id="bookingIdColumn" prefWidth="111.33334350585938" text="Id Reserva" />
                     <TableColumn fx:id="checkInDateColumn" prefWidth="100.33331298828125" text="Fecha Ini" />
                     <TableColumn fx:id="checkOutDateColumn" prefWidth="100.33331298828125" text="Fecha Fin" />
-                    <TableColumn fx:id="countIdColumn" prefWidth="100.33331298828125" text="Id Cliente" />
+                    <TableColumn fx:id="clientEmailColumn" prefWidth="100.33331298828125" text="Email Cliente" />
                 </columns>
             </TableView>
         </right>

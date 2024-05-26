@@ -1,13 +1,11 @@
 
-g	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8ÛÆ´ëù1
-_
-java:S1854"=Remove this useless assignment to local variable "usuarioDB".(Õƒ—üÿÿÿÿ8åÆ´ëù1
-P
-java:S1481".Remove this unused "usuarioDB" local variable.(Õƒ—üÿÿÿÿ8èÆ´ëù1
-}	java:S125"<This block of commented-out lines of code should be removed.(õ¢¶l8Şª¹ƒñ1J$02546cf6-abab-4f99-b69d-43c8e451b062
-~	java:S125"<This block of commented-out lines of code should be removed.(¤¾‹Ó8àª¹ƒñ1J$5b305353-ba8d-4eee-a17c-f709f3f1b67d
-X	java:S125"<This block of commented-out lines of code should be removed.(õ×§Ö8¤á•õ1
-]	java:S125"<This block of commented-out lines of code should be removed.(‘Äæñüÿÿÿÿ8¤á•õ1
-L	java:S106"+Replace this use of System.err by a logger.(Şàš¬øÿÿÿÿ8ëÆ´ëù1
-f
-java:S1128"DRemove this unused import 'org.example.proyecto.model.user.UserDTO'.(Æá‘¬úÿÿÿÿ8îÆ´ëù1
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ì³Ÿµû1J$1ee56a4a-a310-4c58-866d-cb86cf2cd71d
+
+java:S1854"9Remove this useless assignment to local variable "lista".(àó×¦úÿÿÿÿ8Ó³Ÿµû1J$a24e59b5-58df-4a59-9ce6-2b4d7822582a
+r
+java:S1481"*Remove this unused "lista" local variable.(àó×¦úÿÿÿÿ8Õ³Ÿµû1J$35aff99a-213f-4dc9-a5e2-6cb2e55703fa
+r	java:S106"+Replace this use of System.err by a logger.(Şàš¬øÿÿÿÿ8Ö³Ÿµû1J$07a97085-3d21-418d-bfba-a307b2f27650
+†
+java:S1128"CRemove this unused import 'org.example.proyecto.model.user.UserDB'.(úú“€8Ø³Ÿµû1J$068dca13-2836-4238-ae5f-f7b52117f5d8
+Œ
+java:S1128"DRemove this unused import 'org.example.proyecto.model.user.UserDTO'.(Æá‘¬úÿÿÿÿ8Ø³Ÿµû1J$63c77f97-4d49-46ef-ba0b-eb0243465e12

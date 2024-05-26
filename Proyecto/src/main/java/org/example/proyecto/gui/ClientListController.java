@@ -34,10 +34,12 @@ public class ClientListController {
     public TableColumn<ClientDTO,String> clientAddressColumn;
     private List<ClientDTO> clientList = null;
     private ClientDTO selectedClient = null;
+    private boolean isSelectingClient = false;
 
     @FXML
     public void initialize(){
         try {
+            System.out.println(isSelectingClient);
             clientIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_cuenta"));
             clientNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre_apellidos"));
             clientEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
