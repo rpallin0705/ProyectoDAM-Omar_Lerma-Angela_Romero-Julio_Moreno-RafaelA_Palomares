@@ -4,17 +4,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="712.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <top>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="712.0" style="-fx-background-color: black;" text="Reservas" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="900.0" style="-fx-background-color: grey;" text="Reservas" textFill="WHITE" BorderPane.alignment="CENTER">
                 <font>
                     <Font size="35.0" />
                 </font>
             </Label>
         </top>
         <right>
-            <TableView prefHeight="412.0" prefWidth="436.0" BorderPane.alignment="CENTER">
+            <TableView prefHeight="412.0" prefWidth="631.0" BorderPane.alignment="CENTER">
                 <columns>
                     <TableColumn prefWidth="111.33334350585938" text="Id Reserva" />
                     <TableColumn prefWidth="100.33331298828125" text="Fecha Ini" />

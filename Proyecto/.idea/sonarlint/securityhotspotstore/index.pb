@@ -57,3 +57,5 @@ p
 @src/main/java/org/example/proyecto/model/account/AccountDTO.java,f\b\fb80e78773dac7f9074e9c5cc9daa882cd483ec2
 N
 src/main/java/module-info.java,1\c\1c89a5491fbfda3fb050196d6a239f20200296e7
+g
+7src/main/java/org/example/proyecto/gui/AlertHelper.java,0\5\0588480f0c6d08570f5a2b05360766028ef17c90

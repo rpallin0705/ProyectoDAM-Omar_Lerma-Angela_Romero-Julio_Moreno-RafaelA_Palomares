@@ -42,13 +42,13 @@ public class GuiEffectsHelper {
     private static void setHoverEffect(Button button) {
         button.setOnMouseEntered(event -> {
             if (button != selectedButton) {
-                button.setStyle("-fx-background-color:  #f5a623; -fx-font-size: 1.1em; -fx-background-radius: 30;");
+                button.setStyle("-fx-background-color:  #f5a623; -fx-font-size: 23px;");
             }
         });
 
         button.setOnMouseExited(event -> {
             if (button != selectedButton) {
-                button.setStyle("-fx-background-color: #ddd; -fx-font-size: 1.0em; -fx-background-radius: 30;");
+                button.setStyle("-fx-background-color: #ddd; -fx-font-size: 20px;");
             }
         });
 
@@ -58,7 +58,7 @@ public class GuiEffectsHelper {
                     resetButtonStyle(selectedButton);
                 }
                 selectedButton = button;
-                button.setStyle("-fx-background-color:  #f5a623; -fx-font-size: 1.1em; -fx-background-radius: 30;");
+                button.setStyle("-fx-background-color:  #f5a623; -fx-font-size: 23px;");
             }
             // Calls the original event handler
             EventHandler<ActionEvent> originalHandler = originalEventHandlers.get(button);
@@ -70,6 +70,6 @@ public class GuiEffectsHelper {
 
     // Resets the style of the selected button to its default state
     private static void resetButtonStyle(Button button) {
-        button.setStyle("-fx-background-color: #ddd; -fx-font-size: 1.0em; -fx-background-radius: 30;");
+        button.setStyle("-fx-background-color: #ddd; -fx-font-size: 20px;");
     }
 }

@@ -4,49 +4,45 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="442.0"
-            prefWidth="736.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <BorderPane layoutY="-4.0" prefHeight="442.0" prefWidth="736.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <BorderPane layoutY="-4.0" prefHeight="640.0" prefWidth="900.0">
         <top>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="61.0" prefWidth="736.0"
-                   style="-fx-background-color: black;" text="Usuarios" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="900.0" style="-fx-background-color: grey;" text="Usuarios" textFill="WHITE" BorderPane.alignment="CENTER">
                 <font>
-                    <Font size="35.0"/>
+                    <Font size="35.0" />
                 </font>
             </Label>
         </top>
         <right>
-            <TableView prefHeight="412.0" prefWidth="445.0" BorderPane.alignment="CENTER">
+            <TableView prefHeight="581.0" prefWidth="608.0" BorderPane.alignment="CENTER">
                 <columns>
-                    <TableColumn prefWidth="84.0" text="Nombre"/>
-                    <TableColumn prefWidth="52.6666259765625" text="Calle"/>
-                    <TableColumn prefWidth="76.0" text="Clasificación"/>
-                    <TableColumn minWidth="0.0" prefWidth="81.0" text="T. Habitación"/>
-                    <TableColumn prefWidth="120.6666259765625" text="Id Alojamiento"/>
+                    <TableColumn prefWidth="84.0" text="Nombre" />
+                    <TableColumn prefWidth="52.6666259765625" text="Calle" />
+                    <TableColumn prefWidth="76.0" text="Clasificación" />
+                    <TableColumn minWidth="0.0" prefWidth="81.0" text="T. Habitación" />
+                    <TableColumn prefWidth="120.6666259765625" text="Id Alojamiento" />
                 </columns>
             </TableView>
         </right>
         <left>
             <Pane prefHeight="412.0" prefWidth="291.0" BorderPane.alignment="CENTER">
-                <Label layoutX="15.0" layoutY="50.0" prefHeight="25.0" prefWidth="65.0" text="Nombre:"/>
-                <TextField layoutX="100.0" layoutY="50.0" prefHeight="25.0" prefWidth="175.0"/>
+                <Label layoutX="15.0" layoutY="50.0" prefHeight="25.0" prefWidth="65.0" text="Nombre:" />
+                <TextField layoutX="100.0" layoutY="50.0" prefHeight="25.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="100.0" prefHeight="25.0" prefWidth="65.0" text="Calle:"/>
-                <TextField layoutX="100.0" layoutY="100.0" prefHeight="25.0" prefWidth="175.0"/>
+                <Label layoutX="15.0" layoutY="100.0" prefHeight="25.0" prefWidth="65.0" text="Calle:" />
+                <TextField layoutX="100.0" layoutY="100.0" prefHeight="25.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="150.0" prefHeight="25.0" prefWidth="65.0" text="Clasificación:"/>
-                <TextField layoutX="100.0" layoutY="150.0" prefHeight="25.0" prefWidth="175.0"/>
+                <Label layoutX="15.0" layoutY="150.0" prefHeight="25.0" prefWidth="65.0" text="Clasificación:" />
+                <TextField layoutX="100.0" layoutY="150.0" prefHeight="25.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="200.0" prefHeight="25.0" prefWidth="76.0" text="T. Habitación:"/>
-                <TextField layoutX="100.0" layoutY="200.0" prefHeight="25.0" prefWidth="175.0"/>
+                <Label layoutX="15.0" layoutY="200.0" prefHeight="25.0" prefWidth="76.0" text="T. Habitación:" />
+                <TextField layoutX="100.0" layoutY="200.0" prefHeight="25.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="250.0" prefHeight="25.0" prefWidth="85.0" text="Id Alojamiento:"/>
-                <TextField layoutX="100.0" layoutY="250.0" prefHeight="25.0" prefWidth="175.0"/>
+                <Label layoutX="15.0" layoutY="250.0" prefHeight="25.0" prefWidth="85.0" text="Id Alojamiento:" />
+                <TextField layoutX="100.0" layoutY="250.0" prefHeight="25.0" prefWidth="175.0" />
 
-                <Button layoutX="50.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0"
-                        text="Modificar"/>
-                <Button layoutX="150.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0"
-                        text="Eliminar"/>
+                <Button layoutX="50.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
+                <Button layoutX="150.0" layoutY="350.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
             </Pane>
         </left>
     </BorderPane>

@@ -23,26 +23,28 @@ public class MainScreenController {
     public Button bookingMenuBTN;
     @FXML
     public Button apartmentMenuBTN;
+    @FXML
+    public Button logOutButton;
 
 
     @FXML
     public void loadClientMenu() {
-       loadMenu("Clientes", clientMenuBTN);
+       loadComponentInTemplateComponent("client-list.fxml");
     }
 
     @FXML
     public void loadBookingMenu() {
-        loadMenu("Reservas", bookingMenuBTN);
+        loadComponentInTemplateComponent("booking-list.fxml");
     }
 
     @FXML
     public void loadHotelMenu() {
-        loadMenu("Hoteles", hotelMenuBTN);
+        loadComponentInTemplateComponent("hotel-list.fxml");
     }
 
     @FXML
     public void loadApartmentMenu() {
-        loadMenu("Apartamentos", apartmentMenuBTN);
+        loadComponentInTemplateComponent("client-list.fxml");
     }
 
 
@@ -51,12 +53,12 @@ public class MainScreenController {
      * @param buttonPressed String with the table name of the buttonData pressed
      * @param buttonData data of the buttonData the user pressed for future operations
      */
-    @FXML
+    /*@FXML
     public void loadMenu(String buttonPressed, Button buttonData){
         try {
 
             // Load FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("menu-component.fxml"));
+           *//* FXMLLoader loader = new FXMLLoader(getClass().getResource("menu-component.fxml"));
             AnchorPane menu = loader.load();
 
 
@@ -67,20 +69,32 @@ public class MainScreenController {
             //Le pasa al menuComponent una referencia del controlador Main para que este pueda cambiar sus componentes
             controller.setTemplateComponent(templateComponent);
 
-            templateComponent.getChildren().setAll(menu);
+            templateComponent.getChildren().setAll(menu);*//*
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 
     @FXML
     public void initialize(){
         List<Button> buttonsOnHover = new ArrayList<>();
         buttonsOnHover.add(clientMenuBTN); buttonsOnHover.add(hotelMenuBTN);
         buttonsOnHover.add(bookingMenuBTN); buttonsOnHover.add(apartmentMenuBTN);
+        buttonsOnHover.add(logOutButton);
 
         GuiEffectsHelper.addHoverEffectOnButtons(buttonsOnHover);
 
+    }
+
+    private void loadComponentInTemplateComponent(String fxmlName){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlName));
+            AnchorPane menu = loader.load();
+
+            templateComponent.getChildren().setAll(menu);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void loadBookingList() {
