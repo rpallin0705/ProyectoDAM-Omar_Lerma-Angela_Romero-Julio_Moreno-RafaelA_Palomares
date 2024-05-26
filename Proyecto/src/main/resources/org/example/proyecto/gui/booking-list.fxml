@@ -17,9 +17,9 @@
         <TableView prefHeight="412.0" prefWidth="442.0" BorderPane.alignment="CENTER">
             <columns>
                 <TableColumn prefWidth="111.33334350585938" text="Id Reserva" />
+                <TableColumn prefWidth="100.33331298828125" text="Email Cliente" />
                 <TableColumn prefWidth="100.33331298828125" text="Fecha Ini" />
                 <TableColumn prefWidth="100.33331298828125" text="Fecha Fin" />
-                <TableColumn prefWidth="100.33331298828125" text="Id Cliente" />
             </columns>
         </TableView>
     </right>
@@ -29,14 +29,16 @@
                 <Label layoutX="15.0" layoutY="50.0" prefHeight="20.0" prefWidth="65.0" text="Id Reserva: " />
                 <TextField layoutX="80.0" layoutY="50.0" prefHeight="20.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="100.0" prefHeight="20.0" prefWidth="65.0" text="Fecha Ini:" />
-                <DatePicker layoutX="80.0" layoutY="100.0" prefHeight="20.0" prefWidth="175.0" />
+                <Label layoutX="15.0" layoutY="100.0" prefHeight="20.0" prefWidth="65.0" text="Email Cliente:" />
+                <TextField layoutX="80.0" layoutY="100.0" prefHeight="20.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="150.0" prefHeight="20.0" prefWidth="65.0" text="Fecha Fin:" />
+                <Label layoutX="15.0" layoutY="150.0" prefHeight="20.0" prefWidth="65.0" text="Fecha Ini:" />
                 <DatePicker layoutX="80.0" layoutY="150.0" prefHeight="20.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="200.0" prefHeight="20.0" prefWidth="65.0" text="Id Cliente:" />
-                <TextField layoutX="80.0" layoutY="200.0" prefHeight="20.0" prefWidth="175.0" />
+                <Label layoutX="15.0" layoutY="200.0" prefHeight="20.0" prefWidth="65.0" text="Fecha Fin:" />
+                <DatePicker layoutX="80.0" layoutY="200.0" prefHeight="20.0" prefWidth="175.0" />
+
+
             <Button layoutX="53.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
             <Button layoutX="157.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
             </children>
