@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.List;
 
 class BookingDBTest {
@@ -25,5 +26,12 @@ class BookingDBTest {
     @Test
     void getBookings() {
         List<BookingDB> BookingList = bookingDB.getBookings();
+    }
+
+    @Test
+    void insertBooking() throws SQLException, IOException {
+        BookingDB bookingDB = new BookingDB();
+        BookingDTO bookingDTO = new BookingDTO(LocalDate.of(2004,12,8),LocalDate.of(2004,12,12),1,1,1);
+        bookingDB.insertBooking(bookingDTO);
     }
 }
