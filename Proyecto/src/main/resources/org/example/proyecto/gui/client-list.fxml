@@ -40,8 +40,9 @@
                 <Button layoutX="50.0" layoutY="350.0" mnemonicParsing="false" onAction="#updateClientId" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
                 <Button layoutX="150.0" layoutY="350.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
                 <Button layoutX="95.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Ver Reservas" />
-            <Button layoutX="53.0" layoutY="411.0" mnemonicParsing="false" onAction="#registerClient" text="Registrar" />
-            <Button layoutX="162.0" layoutY="411.0" mnemonicParsing="false" onAction="#searchClient" text="Buscar" />
+            <Button layoutX="53.0" layoutY="411.0" mnemonicParsing="false" onAction="#registerClient" prefWidth="70.0" text="Registrar" />
+            <Button layoutX="153.0" layoutY="411.0" mnemonicParsing="false" onAction="#searchClient" prefWidth="70.0" text="Buscar" />
+            <Button fx:id="selectClientButton" layoutX="92.0" layoutY="471.0" mnemonicParsing="false" onAction="#selectClientForBooking" prefHeight="47.0" prefWidth="90.0" style="-fx-background-color: orange;" text="Ver Reservas" visible="false" />
             </Pane>
         </left>
     </BorderPane>

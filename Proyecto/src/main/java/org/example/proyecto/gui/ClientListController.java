@@ -32,6 +32,10 @@ public class ClientListController {
     public TableColumn<ClientDTO, String> clientEmailColumn;
     @FXML
     public TableColumn<ClientDTO,String> clientAddressColumn;
+    @FXML
+    public Button selectClientButton;
+
+
     private List<ClientDTO> clientList = null;
     private ClientDTO selectedClient = null;
     private boolean isSelectingClient = false;
@@ -39,6 +43,8 @@ public class ClientListController {
     @FXML
     public void initialize(){
         try {
+
+            selectClientButton.setVisible(isSelectingClient);
             System.out.println(isSelectingClient);
             clientIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_cuenta"));
             clientNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre_apellidos"));
@@ -236,4 +242,7 @@ public class ClientListController {
        clientDataTable.getItems().setAll(resultList);
    }
 
+   @FXML
+    public void selectClientForBooking(ActionEvent actionEvent) {
+    }
 }

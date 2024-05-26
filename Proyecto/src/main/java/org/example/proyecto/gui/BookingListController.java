@@ -46,6 +46,7 @@ public class BookingListController {
 
     private List<BookingDataHelper> bookingDataList = null;
     private BookingDataHelper selectedBooking = null;
+    private ClientDTO clientForBooking = null;
 
 
     @FXML
