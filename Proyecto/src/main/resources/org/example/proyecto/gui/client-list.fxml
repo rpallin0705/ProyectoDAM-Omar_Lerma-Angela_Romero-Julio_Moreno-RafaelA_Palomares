@@ -39,8 +39,9 @@
 
                 <Button layoutX="50.0" layoutY="350.0" mnemonicParsing="false" onAction="#updateClientId" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
                 <Button layoutX="150.0" layoutY="350.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
-                <Button layoutX="95.0" layoutY="300.0" mnemonicParsing="false" onAction="#getClientId" prefHeight="25.0" prefWidth="90.0" text="Ver Reservas" />
-            <Button layoutX="114.0" layoutY="412.0" mnemonicParsing="false" onAction="#registerClient" text="Button" />
+                <Button layoutX="95.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Ver Reservas" />
+            <Button layoutX="53.0" layoutY="411.0" mnemonicParsing="false" onAction="#registerClient" text="Registrar" />
+            <Button layoutX="162.0" layoutY="411.0" mnemonicParsing="false" onAction="#searchClient" text="Buscar" />
             </Pane>
         </left>
     </BorderPane>

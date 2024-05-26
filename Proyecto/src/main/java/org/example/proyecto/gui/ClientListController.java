@@ -10,6 +10,7 @@ import org.example.proyecto.model.client.ClientDTO;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ClientListController {
@@ -128,11 +129,7 @@ public class ClientListController {
     @FXML
     public void registerClient() {
         if (selectedClient != null) {
-            selectedClient = null;
-            clientId.setText("");
-            clientEmail.setText("");
-            clientName.setText("");
-            clientAddress.setText("");
+            clearTextFields();
             return;
         }
 
@@ -155,6 +152,86 @@ public class ClientListController {
         }
     }
 
-    public void getClientId(ActionEvent actionEvent) {
+
+
+    private void clearTextFields() {
+        selectedClient = null;
+        clientId.setText("");
+        clientEmail.setText("");
+        clientName.setText("");
+        clientAddress.setText("");
+        return;
     }
+
+
+   /* @FXML
+    public void searchClient(ActionEvent actionEvent) {
+        List<ClientDTO> resultList = new ArrayList<>();
+
+        if (selectedClient != null){
+            clearTextFields();
+            return;
+        }
+
+        for (ClientDTO client : clientList) {
+            boolean matches = true;
+
+            if (clientName.getText() != null && !clientName.getText().isBlank()) {
+                matches &= client.getNombre_apellidos() != null && client.getNombre_apellidos().equalsIgnoreCase(clientName.getText());
+            }
+            if (clientEmail.getText() != null && !clientEmail.getText().isBlank()) {
+                matches &= client.getEmail() != null && client.getEmail().equalsIgnoreCase(clientEmail.getText());
+            }
+            if (clientAddress.getText() != null && !clientAddress.getText().isBlank()) {
+                matches &= client.getDireccion() != null && client.getDireccion().equalsIgnoreCase(clientAddress.getText());
+            }
+
+            if (matches) {
+                resultList.add(client);
+            }
+        }
+
+        clientDataTable.getItems().setAll(resultList);
+
+       *//* if (resultList.size() == 1) {
+            return List.of(resultList.get(0));
+        } else {
+            return resultList;
+        }*//*
+    }*/
+   @FXML
+   public void searchClient(ActionEvent actionEvent) throws SQLException, IOException {
+       List<ClientDTO> resultList = new ArrayList<>();
+
+       if (selectedClient != null){
+           clearTextFields();
+           setClientList();
+           return;
+       }
+
+       String nameText = clientName.getText() != null ? clientName.getText().trim().toLowerCase() : "";
+       String emailText = clientEmail.getText() != null ? clientEmail.getText().trim().toLowerCase() : "";
+       String addressText = clientAddress.getText() != null ? clientAddress.getText().trim().toLowerCase() : "";
+
+       for (ClientDTO client : clientList) {
+           boolean matches = true;
+
+           if (!nameText.isEmpty()) {
+               matches &= client.getNombre_apellidos() != null && client.getNombre_apellidos().toLowerCase().contains(nameText);
+           }
+           if (!emailText.isEmpty()) {
+               matches &= client.getEmail() != null && client.getEmail().toLowerCase().contains(emailText);
+           }
+           if (!addressText.isEmpty()) {
+               matches &= client.getDireccion() != null && client.getDireccion().toLowerCase().contains(addressText);
+           }
+
+           if (matches) {
+               resultList.add(client);
+           }
+       }
+
+       clientDataTable.getItems().setAll(resultList);
+   }
+
 }
