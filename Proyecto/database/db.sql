@@ -27,7 +27,9 @@ CREATE TABLE reservas (
     fecha_ini DATE,
     fecha_fin DATE,
     id_cuenta INTEGER NOT NULL,
-    FOREIGN KEY (id_cuenta) REFERENCES usuarios(id_cuenta)
+    id_alojamiento INTEGER NOT NULL,
+    FOREIGN KEY (id_cuenta) REFERENCES usuarios(id_cuenta),
+    FOREIGN KEY (id_alojamiento) REFERENCES alojamientos(id_alojamiento)
 );
 
 DROP TABLE IF EXISTS alojamientos;
@@ -54,6 +56,7 @@ CREATE TABLE aps_turisticos (
 );
 
 -- Vista para atributos de hoteles
+DROP VIEW IF EXISTS vista_hoteles;
 CREATE VIEW vista_hoteles AS
 SELECT
     a.id_alojamiento,
@@ -68,6 +71,7 @@ JOIN
     hoteles h ON a.id_alojamiento = h.id_alojamiento;
 
 -- Vista para atributos de aps_turisticos
+DROP VIEW IF EXISTS vista_aps_turisticos;
 CREATE VIEW vista_aps_turisticos AS
 SELECT
     a.id_alojamiento,
@@ -80,6 +84,7 @@ JOIN
     aps_turisticos ap ON a.id_alojamiento = ap.id_alojamiento;
 
 -- Vista para atributos de usuarios
+DROP VIEW IF EXISTS vista_usuarios;
 CREATE VIEW vista_usuarios AS
 SELECT
     c.id_cuenta,
@@ -93,6 +98,7 @@ JOIN
     usuarios u ON c.id_cuenta = u.id_cuenta;
 
 -- Vista para atributos de clientes
+DROP VIEW IF EXISTS vista_clientes;
 CREATE VIEW vista_clientes AS
 SELECT
     c.id_cuenta,
