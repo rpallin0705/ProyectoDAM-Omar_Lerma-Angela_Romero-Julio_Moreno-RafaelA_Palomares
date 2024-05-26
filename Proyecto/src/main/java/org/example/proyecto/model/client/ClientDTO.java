@@ -5,8 +5,8 @@ import org.example.proyecto.model.account.AccountDTO;
 public class ClientDTO extends AccountDTO {
     private String direccion;
 
-    public ClientDTO(int id_cuenta, String email, String contrasena, String nombre_apellidos, String direccion) {
-        super(id_cuenta, email, contrasena, nombre_apellidos);
+    public ClientDTO(int id_cuenta, String email, String nombre_apellidos, String direccion) {
+        super(id_cuenta, email, nombre_apellidos);
         this.direccion = direccion;
     }
 

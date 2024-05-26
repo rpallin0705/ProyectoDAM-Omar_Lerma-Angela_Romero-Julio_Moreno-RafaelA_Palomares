@@ -35,7 +35,7 @@ public class UserDB implements UserDAO {
             String contrasena = resultSet.getString("contrasena");
             String nombreApellidos = resultSet.getString("nombre_apellidos");
             boolean admin = resultSet.getBoolean("admin");
-            userDTO = new UserDTO(id_cuenta,email,contrasena,nombreApellidos,admin);
+            userDTO = new UserDTO(id_cuenta,email,nombreApellidos,admin,contrasena);
             users.add(userDTO);
         }
         return users;
@@ -62,7 +62,7 @@ public class UserDB implements UserDAO {
             String contrasena = resultSet.getString("contrasena");
             String nombreApellidos = resultSet.getString("nombre_apellidos");
             boolean admin = resultSet.getBoolean("admin");
-            logedUser = new UserDTO(id_cuenta,email,contrasena,nombreApellidos,admin);
+            logedUser = new UserDTO(id_cuenta,email,nombreApellidos,admin,contrasena);
         } else
             throw new SQLException("Contraseña o Email incorrectos");
         return logedUser;
@@ -79,20 +79,20 @@ public class UserDB implements UserDAO {
     @Override
     public boolean insertUser(UserDTO newUser) throws SQLException {
         //cuentas
-        String sql = "INSERT INTO cuentas (email, contrasena, nombre_apellidos) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO cuentas (email, nombre_apellidos) VALUES (?, ?)";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, newUser.getEmail());
-        preparedStatement.setString(2, newUser.getContrasena());
-        preparedStatement.setString(3, newUser.getNombre_apellidos());
+        preparedStatement.setString(2, newUser.getNombre_apellidos());
         int rowsAffected = preparedStatement.executeUpdate();
         //conseguir id_cuenta de la cuenta insertada
         ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
         int idConseguido = generatedKeys.getInt(1);
         //usuario
-        String sql2 = "INSERT INTO usuarios (id_cuenta, admin) VALUES (?, ?)";
+        String sql2 = "INSERT INTO usuarios (id_cuenta, contrasena, admin) VALUES (?, ?, ?)";
         preparedStatement = connection.prepareStatement(sql2);
         preparedStatement.setInt(1,idConseguido);
-        preparedStatement.setBoolean(2,newUser.isAdmin());
+        preparedStatement.setString(2,newUser.getContrasena());
+        preparedStatement.setBoolean(3,newUser.isAdmin());
         rowsAffected += preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
@@ -125,18 +125,18 @@ public class UserDB implements UserDAO {
     @Override
     public boolean updateUser(UserDTO updatedUser) throws SQLException {
         //cuentas
-        String sql = "UPDATE cuentas SET email = ?, contrasena = ?, nombre_apellidos = ? WHERE id_cuenta = ?";
+        String sql = "UPDATE cuentas SET email = ?, nombre_apellidos = ? WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, updatedUser.getEmail());
-        preparedStatement.setString(2, updatedUser.getContrasena());
-        preparedStatement.setString(3, updatedUser.getNombre_apellidos());
-        preparedStatement.setInt(4, updatedUser.getId_cuenta());
+        preparedStatement.setString(2, updatedUser.getNombre_apellidos());
+        preparedStatement.setInt(3, updatedUser.getId_cuenta());
         int rowsAffected = preparedStatement.executeUpdate();
         //usuarios
-        String sql2 = "UPDATE usuarios SET admin = ? WHERE id_cuenta = ?";
+        String sql2 = "UPDATE usuarios SET admin = ?, contrasena = ? WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql2);
         preparedStatement.setBoolean(1, updatedUser.isAdmin());
-        preparedStatement.setInt(2, updatedUser.getId_cuenta());
+        preparedStatement.setString(2, updatedUser.getContrasena());
+        preparedStatement.setInt(3, updatedUser.getId_cuenta());
         rowsAffected += preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }

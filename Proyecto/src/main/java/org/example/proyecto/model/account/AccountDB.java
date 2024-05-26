@@ -25,7 +25,7 @@ public class AccountDB implements AccountDAO{
         ResultSet resultSet = statement.executeQuery(sql);
         AccountDTO accountDTO = null;
         while (resultSet.next()){
-            accountDTO = new AccountDTO(resultSet.getInt("id_cuenta"),resultSet.getString("email"),resultSet.getString("contrasena"),resultSet.getString("nombre_apellidos"));
+            accountDTO = new AccountDTO(resultSet.getInt("id_cuenta"),resultSet.getString("email"),resultSet.getString("nombre_apellidos"));
             accounts.add(accountDTO);
         }
         return accounts;
@@ -33,12 +33,11 @@ public class AccountDB implements AccountDAO{
 
     @Override
     public boolean updateAccount(AccountDTO updatedAccount) throws SQLException {
-        String sql = "UPDATE cuentas SET email = ?, contrasena = ?, nombre_apellidos = ? WHERE id_cuenta = ?";
+        String sql = "UPDATE cuentas SET email = ?, nombre_apellidos = ? WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,updatedAccount.getEmail());
-        preparedStatement.setString(2, updatedAccount.getContrasena());
-        preparedStatement.setString(3,updatedAccount.getNombre_apellidos());
-        preparedStatement.setInt(4,updatedAccount.getId_cuenta());
+        preparedStatement.setString(2,updatedAccount.getNombre_apellidos());
+        preparedStatement.setInt(3,updatedAccount.getId_cuenta());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }

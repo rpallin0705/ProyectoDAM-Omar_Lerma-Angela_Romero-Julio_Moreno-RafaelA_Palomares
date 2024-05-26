@@ -32,10 +32,9 @@ public class ClientDB implements ClientDAO {
         while (resultSet.next()) {
             int id_cuenta = resultSet.getInt("id_cuenta");
             String email = resultSet.getString("email");
-            String contrasena = resultSet.getString("contrasena");
             String nombre_apellidos = resultSet.getString("nombre_apellidos");
             String direccion = resultSet.getString("direccion");
-            clientDTO = new ClientDTO(id_cuenta,email,contrasena,nombre_apellidos,direccion);
+            clientDTO = new ClientDTO(id_cuenta,email,nombre_apellidos,direccion);
             clients.add(clientDTO);
         }
         return clients;
@@ -51,11 +50,10 @@ public class ClientDB implements ClientDAO {
     @Override
     public boolean insertClient(ClientDTO newClient) throws SQLException {
         //cuentas
-        String sql = "INSERT INTO cuentas (email, contrasena, nombre_apellidos) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO cuentas (email, nombre_apellidos) VALUES (?, ?)";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, newClient.getEmail());
-        preparedStatement.setString(2, newClient.getContrasena());
-        preparedStatement.setString(3, newClient.getNombre_apellidos());
+        preparedStatement.setString(2, newClient.getNombre_apellidos());
         int rowsAffected = preparedStatement.executeUpdate();
         //conseguir id_cuenta de la cuenta insertada
         ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
@@ -97,12 +95,11 @@ public class ClientDB implements ClientDAO {
     @Override
     public boolean updateClient(ClientDTO updatedClient) throws SQLException {
         //cuentas
-        String sql = "UPDATE cuentas SET email = ?, contrasena = ?, nombre_apellidos = ? WHERE id_cuenta = ?";
+        String sql = "UPDATE cuentas SET email = ?, nombre_apellidos = ? WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1,updatedClient.getEmail());
-        preparedStatement.setString(2,updatedClient.getContrasena());
-        preparedStatement.setString(3,updatedClient.getNombre_apellidos());
-        preparedStatement.setInt(4,updatedClient.getId_cuenta());
+        preparedStatement.setString(2,updatedClient.getNombre_apellidos());
+        preparedStatement.setInt(3,updatedClient.getId_cuenta());
         int rowsAffected = preparedStatement.executeUpdate();
         //clientes
         String sql2 = "UPDATE clientes SET direccion = ? WHERE id_cuenta = ?";
