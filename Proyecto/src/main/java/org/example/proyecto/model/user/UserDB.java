@@ -94,17 +94,6 @@ public class UserDB implements UserDAO {
         preparedStatement.setInt(1,idConseguido);
         preparedStatement.setBoolean(2,newUser.isAdmin());
         rowsAffected += preparedStatement.executeUpdate();
-        //vista_usuarios
-        String sql3 = "INSERT INTO vista_usuarios (id_cuenta, email, contrasena, nombre_apellidos, admin) VALUES(?, ?, ?, ?, ?);";
-        preparedStatement = connection.prepareStatement(sql3);
-        preparedStatement.setInt(1,idConseguido);
-        preparedStatement.setString(2, newUser.getEmail());
-        preparedStatement.setString(3, newUser.getContrasena());
-        preparedStatement.setString(4, newUser.getNombre_apellidos());
-        preparedStatement.setBoolean(5, newUser.isAdmin());
-        rowsAffected += preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
 
@@ -117,19 +106,12 @@ public class UserDB implements UserDAO {
      * @todo Cuando se actualice el script de la base de datos hacer la logica para que sea por id
      */
     @Override
-    public boolean deleteUserByID(UserDTO deletedUser) throws SQLException {
+    public boolean deleteUser(UserDTO deletedUser) throws SQLException {
         //usuarios && cuentas
-        String sql = "DELETE FROM usuarios WHERE id_usuario = ?";
+        String sql = "DELETE FROM usuarios WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, deletedUser.getId_cuenta());
         int rowsAffected = preparedStatement.executeUpdate();
-        //vista_usuarios
-        String sql2 = "DELETE FROM vista_usuarios WHERE id_usuario = ?";
-        preparedStatement = connection.prepareStatement(sql2);
-        preparedStatement.setInt(1, deletedUser.getId_cuenta());
-        rowsAffected = preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
 
@@ -156,17 +138,6 @@ public class UserDB implements UserDAO {
         preparedStatement.setBoolean(1, updatedUser.isAdmin());
         preparedStatement.setInt(2, updatedUser.getId_cuenta());
         rowsAffected += preparedStatement.executeUpdate();
-        //vista_usuarios
-        String sql3 = "UPDATE vista_usuarios SET email = ?, contrasena = ?, nombre_apellidos = ?, admin = ? WHERE id_cuenta = ?;";
-        preparedStatement = connection.prepareStatement(sql3);
-        preparedStatement.setString(1, updatedUser.getEmail());
-        preparedStatement.setString(2, updatedUser.getContrasena());
-        preparedStatement.setString(3, updatedUser.getNombre_apellidos());
-        preparedStatement.setBoolean(4, updatedUser.isAdmin());
-        preparedStatement.setInt(5, updatedUser.getId_cuenta());
-        rowsAffected += preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
 

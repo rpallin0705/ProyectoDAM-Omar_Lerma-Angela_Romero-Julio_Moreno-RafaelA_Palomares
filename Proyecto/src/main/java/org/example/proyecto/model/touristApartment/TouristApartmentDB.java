@@ -1,13 +1,21 @@
 package org.example.proyecto.model.touristApartment;
 
+import org.example.proyecto.SetUpConnection;
+
+import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 public class TouristApartmentDB implements TouristApartmentDAO{
     private PreparedStatement preparedStatement;
     private Connection connection;
     private Statement statement;
+
+    public TouristApartmentDB() throws SQLException, IOException {
+        connection = SetUpConnection.getInstance().getConnection();
+    }
 
     /**
      * TouristApartmentDB
@@ -21,7 +29,7 @@ public class TouristApartmentDB implements TouristApartmentDAO{
         TouristApartmentDTO touristApartmentDTO= null;
         String sql = "SELECT * FROM vista_aps_turisticos";
         statement = connection.createStatement();
-        ResultSet resultSet = statement.getResultSet();
+        ResultSet resultSet = statement.executeQuery(sql);
         while (resultSet.next()){
             touristApartmentDTO = new TouristApartmentDTO(resultSet.getInt("id_alojamiento"),resultSet.getString("nombre_alojamiento"),resultSet.getString("calle"),resultSet.getInt("dist_centro_km") );
             apartments.add(touristApartmentDTO);
@@ -38,25 +46,18 @@ public class TouristApartmentDB implements TouristApartmentDAO{
     @Override
     public boolean updateTourisApartment(TouristApartmentDTO updatedApartment) throws SQLException {
         //alojamientos
-        String sql = "UPDATE alojamientos SET nombre = ?, calle = ?";
+        String sql = "UPDATE alojamientos SET nombre = ?, calle = ? WHERE id_alojamiento = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, updatedApartment.getNombre());
         preparedStatement.setString(2, updatedApartment.getCalle());
+        preparedStatement.setInt(3,updatedApartment.getHousingId());
         int rowsAffected = preparedStatement.executeUpdate();
         //apartamentos
-        String sql2 = "UPDATE alojamientos SET dist_centro_km = ?";
+        String sql2 = "UPDATE aps_turisticos SET dist_centro_km = ? WHERE id_alojamiento = ?";
         preparedStatement = connection.prepareStatement(sql2);
         preparedStatement.setFloat(1,updatedApartment.getDowntownDistance());
+        preparedStatement.setInt(2,updatedApartment.getHousingId());
         rowsAffected += preparedStatement.executeUpdate();
-        //vista_hoteles
-        String sql3 = "UPDATE vista_aps_turisticos SET nombre = ?, calle = ?, dist_centro_km = ? WHERE id_alojamiento = ?";
-        preparedStatement.setString(1, updatedApartment.getNombre());
-        preparedStatement.setString(2, updatedApartment.getCalle());
-        preparedStatement.setFloat(3, updatedApartment.getDowntownDistance());
-        preparedStatement.setInt(4, updatedApartment.getHousingId());
-        rowsAffected += preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
     /**
@@ -72,13 +73,6 @@ public class TouristApartmentDB implements TouristApartmentDAO{
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, deletedApartment.getHousingId());
         int rowsAffected = preparedStatement.executeUpdate();
-        //vista_aps_turisticos
-        String sql2 = "DELETE FROM vista_aps_turisticos WHERE id_alojamiento = ?";
-        preparedStatement = connection.prepareStatement(sql2);
-        preparedStatement.setInt(1, deletedApartment.getHousingId());
-        rowsAffected += preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
     /**
@@ -105,15 +99,6 @@ public class TouristApartmentDB implements TouristApartmentDAO{
         preparedStatement.setInt(1,idGenerado);
         preparedStatement.setInt(2,insertedApartment.getHousingId());
         rowsAffected += preparedStatement.executeUpdate();
-        //vista_hoteles
-        String sql3 = "INSERT INTO vista_aps_turisticos (id_alojamiento, nombre, calle, dist_centro_km) VALUES (?, ?, ?, ?)";
-        preparedStatement.setInt(1, idGenerado);
-        preparedStatement.setString(2, insertedApartment.getNombre());
-        preparedStatement.setString(3, insertedApartment.getCalle());
-        preparedStatement.setFloat(4, insertedApartment.getDowntownDistance());
-        rowsAffected += preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
 }

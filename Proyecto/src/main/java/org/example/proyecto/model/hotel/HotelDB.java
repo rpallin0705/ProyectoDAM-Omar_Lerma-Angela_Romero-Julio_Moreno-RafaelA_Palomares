@@ -12,8 +12,8 @@ private Connection connection;
 private PreparedStatement preparedStatement;
 private Statement statement;
 
-    public HotelDB(Connection connection) throws SQLException, IOException {
-        this.connection = SetUpConnection.getInstance().getConnection();
+    public HotelDB() throws SQLException, IOException {
+        connection = SetUpConnection.getInstance().getConnection();
     }
     /**
      * HotelDB
@@ -76,14 +76,6 @@ private Statement statement;
         preparedStatement.setInt(3,updatedHotel.getHostNumber());
         preparedStatement.setInt(4,updatedHotel.getHousingId());
         rowsAffected += preparedStatement.executeUpdate();
-        //vista_hoteles
-        String sql3 = "UPDATE vista_hoteles SET nombre = ?, calle = ?,clasificacion = ?, tipo_habitacion = ?, numero_huespedes = ? WHERE id_alojamiento = ?";
-        preparedStatement.setString(1, updatedHotel.getNombre());
-        preparedStatement.setString(2, updatedHotel.getCalle());
-        preparedStatement.setInt(3, updatedHotel.getHotelClassification());
-        rowsAffected += preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
     /**
@@ -98,13 +90,6 @@ private Statement statement;
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1,deletedHotel.getHousingId());
         int rowsAffected = preparedStatement.executeUpdate();
-        //vista_aps_turisticos
-        String sql2 = "DELETE FROM vista_aps_turisticos WHERE id_alojamiento = ?";
-        preparedStatement = connection.prepareStatement(sql2);
-        preparedStatement.setInt(1, deletedHotel.getHousingId());
-        rowsAffected += preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
     /**
@@ -133,15 +118,6 @@ private Statement statement;
         preparedStatement.setString(3,insertedHotel.getRoomType().toString());
         preparedStatement.setInt(4,insertedHotel.getHostNumber());
         rowsAffected += preparedStatement.executeUpdate();
-        //vista_hoteles
-        String sql3 = "INSERT INTO vista_hoteles (id_alojamiento, nombre, calle, clasificacion, tipo_habitacion, numero_huespedes) VALUES (?, ?, ?, ?, ?, ?)";
-        preparedStatement.setInt(1, idConseguido);
-        preparedStatement.setString(2, insertedHotel.getNombre());
-        preparedStatement.setString(3, insertedHotel.getCalle());
-        preparedStatement.setInt(4, insertedHotel.getHotelClassification());
-        rowsAffected += preparedStatement.executeUpdate();
-        connection.commit();
-        connection.setAutoCommit(true);
         return rowsAffected != 0;
     }
 }
