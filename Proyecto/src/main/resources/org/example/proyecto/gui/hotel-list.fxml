@@ -6,7 +6,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <top>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="712.0" style="-fx-background-color: black;" text="Habitaciones Hoteles" textFill="WHITE" BorderPane.alignment="CENTER">
+        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="745.0" style="-fx-background-color: black;" text="Habitaciones Hoteles" textFill="WHITE" BorderPane.alignment="CENTER">
             <font>
                 <Font size="35.0" />
             </font>
@@ -49,8 +49,9 @@
                 <TextField layoutX="110.0" layoutY="275.0" prefHeight="25.0" prefWidth="170.0" />
 
                 <Button layoutX="100.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Crear" />
-                <Button layoutX="50.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
-                <Button layoutX="150.0" layoutY="375.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
+                <Button layoutX="14.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
+                <Button layoutX="186.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
+            <Button layoutX="101.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Volver" />
             </children>
         </Pane>
     </left>

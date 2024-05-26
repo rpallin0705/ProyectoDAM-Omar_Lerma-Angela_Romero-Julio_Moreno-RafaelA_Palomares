@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="200.0" prefWidth="300.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.LoginController">
+    <children>
+        <VBox layoutX="23.0" layoutY="50.0" prefHeight="100.0" prefWidth="255.0" spacing="10.0" style="-fx-background-color: #ffffff; -fx-padding: 20px;" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="23.0" AnchorPane.rightAnchor="22.0" AnchorPane.topAnchor="50.0">
+            <children>
+                <Label prefHeight="17.0" prefWidth="215.0" text="Inserte el email del cliente:" />
+                <TextField promptText="Email del cliente" />
+                <Button mnemonicParsing="false" text="Confirmar" />
+            </children></VBox>
+    </children>
+</AnchorPane>

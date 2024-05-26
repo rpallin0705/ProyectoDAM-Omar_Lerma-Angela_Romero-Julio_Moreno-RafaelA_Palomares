@@ -3,7 +3,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<AnchorPane>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <children>
     <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
     <top>
@@ -16,31 +17,41 @@
     <right>
         <TableView prefHeight="412.0" prefWidth="442.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn prefWidth="111.33334350585938" text="Id Reserva" />
-                <TableColumn prefWidth="100.33331298828125" text="Email Cliente" />
-                <TableColumn prefWidth="100.33331298828125" text="Fecha Ini" />
-                <TableColumn prefWidth="100.33331298828125" text="Fecha Fin" />
+                <TableColumn prefWidth="80.00003051757812" text="Id Reserva" />
+                <TableColumn prefWidth="83.66668701171875" text="Id Cliente" />
+                <TableColumn minWidth="10.0" prefWidth="95.66671752929688" text="Id Alojamiento" />
+                <TableColumn prefWidth="69.0" text="Fecha Ini" />
+                <TableColumn prefWidth="86.0" text="Fecha Fin" />
+
+
             </columns>
         </TableView>
     </right>
     <left>
         <Pane prefHeight="412.0" prefWidth="298.0" BorderPane.alignment="CENTER">
             <children>
-                <Label layoutX="15.0" layoutY="50.0" prefHeight="20.0" prefWidth="65.0" text="Id Reserva: " />
-                <TextField layoutX="80.0" layoutY="50.0" prefHeight="20.0" prefWidth="175.0" />
+                <Label layoutX="15.0" layoutY="25.0" prefHeight="20.0" prefWidth="65.0" text="Id Reserva: " />
+                <TextField layoutX="80.0" layoutY="25.0" prefHeight="20.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="100.0" prefHeight="20.0" prefWidth="65.0" text="Email Cliente:" />
-                <TextField layoutX="80.0" layoutY="100.0" prefHeight="20.0" prefWidth="175.0" />
+                <Label layoutX="15.0" layoutY="75.0" prefHeight="20.0" prefWidth="65.0" text="Id Cliente:" />
+                <TextField layoutX="80.0" layoutY="75.0" prefHeight="20.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="150.0" prefHeight="20.0" prefWidth="65.0" text="Fecha Ini:" />
-                <DatePicker layoutX="80.0" layoutY="150.0" prefHeight="20.0" prefWidth="175.0" />
+                <Label layoutX="15.0" layoutY="125.0" prefHeight="20.0" prefWidth="65.0" text="Id Alojamiento:" />
+                <TextField layoutX="80.0" layoutY="125.0" prefHeight="20.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="200.0" prefHeight="20.0" prefWidth="65.0" text="Fecha Fin:" />
-                <DatePicker layoutX="80.0" layoutY="200.0" prefHeight="20.0" prefWidth="175.0" />
+                <Label layoutX="15.0" layoutY="175.0" prefHeight="20.0" prefWidth="65.0" text="Fecha Ini:" />
+                <DatePicker layoutX="80.0" layoutY="175.0" prefHeight="20.0" prefWidth="175.0" />
+
+                <Label layoutX="15.0" layoutY="225.0" prefHeight="20.0" prefWidth="65.0" text="Fecha Fin:" />
+                <DatePicker layoutX="80.0" layoutY="225.0" prefHeight="20.0" prefWidth="175.0" />
 
 
-            <Button layoutX="53.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
-            <Button layoutX="157.0" layoutY="351.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
+            <Button layoutX="15.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
+            <Button layoutX="197.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
+                  <Button defaultButton="true" layoutX="259.0" layoutY="125.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+                  <Button defaultButton="true" layoutX="259.0" layoutY="75.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="25.0" />
+                  <Button layoutX="109.0" layoutY="302.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="62.0" text="Craer" />
+                  <Button layoutX="110.0" layoutY="362.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="61.0" text="Volver" />
             </children>
         </Pane></left>
     </BorderPane>
