@@ -40,21 +40,9 @@ public class ClientListController {
     @FXML
     AnchorPane templateComponent = null;
 
-
     private List<ClientDTO> clientList = null;
     private ClientDTO selectedClient = null;
     private boolean isSelectingClient = false;
-
-    public void setTemplateComponent(AnchorPane templateComponent){
-        this.templateComponent = templateComponent;
-    }
-
-
-
-    public void setIsSelectingClient(boolean isSelectingClient) {
-        this.isSelectingClient = isSelectingClient;
-        selectClientButton.setVisible(isSelectingClient);
-    }
 
     @FXML
     public void initialize(){
@@ -75,6 +63,15 @@ public class ClientListController {
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void setTemplateComponent(AnchorPane templateComponent){
+        this.templateComponent = templateComponent;
+    }
+
+    public void setIsSelectingClient(boolean isSelectingClient) {
+        this.isSelectingClient = isSelectingClient;
+        selectClientButton.setVisible(isSelectingClient);
     }
 
     private void setClientList() throws SQLException, IOException {
@@ -172,8 +169,6 @@ public class ClientListController {
             }
         }
     }
-
-
 
     private void clearTextFields() {
         selectedClient = null;
