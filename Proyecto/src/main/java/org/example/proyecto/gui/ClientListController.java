@@ -2,8 +2,10 @@ package org.example.proyecto.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import org.example.proyecto.model.client.ClientDB;
 import org.example.proyecto.model.client.ClientDTO;
 
@@ -12,6 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class ClientListController {
     @FXML
@@ -39,6 +42,11 @@ public class ClientListController {
     private List<ClientDTO> clientList = null;
     private ClientDTO selectedClient = null;
     private boolean isSelectingClient = false;
+
+    public void setIsSelectingClient(boolean isSelectingClient) {
+        this.isSelectingClient = isSelectingClient;
+        selectClientButton.setVisible(isSelectingClient);
+    }
 
     @FXML
     public void initialize(){
@@ -171,42 +179,6 @@ public class ClientListController {
         return;
     }
 
-
-   /* @FXML
-    public void searchClient(ActionEvent actionEvent) {
-        List<ClientDTO> resultList = new ArrayList<>();
-
-        if (selectedClient != null){
-            clearTextFields();
-            return;
-        }
-
-        for (ClientDTO client : clientList) {
-            boolean matches = true;
-
-            if (clientName.getText() != null && !clientName.getText().isBlank()) {
-                matches &= client.getNombre_apellidos() != null && client.getNombre_apellidos().equalsIgnoreCase(clientName.getText());
-            }
-            if (clientEmail.getText() != null && !clientEmail.getText().isBlank()) {
-                matches &= client.getEmail() != null && client.getEmail().equalsIgnoreCase(clientEmail.getText());
-            }
-            if (clientAddress.getText() != null && !clientAddress.getText().isBlank()) {
-                matches &= client.getDireccion() != null && client.getDireccion().equalsIgnoreCase(clientAddress.getText());
-            }
-
-            if (matches) {
-                resultList.add(client);
-            }
-        }
-
-        clientDataTable.getItems().setAll(resultList);
-
-       *//* if (resultList.size() == 1) {
-            return List.of(resultList.get(0));
-        } else {
-            return resultList;
-        }*//*
-    }*/
    @FXML
    public void searchClient(ActionEvent actionEvent) throws SQLException, IOException {
        List<ClientDTO> resultList = new ArrayList<>();
@@ -244,5 +216,8 @@ public class ClientListController {
 
    @FXML
     public void selectClientForBooking(ActionEvent actionEvent) {
-    }
+
+
+
+   }
 }

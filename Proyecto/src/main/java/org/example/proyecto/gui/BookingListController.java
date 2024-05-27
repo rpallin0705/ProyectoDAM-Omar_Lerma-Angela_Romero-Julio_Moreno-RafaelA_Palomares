@@ -2,8 +2,10 @@ package org.example.proyecto.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
 import org.example.proyecto.model.booking.BookingDB;
 import org.example.proyecto.model.booking.BookingDTO;
 import org.example.proyecto.model.booking.BookingDataHelper;
@@ -32,8 +34,6 @@ public class BookingListController {
     @FXML
     public DatePicker checkOutDate;
     @FXML
-    public TextField countId;
-    @FXML
     public TableView<BookingDataHelper> bookingDataTable;
     @FXML
     public TableColumn<BookingDataHelper, Integer> bookingIdColumn;
@@ -48,6 +48,27 @@ public class BookingListController {
     private BookingDataHelper selectedBooking = null;
     private ClientDTO clientForBooking = null;
 
+    AnchorPane templateComponent = null;
+
+
+    public void setTemplateComponent(AnchorPane templateComponent){
+        this.templateComponent = templateComponent;
+    }
+
+    @FXML
+    public void selectClientForBooking(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("client-list.fxml"));
+            AnchorPane menu = loader.load();
+
+            ClientListController controller = loader.getController();
+            controller.setIsSelectingClient(true);
+
+            templateComponent.getChildren().setAll(menu);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     @FXML
     public void updateBooking(ActionEvent actionEvent) {
@@ -68,7 +89,6 @@ public class BookingListController {
     @FXML
     public void initialize(){
         try {
-
 
             bookingIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
             checkInDateColumn.setCellValueFactory(new PropertyValueFactory<>("checkInDate"));
@@ -100,4 +120,6 @@ public class BookingListController {
 
         this.bookingDataList = bookingsData;
     }
+
+
 }

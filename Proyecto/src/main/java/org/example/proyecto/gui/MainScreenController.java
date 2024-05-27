@@ -47,34 +47,6 @@ public class MainScreenController {
         loadComponentInTemplateComponent("client-list.fxml");
     }
 
-
-    /**
-     * This function loads the buttonData menu component for CRUD operations in the tables of the database
-     * @param buttonPressed String with the table name of the buttonData pressed
-     * @param buttonData data of the buttonData the user pressed for future operations
-     */
-    /*@FXML
-    public void loadMenu(String buttonPressed, Button buttonData){
-        try {
-
-            // Load FXML file
-           *//* FXMLLoader loader = new FXMLLoader(getClass().getResource("menu-component.fxml"));
-            AnchorPane menu = loader.load();
-
-
-            //Gets controller component and send a string as parameter to identify pressed buttonData
-            MenuComponentController controller = loader.getController();
-            controller.initialize(buttonPressed);
-
-            //Le pasa al menuComponent una referencia del controlador Main para que este pueda cambiar sus componentes
-            controller.setTemplateComponent(templateComponent);
-
-            templateComponent.getChildren().setAll(menu);*//*
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
-
     @FXML
     public void initialize(){
         List<Button> buttonsOnHover = new ArrayList<>();
@@ -86,16 +58,25 @@ public class MainScreenController {
 
     }
 
-    private void loadComponentInTemplateComponent(String fxmlName){
+    private void loadComponentInTemplateComponent(String fxmlName) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlName));
             AnchorPane menu = loader.load();
+
+            // Obtener el controlador asociado
+            Object controller = loader.getController();
+            if (controller instanceof BookingListController) {
+                ((BookingListController) controller).setTemplateComponent(templateComponent);
+            }
 
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+
+
 
     public void loadBookingList() {
 
