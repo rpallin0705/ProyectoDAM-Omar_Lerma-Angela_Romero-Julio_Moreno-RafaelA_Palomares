@@ -16,10 +16,11 @@
         <right>
             <TableView fx:id="bookingDataTable" prefHeight="412.0" prefWidth="631.0" BorderPane.alignment="CENTER">
                 <columns>
-                    <TableColumn fx:id="bookingIdColumn" prefWidth="111.33334350585938" text="Id Reserva" />
-                    <TableColumn fx:id="clientEmailColumn" prefWidth="100.33331298828125" text="Email Cliente" />
-                    <TableColumn fx:id="checkInDateColumn" prefWidth="100.33331298828125" text="Fecha Inicio" />
-                    <TableColumn fx:id="checkOutDateColumn" prefWidth="100.33331298828125" text="Fecha Fin" />
+                    <TableColumn fx:id="bookingIdColumn" prefWidth="34.0" text="Id" />
+                    <TableColumn fx:id="clientEmailColumn" prefWidth="148.0" text="Email Cliente" />
+                    <TableColumn fx:id="bookingNameColumn" prefWidth="132.0" text="Alojamiento" />
+                    <TableColumn fx:id="checkInDateColumn" prefWidth="127.0" text="Fecha Fin" />
+               <TableColumn fx:id="checkOutDateColumn" prefWidth="130.0" text="Fecha Fin" />
                 </columns>
             </TableView>
         </right>
@@ -36,11 +37,13 @@
                 <Button layoutX="157.0" layoutY="351.0" mnemonicParsing="false" onAction="#deleteBooking" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
             <Button layoutX="53.0" layoutY="410.0" mnemonicParsing="false" onAction="#insertBooking" prefHeight="25.0" prefWidth="75.0" text="Insertar" />
             <Button layoutX="157.0" layoutY="410.0" mnemonicParsing="false" onAction="#searchBooking" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
-            <Button layoutX="16.0" layoutY="80.0" mnemonicParsing="false" onAction="#selectClientForBooking" prefHeight="25.0" prefWidth="61.0" text="Cliente" />
-            <Label fx:id="clientEmailLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="78.0" prefHeight="29.0" prefWidth="137.0" text="Email cliente" />
-            <Label fx:id="bookingIdLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="29.0" prefHeight="29.0" prefWidth="137.0" text="Id Reserva" />
-            <Button layoutX="10.0" layoutY="131.0" mnemonicParsing="false" onAction="#selectHousingForBooking" prefHeight="25.0" prefWidth="84.0" text="Alojamiento" />
-            <Label fx:id="housingNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="98.0" layoutY="129.0" prefHeight="29.0" prefWidth="137.0" text="Alojamiento" />
+            <Label fx:id="housingNameLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="91.0" layoutY="132.0" prefHeight="25.0" prefWidth="150.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Alojamiento" />
+            <Label fx:id="clientEmailLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="93.0" layoutY="80.0" prefHeight="25.0" prefWidth="148.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Email Cliente" />
+            <Label fx:id="bookingIdLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="125.0" layoutY="29.0" prefHeight="29.0" prefWidth="74.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Reserva" />
+            <Button defaultButton="true" layoutX="241.0" layoutY="80.0" mnemonicParsing="false" onAction="#selectClientForBooking" prefHeight="25.0" prefWidth="25.0" />
+            <Button defaultButton="true" layoutX="241.0" layoutY="132.0" mnemonicParsing="false" onAction="#selectHousingForBooking" prefHeight="25.0" prefWidth="25.0" />
+            <Label layoutX="11.0" layoutY="83.0" prefHeight="20.0" prefWidth="75.0" text="Email Cliente" />
+            <Label layoutX="11.0" layoutY="134.0" prefHeight="20.0" prefWidth="75.0" text="Alojamiento" />
             </Pane>
         </left>
     </BorderPane>
