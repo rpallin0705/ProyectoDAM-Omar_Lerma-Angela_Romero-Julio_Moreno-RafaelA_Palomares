@@ -24,6 +24,14 @@ public class HotelDTO extends HousingDTO {
         this.hostNumber = hostNumber;
     }
 
+    public HotelDTO(String hotelName, String hotelAddress, Integer hotelClassification, RoomType roomType, Integer hostNumber) {
+        super(hotelName, hotelAddress);
+        this.hotelClassification = hotelClassification;
+        this.roomType = roomType;
+        this.hostNumber = hostNumber;
+    }
+
+
     /*getters*/
     public int getHotelClassification() {
         return hotelClassification;

@@ -40,12 +40,12 @@ private Statement statement;
                     hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion, RoomType.INDIVIDUAL,numero_huespedes);
                     hotels.add(hotelDTO);
                 }
-                case "DOBLE" -> {
-                    hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion, RoomType.DOUBLE,numero_huespedes);
+                case "DOBLE", "DOUBLE" -> {
+                    hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion, RoomType.DOBLE,numero_huespedes);
                     hotels.add(hotelDTO);
                 }
-                case "SUPLEMENTO" -> {
-                    hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion, RoomType.SUPPLEMENT,numero_huespedes);
+                case "SUPLEMENTO", "SUPPLEMENT" -> {
+                    hotelDTO = new HotelDTO(id_alojamiento,nombre_alojamiento,calle,clasificacion, RoomType.SUPLEMENTO,numero_huespedes);
                     hotels.add(hotelDTO);
                 }
             }
@@ -106,6 +106,7 @@ private Statement statement;
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, insertedHotel.getNombre());
         preparedStatement.setString(2,insertedHotel.getCalle());
+        System.out.println("hola");
         int rowsAffected = preparedStatement.executeUpdate();
         //conseguir id del ultimo alojamiento insertado
         ResultSet generatedKeys = preparedStatement.getGeneratedKeys();

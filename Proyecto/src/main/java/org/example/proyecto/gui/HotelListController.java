@@ -1,11 +1,7 @@
 package org.example.proyecto.gui;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import org.example.proyecto.model.hotel.HotelDB;
@@ -26,9 +22,9 @@ public class HotelListController {
     @FXML
     public TextField hotelClassification;
     @FXML
-    public TextField hotelRoomType;
+    public ChoiceBox<RoomType> hotelRoomType;
     @FXML
-    public TextField hostNumber;
+    public TextField hotelHostNumber;
     @FXML
     public TableView<HotelDTO> hotelDataTable;
     @FXML
@@ -54,12 +50,14 @@ public class HotelListController {
     @FXML
     public void initialize() throws SQLException, IOException {
         try{
-            hotelIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_hotel"));
+            hotelIdColumn.setCellValueFactory(new PropertyValueFactory<>("housingId"));
             hotelNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
-            hotelAddressColumn.setCellValueFactory(new PropertyValueFactory<>("direccion"));
-            hotelClassificationColumn.setCellValueFactory(new PropertyValueFactory<>("clasificacion"));
-            hotelRoomtypeColumn.setCellValueFactory(new PropertyValueFactory<>("tipo_habitacion"));
-            hotelHostNumberColumn.setCellValueFactory(new PropertyValueFactory<>("numero_host"));
+            hotelAddressColumn.setCellValueFactory(new PropertyValueFactory<>("calle"));
+            hotelClassificationColumn.setCellValueFactory(new PropertyValueFactory<>("hotelClassification"));
+            hotelRoomtypeColumn.setCellValueFactory(new PropertyValueFactory<>("roomType"));
+            hotelHostNumberColumn.setCellValueFactory(new PropertyValueFactory<>("hostNumber"));
+
+            hotelRoomType.getItems().addAll(RoomType.values());
 
             setHotelList();
             hotelDataTable.getItems().setAll(hotelList);
@@ -86,8 +84,8 @@ public class HotelListController {
         hotelName.setText(selectedHotel.getNombre());
         hotelAddress.setText(selectedHotel.getCalle());
         hotelClassification.setText(String.valueOf(selectedHotel.getHotelClassification()));
-        hotelRoomType.setText(selectedHotel.getRoomType().toString());
-        hostNumber.setText(String.valueOf(selectedHotel.getHostNumber()));
+        hotelRoomType.setValue(selectedHotel.getRoomType());
+        hotelHostNumber.setText(String.valueOf(selectedHotel.getHostNumber()));
     }
 
     @FXML
@@ -96,6 +94,29 @@ public class HotelListController {
             clearTextFields();
             return;
         }
+
+        if(hotelAddress.getText().isBlank() || hotelName.getText().isBlank() ||
+           hotelClassification.getText().isBlank() || hotelRoomType.getValue() == null ||
+           hotelHostNumber.getText().isBlank() ){
+            AlertHelper.showMissingDataAlert();
+            return;
+        }
+
+        HotelDTO hotelToRegister = new HotelDTO(hotelName.getText(), hotelAddress.getText(),
+                                                Integer.parseInt(hotelClassification.getText()), hotelRoomType.getValue(),
+                                                Integer.parseInt(hotelHostNumber.getText()));
+
+        if (AlertHelper.showConfirmationDialog("Confirmacion de registro de hotel", "¿Desea registrar el hotel en la base de datos?")){
+            try{
+                HotelDB hotelDB = new HotelDB();
+                hotelDB.insertHotel(hotelToRegister);
+                setHotelList();
+                hotelDataTable.getItems().setAll(hotelList);
+                AlertHelper.showInsertedUserAlert();
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private void clearTextFields() {
@@ -103,7 +124,7 @@ public class HotelListController {
         hotelName.setText("");
         hotelAddress.setText("");
         hotelClassification.setText("");
-        hotelRoomType.setText("");
-        hostNumber.setText("");
+        hotelRoomType.setValue(null);
+        hotelHostNumber.setText("");
     }
 }

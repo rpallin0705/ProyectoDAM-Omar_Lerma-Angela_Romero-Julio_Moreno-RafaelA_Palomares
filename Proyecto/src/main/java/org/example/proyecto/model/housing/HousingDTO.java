@@ -19,6 +19,12 @@ public class HousingDTO{
         this.nombre = nombre;
         this.calle = calle;
     }
+
+    public HousingDTO(String housingName, String housingAddress) {
+        this.nombre = housingName;
+        this.calle = housingAddress;
+    }
+
     /*getters*/
     public int getHousingId() {
         return housingId;
