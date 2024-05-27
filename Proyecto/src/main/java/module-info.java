@@ -16,4 +16,12 @@ module org.example.proyecto {
     exports org.example.proyecto.model.client to javafx.base;
     opens org.example.proyecto.model.booking to javafx.base;
     exports org.example.proyecto.model.booking to javafx.base;
+    opens org.example.proyecto.model.hotel to javafx.base;
+    exports org.example.proyecto.model.hotel to javafx.base;
+    opens org.example.proyecto.model.touristApartment to javafx.base;
+    exports org.example.proyecto.model.touristApartment to javafx.base;
+    opens org.example.proyecto.model.housing to javafx.base;
+    exports org.example.proyecto.model.housing to javafx.base;
+
+
 }
