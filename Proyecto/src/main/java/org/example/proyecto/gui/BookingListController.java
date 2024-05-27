@@ -28,8 +28,6 @@ import java.util.Map;
 public class BookingListController {
 
     @FXML
-    public TextField bookingId;
-    @FXML
     public DatePicker checkInDate;
     @FXML
     public DatePicker checkOutDate;
@@ -45,6 +43,10 @@ public class BookingListController {
     public TableColumn<BookingDataHelper, String> clientEmailColumn;
     @FXML
     public Label clientEmailLabel;
+    @FXML
+    public Label bookingIdLabel;
+    @FXML
+    public Label housingNameLabel;
 
     private List<BookingDataHelper> bookingDataList = null;
     private BookingDataHelper selectedBooking = null;
@@ -134,10 +136,10 @@ public class BookingListController {
 
     private void clearTextFields() {
         selectedBooking = null;
-        bookingId.setText("");
+        bookingIdLabel.setText("Id Reserva");
         checkInDate.setValue(null);
         checkOutDate.setValue(null);
-        clientEmailLabel.setText("");
+        clientEmailLabel.setText("Email Cliente");
     }
 
     @FXML
@@ -172,7 +174,7 @@ public class BookingListController {
         clientEmailLabel.setText(selectedBooking.getEmail());
         checkInDate.setValue(selectedBooking.getCheckInDate());
         checkOutDate.setValue(selectedBooking.getCheckOutDate());
-        bookingId.setText(String.valueOf(selectedBooking.getBookingId()));
+        bookingIdLabel.setText(String.valueOf(selectedBooking.getBookingId()));
     }
 
     private void setBookingList() throws SQLException, IOException {
@@ -197,5 +199,9 @@ public class BookingListController {
     public void setClientForBooking(ClientDTO clientForBooking) {
         this.clientForBooking = clientForBooking;
         clientEmailLabel.setText(clientForBooking.getEmail());
+    }
+
+    @FXML
+    public void selectHousingForBooking(ActionEvent actionEvent) {
     }
 }

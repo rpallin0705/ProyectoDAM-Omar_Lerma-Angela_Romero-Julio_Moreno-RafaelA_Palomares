@@ -30,18 +30,21 @@ public class BookingDB implements BookingDAO{
         String sql = "SELECT * FROM reservas;";
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
-        BookingDTO bookingDTO = null;
+
         while (resultSet.next()) {
-            LocalDate fecha_ini = LocalDate.of(resultSet.getDate("fecha_ini").getYear(),resultSet.getDate("fecha_ini").getMonth(),resultSet.getDate("fecha_ini").getDay());
-            LocalDate fecha_fin =LocalDate.of(resultSet.getDate("fecha_fin").getYear(),resultSet.getDate("fecha_fin").getMonth(),resultSet.getDate("fecha_fin").getDay());
+            LocalDate fecha_ini = resultSet.getDate("fecha_ini").toLocalDate();
+            LocalDate fecha_fin = resultSet.getDate("fecha_fin").toLocalDate();
             int id_cuenta = resultSet.getInt("id_cuenta");
             int id_alojamiento = resultSet.getInt("id_alojamiento");
             int id_reserva = resultSet.getInt("id_reserva");
-            bookingDTO = new BookingDTO(fecha_ini, fecha_fin, id_reserva, id_cuenta,id_alojamiento);
+
+            BookingDTO bookingDTO = new BookingDTO(fecha_ini, fecha_fin, id_reserva, id_cuenta, id_alojamiento);
             bookings.add(bookingDTO);
         }
+
         return bookings;
     }
+
 
     /**
      * Inserts a new booking into the database.
