@@ -37,11 +37,19 @@ public class ClientListController {
     public TableColumn<ClientDTO,String> clientAddressColumn;
     @FXML
     public Button selectClientButton;
+    @FXML
+    AnchorPane templateComponent = null;
 
 
     private List<ClientDTO> clientList = null;
     private ClientDTO selectedClient = null;
     private boolean isSelectingClient = false;
+
+    public void setTemplateComponent(AnchorPane templateComponent){
+        this.templateComponent = templateComponent;
+    }
+
+
 
     public void setIsSelectingClient(boolean isSelectingClient) {
         this.isSelectingClient = isSelectingClient;
@@ -51,9 +59,6 @@ public class ClientListController {
     @FXML
     public void initialize(){
         try {
-
-            selectClientButton.setVisible(isSelectingClient);
-            System.out.println(isSelectingClient);
             clientIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_cuenta"));
             clientNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre_apellidos"));
             clientEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
@@ -214,10 +219,26 @@ public class ClientListController {
        clientDataTable.getItems().setAll(resultList);
    }
 
-   @FXML
+    @FXML
     public void selectClientForBooking(ActionEvent actionEvent) {
+        if (selectedClient == null) {
+            AlertHelper.showNoUserSelectedAlert();
+            return;
+        }
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("booking-list.fxml"));
+            AnchorPane menu = loader.load();
+
+            BookingListController controller = loader.getController();
+            controller.setClientForBooking(selectedClient);
+
+            templateComponent.getChildren().setAll(menu);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
 
+    }
 
-   }
+
 }

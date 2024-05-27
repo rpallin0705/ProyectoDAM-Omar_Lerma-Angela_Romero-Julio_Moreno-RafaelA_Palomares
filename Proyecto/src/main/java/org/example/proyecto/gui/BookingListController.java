@@ -43,6 +43,8 @@ public class BookingListController {
     public TableColumn<BookingDataHelper, LocalDate> checkOutDateColumn;
     @FXML
     public TableColumn<BookingDataHelper, String> clientEmailColumn;
+    @FXML
+    public Label clientEmailLabel;
 
     private List<BookingDataHelper> bookingDataList = null;
     private BookingDataHelper selectedBooking = null;
@@ -63,6 +65,7 @@ public class BookingListController {
 
             ClientListController controller = loader.getController();
             controller.setIsSelectingClient(true);
+            controller.setTemplateComponent(templateComponent);
 
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
@@ -122,4 +125,8 @@ public class BookingListController {
     }
 
 
+    public void setClientForBooking(ClientDTO clientForBooking) {
+        this.clientForBooking = clientForBooking;
+        clientEmailLabel.setText(clientForBooking.getEmail());
+    }
 }
