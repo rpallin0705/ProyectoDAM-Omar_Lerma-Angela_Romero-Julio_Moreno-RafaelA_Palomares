@@ -22,6 +22,12 @@ public class BookingDTO {
         this.countId = countId;
     }
 
+    public BookingDTO(LocalDate checkInDate, LocalDate checkOutDate, int countId) {
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.countId = countId;
+    }
+
     /*GETTERS*/
 
     public LocalDate getCheckInDate() {

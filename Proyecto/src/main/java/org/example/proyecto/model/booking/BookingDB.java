@@ -59,6 +59,7 @@ public class BookingDB implements BookingDAO{
     @Override
     public boolean insertBooking(BookingDTO newBooking) throws SQLException {
         String sql = "INSERT INTO reservas (fecha_ini, fecha_fin, id_cuenta) VALUES(?, ?, ?);";
+        preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setDate(1, java.sql.Date.valueOf(newBooking.getCheckInDate()));
         preparedStatement.setDate(2, java.sql.Date.valueOf(newBooking.getCheckOutDate()));
         preparedStatement.setInt(3, newBooking.getCountId());

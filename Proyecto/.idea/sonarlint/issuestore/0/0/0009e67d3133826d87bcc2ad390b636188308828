@@ -1,11 +1,8 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8Ì³Ÿµû1J$1ee56a4a-a310-4c58-866d-cb86cf2cd71d
-
-java:S1854"9Remove this useless assignment to local variable "lista".(àó×¦úÿÿÿÿ8Ó³Ÿµû1J$a24e59b5-58df-4a59-9ce6-2b4d7822582a
-r
-java:S1481"*Remove this unused "lista" local variable.(àó×¦úÿÿÿÿ8Õ³Ÿµû1J$35aff99a-213f-4dc9-a5e2-6cb2e55703fa
-r	java:S106"+Replace this use of System.err by a logger.(Şàš¬øÿÿÿÿ8Ö³Ÿµû1J$07a97085-3d21-418d-bfba-a307b2f27650
+	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8×ÌñÎû1J$3c8df577-5ccc-428b-aafd-ae1b8b191835
+m	java:S106"+Replace this use of System.out by a logger.(ÿåÚ˜8áÌñÎû1J$4885c6e7-2119-4aef-abc2-9ae549e68280
+r	java:S106"+Replace this use of System.err by a logger.(Şàš¬øÿÿÿÿ8âÌñÎû1J$d52f261e-76f4-40de-8b66-52c7274cffba
 †
-java:S1128"CRemove this unused import 'org.example.proyecto.model.user.UserDB'.(úú“€8Ø³Ÿµû1J$068dca13-2836-4238-ae5f-f7b52117f5d8
+java:S1128"CRemove this unused import 'org.example.proyecto.model.user.UserDB'.(úú“€8‹´Ïû1J$1091310b-1b3e-4ad1-a270-172810894364
 Œ
-java:S1128"DRemove this unused import 'org.example.proyecto.model.user.UserDTO'.(Æá‘¬úÿÿÿÿ8Ø³Ÿµû1J$63c77f97-4d49-46ef-ba0b-eb0243465e12
+java:S1128"DRemove this unused import 'org.example.proyecto.model.user.UserDTO'.(Æá‘¬úÿÿÿÿ8‹´Ïû1J$d67b2c40-2c54-4b84-aa4e-b832655aeebb

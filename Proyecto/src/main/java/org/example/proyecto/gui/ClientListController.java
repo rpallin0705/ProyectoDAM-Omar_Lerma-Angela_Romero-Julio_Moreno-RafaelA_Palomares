@@ -160,7 +160,7 @@ public class ClientListController {
         }
 
         ClientDTO clientToRegister = new ClientDTO(clientEmail.getText(), "", clientName.getText(), clientAddress.getText());
-        if (AlertHelper.showConfirmationDialog("Confirmación de registro", "¿Desea eliminar al cliente de la base de datos?")) {
+        if (AlertHelper.showConfirmationDialog("Confirmación de registro", "¿Desea registrar al cliente de la base de datos?")) {
             try {
                 ClientDB clientDB = new ClientDB();
                 clientDB.insertClient(clientToRegister);

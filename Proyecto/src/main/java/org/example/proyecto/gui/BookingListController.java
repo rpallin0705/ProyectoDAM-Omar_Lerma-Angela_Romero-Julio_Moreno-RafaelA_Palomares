@@ -75,14 +75,69 @@ public class BookingListController {
 
     @FXML
     public void updateBooking(ActionEvent actionEvent) {
+        if (selectedBooking == null) {
+            AlertHelper.showNoUserSelectedAlert();
+            return;
+        }
+        //BookingDataHelper updatedBooking = new BookingDataHelper(selectedBooking);
     }
 
     @FXML
     public void deleteBooking(ActionEvent actionEvent) {
+        if (selectedBooking == null) {
+            AlertHelper.showUpdatedUserAlert();
+            return;
+        }
+
+        BookingDTO bookingToDelete = new BookingDTO(selectedBooking.getCheckInDate(), selectedBooking.getCheckOutDate(), selectedBooking.getBookingId(), 1);
+        if (AlertHelper.showConfirmationDialog("Confirmacion de eliminación", "¿Desea borrar la reserva de la base de datos?")) {
+            try {
+                BookingDB bookingDB = new BookingDB();
+                bookingDB.deleteBookingByID(bookingToDelete);
+                setBookingList();
+                bookingDataTable.getItems().setAll(bookingDataList);
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
+    //todo see sqlite foreign key constrainst failed
     @FXML
     public void insertBooking(ActionEvent actionEvent) {
+        if (selectedBooking != null) {
+            clearTextFields();
+            return;
+        }
+
+        if (clientForBooking == null || checkInDate.getValue() == null || checkOutDate.getValue() == null) {
+            AlertHelper.showMissingDataAlert();
+            return;
+        }
+
+        BookingDTO bookingToRegister = new BookingDTO(checkInDate.getValue(), checkOutDate.getValue(), clientForBooking.getId_cuenta());
+        System.out.println(bookingToRegister.toString());
+        if (AlertHelper.showConfirmationDialog("Confirmacion de reserva", "¿Desea registrar esta reserva en la base de datos?")){
+            try{
+                BookingDB bookingDB = new BookingDB();
+                bookingDB.insertBooking(bookingToRegister);
+                setBookingList();
+                bookingDataTable.getItems().setAll(bookingDataList);
+                AlertHelper.showInsertedUserAlert();
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    private void clearTextFields() {
+        selectedBooking = null;
+        bookingId.setText("");
+        checkInDate.setValue(null);
+        checkOutDate.setValue(null);
+        clientEmailLabel.setText("");
     }
 
     @FXML
@@ -101,9 +156,23 @@ public class BookingListController {
             setBookingList();
             bookingDataTable.getItems().setAll(bookingDataList);
 
+            bookingDataTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    selectBookingDetails(newValue);
+                }
+            });
+
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void selectBookingDetails(BookingDataHelper selectedBooking) {
+        this.selectedBooking = selectedBooking;
+        clientEmailLabel.setText(selectedBooking.getEmail());
+        checkInDate.setValue(selectedBooking.getCheckInDate());
+        checkOutDate.setValue(selectedBooking.getCheckOutDate());
+        bookingId.setText(String.valueOf(selectedBooking.getBookingId()));
     }
 
     private void setBookingList() throws SQLException, IOException {
