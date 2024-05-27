@@ -1,8 +1,9 @@
 
-	java:S112"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8×ÌñÎû1J$3c8df577-5ccc-428b-aafd-ae1b8b191835
-m	java:S106"+Replace this use of System.out by a logger.(ÿåÚ˜8áÌñÎû1J$4885c6e7-2119-4aef-abc2-9ae549e68280
-r	java:S106"+Replace this use of System.err by a logger.(Şàš¬øÿÿÿÿ8âÌñÎû1J$d52f261e-76f4-40de-8b66-52c7274cffba
+	java:S112%"FDefine and throw a dedicated exception instead of using a generic one.(Ò‚Òéüÿÿÿÿ8·Ÿ¢Ôû1J$824648a4-826d-4d89-b24e-b72c7fc43985
+m	java:S106"+Replace this use of System.out by a logger.(ÿåÚ˜8¿Ÿ¢Ôû1J$102493e6-6d4c-46ac-a2d1-e9664b414bba
+r	java:S106#"+Replace this use of System.err by a logger.(Şàš¬øÿÿÿÿ8ÁŸ¢Ôû1J$8458ce27-7335-4f98-905a-00618413867f
 †
-java:S1128"CRemove this unused import 'org.example.proyecto.model.user.UserDB'.(úú“€8‹´Ïû1J$1091310b-1b3e-4ad1-a270-172810894364
+java:S1128
+"CRemove this unused import 'org.example.proyecto.model.user.UserDB'.(úú“€8åú¥Ôû1J$478bea63-73fc-49f3-8633-fb0e3f7d6a37
 Œ
-java:S1128"DRemove this unused import 'org.example.proyecto.model.user.UserDTO'.(Æá‘¬úÿÿÿÿ8‹´Ïû1J$d67b2c40-2c54-4b84-aa4e-b832655aeebb
+java:S1128"DRemove this unused import 'org.example.proyecto.model.user.UserDTO'.(Æá‘¬úÿÿÿÿ8åú¥Ôû1J$7cf88e36-a53d-424a-8c3b-e34fb7876dd9

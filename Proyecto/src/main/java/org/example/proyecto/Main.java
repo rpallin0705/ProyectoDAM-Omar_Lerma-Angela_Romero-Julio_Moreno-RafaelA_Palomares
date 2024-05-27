@@ -4,6 +4,9 @@ import org.example.proyecto.model.booking.BookingDB;
 import org.example.proyecto.model.booking.BookingDTO;
 import org.example.proyecto.model.client.ClientDB;
 import org.example.proyecto.model.client.ClientDTO;
+import org.example.proyecto.model.hotel.HotelDB;
+import org.example.proyecto.model.hotel.HotelDTO;
+import org.example.proyecto.model.hotel.RoomType;
 import org.example.proyecto.model.user.UserDB;
 import org.example.proyecto.model.user.UserDTO;
 
@@ -19,10 +22,15 @@ public class Main {
             List<ClientDTO> lista = clientDB.getClients();
             for (ClientDTO client: lista)
                 System.out.println(client.toString());
-            BookingDB bookingDB = new BookingDB();
-            BookingDTO bookingDTO = new BookingDTO(LocalDate.of(2024,12,1), LocalDate.of(2024,12,12),17,12);
 
-            bookingDB.insertBooking(bookingDTO);
+            HotelDTO hotelDTO = new HotelDTO(1, "Hotel plaza mayor", "Calle Paraiso", 4, RoomType.DOUBLE, 2);
+            HotelDB hotelDB = new HotelDB();
+            hotelDB.insertHotel(hotelDTO);
+           BookingDB bookingDB = new BookingDB();
+           BookingDTO bookingDTO = new BookingDTO(LocalDate.of(2024,12,1), LocalDate.of(2024,12,12),17,1, 1);
+
+
+           bookingDB.insertBooking(bookingDTO);
         } catch (SQLException e) {
             System.err.println(e);
         } catch (IOException e) {

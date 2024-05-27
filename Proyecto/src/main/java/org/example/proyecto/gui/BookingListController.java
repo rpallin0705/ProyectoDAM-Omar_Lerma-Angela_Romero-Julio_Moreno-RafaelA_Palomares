@@ -89,7 +89,7 @@ public class BookingListController {
             return;
         }
 
-        BookingDTO bookingToDelete = new BookingDTO(selectedBooking.getCheckInDate(), selectedBooking.getCheckOutDate(), selectedBooking.getBookingId(), 1);
+        BookingDTO bookingToDelete = new BookingDTO(selectedBooking.getCheckInDate(), selectedBooking.getCheckOutDate(), selectedBooking.getBookingId(), 1, 1);
         if (AlertHelper.showConfirmationDialog("Confirmacion de eliminación", "¿Desea borrar la reserva de la base de datos?")) {
             try {
                 BookingDB bookingDB = new BookingDB();
@@ -115,7 +115,7 @@ public class BookingListController {
             return;
         }
 
-        BookingDTO bookingToRegister = new BookingDTO(checkInDate.getValue(), checkOutDate.getValue(), clientForBooking.getId_cuenta());
+        BookingDTO bookingToRegister = new BookingDTO(checkInDate.getValue(), checkOutDate.getValue(), clientForBooking.getId_cuenta(), 1, 2);
         System.out.println(bookingToRegister.toString());
         if (AlertHelper.showConfirmationDialog("Confirmacion de reserva", "¿Desea registrar esta reserva en la base de datos?")){
             try{

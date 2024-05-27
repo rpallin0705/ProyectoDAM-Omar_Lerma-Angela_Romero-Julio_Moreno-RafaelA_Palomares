@@ -28,8 +28,8 @@ public class LoginController {
 
     @FXML
     public void loginUser(ActionEvent actionEvent) throws SQLException, IOException {
-        UserDB userDB = new UserDB();
-        userLogedIn = userDB.userLogin(userName.getText(), userPasswd.getText());
+        //UserDB userDB = new UserDB();
+        //userLogedIn = userDB.userLogin(userName.getText(), userPasswd.getText());
 
         if (userLogedIn != null || true) {
             // Cargar el archivo FXML de la nueva ventana
