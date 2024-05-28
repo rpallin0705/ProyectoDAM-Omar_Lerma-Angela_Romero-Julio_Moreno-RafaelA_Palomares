@@ -97,12 +97,7 @@ public class ClientListController {
             return;
         }
 
-        ClientDTO updatedClient = new ClientDTO(selectedClient);
-
-        updatedClient.setNombre_apellidos(clientName.getText());
-        updatedClient.setEmail(clientEmail.getText());
-        updatedClient.setDireccion(clientAddress.getText());
-        ClientDB clientDB = new ClientDB();
+        ClientDTO updatedClient = new ClientDTO(selectedClient.getId_cuenta(), selectedClient.getEmail(), selectedClient.getNombre_apellidos(), selectedClient.getDireccion());
 
         if (updatedClient.equals(selectedClient)) {
             AlertHelper.showNoChangesAlert();
@@ -111,11 +106,11 @@ public class ClientListController {
 
         if (AlertHelper.showConfirmationDialog("Confirmación de actualización", "¿Desea realizar la actualización de datos?")) {
             try {
+                ClientDB clientDB = new ClientDB();
                 clientDB.updateClient(updatedClient);
                 setClientList();
                 clientDataTable.getItems().setAll(clientList);
-                selectedClient = updatedClient;
-                AlertHelper.showUpdatedUserAlert();
+                clearTextFields();
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
             }

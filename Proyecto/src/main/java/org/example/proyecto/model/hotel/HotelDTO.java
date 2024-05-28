@@ -2,6 +2,8 @@ package org.example.proyecto.model.hotel;
 
 import org.example.proyecto.model.housing.HousingDTO;
 
+import java.util.Objects;
+
 public class HotelDTO extends HousingDTO {
     /*attributes*/
     private int hotelClassification;
@@ -31,6 +33,12 @@ public class HotelDTO extends HousingDTO {
         this.hostNumber = hostNumber;
     }
 
+    public HotelDTO(HotelDTO hotelToCopy) {
+        super(hotelToCopy.getHousingId(), hotelToCopy.getNombre(), hotelToCopy.getCalle());
+        this.hotelClassification = hotelToCopy.hotelClassification;
+        this.roomType = hotelToCopy.roomType;
+        this.hostNumber = hotelToCopy.getHostNumber();
+    }
 
     /*getters*/
     public int getHotelClassification() {
@@ -59,5 +67,18 @@ public class HotelDTO extends HousingDTO {
     @Override
     public String toString() {
         return String.format("%d,%s,%s,%d,%s,%d",super.getHousingId(),super.getNombre(),super.getCalle(), hotelClassification, roomType, hostNumber);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof HotelDTO hotelDTO)) return false;
+        if (!super.equals(o)) return false;
+        return hotelClassification == hotelDTO.hotelClassification && hostNumber == hotelDTO.hostNumber && roomType == hotelDTO.roomType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), hotelClassification, roomType, hostNumber);
     }
 }

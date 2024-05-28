@@ -1,9 +1,11 @@
 package org.example.proyecto.gui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import org.example.proyecto.model.client.ClientDTO;
 import org.example.proyecto.model.hotel.HotelDB;
 import org.example.proyecto.model.hotel.HotelDTO;
 import org.example.proyecto.model.hotel.RoomType;
@@ -112,19 +114,74 @@ public class HotelListController {
                 hotelDB.insertHotel(hotelToRegister);
                 setHotelList();
                 hotelDataTable.getItems().setAll(hotelList);
-                AlertHelper.showInsertedUserAlert();
             } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
+                //todo agregar alertas de error
             }
         }
     }
 
     private void clearTextFields() {
+        selectedHotel = null;
         hotelIdLabel.setText("Id Alojamiento");
         hotelName.setText("");
         hotelAddress.setText("");
         hotelClassification.setText("");
         hotelRoomType.setValue(null);
         hotelHostNumber.setText("");
+    }
+
+    public void updateHotel() {
+        if (selectedHotel == null){
+            AlertHelper.showNoUserSelectedAlert();
+            return;
+        } else if (hotelName.getText().isBlank() || hotelAddress.getText().isBlank() || hotelClassification.getText().isBlank() ||
+                (hotelRoomType.getValue() == null) || hotelHostNumber.getText().isBlank()) {
+            AlertHelper.showMissingDataAlert();
+            return;
+        }
+        HotelDTO updatedHotel = new HotelDTO(selectedHotel.getHousingId(), hotelName.getText(), hotelAddress.getText(),
+                                                Integer.parseInt(hotelClassification.getText()), hotelRoomType.getValue(),
+                                                Integer.parseInt(hotelHostNumber.getText()));
+
+        if (updatedHotel.equals(selectedHotel)){
+            AlertHelper.showNoChangesAlert();
+            return;
+        }
+
+        if (AlertHelper.showConfirmationDialog("Confirmación de actualización", "¿Desea realizar la actualización de datos?")) {
+            try{
+                HotelDB hotelDB = new HotelDB();
+                hotelDB.updateHotel(updatedHotel);
+                setHotelList();
+                hotelDataTable.getItems().setAll(hotelList);
+                clearTextFields();
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+        }
+
+    public void deleteHotel() {
+        if (selectedHotel == null) {
+            AlertHelper.showNoUserSelectedAlert();
+            return;
+        }
+
+        HotelDTO hotelToDelete = new HotelDTO(selectedHotel);
+
+        if (AlertHelper.showConfirmationDialog("Confirmación de eliminación", "¿Desea eliminar el hotel de la base de datos?")) {
+            try{
+                HotelDB hotelDB = new HotelDB();
+                hotelDB.deleteHotel(hotelToDelete);
+                setHotelList();
+                hotelDataTable.getItems().setAll(hotelList);
+                clearTextFields();
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+
+
     }
 }
