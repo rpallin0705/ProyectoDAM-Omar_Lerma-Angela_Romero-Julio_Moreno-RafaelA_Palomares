@@ -225,8 +225,9 @@ public class ClientListController {
             AnchorPane menu = loader.load();
 
             BookingListController controller = loader.getController();
+            controller.setTemplateComponent(templateComponent);
             controller.setClientForBooking(selectedClient);
-
+            controller.setSelectBookingCLientButton();
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
             throw new RuntimeException(e);

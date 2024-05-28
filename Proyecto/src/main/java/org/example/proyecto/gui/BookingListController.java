@@ -47,6 +47,12 @@ public class BookingListController {
     public Label bookingIdLabel;
     @FXML
     public Label housingNameLabel;
+    @FXML
+    public TableColumn bookingNameColumn;
+    @FXML
+    public Button deleteBookingUserButton;
+    @FXML
+    public Button selectBookingClientButton;
 
     private List<BookingDataHelper> bookingDataList = null;
     private BookingDataHelper selectedBooking = null;
@@ -204,4 +210,22 @@ public class BookingListController {
     @FXML
     public void selectHousingForBooking(ActionEvent actionEvent) {
     }
+
+    public void deleteBookingUser(ActionEvent actionEvent) {
+        clientForBooking = null;
+        deleteBookingUserButton.setVisible(false);
+        selectBookingClientButton.setVisible(true);
+        clientEmailLabel.setText("Email Cliente");
+    }
+
+    public void setSelectBookingCLientButton(){
+        if (clientForBooking == null){
+            deleteBookingUserButton.setVisible(false);
+            selectBookingClientButton.setVisible(true);
+        } else {
+            deleteBookingUserButton.setVisible(true);
+            selectBookingClientButton.setVisible(false);
+        }
+    }
+
 }
