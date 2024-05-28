@@ -2,6 +2,8 @@ package org.example.proyecto.model.touristApartment;
 
 import org.example.proyecto.model.housing.HousingDTO;
 
+import java.util.Objects;
+
 public class TouristApartmentDTO extends HousingDTO {
 
     private float downtownDistance;
@@ -36,5 +38,18 @@ public class TouristApartmentDTO extends HousingDTO {
     @Override
     public String toString() {
         return String.format("%d,%s,%s,%f",super.getHousingId(),super.getNombre(),super.getCalle(), downtownDistance);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof TouristApartmentDTO that)) return false;
+        if (!super.equals(o)) return false;
+        return Float.compare(downtownDistance, that.downtownDistance) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), downtownDistance);
     }
 }

@@ -109,18 +109,18 @@ public class ApartmentListController {
             return;
         }
 
-        try {
-            TouristApartmentDTO updatedApartment = new TouristApartmentDTO(
-                    selectedApartment.getHousingId(),
-                    apartmentName.getText(),
-                    apartmentAddress.getText(),
-                    Integer.parseInt(apartmentDistanceToDowntown.getText())
-            );
+        if ( apartmentAddress.getText().isBlank() || apartmentName.getText().isBlank() || apartmentDistanceToDowntown.getText().isBlank()){
+            AlertHelper.showMissingDataAlert();
+            return;
+        }
 
-            if (updatedApartment.equals(selectedApartment)) {
-                AlertHelper.showNoChangesAlert();
-                return;
-            }
+        TouristApartmentDTO updatedApartment = new TouristApartmentDTO( selectedApartment.getHousingId(), apartmentName.getText(), apartmentAddress.getText(), Float.parseFloat(apartmentDistanceToDowntown.getText()) );
+
+        if (updatedApartment.equals(selectedApartment)){
+            AlertHelper.showNoChangesAlert();
+            return;
+        }
+        try {
 
             TouristApartmentDB apartmentDB = new TouristApartmentDB();
             apartmentDB.updateTourisApartment(updatedApartment);
@@ -152,11 +152,6 @@ public class ApartmentListController {
         }
     }
 
-    @FXML
-    public void searchApartment(ActionEvent actionEvent) throws SQLException, IOException {
-        // Implementación para buscar apartamentos...
-    }
-
     private void clearTextFields() {
         selectedApartment = null;
         apartmentIdLabel.setText("Id Cliente");
@@ -164,4 +159,39 @@ public class ApartmentListController {
         apartmentAddress.setText("");
         apartmentDistanceToDowntown.setText("");
     }
+
+    @FXML
+    public void searchApartment() throws SQLException, IOException {
+        List<TouristApartmentDTO> resultList = new ArrayList<>();
+        if (selectedApartment != null) {
+            clearTextFields();
+            setApartmentList();
+            return;
+        }
+
+        String nameText = apartmentName.getText() != null ? apartmentName.getText().trim().toLowerCase() : "";
+        String addressText = apartmentAddress.getText() != null ? apartmentAddress.getText().trim().toLowerCase() : "";
+        String distanceText = apartmentDistanceToDowntown.getText() != null ? apartmentDistanceToDowntown.getText().trim() : "";
+
+        for (TouristApartmentDTO apartment : apartmentList) {
+            boolean matches = true;
+
+            if (!nameText.isEmpty()) {
+                matches &= apartment.getNombre() != null && apartment.getNombre().toLowerCase().contains(nameText);
+            }
+            if (!addressText.isEmpty()) {
+                matches &= apartment.getCalle() != null && apartment.getCalle().toLowerCase().contains(addressText);
+            }
+            if (!distanceText.isEmpty()) {
+                matches &= String.valueOf(apartment.getDowntownDistance()).contains(distanceText);
+            }
+
+            if (matches) {
+                resultList.add(apartment);
+            }
+        }
+
+        apartmentDataTable.getItems().setAll(resultList);
+    }
+
 }

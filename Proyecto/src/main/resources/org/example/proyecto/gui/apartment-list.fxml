@@ -46,6 +46,7 @@
                 <Button layoutX="205.0" layoutY="300.0" mnemonicParsing="false" onAction="#deleteApartment" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
                 <Button layoutX="110.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Volver" />
                 <Label fx:id="apartmentIdLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="50.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Apartamento" />
+            <Button layoutX="255.0" layoutY="236.0" mnemonicParsing="false" onAction="#searchApartment" prefHeight="25.0" prefWidth="25.0" text="Button" />
             </Pane>
         </left>
     </BorderPane>
