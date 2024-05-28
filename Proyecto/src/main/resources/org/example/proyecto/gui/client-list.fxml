@@ -25,17 +25,16 @@
         </right>
         <left>
             <Pane prefHeight="582.0" prefWidth="273.0" BorderPane.alignment="CENTER">
-                <Label layoutX="15.0" layoutY="50.0" prefHeight="25.0" prefWidth="65.0" text="Email:" />
-                <TextField fx:id="clientEmail" layoutX="79.0" layoutY="50.0" prefHeight="25.0" prefWidth="175.0" />
+                <Label layoutX="21.0" layoutY="100.0" prefHeight="25.0" prefWidth="65.0" text="Email:" />
+                <TextField fx:id="clientEmail" layoutX="85.0" layoutY="100.0" prefHeight="25.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="100.0" prefHeight="25.0" prefWidth="65.0" text="Nombre:" />
-                <TextField fx:id="clientName" layoutX="79.0" layoutY="100.0" prefHeight="25.0" prefWidth="175.0" />
+                <Label layoutX="21.0" layoutY="150.0" prefHeight="25.0" prefWidth="65.0" text="Nombre:" />
+                <TextField fx:id="clientName" layoutX="85.0" layoutY="150.0" prefHeight="25.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="150.0" prefHeight="25.0" prefWidth="65.0" text="Dirección:" />
-                <TextField fx:id="clientAddress" layoutX="79.0" layoutY="150.0" prefHeight="25.0" prefWidth="175.0" />
+                <Label layoutX="21.0" layoutY="200.0" prefHeight="25.0" prefWidth="65.0" text="Dirección:" />
+                <TextField fx:id="clientAddress" layoutX="85.0" layoutY="200.0" prefHeight="25.0" prefWidth="175.0" />
 
-                <Label layoutX="15.0" layoutY="200.0" prefHeight="25.0" prefWidth="65.0" text="Id Cliente:" />
-                <TextField fx:id="clientId" layoutX="79.0" layoutY="200.0" prefHeight="25.0" prefWidth="175.0" />
+                <Label layoutX="18.0" layoutY="46.0" prefHeight="25.0" prefWidth="65.0" text="Id Cliente:" />
 
                 <Button layoutX="50.0" layoutY="350.0" mnemonicParsing="false" onAction="#updateClientId" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
                 <Button layoutX="150.0" layoutY="350.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
@@ -43,6 +42,7 @@
             <Button layoutX="53.0" layoutY="411.0" mnemonicParsing="false" onAction="#registerClient" prefWidth="70.0" text="Registrar" />
             <Button layoutX="153.0" layoutY="411.0" mnemonicParsing="false" onAction="#searchClient" prefWidth="70.0" text="Buscar" />
             <Button fx:id="selectClientButton" layoutX="92.0" layoutY="471.0" mnemonicParsing="false" onAction="#selectClientForBooking" prefHeight="47.0" prefWidth="90.0" style="-fx-background-color: orange;" text="Ver Reservas" visible="false" />
+            <Label alignment="CENTER" layoutX="118.0" layoutY="46.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Cliente" />
             </Pane>
         </left>
     </BorderPane>
