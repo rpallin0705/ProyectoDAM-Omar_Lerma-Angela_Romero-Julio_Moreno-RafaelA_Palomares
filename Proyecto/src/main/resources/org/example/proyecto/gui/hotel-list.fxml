@@ -53,6 +53,7 @@
                 <Button layoutX="202.0" layoutY="381.0" mnemonicParsing="false" onAction="#deleteHotel" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
                 <Button layoutX="109.0" layoutY="434.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Volver" />
             <ChoiceBox fx:id="hotelRoomType" layoutX="108.0" layoutY="239.0" prefWidth="150.0" />
+            <Button layoutX="250.0" layoutY="322.0" mnemonicParsing="false" onAction="#searchHotel" prefHeight="30.0" prefWidth="30.0" text="Button" />
             </Pane>
         </left>
     </BorderPane>

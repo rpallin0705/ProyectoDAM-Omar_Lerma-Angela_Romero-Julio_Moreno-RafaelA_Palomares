@@ -12,6 +12,7 @@ import org.example.proyecto.model.hotel.RoomType;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class HotelListController {
@@ -114,6 +115,8 @@ public class HotelListController {
                 hotelDB.insertHotel(hotelToRegister);
                 setHotelList();
                 hotelDataTable.getItems().setAll(hotelList);
+                clearTextFields();
+
             } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
                 //todo agregar alertas de error
@@ -184,4 +187,48 @@ public class HotelListController {
 
 
     }
+
+    @FXML
+    public void searchHotel(ActionEvent actionEvent) throws SQLException, IOException {
+        List<HotelDTO> resultList = new ArrayList<>();
+
+        if (selectedHotel != null) {
+            clearTextFields();
+            setHotelList();
+            return;
+        }
+
+        String nameText = hotelName.getText() != null ? hotelName.getText().trim().toLowerCase() : "";
+        String addressText = hotelAddress.getText() != null ? hotelAddress.getText().trim().toLowerCase() : "";
+        String classificationText = hotelClassification.getText() != null ? hotelClassification.getText().trim() : "";
+        RoomType roomTypeValue = hotelRoomType.getValue();
+        String hostNumberText = hotelHostNumber.getText() != null ? hotelHostNumber.getText().trim() : "";
+
+        for (HotelDTO hotel : hotelList) {
+            boolean matches = true;
+
+            if (!nameText.isEmpty()) {
+                matches &= hotel.getNombre() != null && hotel.getNombre().toLowerCase().contains(nameText);
+            }
+            if (!addressText.isEmpty()) {
+                matches &= hotel.getCalle() != null && hotel.getCalle().toLowerCase().contains(addressText);
+            }
+            if (!classificationText.isEmpty()) {
+                matches &= String.valueOf(hotel.getHotelClassification()).contains(classificationText);
+            }
+            if (roomTypeValue != null) {
+                matches &= hotel.getRoomType() != null && hotel.getRoomType().equals(roomTypeValue);
+            }
+            if (!hostNumberText.isEmpty()) {
+                matches &= String.valueOf(hotel.getHostNumber()).contains(hostNumberText);
+            }
+
+            if (matches) {
+                resultList.add(hotel);
+            }
+        }
+
+        hotelDataTable.getItems().setAll(resultList);
+    }
+
 }
