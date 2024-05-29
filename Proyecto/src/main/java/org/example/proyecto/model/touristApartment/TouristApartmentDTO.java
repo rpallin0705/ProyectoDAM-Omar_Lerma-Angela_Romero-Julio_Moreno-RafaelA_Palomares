@@ -40,11 +40,6 @@ public class TouristApartmentDTO extends HousingDTO {
         this.downtownDistance = downtownDistance;
     }
 
-    public TouristApartmentDTO(String nombre, String calle, float downtownDistance) {
-        super(nombre, calle);
-        this.downtownDistance = downtownDistance;
-    }
-
     /**
      * Copy constructor for HotelDTO.
      *
@@ -54,6 +49,8 @@ public class TouristApartmentDTO extends HousingDTO {
         super(touristApartmentToCopy.getHousingId(), touristApartmentToCopy.getNombre(), touristApartmentToCopy.getCalle());
         this.downtownDistance = touristApartmentToCopy.getDowntownDistance();
     }
+
+
     /**
      * Gets the distance to the downtown for the tourist apartment.
      *

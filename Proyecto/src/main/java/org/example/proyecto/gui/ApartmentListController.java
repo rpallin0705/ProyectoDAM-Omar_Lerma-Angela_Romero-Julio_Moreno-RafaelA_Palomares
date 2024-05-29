@@ -2,6 +2,7 @@ package org.example.proyecto.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -32,6 +33,8 @@ public class ApartmentListController {
     public TableColumn<TouristApartmentDTO, String> apartmentAddressColumn;
     @FXML
     public TableColumn<TouristApartmentDTO, Float> apartmentDistanceColumn;
+    @FXML
+    public Button isSelectingHousingButton;
 
     @FXML
     AnchorPane templateComponent = null;
@@ -194,4 +197,32 @@ public class ApartmentListController {
         apartmentDataTable.getItems().setAll(resultList);
     }
 
+    @FXML
+    public void selectApartmentForBooking() {
+        if (selectedApartment == null) {
+            AlertHelper.showNoUserSelectedAlert();
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("booking-list.fxml"));
+            AnchorPane menu = loader.load();
+
+            BookingListController controller = loader.getController();
+            controller.setTemplateComponent(templateComponent);
+            controller.setApartmentForBooking(selectedApartment);
+            controller.setSelectBookingCLientButton();
+            templateComponent.getChildren().setAll(menu);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setIsSelectingHousing(boolean isSelectingApartment) {
+        isSelectingHousingButton.setVisible(isSelectingApartment);
+    }
+
+    public void setTemplateComponent(AnchorPane templateComponent) {
+        this.templateComponent = templateComponent;
+    }
 }

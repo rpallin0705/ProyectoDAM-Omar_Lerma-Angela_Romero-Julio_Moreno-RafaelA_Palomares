@@ -2,10 +2,10 @@ package org.example.proyecto.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import org.example.proyecto.model.client.ClientDTO;
 import org.example.proyecto.model.hotel.HotelDB;
 import org.example.proyecto.model.hotel.HotelDTO;
 import org.example.proyecto.model.hotel.RoomType;
@@ -42,13 +42,15 @@ public class HotelListController {
     public TableColumn<HotelDTO, RoomType> hotelRoomtypeColumn;
     @FXML
     public TableColumn<HotelDTO,Integer> hotelHostNumberColumn;
+    @FXML
+    public Button isSelectingHousingButton;
 
     @FXML
     AnchorPane templateComponent = null;
 
     private List<HotelDTO> hotelList = null;
     private HotelDTO selectedHotel = null;
-    private boolean isSelectingHotel = false;
+
 
     @FXML
     public void initialize() throws SQLException, IOException {
@@ -231,4 +233,34 @@ public class HotelListController {
         hotelDataTable.getItems().setAll(resultList);
     }
 
+    @FXML
+    public void selectHotelForBooking() {
+        if (selectedHotel == null) {
+            AlertHelper.showNoUserSelectedAlert();
+            return;
+        }
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("booking-list.fxml"));
+            AnchorPane menu = loader.load();
+
+            BookingListController controller = loader.getController();
+            controller.setTemplateComponent(templateComponent);
+            controller.setHotelForBooking(selectedHotel);
+            controller.setSelectBookingCLientButton();
+            templateComponent.getChildren().setAll(menu);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setIsSelectingHousing(boolean isSelectingHotel) {
+        System.out.println(isSelectingHotel);
+        isSelectingHousingButton.setVisible(isSelectingHotel);
+        System.out.println(isSelectingHousingButton.isVisible());
+    }
+
+    public void setTemplateComponent(AnchorPane templateComponent) {
+        this.templateComponent = templateComponent;
+    }
 }

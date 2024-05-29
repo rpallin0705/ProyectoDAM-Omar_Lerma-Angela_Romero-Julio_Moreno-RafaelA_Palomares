@@ -41,7 +41,7 @@
                 <Button layoutX="95.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Ver Reservas" />
             <Button layoutX="53.0" layoutY="411.0" mnemonicParsing="false" onAction="#registerClient" prefWidth="70.0" text="Registrar" />
             <Button fx:id="searchImageButton" layoutX="153.0" layoutY="411.0" mnemonicParsing="false" onAction="#searchClient" prefHeight="25.0" prefWidth="25.0" />
-            <Button fx:id="selectClientButton" layoutX="92.0" layoutY="471.0" mnemonicParsing="false" onAction="#selectClientForBooking" prefHeight="47.0" prefWidth="90.0" style="-fx-background-color: orange;" text="Ver Reservas" visible="false" />
+            <Button fx:id="selectClientButton" layoutX="92.0" layoutY="471.0" mnemonicParsing="false" onAction="#selectClientForBooking" prefHeight="47.0" prefWidth="90.0" style="-fx-background-color: orange;" text="Seleccionar para reserva" visible="false" />
             <Label fx:id="clientId" alignment="CENTER" layoutX="118.0" layoutY="46.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Cliente" />
             </Pane>
         </left>

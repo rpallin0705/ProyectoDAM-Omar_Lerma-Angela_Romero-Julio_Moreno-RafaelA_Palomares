@@ -24,6 +24,21 @@ public class AlertHelper {
         return result.isPresent() && result.get() == buttonTypeYes;
     }
 
+    public static boolean showHousingSelectionAlert() {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Seleccione el tipo de alojamiento");
+        alert.setHeaderText(null);
+        alert.setContentText("Elija el tipo de alojamiento:");
+
+        ButtonType hotelButton = new ButtonType("Hotel");
+        ButtonType apartmentButton = new ButtonType("Apartamento");
+
+        alert.getButtonTypes().setAll(hotelButton, apartmentButton);
+
+        Optional<ButtonType> result = alert.showAndWait();
+        return result.isPresent() && result.get() == hotelButton;
+    }
+
     public static void showNoUserSelectedAlert() {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Aviso");

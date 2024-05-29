@@ -50,7 +50,6 @@ public class ClientListController {
 
     private List<ClientDTO> clientList = null;
     private ClientDTO selectedClient = null;
-    private boolean isSelectingClient = false;
 
     @FXML
     public void initialize(){
@@ -85,7 +84,6 @@ public class ClientListController {
     }
 
     public void setIsSelectingClient(boolean isSelectingClient) {
-        this.isSelectingClient = isSelectingClient;
         selectClientButton.setVisible(isSelectingClient);
     }
 

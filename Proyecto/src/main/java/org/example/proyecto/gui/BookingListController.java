@@ -112,6 +112,37 @@ public class BookingListController {
         }
     }
 
+    //todo insertar botones y funciones para seleccionar en hotel y apartamento
+    @FXML
+    public void selectHousingForBooking(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = null;
+            Object controller = null;
+            if (AlertHelper.showHousingSelectionAlert())
+                loader = new FXMLLoader(getClass().getResource("hotel-list.fxml"));
+            else
+                loader = new FXMLLoader(getClass().getResource("apartment-list.fxml"));
+
+
+
+            AnchorPane menu = loader.load();
+            controller = loader.getController();
+
+            if (controller instanceof HotelListController hotelListController) {
+                hotelListController.setIsSelectingHousing(true);
+                hotelListController.setTemplateComponent(templateComponent);
+            } else if (controller instanceof ApartmentListController apartmentListController) {
+                apartmentListController.setIsSelectingHousing(true);
+                apartmentListController.setTemplateComponent(templateComponent);
+            }
+            templateComponent.getChildren().setAll(menu);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+
     @FXML
     public void updateBooking(ActionEvent actionEvent) {
         if (selectedBooking == null) {
@@ -236,9 +267,7 @@ public class BookingListController {
         clientEmailLabel.setText(clientForBooking.getEmail());
     }
 
-    @FXML
-    public void selectHousingForBooking(ActionEvent actionEvent) {
-    }
+
 
     public void deleteBookingUser(ActionEvent actionEvent) {
         clientForBooking = null;
@@ -257,4 +286,13 @@ public class BookingListController {
         }
     }
 
+    public void setApartmentForBooking(TouristApartmentDTO apartmentForBooking) {
+        this.touristApartmentForBooking = apartmentForBooking;
+        housingNameLabel.setText(apartmentForBooking.getNombre());
+    }
+
+    public void setHotelForBooking(HotelDTO selectedHotel) {
+        this.hotelForBooking = selectedHotel;
+        housingNameLabel.setText(selectedHotel.getNombre());
+    }
 }
