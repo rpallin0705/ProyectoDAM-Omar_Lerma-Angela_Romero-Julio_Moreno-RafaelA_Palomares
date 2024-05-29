@@ -121,7 +121,7 @@ public class UserDB implements UserDAO {
     @Override
     public boolean deleteUser(UserDTO deletedUser) throws SQLException {
         //usuarios && cuentas
-        String sql = "DELETE FROM usuarios WHERE id_cuenta = ?";
+        String sql = "DELETE FROM cuentas WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, deletedUser.getId_cuenta());
         int rowsAffected = preparedStatement.executeUpdate();

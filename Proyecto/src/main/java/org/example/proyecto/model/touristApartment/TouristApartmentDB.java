@@ -12,7 +12,6 @@ import java.util.List;
  *
  * @version 1.0
  * @since 2024-05-28
- *
  * @author Omar
  */
 public class TouristApartmentDB implements TouristApartmentDAO {
@@ -30,6 +29,12 @@ public class TouristApartmentDB implements TouristApartmentDAO {
         connection = SetUpConnection.getInstance().getConnection();
     }
 
+    /**
+     * Retrieves the list of tourist apartments from the database.
+     *
+     * @return a list of TouristApartmentDTO objects.
+     * @throws SQLException if a database access error occurs.
+     */
     @Override
     public List<TouristApartmentDTO> getTouristApartments() throws SQLException {
         List<TouristApartmentDTO> apartments = new ArrayList<>();
@@ -48,6 +53,13 @@ public class TouristApartmentDB implements TouristApartmentDAO {
         return apartments;
     }
 
+    /**
+     * Updates a tourist apartment in the database.
+     *
+     * @param updatedApartment the updated tourist apartment.
+     * @return true if the update was successful, false otherwise.
+     * @throws SQLException if a database access error occurs.
+     */
     @Override
     public boolean updateTourisApartment(TouristApartmentDTO updatedApartment) throws SQLException {
         String sql = "UPDATE alojamientos SET nombre = ?, calle = ? WHERE id_alojamiento = ?";
@@ -66,6 +78,13 @@ public class TouristApartmentDB implements TouristApartmentDAO {
         return rowsAffected != 0;
     }
 
+    /**
+     * Deletes a tourist apartment from the database.
+     *
+     * @param deletedApartment the tourist apartment to delete.
+     * @return true if the deletion was successful, false otherwise.
+     * @throws SQLException if a database access error occurs.
+     */
     @Override
     public boolean deleteTouristApartment(TouristApartmentDTO deletedApartment) throws SQLException {
         String sql = "DELETE FROM alojamientos WHERE id_alojamiento = ?";
@@ -75,6 +94,13 @@ public class TouristApartmentDB implements TouristApartmentDAO {
         return rowsAffected != 0;
     }
 
+    /**
+     * Inserts a new tourist apartment into the database.
+     *
+     * @param insertedApartment the tourist apartment to insert.
+     * @return true if the insertion was successful, false otherwise.
+     * @throws SQLException if a database access error occurs.
+     */
     @Override
     public boolean insertTouristApartment(TouristApartmentDTO insertedApartment) throws SQLException {
         String sql = "INSERT INTO alojamientos (nombre, calle) VALUES (?, ?)";
