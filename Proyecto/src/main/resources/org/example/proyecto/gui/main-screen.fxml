@@ -25,32 +25,42 @@
    </top>
    <left>
       <Pane prefHeight="640.0" prefWidth="180.0" style="-fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="clientMenuBTN" mnemonicParsing="false" onAction="#loadClientMenu" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Clientes">
-               <font>
-                  <Font size="20.0" />
-               </font></Button>
-            <Button fx:id="hotelMenuBTN" layoutY="60.0" mnemonicParsing="false" onAction="#loadHotelMenu" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Hoteles">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="apartmentMenuBTN" layoutY="120.0" mnemonicParsing="false" onAction="#loadApartmentMenu" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Apartamentos">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="bookingMenuBTN" layoutY="180.0" mnemonicParsing="false" onAction="#loadBookingMenu" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Reservas">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-            <Button fx:id="logOutButton" layoutY="580.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Cerrar Sesión">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Button>
-         </children>
+         <Button fx:id="clientMenuBTN" mnemonicParsing="false" onAction="#loadClientMenu" prefHeight="60.0"
+                 prefWidth="180.0" style="-fx-background-color: #ddd;" text="Clientes">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
+         <Button fx:id="hotelMenuBTN" layoutY="60.0" mnemonicParsing="false" onAction="#loadHotelMenu" prefHeight="60.0"
+                 prefWidth="180.0" style="-fx-background-color: #ddd;" text="Hoteles">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
+         <Button fx:id="apartmentMenuBTN" layoutY="120.0" mnemonicParsing="false" onAction="#loadApartmentMenu"
+                 prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Apartamentos">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
+         <Button fx:id="bookingMenuBTN" layoutY="180.0" mnemonicParsing="false" onAction="#loadBookingMenu"
+                 prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Reservas">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
+         <Button fx:id="logOutButton" layoutY="580.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="180.0"
+                 style="-fx-background-color: #ddd;" text="Cerrar Sesión">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
+         <Button fx:id="userMenuButton" layoutY="240.0" mnemonicParsing="false" onAction="#loadUserMenu"
+                 prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Usuarios">
+            <font>
+               <Font size="20.0"/>
+            </font>
+         </Button>
       </Pane>
    </left>
 </BorderPane>

@@ -22,6 +22,8 @@ module org.example.proyecto {
     exports org.example.proyecto.model.touristApartment to javafx.base;
     opens org.example.proyecto.model.housing to javafx.base;
     exports org.example.proyecto.model.housing to javafx.base;
+    opens org.example.proyecto.model.user to javafx.base;
+    exports org.example.proyecto.model.user to javafx.base;
 
 
 }

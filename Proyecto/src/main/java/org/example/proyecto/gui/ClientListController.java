@@ -24,7 +24,7 @@ public class ClientListController {
     @FXML
     public TextField clientAddress;
     @FXML
-    public TextField clientId;
+    public Label clientId;
     @FXML
     public TableView<ClientDTO> clientDataTable;
     @FXML
@@ -74,21 +74,8 @@ public class ClientListController {
         selectClientButton.setVisible(isSelectingClient);
     }
 
-    private void setClientList() throws SQLException, IOException {
-        ClientDB clientDB = new ClientDB();
-        this.clientList = clientDB.getClients();
-    }
-
-    private void selectClientDetails(ClientDTO selectedClient){
-        this.selectedClient = selectedClient;
-        clientId.setText(String.valueOf(selectedClient.getId_cuenta()));
-        clientEmail.setText(selectedClient.getEmail());
-        clientName.setText(selectedClient.getNombre_apellidos());
-        clientAddress.setText(selectedClient.getDireccion());
-    }
-
     @FXML
-    public void updateClientId(ActionEvent actionEvent) throws SQLException, IOException {
+    public void updateClient(ActionEvent actionEvent) throws SQLException, IOException {
         if (selectedClient == null) {
             AlertHelper.showNoUserSelectedAlert();
             return;
@@ -113,28 +100,6 @@ public class ClientListController {
                 clearTextFields();
             } catch (SQLException | IOException e) {
                 e.printStackTrace();
-            }
-        }
-    }
-
-    @FXML
-    public void deleteClient(ActionEvent actionEvent) {
-        if (selectedClient == null) {
-            AlertHelper.showNoUserSelectedAlert();
-            return;
-        }
-
-        ClientDTO clientToDelete = new ClientDTO(selectedClient);
-
-        if (AlertHelper.showConfirmationDialog("Confirmación de eliminación", "¿Desea insertar al cliente en la base de datos?")) {
-            try {
-                ClientDB clientDB = new ClientDB();
-                clientDB.deleteClient(clientToDelete);
-                setClientList();
-                clientDataTable.getItems().setAll(clientList);
-                AlertHelper.showDeletedUserAlert();
-            } catch (SQLException | IOException e) {
-                throw new RuntimeException(e);
             }
         }
     }
@@ -165,13 +130,36 @@ public class ClientListController {
         }
     }
 
+    @FXML
+    public void deleteClient(ActionEvent actionEvent) {
+        if (selectedClient == null) {
+            AlertHelper.showNoUserSelectedAlert();
+            return;
+        }
+
+        ClientDTO clientToDelete = new ClientDTO(selectedClient);
+
+        if (AlertHelper.showConfirmationDialog("Confirmación de eliminación", "¿Desea insertar al cliente en la base de datos?")) {
+            try {
+                ClientDB clientDB = new ClientDB();
+                clientDB.deleteClient(clientToDelete);
+                setClientList();
+                clientDataTable.getItems().setAll(clientList);
+                AlertHelper.showDeletedUserAlert();
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+
+
     private void clearTextFields() {
         selectedClient = null;
         clientId.setText("");
         clientEmail.setText("");
         clientName.setText("");
         clientAddress.setText("");
-        return;
     }
 
    @FXML
@@ -181,6 +169,7 @@ public class ClientListController {
        if (selectedClient != null){
            clearTextFields();
            setClientList();
+           clientDataTable.getItems().setAll(clientList);
            return;
        }
 
@@ -227,9 +216,18 @@ public class ClientListController {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-
     }
 
+    private void setClientList() throws SQLException, IOException {
+        ClientDB clientDB = new ClientDB();
+        this.clientList = clientDB.getClients();
+    }
 
+    private void selectClientDetails(ClientDTO selectedClient){
+        this.selectedClient = selectedClient;
+        clientId.setText(String.valueOf(selectedClient.getId_cuenta()));
+        clientEmail.setText(selectedClient.getEmail());
+        clientName.setText(selectedClient.getNombre_apellidos());
+        clientAddress.setText(selectedClient.getDireccion());
+    }
 }

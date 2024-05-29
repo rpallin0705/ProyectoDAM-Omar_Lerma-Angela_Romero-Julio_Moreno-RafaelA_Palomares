@@ -1,5 +1,6 @@
 package org.example.proyecto.gui;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -25,6 +26,8 @@ public class MainScreenController {
     public Button apartmentMenuBTN;
     @FXML
     public Button logOutButton;
+    @FXML
+    public Button userMenuButton;
 
 
     @FXML
@@ -46,13 +49,15 @@ public class MainScreenController {
     public void loadApartmentMenu() {
         loadComponentInTemplateComponent("apartment-list.fxml");
     }
+    @FXML
+    public void loadUserMenu() { loadComponentInTemplateComponent("user-list.fxml"); }
 
     @FXML
     public void initialize(){
         List<Button> buttonsOnHover = new ArrayList<>();
         buttonsOnHover.add(clientMenuBTN); buttonsOnHover.add(hotelMenuBTN);
         buttonsOnHover.add(bookingMenuBTN); buttonsOnHover.add(apartmentMenuBTN);
-        buttonsOnHover.add(logOutButton);
+        buttonsOnHover.add(userMenuButton); buttonsOnHover.add(logOutButton);
 
         GuiEffectsHelper.addHoverEffectOnButtons(buttonsOnHover);
 
@@ -75,17 +80,6 @@ public class MainScreenController {
         }
     }
 
-
-
-
-    public void loadBookingList() {
-
-
-
-        //Gets controller component and send a string as parameter to identify pressed buttonData
-
-
-    }
 
 
 

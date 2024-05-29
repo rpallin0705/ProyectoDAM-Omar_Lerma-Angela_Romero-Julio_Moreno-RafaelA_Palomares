@@ -49,8 +49,6 @@ p
 @src/main/java/org/example/proyecto/model/account/AccountDAO.java,a\5\a52dea14813fe5b5ffebaec2293ec0fbe9c53b78
 o
 ?src/main/java/org/example/proyecto/model/account/AccountDB.java,3\a\3ad1c550a222e3b32f51539b9d878c1b8ca47526
-s
-Csrc/main/java/org/example/proyecto/gui/MenuComponentController.java,e\1\e1f963ad69d1ea28f474fe95cb17a6c98b062f45
 p
 @src/main/java/org/example/proyecto/gui/ClientListController.java,8\1\811e001a1304fba905c0dc509ad3c99d3df22846
 p
@@ -71,3 +69,5 @@ o
 ?src/main/java/org/example/proyecto/gui/HotelListController.java,e\b\eb4c30c6f84a82ad1674bf81e16bf58d12ee2267
 s
 Csrc/main/java/org/example/proyecto/gui/ApartmentListController.java,1\6\16bdc1980ffe76adae4528c2f330687930b64a23
+n
+>src/main/java/org/example/proyecto/gui/UserListController.java,e\5\e5e268719f8f38f092e223671f791aea552c39ea
