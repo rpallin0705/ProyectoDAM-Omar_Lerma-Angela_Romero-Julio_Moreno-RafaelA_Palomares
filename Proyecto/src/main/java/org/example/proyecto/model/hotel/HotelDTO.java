@@ -4,6 +4,15 @@ import org.example.proyecto.model.housing.HousingDTO;
 
 import java.util.Objects;
 
+/**
+ * Data Transfer Object (DTO) for hotel information.
+ * This class extends the HousingDTO class and represents hotel-specific data, including hotel classification, room type, and host number.
+ *
+ * @version 1.0
+ * @since 2024-05-28
+ *
+ * @Author Omar
+ */
 public class HotelDTO extends HousingDTO {
     /*attributes*/
     private int hotelClassification;
@@ -11,13 +20,14 @@ public class HotelDTO extends HousingDTO {
     private int hostNumber;
 
     /**
-     * HotelDTO builder
-     * @param id_alojamiento id
-     * @param nombre name
-     * @param calle address
-     * @param hotelClassification rating
-     * @param roomType room type
-     * @param hostNumber guests number
+     * Constructs a HotelDTO object with the specified details.
+     *
+     * @param id_alojamiento       The ID of the hotel.
+     * @param nombre               The name of the hotel.
+     * @param calle                The address of the hotel.
+     * @param hotelClassification  The classification rating of the hotel.
+     * @param roomType             The type of room available in the hotel.
+     * @param hostNumber           The number of guests the hotel can accommodate.
      */
     public HotelDTO(int id_alojamiento, String nombre, String calle, int hotelClassification, RoomType roomType, int hostNumber) {
         super(id_alojamiento, nombre, calle);
@@ -26,6 +36,15 @@ public class HotelDTO extends HousingDTO {
         this.hostNumber = hostNumber;
     }
 
+    /**
+     * Constructs a HotelDTO object with the specified details.
+     *
+     * @param hotelName            The name of the hotel.
+     * @param hotelAddress         The address of the hotel.
+     * @param hotelClassification  The classification rating of the hotel.
+     * @param roomType             The type of room available in the hotel.
+     * @param hostNumber           The number of guests the hotel can accommodate.
+     */
     public HotelDTO(String hotelName, String hotelAddress, Integer hotelClassification, RoomType roomType, Integer hostNumber) {
         super(hotelName, hotelAddress);
         this.hotelClassification = hotelClassification;
@@ -33,6 +52,11 @@ public class HotelDTO extends HousingDTO {
         this.hostNumber = hostNumber;
     }
 
+    /**
+     * Copy constructor for HotelDTO.
+     *
+     * @param hotelToCopy The HotelDTO object to be copied.
+     */
     public HotelDTO(HotelDTO hotelToCopy) {
         super(hotelToCopy.getHousingId(), hotelToCopy.getNombre(), hotelToCopy.getCalle());
         this.hotelClassification = hotelToCopy.hotelClassification;
@@ -48,25 +72,29 @@ public class HotelDTO extends HousingDTO {
     public int getHostNumber() {
         return hostNumber;
     }
+
     public RoomType getRoomType() {
         return roomType;
     }
+
     /*setters*/
     public void setHotelClassification(int hotelClassification) {
         this.hotelClassification = hotelClassification;
-
     }
+
     public void setHostNumber(int hostNumber) {
         this.hostNumber = hostNumber;
     }
 
     /**
-     * to string
-     * @return String with the attributes of a hotel in CSV format
+     * Returns a string representation of the hotel.
+     * The string contains the ID, name, address, classification, room type, and host number, separated by commas.
+     *
+     * @return the string representation of the hotel.
      */
     @Override
     public String toString() {
-        return String.format("%d,%s,%s,%d,%s,%d",super.getHousingId(),super.getNombre(),super.getCalle(), hotelClassification, roomType, hostNumber);
+        return String.format("%d,%s,%s,%d,%s,%d", super.getHousingId(), super.getNombre(), super.getCalle(), hotelClassification, roomType, hostNumber);
     }
 
     @Override

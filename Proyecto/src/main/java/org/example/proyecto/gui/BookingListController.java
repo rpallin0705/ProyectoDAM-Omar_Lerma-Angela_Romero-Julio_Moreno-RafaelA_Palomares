@@ -101,7 +101,7 @@ public class BookingListController {
         if (AlertHelper.showConfirmationDialog("Confirmacion de eliminación", "¿Desea borrar la reserva de la base de datos?")) {
             try {
                 BookingDB bookingDB = new BookingDB();
-                bookingDB.deleteBookingByID(bookingToDelete);
+                bookingDB.deleteBooking(bookingToDelete);
                 setBookingList();
                 bookingDataTable.getItems().setAll(bookingDataList);
             } catch (SQLException | IOException e) {

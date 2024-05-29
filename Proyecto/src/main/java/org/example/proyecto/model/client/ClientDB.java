@@ -7,20 +7,35 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Database Access Object (DAO) implementation for client operations.
+ * This class provides methods to interact with the database for CRUD operations on clients.
+ *
+ * @version 1.0
+ * @since 2024-05-28
+ *
+ * @Author Omar
+ */
 public class ClientDB implements ClientDAO {
     private Connection connection;
     private Statement statement;
     private PreparedStatement preparedStatement;
 
+    /**
+     * Constructs a {@code ClientDB} object and establishes a connection to the database.
+     *
+     * @throws SQLException if a database access error occurs.
+     * @throws IOException if an I/O error occurs.
+     */
     public ClientDB() throws SQLException, IOException {
         connection = SetUpConnection.getInstance().getConnection();
     }
 
     /**
-     * Get a list of al clients saved in database.
+     * Retrieves a list of all clients from the database.
      *
-     * @return List<ClientDTO> of saved clients.
-     * @throws SQLException Error ocurred during execution of SQL query.
+     * @return a List of ClientDTO objects representing all clients in the database.
+     * @throws SQLException if a database access error occurs.
      */
     @Override
     public List<ClientDTO> getClients() throws SQLException {
@@ -34,50 +49,50 @@ public class ClientDB implements ClientDAO {
             String email = resultSet.getString("email");
             String nombre_apellidos = resultSet.getString("nombre_apellidos");
             String direccion = resultSet.getString("direccion");
-            clientDTO = new ClientDTO(id_cuenta,email,nombre_apellidos,direccion);
+            clientDTO = new ClientDTO(id_cuenta, email, nombre_apellidos, direccion);
             clients.add(clientDTO);
         }
         return clients;
     }
 
     /**
-     * Insert a new client in database.
+     * Inserts a new client into the database.
      *
-     * @param newClient ClientDTO object to be saved in database.
-     * @return true if inserted successfully, false otherwise.
-     * @throws SQLException error ocurred during execution of SQL query.
+     * @param newClient the ClientDTO object representing the new client to be inserted.
+     * @return true if the client was successfully inserted, false otherwise.
+     * @throws SQLException if a database access error occurs.
      */
     @Override
     public boolean insertClient(ClientDTO newClient) throws SQLException {
-        //cuentas
+        // cuentas
         String sql = "INSERT INTO cuentas (email, nombre_apellidos) VALUES (?, ?)";
-        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setString(1, newClient.getEmail());
         preparedStatement.setString(2, newClient.getNombre_apellidos());
         int rowsAffected = preparedStatement.executeUpdate();
-        //conseguir id_cuenta de la cuenta insertada
+        // get the id_cuenta of the inserted account
         ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
+        generatedKeys.next();
         int idConseguido = generatedKeys.getInt(1);
-        //clientes
+        // clientes
         String sql2 = "INSERT INTO clientes (id_cuenta, direccion) VALUES (?, ?)";
         preparedStatement = connection.prepareStatement(sql2);
         preparedStatement.setInt(1, idConseguido);
-        preparedStatement.setString(2,newClient.getDireccion());
+        preparedStatement.setString(2, newClient.getDireccion());
         rowsAffected += preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
 
     /**
-     * Elimina un cliente de la base de datos utilizando su email como identificador. Delete a client from database using its email as identifier.
+     * Deletes a client from the database using its ID as identifier.
      *
-     * @param deletedClient client who is going to be deleted.
-     * @return true si el cliente fue eliminado exitosamente, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
-     * @todo Cuando se actualice el script de la base de datos hacer la logica para que sea por id
+     * @param deletedClient the ClientDTO object representing the client to be deleted.
+     * @return true if the client was successfully deleted, false otherwise.
+     * @throws SQLException if a database access error occurs.
      */
     @Override
     public boolean deleteClient(ClientDTO deletedClient) throws SQLException {
-        //clientes && cuentas
+        // clientes && cuentas
         String sql = "DELETE FROM clientes WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, deletedClient.getId_cuenta());
@@ -85,29 +100,28 @@ public class ClientDB implements ClientDAO {
         return rowsAffected != 0;
     }
 
-
     /**
-     * Update client information in database.
-     * @param updatedClient ClientDTO object with the new information.
+     * Updates the information of an existing client in the database.
+     *
+     * @param updatedClient the ClientDTO object representing the client with updated information.
      * @return true if the client information was successfully updated, false otherwise.
-     * @throws SQLException if an error occurs while executing the SQL query.
+     * @throws SQLException if a database access error occurs.
      */
     @Override
     public boolean updateClient(ClientDTO updatedClient) throws SQLException {
-        //cuentas
+        // cuentas
         String sql = "UPDATE cuentas SET email = ?, nombre_apellidos = ? WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1,updatedClient.getEmail());
-        preparedStatement.setString(2,updatedClient.getNombre_apellidos());
-        preparedStatement.setInt(3,updatedClient.getId_cuenta());
+        preparedStatement.setString(1, updatedClient.getEmail());
+        preparedStatement.setString(2, updatedClient.getNombre_apellidos());
+        preparedStatement.setInt(3, updatedClient.getId_cuenta());
         int rowsAffected = preparedStatement.executeUpdate();
-        //clientes
+        // clientes
         String sql2 = "UPDATE clientes SET direccion = ? WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql2);
         preparedStatement.setString(1, updatedClient.getDireccion());
-        preparedStatement.setInt(2,updatedClient.getId_cuenta());
-        rowsAffected = preparedStatement.executeUpdate();
+        preparedStatement.setInt(2, updatedClient.getId_cuenta());
+        rowsAffected += preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
-
 }
