@@ -44,7 +44,7 @@ public class MainScreenController {
 
     @FXML
     public void loadApartmentMenu() {
-        loadComponentInTemplateComponent("client-list.fxml");
+        loadComponentInTemplateComponent("apartment-list.fxml");
     }
 
     @FXML

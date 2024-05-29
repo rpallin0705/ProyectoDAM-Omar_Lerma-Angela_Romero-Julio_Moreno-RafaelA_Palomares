@@ -67,3 +67,7 @@ Gsrc/main/java/org/example/proyecto/model/booking/BookingDataHelper.java,c\0\c0
 Rsrc/main/java/org/example/proyecto/model/touristApartment/TouristApartmentDAO.java,2\b\2bb9c14a8a5413d103f6c6ed8470ed04f0bbe45f
 Å
 Qsrc/main/java/org/example/proyecto/model/touristApartment/TouristApartmentDB.java,c\a\cab1809ea0355092a2244b7ae838e8525d3d49c2
+o
+?src/main/java/org/example/proyecto/gui/HotelListController.java,e\b\eb4c30c6f84a82ad1674bf81e16bf58d12ee2267
+s
+Csrc/main/java/org/example/proyecto/gui/ApartmentListController.java,1\6\16bdc1980ffe76adae4528c2f330687930b64a23
