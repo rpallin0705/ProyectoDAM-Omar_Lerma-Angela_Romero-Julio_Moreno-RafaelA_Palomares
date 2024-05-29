@@ -14,6 +14,7 @@ import java.time.LocalDate;
 public class BookingDataHelper {
     private BookingDTO booking;
     private String email;
+    private String housingName;
 
     /**
      * Constructs a {@code BookingDataHelper} object with the specified booking and email.
@@ -21,7 +22,7 @@ public class BookingDataHelper {
      * @param booking a {@link BookingDTO} object representing the booking.
      * @param email the email address associated with the booking.
      */
-    public BookingDataHelper(BookingDTO booking, String email) {
+    public BookingDataHelper(BookingDTO booking, String email, String housingName) {
         this.booking = booking;
         this.email = email;
     }
@@ -60,6 +61,14 @@ public class BookingDataHelper {
      */
     public String getEmail() {
         return email;
+    }
+
+    public String getHousingName() {
+        return housingName;
+    }
+
+    public void setHousingName(String housingName) {
+        this.housingName = housingName;
     }
 
     /**

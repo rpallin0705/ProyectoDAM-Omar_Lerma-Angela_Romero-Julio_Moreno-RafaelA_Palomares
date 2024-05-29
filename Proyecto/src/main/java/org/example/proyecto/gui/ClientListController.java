@@ -4,12 +4,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import org.example.proyecto.model.client.ClientDB;
 import org.example.proyecto.model.client.ClientDTO;
 
 
+import java.awt.*;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -38,6 +44,8 @@ public class ClientListController {
     @FXML
     public Button selectClientButton;
     @FXML
+    public Button searchImageButton;
+    @FXML
     AnchorPane templateComponent = null;
 
     private List<ClientDTO> clientList = null;
@@ -47,6 +55,13 @@ public class ClientListController {
     @FXML
     public void initialize(){
         try {
+
+
+            Image image = new Image("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+            ImageView imageView = new ImageView(image);
+            searchImageButton.setGraphic(imageView);
+
+
             clientIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_cuenta"));
             clientNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre_apellidos"));
             clientEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));

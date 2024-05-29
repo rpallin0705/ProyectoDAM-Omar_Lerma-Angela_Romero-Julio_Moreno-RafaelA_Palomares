@@ -22,8 +22,13 @@ public class TouristApartmentDTO extends HousingDTO {
      * @param calle            The address of the tourist apartment.
      * @param downtownDistance The distance to the downtown for the tourist apartment.
      */
-    public TouristApartmentDTO(int housingId, String nombre, String calle, int downtownDistance) {
+    public TouristApartmentDTO(int housingId, String nombre, String calle, float downtownDistance) {
         super(housingId, nombre, calle);
+        this.downtownDistance = downtownDistance;
+    }
+
+    public TouristApartmentDTO(String nombre, String calle, float downtownDistance) {
+        super(nombre, calle);
         this.downtownDistance = downtownDistance;
     }
 
