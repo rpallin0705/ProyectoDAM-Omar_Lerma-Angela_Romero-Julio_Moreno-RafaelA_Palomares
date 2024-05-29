@@ -83,6 +83,28 @@
       </VBox>
    </left>
    <center>
-      <AnchorPane fx:id="componenteMultiusos" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <AnchorPane fx:id="componenteMultiusos" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button layoutX="75.0" layoutY="59.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0" text="Crear Reserva">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button layoutX="350.0" layoutY="59.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0"  text="Modificar Reserva">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button layoutX="75.0" layoutY="250.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0" text="Eliminar Reserva">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+            <Button layoutX="350.0" layoutY="250.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0" text="Ver Reservas">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Button>
+         </children></AnchorPane>
    </center>
 </BorderPane>

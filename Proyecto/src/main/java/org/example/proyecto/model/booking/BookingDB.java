@@ -37,8 +37,9 @@ public class BookingDB implements BookingDAO{
             LocalDate fecha_ini = LocalDate.of(resultSet.getDate("fecha_ini").getYear(),resultSet.getDate("fecha_ini").getMonth(),resultSet.getDate("fecha_ini").getDay());
             LocalDate fecha_fin =LocalDate.of(resultSet.getDate("fecha_fin").getYear(),resultSet.getDate("fecha_fin").getMonth(),resultSet.getDate("fecha_fin").getDay());
             int id_cuenta = resultSet.getInt("id_cuenta");
+            int id_alojamiento = resultSet.getInt("id_alojamiento");
             int id_reserva = resultSet.getInt("id_reserva");
-            bookingDTO = new BookingDTO(fecha_ini, fecha_fin, id_reserva, id_cuenta );
+            bookingDTO = new BookingDTO(fecha_ini, fecha_fin, id_reserva, id_cuenta,id_alojamiento);
             bookings.add(bookingDTO);
         }
         return bookings;
@@ -53,10 +54,11 @@ public class BookingDB implements BookingDAO{
      */
     @Override
     public boolean insertBooking(BookingDTO newBooking) throws SQLException {
-        String sql = "INSERT INTO reservas (fecha_ini, fecha_fin, id_cuenta) VALUES(?, ?, ?);";
+        String sql = "INSERT INTO reservas (fecha_ini, fecha_fin, id_cuenta, id_alojamiento) VALUES(?, ?, ?, ?);";
         preparedStatement.setDate(1, java.sql.Date.valueOf(newBooking.getCheckInDate()));
         preparedStatement.setDate(2, java.sql.Date.valueOf(newBooking.getCheckOutDate()));
         preparedStatement.setInt(3, newBooking.getCountId());
+        preparedStatement.setInt(3, newBooking.getBookingId());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
@@ -87,12 +89,13 @@ public class BookingDB implements BookingDAO{
      */
     @Override
     public boolean updateBooking(BookingDTO updatedBooking) throws SQLException {
-        String sql = "UPDATE reservas SET fecha_ini = ?, fecha_fin = ?, id_cuenta = ? WHERE id_reserva = ?";
+        String sql = "UPDATE reservas SET fecha_ini = ?, fecha_fin = ?, id_cuenta = ?, id_alojamiento = ? WHERE id_reserva = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setDate(1,java.sql.Date.valueOf(updatedBooking.getCheckInDate()));
         preparedStatement.setDate(2,java.sql.Date.valueOf(updatedBooking.getCheckOutDate()));
         preparedStatement.setInt(3,updatedBooking.getCountId());
-        preparedStatement.setInt(4,updatedBooking.getBookingId());
+        preparedStatement.setInt(4,updatedBooking.getHousingId());
+        preparedStatement.setInt(5,updatedBooking.getBookingId());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
 
