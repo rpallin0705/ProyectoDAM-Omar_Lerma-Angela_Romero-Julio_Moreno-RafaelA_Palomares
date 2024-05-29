@@ -1,5 +1,7 @@
 package org.example.proyecto.model.touristApartment;
 
+import org.example.proyecto.model.hotel.HotelDTO;
+import org.example.proyecto.model.hotel.RoomType;
 import org.example.proyecto.model.housing.HousingDTO;
 
 /**
@@ -22,11 +24,31 @@ public class TouristApartmentDTO extends HousingDTO {
      * @param calle            The address of the tourist apartment.
      * @param downtownDistance The distance to the downtown for the tourist apartment.
      */
-    public TouristApartmentDTO(int housingId, String nombre, String calle, int downtownDistance) {
+    public TouristApartmentDTO(int housingId, String nombre, String calle, float downtownDistance) {
         super(housingId, nombre, calle);
         this.downtownDistance = downtownDistance;
     }
+    /**
+     * Constructs a TouristApartmentDTO object with the specified details.
+     *
+     * @param nombre           The name of the tourist apartment.
+     * @param calle            The address of the tourist apartment.
+     * @param downtownDistance The distance to the downtown for the tourist apartment.
+     */
+    public TouristApartmentDTO(String nombre, String calle, float downtownDistance) {
+        super(nombre, calle);
+        this.downtownDistance = downtownDistance;
+    }
 
+    /**
+     * Copy constructor for HotelDTO.
+     *
+     * @param touristApartmentToCopy The TouristApartmentDTO object to be copied.
+     */
+    public TouristApartmentDTO(TouristApartmentDTO touristApartmentToCopy) {
+        super(touristApartmentToCopy.getHousingId(), touristApartmentToCopy.getNombre(), touristApartmentToCopy.getCalle());
+        this.downtownDistance = touristApartmentToCopy.getDowntownDistance();
+    }
     /**
      * Gets the distance to the downtown for the tourist apartment.
      *

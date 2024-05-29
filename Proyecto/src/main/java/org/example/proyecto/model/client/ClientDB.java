@@ -93,7 +93,7 @@ public class ClientDB implements ClientDAO {
     @Override
     public boolean deleteClient(ClientDTO deletedClient) throws SQLException {
         // clientes && cuentas
-        String sql = "DELETE FROM clientes WHERE id_cuenta = ?";
+        String sql = "DELETE FROM cuentas WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, deletedClient.getId_cuenta());
         int rowsAffected = preparedStatement.executeUpdate();

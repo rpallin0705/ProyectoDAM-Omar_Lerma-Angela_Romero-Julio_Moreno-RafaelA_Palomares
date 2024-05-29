@@ -12,7 +12,6 @@ import java.util.List;
  *
  * @version 1.0
  * @since 2024-05-28
- *
  * @Author Omar
  */
 public class HotelDB implements HotelDAO {
@@ -30,6 +29,12 @@ public class HotelDB implements HotelDAO {
         connection = SetUpConnection.getInstance().getConnection();
     }
 
+    /**
+     * Retrieves the list of hotels from the database.
+     *
+     * @return a list of HotelDTO objects.
+     * @throws SQLException if a database access error occurs.
+     */
     @Override
     public List<HotelDTO> getHotels() throws SQLException {
         ArrayList<HotelDTO> hotels = new ArrayList<>();
@@ -62,6 +67,13 @@ public class HotelDB implements HotelDAO {
         return hotels;
     }
 
+    /**
+     * Updates hotel information in the database.
+     *
+     * @param updatedHotel the updated hotel.
+     * @return true if the update was successful, false otherwise.
+     * @throws SQLException if a database access error occurs.
+     */
     @Override
     public boolean updateHotel(HotelDTO updatedHotel) throws SQLException {
         //alojamientos
@@ -82,6 +94,13 @@ public class HotelDB implements HotelDAO {
         return rowsAffected != 0;
     }
 
+    /**
+     * Deletes a hotel from the database.
+     *
+     * @param deletedHotel the hotel to delete.
+     * @return true if the deletion was successful, false otherwise.
+     * @throws SQLException if a database access error occurs.
+     */
     @Override
     public boolean deleteHotel(HotelDTO deletedHotel) throws SQLException {
         String sql = "DELETE FROM alojamientos WHERE id_alojamiento = ?";
@@ -91,6 +110,13 @@ public class HotelDB implements HotelDAO {
         return rowsAffected != 0;
     }
 
+    /**
+     * Inserts a new hotel into the database.
+     *
+     * @param insertedHotel the hotel to insert.
+     * @return true if the insertion was successful, false otherwise.
+     * @throws SQLException if a database access error occurs.
+     */
     @Override
     public boolean insertHotel(HotelDTO insertedHotel) throws SQLException {
         //alojamientos
