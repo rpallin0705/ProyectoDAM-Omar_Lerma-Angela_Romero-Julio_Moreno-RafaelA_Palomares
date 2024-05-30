@@ -61,7 +61,6 @@ public class BookingListController {
     AnchorPane templateComponent = null;
 
     private List<BookingDataHelper> bookingDataList = null;
-    private List<ClientDTO> clientList = null;
     private BookingDataHelper selectedBooking = null;
     private BookingDataHelper dataForBooking = null;
 
@@ -150,7 +149,7 @@ public class BookingListController {
 
         BookingDTO updatedBooking = new BookingDTO(selectedBooking.getCheckInDate(), selectedBooking.getCheckOutDate(), 0, 0);
 
-        if (updatedBooking.equals(selectedBooking)) {
+        if (updatedBooking.equals(selectedBooking.getBooking())) {
             AlertHelper.showNoChangesAlert();
             return;
         }
@@ -346,8 +345,8 @@ public class BookingListController {
         List<BookingDataHelper> bookingsData = new ArrayList<>();
         for (BookingDTO book : bookings) {
             String email = accountEmailMap.get(book.getCountId());
-            String housingName = housingNameMap.get(book.getHousingId());
-            bookingsData.add(new BookingDataHelper(book, email, housingName));
+            String housingNameString = housingNameMap.get(book.getHousingId());
+            bookingsData.add(new BookingDataHelper(book, email, housingNameString));
         }
 
         this.bookingDataList = bookingsData;

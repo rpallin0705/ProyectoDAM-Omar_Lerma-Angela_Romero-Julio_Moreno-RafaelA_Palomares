@@ -9,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
 import org.example.proyecto.model.user.UserDB;
 import org.example.proyecto.model.user.UserDTO;
@@ -25,6 +27,13 @@ public class LoginController {
     private Button login;
 
     private UserDTO userLogedIn;
+
+    @FXML
+    public void initialize() {
+        // Añadir eventos de teclado
+        userEmail.setOnKeyPressed(event -> handleKeyPressed(event));
+        userPasswd.setOnKeyPressed(event -> handleKeyPressed(event));
+    }
 
     @FXML
     public void loginUser(ActionEvent actionEvent) {
@@ -45,8 +54,6 @@ public class LoginController {
 
                 stage.setScene(scene);
                 stage.show();
-            } else {
-                showPopup("Los datos del usuario son incorrectos.");
             }
         } catch (SQLException | IOException e) {
             showPopup(e.getMessage());
@@ -56,8 +63,19 @@ public class LoginController {
     // Método para mostrar un popup al lado del botón de login
     private void showPopup(String message) {
         Tooltip tooltip = new Tooltip(message);
-        tooltip.setAutoHide(true); // El tooltip se oculta automáticamente después de un tiempo
+        tooltip.setAutoHide(true);
         tooltip.show(login, login.getScene().getWindow().getX() + login.getLayoutX(),
                 login.getScene().getWindow().getY() + login.getLayoutY() + login.getHeight());
+    }
+
+    // Manejar eventos de teclado
+    private void handleKeyPressed(KeyEvent event) {
+        if (event.getCode() == KeyCode.ENTER) {
+            if (event.getSource() == userEmail) {
+                userPasswd.requestFocus();
+            } else if (event.getSource() == userPasswd) {
+                loginUser(new ActionEvent());
+            }
+        }
     }
 }
