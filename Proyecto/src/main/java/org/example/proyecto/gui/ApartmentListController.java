@@ -42,6 +42,12 @@ public class ApartmentListController {
     @FXML
     public Button isSelectingHousingButton;
     @FXML
+    public Button updateApartmentButton;
+    @FXML
+    public Button deleteApartmentButton;
+    @FXML
+    public Button insertApartmentButton;
+    @FXML
     AnchorPane templateComponent = null;
 
     private List<TouristApartmentDTO> apartmentList = null;

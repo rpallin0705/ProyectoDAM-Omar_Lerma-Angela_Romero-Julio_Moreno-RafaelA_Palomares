@@ -85,7 +85,7 @@ public class UserListController {
 
         UserDTO newUser = new UserDTO(userEmail.getText(), userName.getText(), isAdmin.isSelected(), userPassword.getText());
 
-        if (AlertHelper.showConfirmationDialog("Registration Confirmation", "Do you want to register the user?")) {
+        if (AlertHelper.showConfirmationDialog("Confirmacion de registro", "¿Desea registrar el usuario?")) {
             try {
                 UserDB userDB = new UserDB();
                 userDB.insertUser(newUser);

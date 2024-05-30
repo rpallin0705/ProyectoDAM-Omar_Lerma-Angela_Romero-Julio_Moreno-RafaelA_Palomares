@@ -51,6 +51,12 @@ public class HotelListController {
     @FXML
     public Button isSelectingHousingButton;
     @FXML
+    public Button updateHotelButton;
+    @FXML
+    public Button deleteHotelButton;
+    @FXML
+    public Button insertHotelButton;
+    @FXML
     AnchorPane templateComponent = null;
 
     private List<HotelDTO> hotelList = null;

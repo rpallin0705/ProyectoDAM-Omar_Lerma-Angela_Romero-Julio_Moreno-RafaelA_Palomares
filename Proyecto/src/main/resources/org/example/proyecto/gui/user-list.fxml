@@ -7,7 +7,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.UserListController">
     <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
         <top>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="900.0" style="-fx-background-color: black;" text="Usuarios" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="900.0" style="-fx-background-color: grey;" text="Usuarios" textFill="WHITE" BorderPane.alignment="CENTER">
                 <font>
                     <Font size="35.0" />
                 </font>
@@ -42,7 +42,7 @@
                 <Button layoutX="10.0" layoutY="315.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="25.0" prefWidth="80.0" text="Modificar" />
                 <Button layoutX="110.0" layoutY="315.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="25.0" prefWidth="80.0" text="Crear" />
                 <Button layoutX="210.0" layoutY="315.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="80.0" text="Eliminar" />
-                <Button layoutX="231.0" layoutY="203.0" mnemonicParsing="false" onAction="#searchClient" prefHeight="25.0" prefWidth="25.0" text="Volver" />
+                <Button layoutX="231.0" layoutY="203.0" mnemonicParsing="false" onAction="#searchClient" prefHeight="25.0" prefWidth="25.0" />
             <Label fx:id="userIdLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="25.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Usuario" />
             <CheckBox fx:id="isAdmin" layoutX="164.0" layoutY="207.0" mnemonicParsing="false" text="Admin" />
             <Label layoutX="15.0" layoutY="171.0" prefHeight="25.0" prefWidth="65.0" text="Contraseña" />

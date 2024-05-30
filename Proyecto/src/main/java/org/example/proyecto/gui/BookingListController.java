@@ -102,7 +102,7 @@ public class BookingListController {
             return;
         }
 
-        if (dataForBooking.getClientForBooking() == null || checkInDate.getValue() == null || checkOutDate.getValue() == null || (dataForBooking.getHotelForBooking() == null && dataForBooking.getApartmentForBooking() == null)) {
+        if (dataForBooking == null || checkInDate.getValue() == null || checkOutDate.getValue() == null || dataForBooking.getHotelForBooking() == null || dataForBooking.getApartmentForBooking() == null) {
             AlertHelper.showMissingDataAlert();
             return;
         }

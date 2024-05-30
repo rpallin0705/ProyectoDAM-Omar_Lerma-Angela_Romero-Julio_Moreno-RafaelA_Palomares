@@ -7,7 +7,7 @@
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.ClientListController">
     <BorderPane layoutX="-5.0" prefHeight="640.0" prefWidth="900.0">
         <top>
-            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="910.0" style="-fx-background-color: grey;" text="Usuarios" textFill="WHITE" BorderPane.alignment="CENTER">
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="910.0" style="-fx-background-color: grey;" text="Clientes" textFill="WHITE" BorderPane.alignment="CENTER">
                 <font>
                     <Font size="35.0" />
                 </font>
@@ -36,11 +36,10 @@
 
                 <Label layoutX="18.0" layoutY="46.0" prefHeight="25.0" prefWidth="65.0" text="Id Cliente:" />
 
-                <Button layoutX="50.0" layoutY="350.0" mnemonicParsing="false" onAction="#updateClient" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
-                <Button layoutX="150.0" layoutY="350.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
-                <Button layoutX="95.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="90.0" text="Ver Reservas" />
-            <Button layoutX="53.0" layoutY="411.0" mnemonicParsing="false" onAction="#registerClient" prefWidth="70.0" text="Registrar" />
-            <Button fx:id="searchImageButton" layoutX="153.0" layoutY="411.0" mnemonicParsing="false" onAction="#searchClient" prefHeight="25.0" prefWidth="25.0" />
+                <Button layoutX="21.0" layoutY="278.0" mnemonicParsing="false" onAction="#updateClient" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
+                <Button layoutX="191.0" layoutY="278.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
+            <Button layoutX="112.0" layoutY="278.0" mnemonicParsing="false" onAction="#registerClient" prefWidth="70.0" text="Registrar" />
+            <Button fx:id="searchImageButton" layoutX="235.0" layoutY="236.0" mnemonicParsing="false" onAction="#searchClient" prefHeight="25.0" prefWidth="25.0" />
             <Button fx:id="selectClientButton" layoutX="92.0" layoutY="471.0" mnemonicParsing="false" onAction="#selectClientForBooking" prefHeight="47.0" prefWidth="90.0" style="-fx-background-color: orange;" text="Seleccionar para reserva" visible="false" />
             <Label fx:id="clientId" alignment="CENTER" layoutX="118.0" layoutY="46.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Cliente" />
             </Pane>
