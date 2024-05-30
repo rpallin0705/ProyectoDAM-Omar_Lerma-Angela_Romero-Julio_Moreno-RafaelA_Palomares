@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDB implements UserDAO {
-    private Connection connection;
+    Connection connection;
     private Statement statement;
     private PreparedStatement preparedStatement;
 

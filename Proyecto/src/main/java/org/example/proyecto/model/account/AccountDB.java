@@ -19,7 +19,7 @@ public class AccountDB implements AccountDAO{
 
     @Override
     public List<AccountDTO> getAccount() throws SQLException {
-        String sql = "SELECT * FROM accounts;";
+        String sql = "SELECT * FROM cuentas;";
         List<AccountDTO> accounts = new ArrayList<>();
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
