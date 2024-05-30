@@ -36,6 +36,14 @@ public class BookingDTO {
         this.housingId = housingId;
     }
 
+    /**
+     * Constructs a {@code BookingDTO} object with the specified details.
+     *
+     * @param checkInDate the starting date of the booking.
+     * @param checkOutDate the ending date of the booking.
+     * @param countId the ID of the account associated with the booking.
+     * @param housingId the ID of the housing associated with the booking.
+     */
     public BookingDTO(LocalDate checkInDate, LocalDate checkOutDate, int countId, int housingId) {
         this.checkInDate = checkInDate;
         this.checkOutDate = checkOutDate;
@@ -43,6 +51,11 @@ public class BookingDTO {
         this.housingId = housingId;
     }
 
+    /**
+     * Constructs a {@code BookingDTO} object with the specified details.
+     *
+     * @param selectedBooking object to create a copy
+     */
     public BookingDTO(BookingDTO selectedBooking) {
         this.checkInDate = selectedBooking.getCheckInDate();
         this.checkOutDate = selectedBooking.getCheckOutDate();

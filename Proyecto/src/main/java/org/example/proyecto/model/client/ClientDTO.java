@@ -29,19 +29,6 @@ public class ClientDTO extends AccountDTO {
         this.direccion = direccion;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof ClientDTO clientDTO)) return false;
-        if (!super.equals(o)) return false;
-        return Objects.equals(direccion, clientDTO.direccion);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(super.hashCode(), direccion);
-    }
-
     /**
      * Constructs a {@code ClientDTO} object with the specified email, name, surname, and address.
      *
@@ -96,4 +83,33 @@ public class ClientDTO extends AccountDTO {
     public String toString() {
         return String.format("%s,%s", super.toString(), direccion);
     }
+
+    /**
+     * Indicates whether some other object is "equal to" this one.
+     * This method checks if the given object is an instance of ClientDTO,
+     * and if all the attributes (including inherited attributes) are equal.
+     *
+     * @param o the reference object with which to compare.
+     * @return true if this object is the same as the o argument; false otherwise.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ClientDTO clientDTO)) return false;
+        if (!super.equals(o)) return false;
+        return Objects.equals(direccion, clientDTO.direccion);
+    }
+
+    /**
+     * Returns a hash code value for the object.
+     * This method returns the hash code value based on the hash code of
+     * the superclass and the specific attribute 'direccion'.
+     *
+     * @return a hash code value for this object.
+     */
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), direccion);
+    }
+
 }

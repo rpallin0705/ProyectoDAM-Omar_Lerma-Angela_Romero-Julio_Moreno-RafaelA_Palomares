@@ -63,24 +63,47 @@ public class HotelDTO extends HousingDTO {
         this.hostNumber = hotelToCopy.getHostNumber();
     }
 
-    /*getters*/
+    /**
+     * Gets the classification of the hotel.
+     *
+     * @return the classification of the hotel.
+     */
     public int getHotelClassification() {
         return hotelClassification;
     }
 
+    /**
+     * Gets the number of hosts in the hotel.
+     *
+     * @return the number of hosts in the hotel.
+     */
     public int getHostNumber() {
         return hostNumber;
     }
 
+    /**
+     * Gets the type of room in the hotel.
+     *
+     * @return the type of room in the hotel.
+     */
     public RoomType getRoomType() {
         return roomType;
     }
 
-    /*setters*/
+    /**
+     * Sets the classification of the hotel.
+     *
+     * @param hotelClassification the new classification of the hotel.
+     */
     public void setHotelClassification(int hotelClassification) {
         this.hotelClassification = hotelClassification;
     }
 
+    /**
+     * Sets the number of hosts in the hotel.
+     *
+     * @param hostNumber the new number of hosts in the hotel.
+     */
     public void setHostNumber(int hostNumber) {
         this.hostNumber = hostNumber;
     }
