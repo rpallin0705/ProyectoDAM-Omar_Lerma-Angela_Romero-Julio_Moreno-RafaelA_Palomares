@@ -1,6 +1,7 @@
 package org.example.proyecto.model.booking;
 
 import java.time.LocalDate;
+import java.util.Objects;
 
 /**
  * Data Transfer Object (DTO) for booking information.
@@ -33,6 +34,21 @@ public class BookingDTO {
         this.bookingId = bookingId;
         this.countId = countId;
         this.housingId = housingId;
+    }
+
+    public BookingDTO(LocalDate checkInDate, LocalDate checkOutDate, int countId, int housingId) {
+        this.checkInDate = checkInDate;
+        this.checkOutDate = checkOutDate;
+        this.countId = countId;
+        this.housingId = housingId;
+    }
+
+    public BookingDTO(BookingDTO selectedBooking) {
+        this.checkInDate = selectedBooking.getCheckInDate();
+        this.checkOutDate = selectedBooking.getCheckOutDate();
+        this.bookingId = selectedBooking.getBookingId();
+        this.countId = selectedBooking.getCountId();
+        this.housingId = selectedBooking.getHousingId();
     }
 
     /* GETTERS */
@@ -127,6 +143,18 @@ public class BookingDTO {
      */
     public void setHousingId(int housingId) {
         this.housingId = housingId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BookingDTO that)) return false;
+        return Objects.equals(checkInDate, that.checkInDate) && Objects.equals(checkOutDate, that.checkOutDate);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(checkInDate, checkOutDate);
     }
 
     /**

@@ -6,7 +6,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import org.example.proyecto.model.account.AccountDTO;
 import org.example.proyecto.model.booking.BookingDB;
 import org.example.proyecto.model.booking.BookingDTO;
 import org.example.proyecto.model.booking.BookingDataHelper;
@@ -49,22 +48,22 @@ public class BookingListController {
     @FXML
     public TableColumn<BookingDataHelper, String> bookingNameColumn;
     @FXML
-    public Label clientEmailLabel;
+    public TextField clientEmail;
     @FXML
     public Label bookingIdLabel;
     @FXML
-    public Label housingNameLabel;
+    public TextField housingName;
     @FXML
     public Button deleteBookingUserButton;
     @FXML
-    public Button selectBookingClientButton;
+    public Button selectClientForBookingButton;
+    @FXML
+    public Button selectHousingForBookingButton;
 
     private List<BookingDataHelper> bookingDataList = null;
     private List<ClientDTO> clientList = null;
     private BookingDataHelper selectedBooking = null;
-    private ClientDTO clientForBooking = null;
-    private HotelDTO hotelForBooking = null;
-    private TouristApartmentDTO touristApartmentForBooking = null;
+    private BookingDataHelper dataForBooking = null;
 
     AnchorPane templateComponent = null;
 
@@ -92,64 +91,37 @@ public class BookingListController {
         }
     }
 
-    public void setTemplateComponent(AnchorPane templateComponent){
-        this.templateComponent = templateComponent;
-    }
-
-    @FXML
-    public void selectClientForBooking(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("client-list.fxml"));
-            AnchorPane menu = loader.load();
-
-            ClientListController controller = loader.getController();
-            controller.setIsSelectingClient(true);
-            controller.setTemplateComponent(templateComponent);
-
-            templateComponent.getChildren().setAll(menu);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    //todo insertar botones y funciones para seleccionar en hotel y apartamento
-    @FXML
-    public void selectHousingForBooking(ActionEvent actionEvent) {
-        try {
-            FXMLLoader loader = null;
-            Object controller = null;
-            if (AlertHelper.showHousingSelectionAlert())
-                loader = new FXMLLoader(getClass().getResource("hotel-list.fxml"));
-            else
-                loader = new FXMLLoader(getClass().getResource("apartment-list.fxml"));
 
 
-
-            AnchorPane menu = loader.load();
-            controller = loader.getController();
-
-            if (controller instanceof HotelListController hotelListController) {
-                hotelListController.setIsSelectingHousing(true);
-                hotelListController.setTemplateComponent(templateComponent);
-            } else if (controller instanceof ApartmentListController apartmentListController) {
-                apartmentListController.setIsSelectingHousing(true);
-                apartmentListController.setTemplateComponent(templateComponent);
-            }
-            templateComponent.getChildren().setAll(menu);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-
-    }
 
     @FXML
     public void updateBooking(ActionEvent actionEvent) {
         if (selectedBooking == null) {
             AlertHelper.showNoUserSelectedAlert();
             return;
+        } else if (checkInDate.getValue() == null || checkOutDate.getValue() == null) {
+            AlertHelper.showMissingDataAlert();
+            return;
         }
-        //BookingDataHelper updatedBooking = new BookingDataHelper(selectedBooking);
+
+        BookingDTO updatedBooking = new BookingDTO(selectedBooking.getCheckInDate(), selectedBooking.getCheckOutDate(), 0 ,0 );
+
+        if (updatedBooking.equals(selectedBooking)){
+            AlertHelper.showNoChangesAlert();
+            return;
+        }
+
+        if (AlertHelper.showConfirmationDialog("Confirmación de registro", "¿Desea registrar esta reserva?")){
+            try{
+                BookingDB bookingDB = new BookingDB();
+                bookingDB.updateBooking(updatedBooking);
+                setBookingList();
+                bookingDataTable.getItems().setAll(bookingDataList);
+                clearTextFields();
+            } catch (SQLException |IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     @FXML
@@ -159,13 +131,14 @@ public class BookingListController {
             return;
         }
 
-        BookingDTO bookingToDelete = new BookingDTO(selectedBooking.getCheckInDate(), selectedBooking.getCheckOutDate(), selectedBooking.getBookingId(), 0, 0);
+        BookingDTO bookingToDelete = new BookingDTO(selectedBooking.getBooking());
         if (AlertHelper.showConfirmationDialog("Confirmacion de eliminación", "¿Desea borrar la reserva de la base de datos?")) {
             try {
                 BookingDB bookingDB = new BookingDB();
                 bookingDB.deleteBooking(bookingToDelete);
                 setBookingList();
                 bookingDataTable.getItems().setAll(bookingDataList);
+                clearTextFields();
             } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
             }
@@ -179,16 +152,16 @@ public class BookingListController {
             return;
         }
 
-        if (clientForBooking == null || checkInDate.getValue() == null || checkOutDate.getValue() == null || (hotelForBooking == null && touristApartmentForBooking == null)) {
+        if (dataForBooking.getClientForBooking() == null || checkInDate.getValue() == null || checkOutDate.getValue() == null || (dataForBooking.getHotelForBooking() == null && dataForBooking.getApartmentForBooking() == null)) {
             AlertHelper.showMissingDataAlert();
             return;
         }
 
         BookingDTO bookingToRegister = null;
-        if (hotelForBooking != null)
-            bookingToRegister = new BookingDTO(checkInDate.getValue(), checkOutDate.getValue(), clientForBooking.getId_cuenta(), clientForBooking.getId_cuenta(), touristApartmentForBooking.getHousingId());
-        else if (touristApartmentForBooking != null)
-            bookingToRegister = new BookingDTO(checkInDate.getValue(), checkOutDate.getValue(), clientForBooking.getId_cuenta(), clientForBooking.getId_cuenta(), hotelForBooking.getHousingId());
+        if (dataForBooking.getHotelForBooking() != null)
+            bookingToRegister = new BookingDTO(checkInDate.getValue(), checkOutDate.getValue(), dataForBooking.getClientForBooking().getId_cuenta(), dataForBooking.getHotelForBooking().getHousingId());
+        else if (dataForBooking.getApartmentForBooking() != null)
+            bookingToRegister = new BookingDTO(checkInDate.getValue(), checkOutDate.getValue(), dataForBooking.getClientForBooking().getId_cuenta(), dataForBooking.getApartmentForBooking().getHousingId());
 
 
 
@@ -198,7 +171,7 @@ public class BookingListController {
                 bookingDB.insertBooking(bookingToRegister);
                 setBookingList();
                 bookingDataTable.getItems().setAll(bookingDataList);
-                AlertHelper.showInsertedUserAlert();
+                clearTextFields();
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             } catch (IOException e) {
@@ -209,24 +182,59 @@ public class BookingListController {
 
     private void clearTextFields() {
         selectedBooking = null;
+        dataForBooking = null;
         bookingIdLabel.setText("Id Reserva");
         checkInDate.setValue(null);
         checkOutDate.setValue(null);
-        clientEmailLabel.setText("Email Cliente");
+        clientEmail.setText("");
+        housingName.setText("");
+        selectHousingForBookingButton.setDisable(false);
+        selectClientForBookingButton.setDisable(false);
     }
 
     @FXML
-    public void searchBooking(ActionEvent actionEvent) {
+    public void searchBooking(ActionEvent actionEvent) throws SQLException, IOException {
+        List<BookingDataHelper> resultList = new ArrayList<>();
+
+        if(selectedBooking != null) {
+            clearTextFields();
+            setBookingList();
+            bookingDataTable.getItems().setAll(bookingDataList);
+            return;
+        }
+
+        String emailText = clientEmail.getText() != null ? clientEmail.getText().trim().toLowerCase() : "";
+        String housingText = housingName.getText() != null ? housingName.getText().trim().toLowerCase() : "";
+
+        for (BookingDataHelper booking : bookingDataList) {
+            boolean matches = true;
+
+            if (!emailText.isEmpty()) {
+                matches &= booking.getEmail() != null && booking.getEmail().toLowerCase().contains(emailText);
+            }
+            if (!housingText.isEmpty()) {
+                matches &= booking.getHousingName() != null && booking.getHousingName().toLowerCase().contains(housingText);
+            }
+
+            if (matches) {
+                resultList.add(booking);
+            }
+        }
+
+        bookingDataTable.getItems().setAll(resultList);
     }
 
 
 
     private void selectBookingDetails(BookingDataHelper selectedBooking) {
         this.selectedBooking = selectedBooking;
-        clientEmailLabel.setText(selectedBooking.getEmail());
+        clientEmail.setText(selectedBooking.getEmail());
+        housingName.setText(selectedBooking.getHousingName());
         checkInDate.setValue(selectedBooking.getCheckInDate());
         checkOutDate.setValue(selectedBooking.getCheckOutDate());
         bookingIdLabel.setText(String.valueOf(selectedBooking.getBookingId()));
+        selectClientForBookingButton.setDisable(true);
+        selectHousingForBookingButton.setDisable(true);
     }
 
     private void setBookingList() throws SQLException, IOException {
@@ -260,39 +268,99 @@ public class BookingListController {
         this.bookingDataList = bookingsData;
     }
 
-
-
-    public void setClientForBooking(ClientDTO clientForBooking) {
-        this.clientForBooking = clientForBooking;
-        clientEmailLabel.setText(clientForBooking.getEmail());
-    }
-
-
-
     public void deleteBookingUser(ActionEvent actionEvent) {
-        clientForBooking = null;
+        dataForBooking.setClientForBooking(null);
         deleteBookingUserButton.setVisible(false);
-        selectBookingClientButton.setVisible(true);
-        clientEmailLabel.setText("Email Cliente");
+        selectClientForBookingButton.setVisible(true);
+        clientEmail.setText("Email Cliente");
     }
 
-    public void setSelectBookingCLientButton(){
-        if (clientForBooking == null){
+    /*public void setSelectBookingCLientButton(){
+        if (dataForBooking.getClientForBooking() == null){
             deleteBookingUserButton.setVisible(false);
             selectBookingClientButton.setVisible(true);
         } else {
             deleteBookingUserButton.setVisible(true);
             selectBookingClientButton.setVisible(false);
         }
-    }
+    }*/
 
     public void setApartmentForBooking(TouristApartmentDTO apartmentForBooking) {
-        this.touristApartmentForBooking = apartmentForBooking;
-        housingNameLabel.setText(apartmentForBooking.getNombre());
+        this.dataForBooking.setApartmentForBooking(apartmentForBooking);
+        housingName.setText(apartmentForBooking.getNombre());
     }
 
+
+
     public void setHotelForBooking(HotelDTO selectedHotel) {
-        this.hotelForBooking = selectedHotel;
-        housingNameLabel.setText(selectedHotel.getNombre());
+        this.dataForBooking.setHotelForBooking(selectedHotel);
+        housingName.setText(selectedHotel.getNombre());
+    }
+
+    @FXML
+    public void selectClientForBooking(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("client-list.fxml"));
+            AnchorPane menu = loader.load();
+
+            ClientListController controller = loader.getController();
+            controller.setIsSelectingClient(true);
+            controller.setTemplateComponent(templateComponent);
+            controller.setDataForBooking(dataForBooking);
+
+            templateComponent.getChildren().setAll(menu);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    public void selectHousingForBooking(ActionEvent actionEvent) {
+        try {
+            FXMLLoader loader = null;
+            Object controller = null;
+            if (AlertHelper.showHousingSelectionAlert())
+                loader = new FXMLLoader(getClass().getResource("hotel-list.fxml"));
+            else
+                loader = new FXMLLoader(getClass().getResource("apartment-list.fxml"));
+
+            AnchorPane menu = loader.load();
+            controller = loader.getController();
+
+            if (controller instanceof HotelListController hotelListController) {
+                hotelListController.setIsSelectingHousing(true);
+                hotelListController.setTemplateComponent(templateComponent);
+                if (dataForBooking != null) {
+                    dataForBooking.setApartmentForBooking(null);
+                    dataForBooking.setHotelForBooking(null);
+                }
+                hotelListController.setDataForBooking(dataForBooking);
+            } else if (controller instanceof ApartmentListController apartmentListController) {
+                apartmentListController.setIsSelectingHousing(true);
+                apartmentListController.setTemplateComponent(templateComponent);
+                if (dataForBooking != null) {
+                    dataForBooking.setHotelForBooking(null);
+                    dataForBooking.setApartmentForBooking(null);
+                }
+                apartmentListController.setDataForBooking(dataForBooking);
+            }
+            templateComponent.getChildren().setAll(menu);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setTemplateComponent(AnchorPane templateComponent){
+        this.templateComponent = templateComponent;
+    }
+
+    public void setDataForBooking(BookingDataHelper dataForBooking){
+        this.dataForBooking = dataForBooking;
+        if (dataForBooking.getClientForBooking()!= null)
+            clientEmail.setText(dataForBooking.getClientForBooking().getEmail());
+        if (dataForBooking.getHotelForBooking()!= null)
+            housingName.setText(dataForBooking.getHotelForBooking().getNombre());
+        if (dataForBooking.getApartmentForBooking()!= null)
+            housingName.setText(dataForBooking.getApartmentForBooking().getNombre());
     }
 }

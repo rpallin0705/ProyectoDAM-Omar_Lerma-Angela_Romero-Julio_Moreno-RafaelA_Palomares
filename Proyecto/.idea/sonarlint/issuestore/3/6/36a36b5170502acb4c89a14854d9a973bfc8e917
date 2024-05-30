@@ -1,30 +1,30 @@
 
-r
+L
 java:S3740
-"/Provide the parametrized type for this generic.(—°Œ÷8½Ìææî1J$bb438293-7b25-4941-af6c-c0a00ad5c8b1
-r
-java:S3740"/Provide the parametrized type for this generic.(ª™§Ü8¬éææî1J$ad9874af-db2f-4f64-8c05-08364865610f
-›
-java:S1104"SMake adultos a static final constant or non-public and provide accessors if needed.(ÙŞ®ÿÿÿÿÿ8·÷åæî1J$cf50e454-ad4a-494a-8d1b-5e880dea8220
-š
-java:S1104	"RMake niÃ±os a static final constant or non-public and provide accessors if needed.(ÌÃ‹‹ùÿÿÿÿ8½³ææî1J$91e5f75c-8b02-40ea-a013-013bfe1c3be1
-
-java:S1104
-"ZMake tipoHabitacion a static final constant or non-public and provide accessors if needed.(—°Œ÷8¿Ìææî1J$971e1a57-5d77-49ee-94fe-21ee4267f9f0
-›
-java:S1104"XMake tipoEstancia a static final constant or non-public and provide accessors if needed.(ª™§Ü8­éææî1J$3083c63e-fcd4-446a-9b08-8e1140cf2c0a
-•
-java:S1104"RMake salida a static final constant or non-public and provide accessors if needed.(Ÿ«¿Á8ãçæî1J$e843e411-43ba-49c4-b988-0182065d583c
-–
-java:S1104"SMake entrada a static final constant or non-public and provide accessors if needed.(“ÿÎš8ÿ§çæî1J$db3d7f56-240a-4f3b-8857-7aafdb9be787
-™
-java:S1104"QMake email a static final constant or non-public and provide accessors if needed.(ÌÅ‘Çıÿÿÿÿ8¦Áçæî1J$f3164886-1e27-4c32-8f05-ab54b0e5b7a4
-š
-java:S1104"RMake nombre a static final constant or non-public and provide accessors if needed.(©“‘ÿúÿÿÿÿ8·èçæî1J$3a0082c1-ddbf-47a7-bd22-ecac4c83b05c
-˜	java:S116	"QRename this field "niÃ±os" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌÃ‹‹ùÿÿÿÿ8Ä³ææî1J$c79e2c75-55ae-4597-a8f7-b30f18d60458
-É
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(åï²³øÿÿÿÿ8½Ïæî1J$4b070338-d61a-4c7d-8e2b-4f1b60e02b77
-Ä
-java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼éÀ8œÇÏæî1J$35001b60-aaf4-46ac-9a52-ed0744388946
+"/Provide the parametrized type for this generic.(—°Œ÷8üÈĞÈü1
+L
+java:S3740"/Provide the parametrized type for this generic.(ª™§Ü8üÈĞÈü1
 u
-java:S1135"2Complete the task associated to this TODO comment.(´¦¯Í8ú¡¾çî1J$9094e252-fb29-4869-8fbe-ad792ae620bb
+java:S1104"SMake adultos a static final constant or non-public and provide accessors if needed.(ÙŞ®ÿÿÿÿÿ8ıÈĞÈü1
+t
+java:S1104	"RMake niÃ±os a static final constant or non-public and provide accessors if needed.(ÌÃ‹‹ùÿÿÿÿ8ıÈĞÈü1
+w
+java:S1104
+"ZMake tipoHabitacion a static final constant or non-public and provide accessors if needed.(—°Œ÷8ıÈĞÈü1
+u
+java:S1104"XMake tipoEstancia a static final constant or non-public and provide accessors if needed.(ª™§Ü8şÈĞÈü1
+o
+java:S1104"RMake salida a static final constant or non-public and provide accessors if needed.(Ÿ«¿Á8şÈĞÈü1
+p
+java:S1104"SMake entrada a static final constant or non-public and provide accessors if needed.(“ÿÎš8şÈĞÈü1
+s
+java:S1104"QMake email a static final constant or non-public and provide accessors if needed.(ÌÅ‘Çıÿÿÿÿ8şÈĞÈü1
+t
+java:S1104"RMake nombre a static final constant or non-public and provide accessors if needed.(©“‘ÿúÿÿÿÿ8şÈĞÈü1
+r	java:S116	"QRename this field "niÃ±os" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÌÃ‹‹ùÿÿÿÿ8…ÉĞÈü1
+£
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(åï²³øÿÿÿÿ8…ÉĞÈü1
+
+java:S1186"€Add a nested comment explaining why this method is empty, throw an UnsupportedOperationException or complete the implementation.(¼éÀ8…ÉĞÈü1
+O
+java:S1135"2Complete the task associated to this TODO comment.(´¦¯Í8‡ÉĞÈü1

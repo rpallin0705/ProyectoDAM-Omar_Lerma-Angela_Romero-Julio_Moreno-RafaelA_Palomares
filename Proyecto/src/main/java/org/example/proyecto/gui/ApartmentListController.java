@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import org.example.proyecto.model.booking.BookingDataHelper;
+import org.example.proyecto.model.client.ClientDTO;
 import org.example.proyecto.model.touristApartment.TouristApartmentDTO;
 import org.example.proyecto.model.touristApartment.TouristApartmentDB;
 
@@ -41,6 +43,7 @@ public class ApartmentListController {
 
     private List<TouristApartmentDTO> apartmentList = null;
     private TouristApartmentDTO selectedApartment = null;
+    private BookingDataHelper dataForBooking = null;
 
     @FXML
     public void initialize() throws SQLException, IOException {
@@ -204,25 +207,35 @@ public class ApartmentListController {
             return;
         }
 
+        if (dataForBooking == null)
+            dataForBooking = new BookingDataHelper((ClientDTO) null, selectedApartment);
+        else
+            dataForBooking.setApartmentForBooking(selectedApartment);
+
+
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("booking-list.fxml"));
             AnchorPane menu = loader.load();
 
             BookingListController controller = loader.getController();
             controller.setTemplateComponent(templateComponent);
-            controller.setApartmentForBooking(selectedApartment);
-            controller.setSelectBookingCLientButton();
+            controller.setDataForBooking(dataForBooking);
+            //controller.setSelectBookingCLientButton();
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    public void setTemplateComponent(AnchorPane templateComponent) {
+        this.templateComponent = templateComponent;
+    }
+
     public void setIsSelectingHousing(boolean isSelectingApartment) {
         isSelectingHousingButton.setVisible(isSelectingApartment);
     }
 
-    public void setTemplateComponent(AnchorPane templateComponent) {
-        this.templateComponent = templateComponent;
+    public void setDataForBooking(BookingDataHelper dataForBooking) {
+        this.dataForBooking = dataForBooking;
     }
 }

@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import org.example.proyecto.model.booking.BookingDataHelper;
+import org.example.proyecto.model.client.ClientDTO;
 import org.example.proyecto.model.hotel.HotelDB;
 import org.example.proyecto.model.hotel.HotelDTO;
 import org.example.proyecto.model.hotel.RoomType;
@@ -50,6 +52,7 @@ public class HotelListController {
 
     private List<HotelDTO> hotelList = null;
     private HotelDTO selectedHotel = null;
+    BookingDataHelper dataForBooking = null;
 
 
     @FXML
@@ -233,12 +236,22 @@ public class HotelListController {
         hotelDataTable.getItems().setAll(resultList);
     }
 
+    public void setIsSelectingHousing(boolean isSelectingHotel) {
+        System.out.println(isSelectingHotel);
+        isSelectingHousingButton.setVisible(isSelectingHotel);
+        System.out.println(isSelectingHousingButton.isVisible());
+    }
+
     @FXML
     public void selectHotelForBooking() {
         if (selectedHotel == null) {
             AlertHelper.showNoUserSelectedAlert();
             return;
         }
+        if (dataForBooking == null)
+            dataForBooking = new BookingDataHelper((ClientDTO) null, selectedHotel);
+        else
+            dataForBooking.setHotelForBooking(selectedHotel);
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("booking-list.fxml"));
@@ -246,21 +259,19 @@ public class HotelListController {
 
             BookingListController controller = loader.getController();
             controller.setTemplateComponent(templateComponent);
-            controller.setHotelForBooking(selectedHotel);
-            controller.setSelectBookingCLientButton();
+            controller.setDataForBooking(dataForBooking);
+            //controller.setSelectBookingCLientButton();
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public void setIsSelectingHousing(boolean isSelectingHotel) {
-        System.out.println(isSelectingHotel);
-        isSelectingHousingButton.setVisible(isSelectingHotel);
-        System.out.println(isSelectingHousingButton.isVisible());
-    }
-
     public void setTemplateComponent(AnchorPane templateComponent) {
         this.templateComponent = templateComponent;
+    }
+
+    public void setDataForBooking(BookingDataHelper dataForBooking){
+        this.dataForBooking = dataForBooking;
     }
 }

@@ -11,8 +11,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import org.example.proyecto.model.booking.BookingDataHelper;
 import org.example.proyecto.model.client.ClientDB;
 import org.example.proyecto.model.client.ClientDTO;
+import org.example.proyecto.model.hotel.HotelDTO;
 
 
 import java.awt.*;
@@ -50,6 +52,7 @@ public class ClientListController {
 
     private List<ClientDTO> clientList = null;
     private ClientDTO selectedClient = null;
+    BookingDataHelper dataForBooking = null;
 
     @FXML
     public void initialize(){
@@ -77,10 +80,6 @@ public class ClientListController {
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void setTemplateComponent(AnchorPane templateComponent){
-        this.templateComponent = templateComponent;
     }
 
     public void setIsSelectingClient(boolean isSelectingClient) {
@@ -211,26 +210,6 @@ public class ClientListController {
        clientDataTable.getItems().setAll(resultList);
    }
 
-    @FXML
-    public void selectClientForBooking(ActionEvent actionEvent) {
-        if (selectedClient == null) {
-            AlertHelper.showNoUserSelectedAlert();
-            return;
-        }
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("booking-list.fxml"));
-            AnchorPane menu = loader.load();
-
-            BookingListController controller = loader.getController();
-            controller.setTemplateComponent(templateComponent);
-            controller.setClientForBooking(selectedClient);
-            controller.setSelectBookingCLientButton();
-            templateComponent.getChildren().setAll(menu);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     private void setClientList() throws SQLException, IOException {
         ClientDB clientDB = new ClientDB();
         this.clientList = clientDB.getClients();
@@ -243,4 +222,38 @@ public class ClientListController {
         clientName.setText(selectedClient.getNombre_apellidos());
         clientAddress.setText(selectedClient.getDireccion());
     }
+
+    @FXML
+    public void selectClientForBooking(ActionEvent actionEvent) {
+        if (selectedClient == null) {
+            AlertHelper.showNoUserSelectedAlert();
+            return;
+        }
+
+        if (dataForBooking == null)
+            dataForBooking = new BookingDataHelper(selectedClient, (HotelDTO) null);
+        else
+            dataForBooking.setClientForBooking(selectedClient);
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("booking-list.fxml"));
+            AnchorPane menu = loader.load();
+
+            BookingListController controller = loader.getController();
+            controller.setTemplateComponent(templateComponent);
+            controller.setDataForBooking(dataForBooking);
+            templateComponent.getChildren().setAll(menu);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void setTemplateComponent(AnchorPane templateComponent){
+        this.templateComponent = templateComponent;
+    }
+
+    public void setDataForBooking(BookingDataHelper dataForBooking){
+        this.dataForBooking = dataForBooking;
+    }
+
 }
