@@ -42,7 +42,7 @@ public class ClientListController {
     @FXML
     public Button selectClientButton;
     @FXML
-    public Button searchImageButton;
+    public Button searchClientButton;
     @FXML
     AnchorPane templateComponent = null;
 
@@ -57,6 +57,8 @@ public class ClientListController {
     @FXML
     public void initialize() {
         try {
+            searchClientButton.setGraphic(GuiEffectsHelper.getSearchIcon());
+
             clientIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_cuenta"));
             clientNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre_apellidos"));
             clientEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));

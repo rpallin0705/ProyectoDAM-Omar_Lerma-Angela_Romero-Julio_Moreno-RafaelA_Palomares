@@ -48,6 +48,8 @@ public class ApartmentListController {
     @FXML
     public Button insertApartmentButton;
     @FXML
+    public Button searchApartmentButton;
+    @FXML
     AnchorPane templateComponent = null;
 
     private List<TouristApartmentDTO> apartmentList = null;
@@ -64,6 +66,8 @@ public class ApartmentListController {
     @FXML
     public void initialize() throws SQLException, IOException {
         try {
+            searchApartmentButton.setGraphic(GuiEffectsHelper.getSearchIcon());
+
             apartmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("housingId"));
             apartmentNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             apartmentAddressColumn.setCellValueFactory(new PropertyValueFactory<>("calle"));

@@ -3,6 +3,9 @@ package org.example.proyecto.gui;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +22,13 @@ public class GuiEffectsHelper {
 
     // Map to save the original event handlers of buttons
     private static final Map<Button, EventHandler<ActionEvent>> originalEventHandlers = new HashMap<>();
+
+    private static Image searchImage = new Image("https://img.icons8.com/?size=100&id=132&format=png&color=000000");
+    private static Image userImage = new Image("https://img.icons8.com/?size=100&id=23264&format=png&color=000000");
+    private static Image housingImage = new Image("https://img.icons8.com/?size=100&id=73&format=png&color=000000");
+    private static ImageView searchIcon = new ImageView(searchImage);
+    private static ImageView userIcon = new ImageView(userImage);
+    private static ImageView housingIcon = new ImageView(housingImage);
 
     // Private constructor to prevent instantiation
     private GuiEffectsHelper() {}
@@ -79,6 +89,24 @@ public class GuiEffectsHelper {
                 originalHandler.handle(event);
             }
         });
+    }
+
+    public static ImageView getSearchIcon() {
+        searchIcon.setFitWidth(20);
+        searchIcon.setFitHeight(20);
+        return searchIcon;
+    }
+
+    public static ImageView getHousingIcon() {
+        housingIcon.setFitHeight(17);
+        housingIcon.setFitWidth(17);
+        return housingIcon;
+    }
+
+    public static ImageView getUserIcon() {
+        userIcon.setFitHeight(17);
+        userIcon.setFitWidth(17);
+        return userIcon;
     }
 
     /**

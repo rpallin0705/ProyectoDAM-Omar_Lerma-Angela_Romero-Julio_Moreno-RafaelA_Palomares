@@ -38,6 +38,8 @@ public class UserListController {
     public CheckBox isAdmin;
     @FXML
     public PasswordField userPassword;
+    @FXML
+    public Button searchUserButton;
 
     private List<UserDTO> userList = null;
     private UserDTO selectedUser = null;
@@ -48,6 +50,8 @@ public class UserListController {
     @FXML
     public void initialize() {
         try {
+            searchUserButton.setGraphic(GuiEffectsHelper.getSearchIcon());
+
             userIdColumn.setCellValueFactory(new PropertyValueFactory<>("id_cuenta"));
             userEmailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
             userNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre_apellidos"));
@@ -162,7 +166,7 @@ public class UserListController {
      * Searches for users based on specified criteria.
      */
     @FXML
-    public void searchClient() throws SQLException, IOException {
+    public void searchUser() throws SQLException, IOException {
         List<UserDTO> resultList = new ArrayList<>();
 
         if (selectedUser != null) {

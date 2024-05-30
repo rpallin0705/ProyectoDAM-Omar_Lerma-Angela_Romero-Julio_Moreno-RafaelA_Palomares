@@ -56,6 +56,8 @@ public class BookingListController {
     @FXML
     public Button selectHousingForBookingButton;
     @FXML
+    public Button searchBookingButton;
+    @FXML
     AnchorPane templateComponent = null;
 
     private List<BookingDataHelper> bookingDataList = null;
@@ -70,6 +72,10 @@ public class BookingListController {
     @FXML
     public void initialize() {
         try {
+            searchBookingButton.setGraphic(GuiEffectsHelper.getSearchIcon());
+            selectHousingForBookingButton.setGraphic(GuiEffectsHelper.getHousingIcon());
+            selectClientForBookingButton.setGraphic(GuiEffectsHelper.getUserIcon());
+
             bookingIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
             checkInDateColumn.setCellValueFactory(new PropertyValueFactory<>("checkInDate"));
             checkOutDateColumn.setCellValueFactory(new PropertyValueFactory<>("checkOutDate"));

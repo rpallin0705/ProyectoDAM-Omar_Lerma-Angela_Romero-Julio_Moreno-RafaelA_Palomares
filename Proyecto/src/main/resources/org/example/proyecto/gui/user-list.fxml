@@ -24,7 +24,7 @@
                 </columns>
             </TableView>
         </right>
-      <left>
+      <center>
             <Pane prefHeight="412.0" prefWidth="298.0" BorderPane.alignment="CENTER">
                 <Label layoutX="15.0" layoutY="25.0" prefHeight="25.0" prefWidth="65.0" text="Id Usuario:">
                     <font>
@@ -42,13 +42,13 @@
                 <Button layoutX="10.0" layoutY="315.0" mnemonicParsing="false" onAction="#updateUser" prefHeight="25.0" prefWidth="80.0" text="Modificar" />
                 <Button layoutX="110.0" layoutY="315.0" mnemonicParsing="false" onAction="#registerUser" prefHeight="25.0" prefWidth="80.0" text="Crear" />
                 <Button layoutX="210.0" layoutY="315.0" mnemonicParsing="false" onAction="#deleteUser" prefHeight="25.0" prefWidth="80.0" text="Eliminar" />
-                <Button layoutX="231.0" layoutY="203.0" mnemonicParsing="false" onAction="#searchClient" prefHeight="25.0" prefWidth="25.0" />
+                <Button fx:id="searchUserButton" layoutX="217.0" layoutY="202.0" mnemonicParsing="false" onAction="#searchUser" prefHeight="30.0" prefWidth="30.0" />
             <Label fx:id="userIdLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="112.0" layoutY="25.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Usuario" />
-            <CheckBox fx:id="isAdmin" layoutX="164.0" layoutY="207.0" mnemonicParsing="false" text="Admin" />
+            <CheckBox fx:id="isAdmin" layoutX="156.0" layoutY="208.0" mnemonicParsing="false" text="Admin" />
             <Label layoutX="15.0" layoutY="171.0" prefHeight="25.0" prefWidth="65.0" text="Contraseña" />
             <PasswordField fx:id="userPassword" layoutX="80.0" layoutY="171.0" prefHeight="25.0" prefWidth="175.0" />
             </Pane>
-      </left>
+      </center>
     </BorderPane>
 
 </AnchorPane>

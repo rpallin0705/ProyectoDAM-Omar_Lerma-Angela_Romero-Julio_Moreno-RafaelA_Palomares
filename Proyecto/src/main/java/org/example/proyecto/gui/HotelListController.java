@@ -57,6 +57,8 @@ public class HotelListController {
     @FXML
     public Button insertHotelButton;
     @FXML
+    public Button searchHotelButton;
+    @FXML
     AnchorPane templateComponent = null;
 
     private List<HotelDTO> hotelList = null;
@@ -69,6 +71,8 @@ public class HotelListController {
     @FXML
     public void initialize() throws SQLException, IOException {
         try {
+            searchHotelButton.setGraphic(GuiEffectsHelper.getSearchIcon());
+
             hotelIdColumn.setCellValueFactory(new PropertyValueFactory<>("housingId"));
             hotelNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             hotelAddressColumn.setCellValueFactory(new PropertyValueFactory<>("calle"));
