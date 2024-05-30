@@ -1,6 +1,5 @@
 package org.example.proyecto.gui;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -16,6 +15,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller class for managing the tourist apartment list in the GUI.
+ * Provides functionalities to register, update, delete, and search for apartments.
+ * Handles selection of apartments for booking.
+ */
 public class ApartmentListController {
     @FXML
     public Label apartmentIdLabel;
@@ -37,7 +41,6 @@ public class ApartmentListController {
     public TableColumn<TouristApartmentDTO, Float> apartmentDistanceColumn;
     @FXML
     public Button isSelectingHousingButton;
-
     @FXML
     AnchorPane templateComponent = null;
 
@@ -45,6 +48,13 @@ public class ApartmentListController {
     private TouristApartmentDTO selectedApartment = null;
     private BookingDataHelper dataForBooking = null;
 
+    /**
+     * Initializes the controller class. Sets up the table columns and loads the apartment data.
+     * Adds a listener to handle selection changes in the apartment table.
+     *
+     * @throws SQLException if a database access error occurs.
+     * @throws IOException if an input/output error occurs.
+     */
     @FXML
     public void initialize() throws SQLException, IOException {
         try {
@@ -67,82 +77,75 @@ public class ApartmentListController {
         }
     }
 
-    private void setApartmentList() throws SQLException, IOException {
-        TouristApartmentDB apartmentDB = new TouristApartmentDB();
-        this.apartmentList = apartmentDB.getTouristApartments();
-    }
-
-    private void selectApartmentDetails(TouristApartmentDTO selectedApartment) {
-        this.selectedApartment = selectedApartment;
-        apartmentIdLabel.setText(String.valueOf(selectedApartment.getHousingId()));
-        apartmentName.setText(selectedApartment.getNombre());
-        apartmentAddress.setText(selectedApartment.getCalle());
-        apartmentDistanceToDowntown.setText(String.valueOf(selectedApartment.getDowntownDistance()));
-    }
-
-    //TODO revisar pareint a parsefloat
+    /**
+     * Registers a new apartment with the data provided in the text fields.
+     * Validates the input data and shows alerts in case of missing information.
+     */
     @FXML
     public void registerApartment() {
-
         if (selectedApartment != null) {
             clearTextFields();
             return;
         }
 
-        if ( apartmentAddress.getText().isBlank() || apartmentName.getText().isBlank() || apartmentDistanceToDowntown.getText().isBlank()){
+        if (apartmentAddress.getText().isBlank() || apartmentName.getText().isBlank() || apartmentDistanceToDowntown.getText().isBlank()) {
             AlertHelper.showMissingDataAlert();
             return;
         }
 
         try {
             TouristApartmentDTO apartmentToRegister = new TouristApartmentDTO(apartmentName.getText(), apartmentAddress.getText(), Float.parseFloat(apartmentDistanceToDowntown.getText()));
-
             TouristApartmentDB apartmentDB = new TouristApartmentDB();
             apartmentDB.insertTouristApartment(apartmentToRegister);
             setApartmentList();
             apartmentDataTable.getItems().setAll(apartmentList);
             clearTextFields();
         } catch (SQLException | IOException e) {
-            // Manejar la excepción apropiadamente, podría ser mostrando un mensaje de error al usuario.
             e.printStackTrace();
         }
     }
 
+    /**
+     * Updates the selected apartment with the data provided in the text fields.
+     * Validates the input data and shows alerts in case of missing information or no changes.
+     */
     @FXML
     public void updateApartment() {
         if (selectedApartment == null) {
-            AlertHelper.showNoUserSelectedAlert();
+            AlertHelper.showNoObjectSelected("No hay ningún apartamento seleccionado.");
             return;
         }
 
-        if ( apartmentAddress.getText().isBlank() || apartmentName.getText().isBlank() || apartmentDistanceToDowntown.getText().isBlank()){
+        if (apartmentAddress.getText().isBlank() || apartmentName.getText().isBlank() || apartmentDistanceToDowntown.getText().isBlank()) {
             AlertHelper.showMissingDataAlert();
             return;
         }
 
-        TouristApartmentDTO updatedApartment = new TouristApartmentDTO( selectedApartment.getHousingId(), apartmentName.getText(), apartmentAddress.getText(), Float.parseFloat(apartmentDistanceToDowntown.getText()) );
+        TouristApartmentDTO updatedApartment = new TouristApartmentDTO(selectedApartment.getHousingId(), apartmentName.getText(), apartmentAddress.getText(), Float.parseFloat(apartmentDistanceToDowntown.getText()));
 
-        if (updatedApartment.equals(selectedApartment)){
+        if (updatedApartment.equals(selectedApartment)) {
             AlertHelper.showNoChangesAlert();
             return;
         }
         try {
-
             TouristApartmentDB apartmentDB = new TouristApartmentDB();
             apartmentDB.updateTourisApartment(updatedApartment);
             setApartmentList();
             apartmentDataTable.getItems().setAll(apartmentList);
             clearTextFields();
         } catch (SQLException | IOException e) {
-            // Manejar la excepción apropiadamente, podría ser mostrando un mensaje de error al usuario.
             e.printStackTrace();
         }
     }
 
+    /**
+     * Deletes the selected apartment from the database.
+     * Shows an alert if no apartment is selected.
+     */
     @FXML
     public void deleteApartment() {
         if (selectedApartment == null) {
-            AlertHelper.showNoUserSelectedAlert();
+            AlertHelper.showNoObjectSelected("No hay ningún apartamento seleccionado.");
             return;
         }
 
@@ -153,19 +156,17 @@ public class ApartmentListController {
             apartmentDataTable.getItems().setAll(apartmentList);
             clearTextFields();
         } catch (SQLException | IOException e) {
-            // Manejar la excepción apropiadamente, podría ser mostrando un mensaje de error al usuario.
             e.printStackTrace();
         }
     }
 
-    private void clearTextFields() {
-        selectedApartment = null;
-        apartmentIdLabel.setText("Id Cliente");
-        apartmentName.setText("");
-        apartmentAddress.setText("");
-        apartmentDistanceToDowntown.setText("");
-    }
-
+    /**
+     * Searches for apartments based on the data provided in the text fields.
+     * Displays the matching results in the apartment table.
+     *
+     * @throws SQLException if a database access error occurs.
+     * @throws IOException if an input/output error occurs.
+     */
     @FXML
     public void searchApartment() throws SQLException, IOException {
         List<TouristApartmentDTO> resultList = new ArrayList<>();
@@ -200,10 +201,15 @@ public class ApartmentListController {
         apartmentDataTable.getItems().setAll(resultList);
     }
 
+    /**
+     * Selects the currently selected apartment for booking.
+     * Initializes the booking data and loads the booking list view.
+     * Shows an alert if no apartment is selected.
+     */
     @FXML
     public void selectApartmentForBooking() {
         if (selectedApartment == null) {
-            AlertHelper.showNoUserSelectedAlert();
+            AlertHelper.showNoObjectSelected("No hay ningún apartamento seleccionado.");
             return;
         }
 
@@ -212,7 +218,6 @@ public class ApartmentListController {
         else
             dataForBooking.setApartmentForBooking(selectedApartment);
 
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("booking-list.fxml"));
             AnchorPane menu = loader.load();
@@ -220,22 +225,71 @@ public class ApartmentListController {
             BookingListController controller = loader.getController();
             controller.setTemplateComponent(templateComponent);
             controller.setDataForBooking(dataForBooking);
-            //controller.setSelectBookingCLientButton();
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
 
+    /**
+     * Sets the template component.
+     *
+     * @param templateComponent the template component to set.
+     */
     public void setTemplateComponent(AnchorPane templateComponent) {
         this.templateComponent = templateComponent;
     }
 
+    /**
+     * Sets the visibility of the housing selection button.
+     *
+     * @param isSelectingApartment true to make the button visible, false to hide it.
+     */
     public void setIsSelectingHousing(boolean isSelectingApartment) {
         isSelectingHousingButton.setVisible(isSelectingApartment);
     }
 
+    /**
+     * Sets the booking data helper.
+     *
+     * @param dataForBooking the booking data helper to set.
+     */
     public void setDataForBooking(BookingDataHelper dataForBooking) {
         this.dataForBooking = dataForBooking;
+    }
+
+    /**
+     * Retrieves and sets the list of apartments from the database.
+     *
+     * @throws SQLException if a database access error occurs.
+     * @throws IOException if an input/output error occurs.
+     */
+    private void setApartmentList() throws SQLException, IOException {
+        TouristApartmentDB apartmentDB = new TouristApartmentDB();
+        this.apartmentList = apartmentDB.getTouristApartments();
+    }
+
+    /**
+     * Selects and displays the details of the specified apartment.
+     *
+     * @param selectedApartment the apartment to display.
+     */
+    private void selectApartmentDetails(TouristApartmentDTO selectedApartment) {
+        this.selectedApartment = selectedApartment;
+        apartmentIdLabel.setText(String.valueOf(selectedApartment.getHousingId()));
+        apartmentName.setText(selectedApartment.getNombre());
+        apartmentAddress.setText(selectedApartment.getCalle());
+        apartmentDistanceToDowntown.setText(String.valueOf(selectedApartment.getDowntownDistance()));
+    }
+
+    /**
+     * Clears the text fields and resets the selected apartment.
+     */
+    private void clearTextFields() {
+        selectedApartment = null;
+        apartmentIdLabel.setText("Id Cliente");
+        apartmentName.setText("");
+        apartmentAddress.setText("");
+        apartmentDistanceToDowntown.setText("");
     }
 }

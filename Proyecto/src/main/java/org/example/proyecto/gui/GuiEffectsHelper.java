@@ -8,19 +8,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * Utility class for adding hover effects and managing button states in a JavaFX application.
+ * This class tracks the state of buttons and ensures only one button is highlighted at a time.
+ */
 public class GuiEffectsHelper {
 
-    // Variable for tracking selected button
+    // Variable for tracking the currently selected button
     private static Button selectedButton = null;
 
-    // Map to save the original state of buttons
+    // Map to save the original event handlers of buttons
     private static final Map<Button, EventHandler<ActionEvent>> originalEventHandlers = new HashMap<>();
 
-    // Private constructor to hide the implicit public one
+    // Private constructor to prevent instantiation
     private GuiEffectsHelper() {}
 
     /**
      * Adds hover effect to a list of buttons and manages button states.
+     *
      * @param buttons The list of buttons to which hover effect will be added and button states will be managed.
      */
     public static void addHoverEffectOnButtons(List<Button> buttons) {
@@ -33,16 +38,24 @@ public class GuiEffectsHelper {
         }
     }
 
-    // Saves the original event handlers of a button
+    /**
+     * Saves the original event handler of a button.
+     *
+     * @param button The button whose original event handler is to be saved.
+     */
     private static void saveOriginalEventHandlers(Button button) {
         originalEventHandlers.put(button, button.getOnAction());
     }
 
-    // Sets hover effect on a button
+    /**
+     * Sets hover effects on a button.
+     *
+     * @param button The button to which hover effects will be applied.
+     */
     private static void setHoverEffect(Button button) {
         button.setOnMouseEntered(event -> {
             if (button != selectedButton) {
-                button.setStyle("-fx-background-color:  #f5a623; -fx-font-size: 23px;");
+                button.setStyle("-fx-background-color: #f5a623; -fx-font-size: 23px;");
             }
         });
 
@@ -58,7 +71,7 @@ public class GuiEffectsHelper {
                     resetButtonStyle(selectedButton);
                 }
                 selectedButton = button;
-                button.setStyle("-fx-background-color:  #f5a623; -fx-font-size: 23px;");
+                button.setStyle("-fx-background-color: #f5a623; -fx-font-size: 23px;");
             }
             // Calls the original event handler
             EventHandler<ActionEvent> originalHandler = originalEventHandlers.get(button);
@@ -68,7 +81,11 @@ public class GuiEffectsHelper {
         });
     }
 
-    // Resets the style of the selected button to its default state
+    /**
+     * Resets the style of the given button to its default state.
+     *
+     * @param button The button whose style is to be reset.
+     */
     private static void resetButtonStyle(Button button) {
         button.setStyle("-fx-background-color: #ddd; -fx-font-size: 20px;");
     }

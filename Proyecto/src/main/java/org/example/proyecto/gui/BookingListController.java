@@ -24,13 +24,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
 /**
  * Controller class for managing the booking list view in the GUI.
  * It handles the display, update, deletion, registration, and search of booking data.
  */
 public class BookingListController {
-
     @FXML
     public DatePicker checkInDate;
     @FXML
@@ -54,23 +52,24 @@ public class BookingListController {
     @FXML
     public TextField housingName;
     @FXML
-    public Button deleteBookingUserButton;
-    @FXML
     public Button selectClientForBookingButton;
     @FXML
     public Button selectHousingForBookingButton;
+    @FXML
+    AnchorPane templateComponent = null;
 
     private List<BookingDataHelper> bookingDataList = null;
     private List<ClientDTO> clientList = null;
     private BookingDataHelper selectedBooking = null;
     private BookingDataHelper dataForBooking = null;
 
-    AnchorPane templateComponent = null;
-
+    /**
+     * Initializes the controller class. Sets up the table columns and loads the booking data.
+     * Adds a listener to handle selection changes in the booking table.
+     */
     @FXML
-    public void initialize(){
+    public void initialize() {
         try {
-
             bookingIdColumn.setCellValueFactory(new PropertyValueFactory<>("bookingId"));
             checkInDateColumn.setCellValueFactory(new PropertyValueFactory<>("checkInDate"));
             checkOutDateColumn.setCellValueFactory(new PropertyValueFactory<>("checkOutDate"));
@@ -85,66 +84,17 @@ public class BookingListController {
                     selectBookingDetails(newValue);
                 }
             });
-
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
     }
 
-
-
-
-    @FXML
-    public void updateBooking(ActionEvent actionEvent) {
-        if (selectedBooking == null) {
-            AlertHelper.showNoUserSelectedAlert();
-            return;
-        } else if (checkInDate.getValue() == null || checkOutDate.getValue() == null) {
-            AlertHelper.showMissingDataAlert();
-            return;
-        }
-
-        BookingDTO updatedBooking = new BookingDTO(selectedBooking.getCheckInDate(), selectedBooking.getCheckOutDate(), 0 ,0 );
-
-        if (updatedBooking.equals(selectedBooking)){
-            AlertHelper.showNoChangesAlert();
-            return;
-        }
-
-        if (AlertHelper.showConfirmationDialog("Confirmación de registro", "¿Desea registrar esta reserva?")){
-            try{
-                BookingDB bookingDB = new BookingDB();
-                bookingDB.updateBooking(updatedBooking);
-                setBookingList();
-                bookingDataTable.getItems().setAll(bookingDataList);
-                clearTextFields();
-            } catch (SQLException |IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    @FXML
-    public void deleteBooking(ActionEvent actionEvent) {
-        if (selectedBooking == null) {
-            AlertHelper.showUpdatedUserAlert();
-            return;
-        }
-
-        BookingDTO bookingToDelete = new BookingDTO(selectedBooking.getBooking());
-        if (AlertHelper.showConfirmationDialog("Confirmacion de eliminación", "¿Desea borrar la reserva de la base de datos?")) {
-            try {
-                BookingDB bookingDB = new BookingDB();
-                bookingDB.deleteBooking(bookingToDelete);
-                setBookingList();
-                bookingDataTable.getItems().setAll(bookingDataList);
-                clearTextFields();
-            } catch (SQLException | IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
+    /**
+     * Registers a new booking with the data provided in the text fields.
+     * Validates the input data and shows alerts in case of missing information.
+     *
+     * @param actionEvent the event triggered by the button click.
+     */
     @FXML
     public void insertBooking(ActionEvent actionEvent) {
         if (selectedBooking != null) {
@@ -163,40 +113,95 @@ public class BookingListController {
         else if (dataForBooking.getApartmentForBooking() != null)
             bookingToRegister = new BookingDTO(checkInDate.getValue(), checkOutDate.getValue(), dataForBooking.getClientForBooking().getId_cuenta(), dataForBooking.getApartmentForBooking().getHousingId());
 
-
-
-        if (AlertHelper.showConfirmationDialog("Confirmacion de reserva", "¿Desea registrar esta reserva en la base de datos?")){
-            try{
+        if (AlertHelper.showConfirmationDialog("Confirmacion de reserva", "¿Desea registrar esta reserva en la base de datos?")) {
+            try {
                 BookingDB bookingDB = new BookingDB();
                 bookingDB.insertBooking(bookingToRegister);
                 setBookingList();
                 bookingDataTable.getItems().setAll(bookingDataList);
                 clearTextFields();
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            } catch (IOException e) {
+            } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
             }
         }
     }
 
-    private void clearTextFields() {
-        selectedBooking = null;
-        dataForBooking = null;
-        bookingIdLabel.setText("Id Reserva");
-        checkInDate.setValue(null);
-        checkOutDate.setValue(null);
-        clientEmail.setText("");
-        housingName.setText("");
-        selectHousingForBookingButton.setDisable(false);
-        selectClientForBookingButton.setDisable(false);
+    /**
+     * Updates the selected booking with the data provided in the text fields.
+     * Validates the input data and shows alerts in case of missing information or no changes.
+     *
+     * @param actionEvent the event triggered by the button click.
+     */
+    @FXML
+    public void updateBooking(ActionEvent actionEvent) {
+        if (selectedBooking == null) {
+            AlertHelper.showNoObjectSelected("No hay ninguna reserva seleccionada.");
+            return;
+        } else if (checkInDate.getValue() == null || checkOutDate.getValue() == null) {
+            AlertHelper.showMissingDataAlert();
+            return;
+        }
+
+        BookingDTO updatedBooking = new BookingDTO(selectedBooking.getCheckInDate(), selectedBooking.getCheckOutDate(), 0, 0);
+
+        if (updatedBooking.equals(selectedBooking)) {
+            AlertHelper.showNoChangesAlert();
+            return;
+        }
+
+        if (AlertHelper.showConfirmationDialog("Confirmación de registro", "¿Desea registrar esta reserva?")) {
+            try {
+                BookingDB bookingDB = new BookingDB();
+                bookingDB.updateBooking(updatedBooking);
+                setBookingList();
+                bookingDataTable.getItems().setAll(bookingDataList);
+                clearTextFields();
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
+    /**
+     * Deletes the selected booking from the database.
+     * Shows an alert if no booking is selected.
+     *
+     * @param actionEvent the event triggered by the button click.
+     */
+    @FXML
+    public void deleteBooking(ActionEvent actionEvent) {
+        if (selectedBooking == null) {
+            AlertHelper.showMissingDataAlert();
+            return;
+        }
+
+        BookingDTO bookingToDelete = new BookingDTO(selectedBooking.getBooking());
+        if (AlertHelper.showConfirmationDialog("Confirmacion de eliminación", "¿Desea borrar la reserva de la base de datos?")) {
+            try {
+                BookingDB bookingDB = new BookingDB();
+                bookingDB.deleteBooking(bookingToDelete);
+                setBookingList();
+                bookingDataTable.getItems().setAll(bookingDataList);
+                clearTextFields();
+            } catch (SQLException | IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
+    }
+
+    /**
+     * Searches for bookings based on the data provided in the text fields.
+     * Displays the matching results in the booking table.
+     *
+     * @param actionEvent the event triggered by the button click.
+     * @throws SQLException if a database access error occurs.
+     * @throws IOException if an input/output error occurs.
+     */
     @FXML
     public void searchBooking(ActionEvent actionEvent) throws SQLException, IOException {
         List<BookingDataHelper> resultList = new ArrayList<>();
 
-        if(selectedBooking != null) {
+        if (selectedBooking != null) {
             clearTextFields();
             setBookingList();
             bookingDataTable.getItems().setAll(bookingDataList);
@@ -224,79 +229,12 @@ public class BookingListController {
         bookingDataTable.getItems().setAll(resultList);
     }
 
-
-
-    private void selectBookingDetails(BookingDataHelper selectedBooking) {
-        this.selectedBooking = selectedBooking;
-        clientEmail.setText(selectedBooking.getEmail());
-        housingName.setText(selectedBooking.getHousingName());
-        checkInDate.setValue(selectedBooking.getCheckInDate());
-        checkOutDate.setValue(selectedBooking.getCheckOutDate());
-        bookingIdLabel.setText(String.valueOf(selectedBooking.getBookingId()));
-        selectClientForBookingButton.setDisable(true);
-        selectHousingForBookingButton.setDisable(true);
-    }
-
-    private void setBookingList() throws SQLException, IOException {
-        ClientDB clientDB = new ClientDB();
-        BookingDB bookingDB = new BookingDB();
-        HotelDB hotelDB = new HotelDB();
-        TouristApartmentDB touristDB = new TouristApartmentDB();
-
-        List<BookingDTO> bookings = bookingDB.getBookings();
-        List<ClientDTO> clients = clientDB.getClients();
-        List<HotelDTO> hotels = hotelDB.getHotels();
-        List<TouristApartmentDTO> apartments = touristDB.getTouristApartments();
-
-        Map<Integer, String> accountEmailMap = new HashMap<>();
-        for (ClientDTO client : clients)
-            accountEmailMap.put(client.getId_cuenta(), client.getEmail());
-
-        Map<Integer, String> housingNameMap = new HashMap<>();
-        for (HotelDTO hotel : hotels)
-            housingNameMap.put(hotel.getHousingId(), hotel.getNombre());
-        for (TouristApartmentDTO apartment : apartments)
-            housingNameMap.put(apartment.getHousingId(), apartment.getNombre());
-
-        List<BookingDataHelper> bookingsData = new ArrayList<>();
-        for (BookingDTO book : bookings) {
-            String email = accountEmailMap.get(book.getCountId());
-            String housingName = housingNameMap.get(book.getHousingId());
-            bookingsData.add(new BookingDataHelper(book, email, housingName));
-        }
-
-        this.bookingDataList = bookingsData;
-    }
-
-    public void deleteBookingUser(ActionEvent actionEvent) {
-        dataForBooking.setClientForBooking(null);
-        deleteBookingUserButton.setVisible(false);
-        selectClientForBookingButton.setVisible(true);
-        clientEmail.setText("Email Cliente");
-    }
-
-    /*public void setSelectBookingCLientButton(){
-        if (dataForBooking.getClientForBooking() == null){
-            deleteBookingUserButton.setVisible(false);
-            selectBookingClientButton.setVisible(true);
-        } else {
-            deleteBookingUserButton.setVisible(true);
-            selectBookingClientButton.setVisible(false);
-        }
-    }*/
-
-    public void setApartmentForBooking(TouristApartmentDTO apartmentForBooking) {
-        this.dataForBooking.setApartmentForBooking(apartmentForBooking);
-        housingName.setText(apartmentForBooking.getNombre());
-    }
-
-
-
-    public void setHotelForBooking(HotelDTO selectedHotel) {
-        this.dataForBooking.setHotelForBooking(selectedHotel);
-        housingName.setText(selectedHotel.getNombre());
-    }
-
+    /**
+     * Selects the client for booking.
+     * Opens the client list view and sets the necessary data for booking.
+     *
+     * @param actionEvent the event triggered by the button click.
+     */
     @FXML
     public void selectClientForBooking(ActionEvent actionEvent) {
         try {
@@ -314,6 +252,12 @@ public class BookingListController {
         }
     }
 
+    /**
+     * Selects the housing for booking.
+     * Opens the housing list view (hotel or apartment) and sets the necessary data for booking.
+     *
+     * @param actionEvent the event triggered by the button click.
+     */
     @FXML
     public void selectHousingForBooking(ActionEvent actionEvent) {
         try {
@@ -350,17 +294,115 @@ public class BookingListController {
         }
     }
 
-    public void setTemplateComponent(AnchorPane templateComponent){
+    /**
+     * Sets the booking details in the text fields when a booking is selected from the table.
+     *
+     * @param selectedBooking the selected booking data.
+     */
+    private void selectBookingDetails(BookingDataHelper selectedBooking) {
+        this.selectedBooking = selectedBooking;
+        clientEmail.setText(selectedBooking.getEmail());
+        housingName.setText(selectedBooking.getHousingName());
+        checkInDate.setValue(selectedBooking.getCheckInDate());
+        checkOutDate.setValue(selectedBooking.getCheckOutDate());
+        bookingIdLabel.setText(String.valueOf(selectedBooking.getBookingId()));
+        selectClientForBookingButton.setDisable(true);
+        selectHousingForBookingButton.setDisable(true);
+    }
+
+    /**
+     * Loads the booking list data from the database and sets it to the booking table.
+     *
+     * @throws SQLException if a database access error occurs.
+     * @throws IOException if an input/output error occurs.
+     */
+    private void setBookingList() throws SQLException, IOException {
+        ClientDB clientDB = new ClientDB();
+        BookingDB bookingDB = new BookingDB();
+        HotelDB hotelDB = new HotelDB();
+        TouristApartmentDB touristDB = new TouristApartmentDB();
+
+        List<BookingDTO> bookings = bookingDB.getBookings();
+        List<ClientDTO> clients = clientDB.getClients();
+        List<HotelDTO> hotels = hotelDB.getHotels();
+        List<TouristApartmentDTO> apartments = touristDB.getTouristApartments();
+
+        Map<Integer, String> accountEmailMap = new HashMap<>();
+        for (ClientDTO client : clients)
+            accountEmailMap.put(client.getId_cuenta(), client.getEmail());
+
+        Map<Integer, String> housingNameMap = new HashMap<>();
+        for (HotelDTO hotel : hotels)
+            housingNameMap.put(hotel.getHousingId(), hotel.getNombre());
+        for (TouristApartmentDTO apartment : apartments)
+            housingNameMap.put(apartment.getHousingId(), apartment.getNombre());
+
+        List<BookingDataHelper> bookingsData = new ArrayList<>();
+        for (BookingDTO book : bookings) {
+            String email = accountEmailMap.get(book.getCountId());
+            String housingName = housingNameMap.get(book.getHousingId());
+            bookingsData.add(new BookingDataHelper(book, email, housingName));
+        }
+
+        this.bookingDataList = bookingsData;
+    }
+
+    /**
+     * Sets the apartment for booking and updates the housing name field.
+     *
+     * @param apartmentForBooking the selected apartment for booking.
+     */
+    public void setApartmentForBooking(TouristApartmentDTO apartmentForBooking) {
+        this.dataForBooking.setApartmentForBooking(apartmentForBooking);
+        housingName.setText(apartmentForBooking.getNombre());
+    }
+
+    /**
+     * Sets the hotel for booking and updates the housing name field.
+     *
+     * @param selectedHotel the selected hotel for booking.
+     */
+    public void setHotelForBooking(HotelDTO selectedHotel) {
+        this.dataForBooking.setHotelForBooking(selectedHotel);
+        housingName.setText(selectedHotel.getNombre());
+    }
+
+    /**
+     * Sets the template component to be used in the view.
+     *
+     * @param templateComponent the template component.
+     */
+    public void setTemplateComponent(AnchorPane templateComponent) {
         this.templateComponent = templateComponent;
     }
 
-    public void setDataForBooking(BookingDataHelper dataForBooking){
+    /**
+     * Sets the data for booking and updates the corresponding fields.
+     *
+     * @param dataForBooking the data for booking.
+     */
+    public void setDataForBooking(BookingDataHelper dataForBooking) {
         this.dataForBooking = dataForBooking;
-        if (dataForBooking.getClientForBooking()!= null)
+        if (dataForBooking.getClientForBooking() != null)
             clientEmail.setText(dataForBooking.getClientForBooking().getEmail());
-        if (dataForBooking.getHotelForBooking()!= null)
+        if (dataForBooking.getHotelForBooking() != null)
             housingName.setText(dataForBooking.getHotelForBooking().getNombre());
-        if (dataForBooking.getApartmentForBooking()!= null)
+        if (dataForBooking.getApartmentForBooking() != null)
             housingName.setText(dataForBooking.getApartmentForBooking().getNombre());
+    }
+
+    /**
+     * Clears the text fields and resets the selected booking.
+     */
+    private void clearTextFields() {
+        selectedBooking = null;
+        dataForBooking = null;
+        bookingIdLabel.setText("Id Reserva");
+        checkInDate.setValue(null);
+        checkOutDate.setValue(null);
+        clientEmail.setText("");
+        housingName.setText("");
+        selectHousingForBookingButton.setDisable(false);
+        selectClientForBookingButton.setDisable(false);
     }
 }

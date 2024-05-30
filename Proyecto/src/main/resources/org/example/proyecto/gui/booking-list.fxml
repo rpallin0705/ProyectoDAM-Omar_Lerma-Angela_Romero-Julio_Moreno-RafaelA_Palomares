@@ -42,7 +42,6 @@
             <Button fx:id="selectHousingForBookingButton" defaultButton="true" layoutX="241.0" layoutY="132.0" mnemonicParsing="false" onAction="#selectHousingForBooking" prefHeight="25.0" prefWidth="25.0" />
             <Label layoutX="11.0" layoutY="83.0" prefHeight="20.0" prefWidth="75.0" text="Email Cliente" />
             <Label layoutX="11.0" layoutY="134.0" prefHeight="20.0" prefWidth="75.0" text="Alojamiento" />
-            <Button fx:id="deleteBookingUserButton" cancelButton="true" layoutX="241.0" layoutY="80.0" mnemonicParsing="false" onAction="#deleteBookingUser" prefHeight="25.0" prefWidth="25.0" style="-fx-background-color: red;" visible="false" />
             <TextField fx:id="clientEmail" layoutX="92.0" layoutY="81.0" />
             <TextField fx:id="housingName" layoutX="92.0" layoutY="132.0" />
             </Pane>

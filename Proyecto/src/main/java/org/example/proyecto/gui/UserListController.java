@@ -12,6 +12,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller class for managing the user list view.
+ */
 public class UserListController {
     @FXML
     public TableView<UserDTO> userDataTable;
@@ -36,12 +39,12 @@ public class UserListController {
     @FXML
     public PasswordField userPassword;
 
-
-
     private List<UserDTO> userList = null;
     private UserDTO selectedUser = null;
 
-
+    /**
+     * Initializes the user list view.
+     */
     @FXML
     public void initialize() {
         try {
@@ -59,42 +62,15 @@ public class UserListController {
                     selectUserDetails(newValue);
                 }
             });
-        }catch (SQLException | IOException E){
+        } catch (SQLException | IOException E){
             System.out.println(E.getMessage());
         }
-
     }
 
-    @FXML
-    public void updateUser(ActionEvent actionEvent) {
-        if ( selectedUser == null ) {
-            AlertHelper.showNoUserSelectedAlert();
-            return;
-        }else if ( userName.getText().isBlank() || userEmail.getText().isBlank() || userPassword.getText().isBlank() ){
-            AlertHelper.showMissingDataAlert();
-            return;
-        }
-
-        UserDTO updatedUser = new UserDTO( selectedUser.getId_cuenta(), userEmail.getText(), userName.getText(), isAdmin.isSelected(), userPassword.getText() );
-
-        if ( updatedUser.equals(selectedUser) ){
-            AlertHelper.showNoChangesAlert();
-            return;
-        }
-
-        if ( AlertHelper.showConfirmationDialog("Confirmación de Actualización", "¿Desea realizar la actualización de datos?")) {
-            try {
-                UserDB userDB = new UserDB();
-                userDB.updateUser(updatedUser);
-                setUserList();
-                userDataTable.getItems().setAll(userList);
-                clearTextFields();
-            }catch ( SQLException | IOException E){
-                System.out.println(E.getMessage());
-            }
-        }
-    }
-
+    /**
+     * Registers a new user.
+     * @param actionEvent The action event triggering the method call.
+     */
     @FXML
     public void registerUser(ActionEvent actionEvent) {
         if (selectedUser != null) {
@@ -102,48 +78,89 @@ public class UserListController {
             return;
         }
 
-        if ( userName.getText().isBlank() || userEmail.getText().isBlank() || userPassword.getText().isBlank() ){
+        if (userName.getText().isBlank() || userEmail.getText().isBlank() || userPassword.getText().isBlank() ){
             AlertHelper.showMissingDataAlert();
             return;
         }
 
-        UserDTO newUser = new UserDTO( userEmail.getText(), userName.getText(), isAdmin.isSelected(), userPassword.getText() );
+        UserDTO newUser = new UserDTO(userEmail.getText(), userName.getText(), isAdmin.isSelected(), userPassword.getText());
 
-        if ( AlertHelper.showConfirmationDialog("Confirmación de Registro", "¿Desea realizar el registro?")) {
+        if (AlertHelper.showConfirmationDialog("Registration Confirmation", "Do you want to register the user?")) {
             try {
                 UserDB userDB = new UserDB();
                 userDB.insertUser(newUser);
                 setUserList();
                 userDataTable.getItems().setAll(userList);
                 clearTextFields();
-            }catch ( SQLException | IOException E){
+            } catch (SQLException | IOException E){
                 System.out.println(E.getMessage());
             }
         }
     }
 
+    /**
+     * Updates an existing user's details.
+     * @param actionEvent The action event triggering the method call.
+     */
+    @FXML
+    public void updateUser(ActionEvent actionEvent) {
+        if (selectedUser == null) {
+            AlertHelper.showNoObjectSelected("No hay ningún usuario seleccionado.");
+            return;
+        } else if (userName.getText().isBlank() || userEmail.getText().isBlank() || userPassword.getText().isBlank()) {
+            AlertHelper.showMissingDataAlert();
+            return;
+        }
+
+        UserDTO updatedUser = new UserDTO(selectedUser.getId_cuenta(), userEmail.getText(), userName.getText(), isAdmin.isSelected(), userPassword.getText());
+
+        if (updatedUser.equals(selectedUser)){
+            AlertHelper.showNoChangesAlert();
+            return;
+        }
+
+        if (AlertHelper.showConfirmationDialog("Update Confirmation", "Do you want to update user details?")) {
+            try {
+                UserDB userDB = new UserDB();
+                userDB.updateUser(updatedUser);
+                setUserList();
+                userDataTable.getItems().setAll(userList);
+                clearTextFields();
+            } catch (SQLException | IOException E){
+                System.out.println(E.getMessage());
+            }
+        }
+    }
+
+    /**
+     * Deletes a user from the database.
+     * @param actionEvent The action event triggering the method call.
+     */
     @FXML
     public void deleteUser(ActionEvent actionEvent) {
         if (selectedUser == null) {
-            AlertHelper.showNoUserSelectedAlert();
+            AlertHelper.showNoObjectSelected("No hay ningún usuario seleccionado.");
             return;
         }
 
         UserDTO userToDelete = new UserDTO(selectedUser);
 
-        if (AlertHelper.showConfirmationDialog("Confirmación de eliminación", "¿Desea eliminar al usuario de la base de datos?")) {
+        if (AlertHelper.showConfirmationDialog("Delete Confirmation", "Do you want to delete the user from the database?")) {
             try{
                 UserDB userDB = new UserDB();
                 userDB.deleteUser(userToDelete);
                 setUserList();
                 userDataTable.getItems().setAll(userList);
                 clearTextFields();
-            }catch ( SQLException | IOException E){
+            } catch (SQLException | IOException E){
                 System.out.println(E.getMessage());
             }
         }
     }
 
+    /**
+     * Searches for users based on specified criteria.
+     */
     @FXML
     public void searchClient() throws SQLException, IOException {
         List<UserDTO> resultList = new ArrayList<>();
@@ -179,7 +196,10 @@ public class UserListController {
         userDataTable.getItems().setAll(resultList);
     }
 
-
+    /**
+     * Populates the user details upon selection.
+     * @param selectedUser The selected user.
+     */
     private void selectUserDetails(UserDTO selectedUser) {
         this.selectedUser = selectedUser;
         userIdLabel.setText(String.valueOf(selectedUser.getId_cuenta()));
@@ -189,14 +209,22 @@ public class UserListController {
         userPassword.setText(selectedUser.getContrasena());
     }
 
+    /**
+     * Retrieves the list of users from the database.
+     * @throws SQLException If an SQL exception occurs.
+     * @throws IOException If an IO exception occurs.
+     */
     private void setUserList() throws SQLException, IOException {
         UserDB userDB = new UserDB();
         this.userList = userDB.getUsers();
     }
 
+    /**
+     * Clears the input fields.
+     */
     private void clearTextFields() {
         selectedUser = null;
-        userIdLabel.setText("Id Usuario");
+        userIdLabel.setText("User ID");
         userEmail.setText("");
         userName.setText("");
         isAdmin.setSelected(false);

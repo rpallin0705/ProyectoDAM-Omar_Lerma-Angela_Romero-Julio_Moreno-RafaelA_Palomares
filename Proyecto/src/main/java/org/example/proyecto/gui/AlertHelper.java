@@ -39,11 +39,11 @@ public class AlertHelper {
         return result.isPresent() && result.get() == hotelButton;
     }
 
-    public static void showNoUserSelectedAlert() {
+    public static void showNoObjectSelected(String contentText) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Aviso");
         alert.setHeaderText(null);
-        alert.setContentText("No hay ningún usuario seleccionado.");
+        alert.setContentText(contentText);
         alert.showAndWait();
     }
 
@@ -51,31 +51,7 @@ public class AlertHelper {
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Aviso");
         alert.setHeaderText(null);
-        alert.setContentText("No se ha cambiado la información del usuario.");
-        alert.showAndWait();
-    }
-
-    public static void showUpdatedUserAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Información");
-        alert.setHeaderText(null);
-        alert.setContentText("El cliente ha sido actualizado.");
-        alert.showAndWait();
-    }
-
-    public static void showInsertedUserAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Información");
-        alert.setHeaderText(null);
-        alert.setContentText("El cliente ha sido insertado.");
-        alert.showAndWait();
-    }
-
-    public static void showDeletedUserAlert() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Aviso");
-        alert.setHeaderText(null);
-        alert.setContentText("El usuario ha sido borrado correctamente.");
+        alert.setContentText("No se ha cambiado la información");
         alert.showAndWait();
     }
 

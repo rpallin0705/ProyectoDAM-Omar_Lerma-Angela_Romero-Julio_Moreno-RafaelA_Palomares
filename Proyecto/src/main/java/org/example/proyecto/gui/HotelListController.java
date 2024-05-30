@@ -17,7 +17,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Controller class for managing hotel list view.
+ */
 public class HotelListController {
+
     @FXML
     public Label hotelIdLabel;
     @FXML
@@ -43,10 +47,9 @@ public class HotelListController {
     @FXML
     public TableColumn<HotelDTO, RoomType> hotelRoomtypeColumn;
     @FXML
-    public TableColumn<HotelDTO,Integer> hotelHostNumberColumn;
+    public TableColumn<HotelDTO, Integer> hotelHostNumberColumn;
     @FXML
     public Button isSelectingHousingButton;
-
     @FXML
     AnchorPane templateComponent = null;
 
@@ -54,10 +57,12 @@ public class HotelListController {
     private HotelDTO selectedHotel = null;
     BookingDataHelper dataForBooking = null;
 
-
+    /**
+     * Initializes the hotel list view.
+     */
     @FXML
     public void initialize() throws SQLException, IOException {
-        try{
+        try {
             hotelIdColumn.setCellValueFactory(new PropertyValueFactory<>("housingId"));
             hotelNameColumn.setCellValueFactory(new PropertyValueFactory<>("nombre"));
             hotelAddressColumn.setCellValueFactory(new PropertyValueFactory<>("calle"));
@@ -81,41 +86,29 @@ public class HotelListController {
         }
     }
 
-    private void setHotelList() throws SQLException, IOException {
-        HotelDB hotelDB = new HotelDB();
-        this.hotelList = hotelDB.getHotels();
-    }
-
-    private void selectClientDetails(HotelDTO selectedHotel) {
-        this.selectedHotel = selectedHotel;
-        hotelIdLabel.setText(String.valueOf(selectedHotel.getHousingId()));
-        hotelName.setText(selectedHotel.getNombre());
-        hotelAddress.setText(selectedHotel.getCalle());
-        hotelClassification.setText(String.valueOf(selectedHotel.getHotelClassification()));
-        hotelRoomType.setValue(selectedHotel.getRoomType());
-        hotelHostNumber.setText(String.valueOf(selectedHotel.getHostNumber()));
-    }
-
+    /**
+     * Registers a new hotel.
+     */
     @FXML
     public void registerHotel() {
-        if (selectedHotel != null){
+        if (selectedHotel != null) {
             clearTextFields();
             return;
         }
 
-        if(hotelAddress.getText().isBlank() || hotelName.getText().isBlank() ||
-           hotelClassification.getText().isBlank() || hotelRoomType.getValue() == null ||
-           hotelHostNumber.getText().isBlank() ){
+        if (hotelAddress.getText().isBlank() || hotelName.getText().isBlank() ||
+                hotelClassification.getText().isBlank() || hotelRoomType.getValue() == null ||
+                hotelHostNumber.getText().isBlank()) {
             AlertHelper.showMissingDataAlert();
             return;
         }
 
         HotelDTO hotelToRegister = new HotelDTO(hotelName.getText(), hotelAddress.getText(),
-                                                Integer.parseInt(hotelClassification.getText()), hotelRoomType.getValue(),
-                                                Integer.parseInt(hotelHostNumber.getText()));
+                Integer.parseInt(hotelClassification.getText()), hotelRoomType.getValue(),
+                Integer.parseInt(hotelHostNumber.getText()));
 
-        if (AlertHelper.showConfirmationDialog("Confirmacion de registro de hotel", "¿Desea registrar el hotel en la base de datos?")){
-            try{
+        if (AlertHelper.showConfirmationDialog("Confirmacion de registro de hotel", "¿Desea registrar el hotel en la base de datos?")) {
+            try {
                 HotelDB hotelDB = new HotelDB();
                 hotelDB.insertHotel(hotelToRegister);
                 setHotelList();
@@ -124,24 +117,17 @@ public class HotelListController {
 
             } catch (SQLException | IOException e) {
                 throw new RuntimeException(e);
-                //todo agregar alertas de error
             }
         }
     }
 
-    private void clearTextFields() {
-        selectedHotel = null;
-        hotelIdLabel.setText("Id Alojamiento");
-        hotelName.setText("");
-        hotelAddress.setText("");
-        hotelClassification.setText("");
-        hotelRoomType.setValue(null);
-        hotelHostNumber.setText("");
-    }
-
+    /**
+     * Updates the selected hotel.
+     */
+    @FXML
     public void updateHotel() {
-        if (selectedHotel == null){
-            AlertHelper.showNoUserSelectedAlert();
+        if (selectedHotel == null) {
+            AlertHelper.showNoObjectSelected("No hay ningún hotel seleccionado.");
             return;
         } else if (hotelName.getText().isBlank() || hotelAddress.getText().isBlank() || hotelClassification.getText().isBlank() ||
                 (hotelRoomType.getValue() == null) || hotelHostNumber.getText().isBlank()) {
@@ -149,16 +135,16 @@ public class HotelListController {
             return;
         }
         HotelDTO updatedHotel = new HotelDTO(selectedHotel.getHousingId(), hotelName.getText(), hotelAddress.getText(),
-                                                Integer.parseInt(hotelClassification.getText()), hotelRoomType.getValue(),
-                                                Integer.parseInt(hotelHostNumber.getText()));
+                Integer.parseInt(hotelClassification.getText()), hotelRoomType.getValue(),
+                Integer.parseInt(hotelHostNumber.getText()));
 
-        if (updatedHotel.equals(selectedHotel)){
+        if (updatedHotel.equals(selectedHotel)) {
             AlertHelper.showNoChangesAlert();
             return;
         }
 
         if (AlertHelper.showConfirmationDialog("Confirmación de actualización", "¿Desea realizar la actualización de datos?")) {
-            try{
+            try {
                 HotelDB hotelDB = new HotelDB();
                 hotelDB.updateHotel(updatedHotel);
                 setHotelList();
@@ -168,18 +154,22 @@ public class HotelListController {
                 throw new RuntimeException(e);
             }
         }
-        }
+    }
 
+    /**
+     * Deletes the selected hotel.
+     */
+    @FXML
     public void deleteHotel() {
         if (selectedHotel == null) {
-            AlertHelper.showNoUserSelectedAlert();
+            AlertHelper.showNoObjectSelected("No hay ningún hotel seleccionado.");
             return;
         }
 
         HotelDTO hotelToDelete = new HotelDTO(selectedHotel);
 
         if (AlertHelper.showConfirmationDialog("Confirmación de eliminación", "¿Desea eliminar el hotel de la base de datos?")) {
-            try{
+            try {
                 HotelDB hotelDB = new HotelDB();
                 hotelDB.deleteHotel(hotelToDelete);
                 setHotelList();
@@ -189,10 +179,13 @@ public class HotelListController {
                 throw new RuntimeException(e);
             }
         }
-
-
     }
 
+    /**
+     * Searches for hotels based on the provided criteria.
+     *
+     * @param actionEvent The action event triggering the search.
+     */
     @FXML
     public void searchHotel(ActionEvent actionEvent) throws SQLException, IOException {
         List<HotelDTO> resultList = new ArrayList<>();
@@ -222,7 +215,8 @@ public class HotelListController {
                 matches &= String.valueOf(hotel.getHotelClassification()).contains(classificationText);
             }
             if (roomTypeValue != null) {
-                matches &= hotel.getRoomType() != null && hotel.getRoomType().equals(roomTypeValue);
+                matches &=
+                        hotel.getRoomType() != null && hotel.getRoomType().equals(roomTypeValue);
             }
             if (!hostNumberText.isEmpty()) {
                 matches &= String.valueOf(hotel.getHostNumber()).contains(hostNumberText);
@@ -236,16 +230,13 @@ public class HotelListController {
         hotelDataTable.getItems().setAll(resultList);
     }
 
-    public void setIsSelectingHousing(boolean isSelectingHotel) {
-        System.out.println(isSelectingHotel);
-        isSelectingHousingButton.setVisible(isSelectingHotel);
-        System.out.println(isSelectingHousingButton.isVisible());
-    }
-
+    /**
+     * Selects a hotel for booking and navigates to the booking list view.
+     */
     @FXML
     public void selectHotelForBooking() {
         if (selectedHotel == null) {
-            AlertHelper.showNoUserSelectedAlert();
+            AlertHelper.showNoObjectSelected("No hay ningún hotel seleccionado.");
             return;
         }
         if (dataForBooking == null)
@@ -267,11 +258,69 @@ public class HotelListController {
         }
     }
 
+    /**
+     * Sets the template component for navigation.
+     *
+     * @param templateComponent The template component for navigation.
+     */
     public void setTemplateComponent(AnchorPane templateComponent) {
         this.templateComponent = templateComponent;
     }
 
-    public void setDataForBooking(BookingDataHelper dataForBooking){
+    /**
+     * Sets the data for booking.
+     *
+     * @param dataForBooking The data for booking.
+     */
+    public void setDataForBooking(BookingDataHelper dataForBooking) {
         this.dataForBooking = dataForBooking;
+    }
+
+    /**
+     * Sets the flag to control whether housing is being selected.
+     *
+     * @param isSelectingHotel A boolean flag indicating whether housing is being selected.
+     */
+    public void setIsSelectingHousing(boolean isSelectingHotel) {
+        isSelectingHousingButton.setVisible(isSelectingHotel);
+    }
+
+    /**
+     * Clears the text fields.
+     */
+    private void clearTextFields() {
+        selectedHotel = null;
+        hotelIdLabel.setText("Id Alojamiento");
+        hotelName.setText("");
+        hotelAddress.setText("");
+        hotelClassification.setText("");
+        hotelRoomType.setValue(null);
+        hotelHostNumber.setText("");
+    }
+
+    /**
+     * Selects hotel details for display.
+     *
+     * @param selectedHotel The selected hotel.
+     */
+    private void selectClientDetails(HotelDTO selectedHotel) {
+        this.selectedHotel = selectedHotel;
+        hotelIdLabel.setText(String.valueOf(selectedHotel.getHousingId()));
+        hotelName.setText(selectedHotel.getNombre());
+        hotelAddress.setText(selectedHotel.getCalle());
+        hotelClassification.setText(String.valueOf(selectedHotel.getHotelClassification()));
+        hotelRoomType.setValue(selectedHotel.getRoomType());
+        hotelHostNumber.setText(String.valueOf(selectedHotel.getHostNumber()));
+    }
+
+    /**
+     * Sets the list of hotels.
+     *
+     * @throws SQLException If a SQL exception occurs.
+     * @throws IOException  If an IO exception occurs.
+     */
+    private void setHotelList() throws SQLException, IOException {
+        HotelDB hotelDB = new HotelDB();
+        this.hotelList = hotelDB.getHotels();
     }
 }
