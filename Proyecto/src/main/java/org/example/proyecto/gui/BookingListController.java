@@ -116,48 +116,6 @@ public class BookingListController {
         });
     }
 
-    private Callback<DatePicker, DateCell> getCheckInDayCellFactory() {
-        return (final DatePicker datePicker) -> new DateCell() {
-            @Override
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-
-                if (checkOutDate.getValue() != null && item.isAfter(checkOutDate.getValue().minusDays(1))) {
-                    setDisable(true);
-                    setStyle("-fx-background-color: #ffc0cb;");
-                }
-
-                for (BookingDataHelper booking : bookingDataList) {
-                    if ((item.isAfter(booking.getCheckInDate().minusDays(1)) && item.isBefore(booking.getCheckOutDate().plusDays(1)))) {
-                        setDisable(true);
-                        setStyle("-fx-background-color: #ffc0cb;");
-                    }
-                }
-            }
-        };
-    }
-
-    private Callback<DatePicker, DateCell> getCheckOutDayCellFactory() {
-        return (final DatePicker datePicker) -> new DateCell() {
-            @Override
-            public void updateItem(LocalDate item, boolean empty) {
-                super.updateItem(item, empty);
-
-                if (checkInDate.getValue() != null && item.isBefore(checkInDate.getValue().plusDays(1))) {
-                    setDisable(true);
-                    setStyle("-fx-background-color: #ffc0cb;");
-                }
-
-                for (BookingDataHelper booking : bookingDataList) {
-                    if ((item.isAfter(booking.getCheckInDate().minusDays(1)) && item.isBefore(booking.getCheckOutDate().plusDays(1)))) {
-                        setDisable(true);
-                        setStyle("-fx-background-color: #ffc0cb;");
-                    }
-                }
-            }
-        };
-    }
-
     /**
      * Registers a new booking with the data provided in the text fields.
      * Validates the input data and shows alerts in case of missing information.
@@ -474,5 +432,60 @@ public class BookingListController {
         housingName.setText("");
         selectHousingForBookingButton.setDisable(false);
         selectClientForBookingButton.setDisable(false);
+    }
+
+
+    /**
+     * Provides a cell factory for the check-in DatePicker, disabling dates that are after the selected check-out date
+     * or that overlap with any existing bookings.
+     *
+     * @return a Callback for the check-in DatePicker
+     */
+    private Callback<DatePicker, DateCell> getCheckInDayCellFactory() {
+        return (final DatePicker datePicker) -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (checkOutDate.getValue() != null && item.isAfter(checkOutDate.getValue().minusDays(1))) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;");
+                }
+
+                for (BookingDataHelper booking : bookingDataList) {
+                    if (item.isAfter(booking.getCheckInDate().minusDays(1)) && item.isBefore(booking.getCheckOutDate().plusDays(1))) {
+                        setDisable(true);
+                        setStyle("-fx-background-color: #ffc0cb;");
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+     * Provides a cell factory for the check-out DatePicker, disabling dates that are before the selected check-in date
+     * or that overlap with any existing bookings.
+     *
+     * @return a Callback for the check-out DatePicker
+     */
+    private Callback<DatePicker, DateCell> getCheckOutDayCellFactory() {
+        return (final DatePicker datePicker) -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (checkInDate.getValue() != null && item.isBefore(checkInDate.getValue().plusDays(1))) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;");
+                }
+
+                for (BookingDataHelper booking : bookingDataList) {
+                    if (item.isAfter(booking.getCheckInDate().minusDays(1)) && item.isBefore(booking.getCheckOutDate().plusDays(1))) {
+                        setDisable(true);
+                        setStyle("-fx-background-color: #ffc0cb;");
+                    }
+                }
+            }
+        };
     }
 }
