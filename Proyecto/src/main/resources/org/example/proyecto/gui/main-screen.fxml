@@ -11,11 +11,6 @@
    <top>
       <Pane prefHeight="80.0" prefWidth="1080.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Label alignment="CENTER" layoutX="29.0" layoutY="12.0" prefHeight="53.0" prefWidth="223.0" text="Encarni's Resort" textFill="WHITE">
-               <font>
-                  <Font size="27.0" />
-               </font>
-            </Label>
             <Label fx:id="userNameLabel" alignment="CENTER" layoutX="893.0" layoutY="14.0" prefHeight="49.0" prefWidth="173.0" textFill="WHITE">
                <font>
                   <Font size="29.0" />
