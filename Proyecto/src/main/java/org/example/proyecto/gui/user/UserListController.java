@@ -1,9 +1,11 @@
-package org.example.proyecto.gui;
+package org.example.proyecto.gui.user;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import org.example.proyecto.gui.helpers.AlertHelper;
+import org.example.proyecto.gui.helpers.GuiEffectsHelper;
 import org.example.proyecto.model.user.UserDB;
 import org.example.proyecto.model.user.UserDTO;
 

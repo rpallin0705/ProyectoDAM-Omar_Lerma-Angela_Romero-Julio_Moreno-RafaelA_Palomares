@@ -1,10 +1,13 @@
-package org.example.proyecto.gui;
+package org.example.proyecto.gui.apartment;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import org.example.proyecto.gui.booking.BookingListController;
+import org.example.proyecto.gui.helpers.AlertHelper;
+import org.example.proyecto.gui.helpers.GuiEffectsHelper;
 import org.example.proyecto.model.booking.BookingDataHelper;
 import org.example.proyecto.model.client.ClientDTO;
 import org.example.proyecto.model.touristApartment.TouristApartmentDTO;

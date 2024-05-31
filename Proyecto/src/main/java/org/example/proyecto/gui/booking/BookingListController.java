@@ -1,4 +1,4 @@
-package org.example.proyecto.gui;
+package org.example.proyecto.gui.booking;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,6 +7,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
+import org.example.proyecto.gui.client.ClientListController;
+import org.example.proyecto.gui.hotel.HotelListController;
+import org.example.proyecto.gui.apartment.ApartmentListController;
+import org.example.proyecto.gui.helpers.AlertHelper;
+import org.example.proyecto.gui.helpers.GuiEffectsHelper;
 import org.example.proyecto.model.booking.BookingDB;
 import org.example.proyecto.model.booking.BookingDTO;
 import org.example.proyecto.model.booking.BookingDataHelper;
@@ -335,6 +340,8 @@ public class BookingListController {
         bookingIdLabel.setText(String.valueOf(selectedBooking.getBookingId()));
         selectClientForBookingButton.setDisable(true);
         selectHousingForBookingButton.setDisable(true);
+        housingName.setDisable(true);
+        clientEmail.setDisable(true);
     }
 
     /**
@@ -432,6 +439,8 @@ public class BookingListController {
         housingName.setText("");
         selectHousingForBookingButton.setDisable(false);
         selectClientForBookingButton.setDisable(false);
+        housingName.setDisable(false);
+        clientEmail.setDisable(false);
     }
 
 

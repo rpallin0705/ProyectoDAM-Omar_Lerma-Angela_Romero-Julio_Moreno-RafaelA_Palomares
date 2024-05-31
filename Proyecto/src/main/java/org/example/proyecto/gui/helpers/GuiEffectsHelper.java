@@ -1,4 +1,4 @@
-package org.example.proyecto.gui;
+package org.example.proyecto.gui.helpers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;

@@ -7,6 +7,10 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import org.example.proyecto.gui.apartment.ApartmentListController;
+import org.example.proyecto.gui.booking.BookingListController;
+import org.example.proyecto.gui.helpers.GuiEffectsHelper;
+import org.example.proyecto.gui.hotel.HotelListController;
 import org.example.proyecto.model.user.UserDTO;
 
 import java.io.IOException;
