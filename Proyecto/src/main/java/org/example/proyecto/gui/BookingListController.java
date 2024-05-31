@@ -93,6 +93,8 @@ public class BookingListController {
                 }
             });
 
+            //setDatePickerListeners();
+
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
@@ -101,6 +103,7 @@ public class BookingListController {
 
     /**
      * Añade listeners para asegurarse de que checkOutDate no es antes de checkInDate y viceversa.
+     * @version alpha
      */
     private void setDatePickerListeners() {
         checkInDate.valueProperty().addListener((observable, oldValue, newValue) -> {
