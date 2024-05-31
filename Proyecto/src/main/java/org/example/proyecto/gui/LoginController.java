@@ -26,20 +26,19 @@ public class LoginController {
     @FXML
     private Button login;
 
-    private UserDTO userLogedIn;
 
     @FXML
     public void initialize() {
         // Añadir eventos de teclado
-        userEmail.setOnKeyPressed(event -> handleKeyPressed(event));
-        userPasswd.setOnKeyPressed(event -> handleKeyPressed(event));
+        userEmail.setOnKeyPressed(this::handleKeyPressed);
+        userPasswd.setOnKeyPressed(this::handleKeyPressed);
     }
 
     @FXML
     public void loginUser(ActionEvent actionEvent) {
         try {
             UserDB userDB = new UserDB();
-            userLogedIn = userDB.userLogin(userEmail.getText(), userPasswd.getText());
+            UserDTO userLogedIn = userDB.userLogin(userEmail.getText(), userPasswd.getText());
 
             if (userLogedIn != null) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("main-screen.fxml"));

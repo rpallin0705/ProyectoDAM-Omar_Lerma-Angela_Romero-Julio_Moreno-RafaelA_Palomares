@@ -43,7 +43,7 @@
             <Label layoutX="11.0" layoutY="83.0" prefHeight="20.0" prefWidth="75.0" text="Email Cliente" />
             <Label layoutX="11.0" layoutY="134.0" prefHeight="20.0" prefWidth="75.0" text="Alojamiento" />
             <TextField fx:id="clientEmail" layoutX="92.0" layoutY="81.0" />
-            <TextField fx:id="housingName" layoutX="92.0" layoutY="132.0" />
+            <TextField fx:id="housingName" layoutX="92.0" layoutY="132.0" /><Button layoutX="14.0" layoutY="271.0" mnemonicParsing="false" onAction="#clearTextFields" text="Limpiar Campos" />
             </Pane>
         </left>
     </BorderPane>

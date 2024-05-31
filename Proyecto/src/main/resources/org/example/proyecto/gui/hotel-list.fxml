@@ -54,6 +54,7 @@
             <ChoiceBox fx:id="hotelRoomType" layoutX="108.0" layoutY="239.0" prefWidth="150.0" />
             <Button fx:id="searchHotelButton" layoutX="243.0" layoutY="323.0" mnemonicParsing="false" onAction="#searchHotel" prefHeight="30.0" prefWidth="30.0" />
             <Button fx:id="isSelectingHousingButton" layoutX="97.0" layoutY="502.0" mnemonicParsing="false" onAction="#selectHotelForBooking" prefHeight="44.0" prefWidth="99.0" style="-fx-background-color: orange;" text="Reservar" visible="false" />
+            <Button layoutX="8.0" layoutY="326.0" mnemonicParsing="false" onAction="#clearTextFields" text="Limpiar Campos" />
             </Pane>
         </left>
     </BorderPane>

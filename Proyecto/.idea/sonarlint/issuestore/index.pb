@@ -73,3 +73,5 @@ n
 >src/main/java/org/example/proyecto/gui/UserListController.java,e\5\e5e268719f8f38f092e223671f791aea552c39ea
 i
 9src/main/java/org/example/proyecto/gui/AppController.java,3\6\36a36b5170502acb4c89a14854d9a973bfc8e917
+t
+Dsrc/main/java/org/example/proyecto/exceptions/DatabaseException.java,1\f\1fc89bcf1082b0baaea8125da525e5300aa18404

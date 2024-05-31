@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Callback;
 import org.example.proyecto.model.booking.BookingDB;
 import org.example.proyecto.model.booking.BookingDTO;
 import org.example.proyecto.model.booking.BookingDataHelper;
@@ -89,9 +90,72 @@ public class BookingListController {
                     selectBookingDetails(newValue);
                 }
             });
+
         } catch (SQLException | IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    /**
+     * Añade listeners para asegurarse de que checkOutDate no es antes de checkInDate y viceversa.
+     */
+    private void setDatePickerListeners() {
+        checkInDate.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && checkOutDate.getValue() != null && newValue.isAfter(checkOutDate.getValue())) {
+                checkOutDate.setValue(newValue.plusDays(1));
+            }
+            checkOutDate.setDayCellFactory(getCheckOutDayCellFactory());
+        });
+
+        checkOutDate.valueProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null && checkInDate.getValue() != null && newValue.isBefore(checkInDate.getValue())) {
+                checkInDate.setValue(newValue.minusDays(1));
+            }
+            checkInDate.setDayCellFactory(getCheckInDayCellFactory());
+        });
+    }
+
+    private Callback<DatePicker, DateCell> getCheckInDayCellFactory() {
+        return (final DatePicker datePicker) -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (checkOutDate.getValue() != null && item.isAfter(checkOutDate.getValue().minusDays(1))) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;");
+                }
+
+                for (BookingDataHelper booking : bookingDataList) {
+                    if ((item.isAfter(booking.getCheckInDate().minusDays(1)) && item.isBefore(booking.getCheckOutDate().plusDays(1)))) {
+                        setDisable(true);
+                        setStyle("-fx-background-color: #ffc0cb;");
+                    }
+                }
+            }
+        };
+    }
+
+    private Callback<DatePicker, DateCell> getCheckOutDayCellFactory() {
+        return (final DatePicker datePicker) -> new DateCell() {
+            @Override
+            public void updateItem(LocalDate item, boolean empty) {
+                super.updateItem(item, empty);
+
+                if (checkInDate.getValue() != null && item.isBefore(checkInDate.getValue().plusDays(1))) {
+                    setDisable(true);
+                    setStyle("-fx-background-color: #ffc0cb;");
+                }
+
+                for (BookingDataHelper booking : bookingDataList) {
+                    if ((item.isAfter(booking.getCheckInDate().minusDays(1)) && item.isBefore(booking.getCheckOutDate().plusDays(1)))) {
+                        setDisable(true);
+                        setStyle("-fx-background-color: #ffc0cb;");
+                    }
+                }
+            }
+        };
     }
 
     /**
@@ -107,7 +171,7 @@ public class BookingListController {
             return;
         }
 
-        if (dataForBooking == null || checkInDate.getValue() == null || checkOutDate.getValue() == null || dataForBooking.getHotelForBooking() == null || dataForBooking.getApartmentForBooking() == null) {
+        if (dataForBooking == null || checkInDate.getValue() == null || checkOutDate.getValue() == null || (dataForBooking.getHotelForBooking() == null && dataForBooking.getApartmentForBooking() == null)) {
             AlertHelper.showMissingDataAlert();
             return;
         }
@@ -253,7 +317,7 @@ public class BookingListController {
 
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            throw new RuntimeException("Error loading client list");
         }
     }
 
@@ -399,6 +463,7 @@ public class BookingListController {
     /**
      * Clears the text fields and resets the selected booking.
      */
+    @FXML
     private void clearTextFields() {
         selectedBooking = null;
         dataForBooking = null;

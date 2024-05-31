@@ -47,6 +47,7 @@
                 <Button fx:id="isSelectingHousingButton" layoutX="97.0" layoutY="502.0" mnemonicParsing="false" onAction="#selectApartmentForBooking" prefHeight="44.0" prefWidth="99.0" style="-fx-background-color: orange;" text="Reservar" visible="false" />
                 <Label fx:id="apartmentIdLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="50.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Apartamento" />
             <Button fx:id="searchApartmentButton" layoutX="243.0" layoutY="232.0" mnemonicParsing="false" onAction="#searchApartment" prefHeight="30.0" prefWidth="30.0" />
+            <Button layoutX="15.0" layoutY="235.0" mnemonicParsing="false" onAction="#clearTextFields" text="Limpiar Campos" />
             </Pane>
         </left>
     </BorderPane>

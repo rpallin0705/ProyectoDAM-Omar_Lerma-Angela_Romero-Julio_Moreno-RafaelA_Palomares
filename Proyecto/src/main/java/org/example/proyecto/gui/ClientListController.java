@@ -21,6 +21,7 @@ import java.util.List;
  * It handles the display, update, deletion, registration, and search of client data.
  */
 public class ClientListController {
+    public static final String NO_CLIENT_SELECTED = "No hay ningún cliente seleccionado.";
     @FXML
     public TextField clientEmail;
     @FXML
@@ -100,8 +101,9 @@ public class ClientListController {
                 clientDB.insertClient(clientToRegister);
                 setClientList();
                 clientDataTable.getItems().setAll(clientList);
+                clearTextFields();
             } catch (SQLException | IOException e) {
-                throw new RuntimeException(e);
+                System.err.println("Usuario ya existente");
             }
         }
     }
@@ -115,7 +117,7 @@ public class ClientListController {
     @FXML
     public void updateClient(ActionEvent actionEvent) {
         if (selectedClient == null) {
-            AlertHelper.showNoObjectSelected("No hay ningún cliente seleccionado.");
+            AlertHelper.showNoObjectSelected(NO_CLIENT_SELECTED);
             return;
         } else if (clientName.getText().isBlank() || clientEmail.getText().isBlank() || clientAddress.getText().isBlank()) {
             AlertHelper.showMissingDataAlert();
@@ -151,7 +153,7 @@ public class ClientListController {
     @FXML
     public void deleteClient(ActionEvent actionEvent) {
         if (selectedClient == null) {
-            AlertHelper.showNoObjectSelected("No hay ningún cliente seleccionado.");
+            AlertHelper.showNoObjectSelected(NO_CLIENT_SELECTED);
             return;
         }
 
@@ -177,39 +179,51 @@ public class ClientListController {
      */
     @FXML
     public void searchClient(ActionEvent actionEvent) throws SQLException, IOException {
-        List<ClientDTO> resultList = new ArrayList<>();
-
         if (selectedClient != null) {
-            clearTextFields();
-            setClientList();
-            clientDataTable.getItems().setAll(clientList);
+            handleSelectedClient();
             return;
         }
 
-        String nameText = clientName.getText() != null ? clientName.getText().trim().toLowerCase() : "";
-        String emailText = clientEmail.getText() != null ? clientEmail.getText().trim().toLowerCase() : "";
-        String addressText = clientAddress.getText() != null ? clientAddress.getText().trim().toLowerCase() : "";
+        List<ClientDTO> resultList = filterClients(clientList, getTrimmedText(clientName), getTrimmedText(clientEmail), getTrimmedText(clientAddress));
+        clientDataTable.getItems().setAll(resultList);
+    }
 
-        for (ClientDTO client : clientList) {
-            boolean matches = true;
+    private void handleSelectedClient() throws SQLException, IOException {
+        clearTextFields();
+        setClientList();
+        clientDataTable.getItems().setAll(clientList);
+    }
 
-            if (!nameText.isEmpty()) {
-                matches &= client.getNombre_apellidos() != null && client.getNombre_apellidos().toLowerCase().contains(nameText);
-            }
-            if (!emailText.isEmpty()) {
-                matches &= client.getEmail() != null && client.getEmail().toLowerCase().contains(emailText);
-            }
-            if (!addressText.isEmpty()) {
-                matches &= client.getDireccion() != null && client.getDireccion().toLowerCase().contains(addressText);
-            }
-
-            if (matches) {
+    private List<ClientDTO> filterClients(List<ClientDTO> clients, String nameText, String emailText, String addressText) {
+        List<ClientDTO> resultList = new ArrayList<>();
+        for (ClientDTO client : clients) {
+            if (matches(client, nameText, emailText, addressText)) {
                 resultList.add(client);
             }
         }
-
-        clientDataTable.getItems().setAll(resultList);
+        return resultList;
     }
+
+    private boolean matches(ClientDTO client, String nameText, String emailText, String addressText) {
+        return matchesName(client, nameText) && matchesEmail(client, emailText) && matchesAddress(client, addressText);
+    }
+
+    private boolean matchesName(ClientDTO client, String nameText) {
+        return nameText.isEmpty() || (client.getNombre_apellidos() != null && client.getNombre_apellidos().toLowerCase().contains(nameText));
+    }
+
+    private boolean matchesEmail(ClientDTO client, String emailText) {
+        return emailText.isEmpty() || (client.getEmail() != null && client.getEmail().toLowerCase().contains(emailText));
+    }
+
+    private boolean matchesAddress(ClientDTO client, String addressText) {
+        return addressText.isEmpty() || (client.getDireccion() != null && client.getDireccion().toLowerCase().contains(addressText));
+    }
+
+    private String getTrimmedText(TextField textField) {
+        return textField.getText() != null ? textField.getText().trim().toLowerCase() : "";
+    }
+
 
     /**
      * Loads the client list data from the database and sets it to the client table.
@@ -244,7 +258,7 @@ public class ClientListController {
     @FXML
     public void selectClientForBooking(ActionEvent actionEvent) {
         if (selectedClient == null) {
-            AlertHelper.showNoObjectSelected("No hay ningún cliente seleccionado.");
+            AlertHelper.showNoObjectSelected(NO_CLIENT_SELECTED);
             return;
         }
 
@@ -296,6 +310,7 @@ public class ClientListController {
     /**
      * Clears the text fields and resets the selected client.
      */
+    @FXML
     private void clearTextFields() {
         selectedClient = null;
         clientId.setText("");

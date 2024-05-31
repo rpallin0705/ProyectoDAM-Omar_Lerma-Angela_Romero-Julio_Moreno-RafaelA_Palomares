@@ -22,6 +22,7 @@ import java.util.List;
  */
 public class HotelListController {
 
+    public static final String NO_HOTEL_SELECTED = "No hay ningún hotel seleccionado.";
     @FXML
     public Label hotelIdLabel;
     @FXML
@@ -137,14 +138,14 @@ public class HotelListController {
     @FXML
     public void updateHotel() {
         if (selectedHotel == null) {
-            AlertHelper.showNoObjectSelected("No hay ningún hotel seleccionado.");
+            AlertHelper.showNoObjectSelected(NO_HOTEL_SELECTED);
             return;
         } else if (hotelName.getText().isBlank() || hotelAddress.getText().isBlank() || hotelClassification.getText().isBlank() ||
                 (hotelRoomType.getValue() == null) || hotelHostNumber.getText().isBlank()) {
             AlertHelper.showMissingDataAlert();
             return;
         }
-        HotelDTO updatedHotel = new HotelDTO(selectedHotel.getHousingId(), hotelName.getText(), hotelAddress.getText(),
+        HotelDTO updatedHotel = new HotelDTO(hotelName.getText(), hotelAddress.getText(),
                 Integer.parseInt(hotelClassification.getText()), hotelRoomType.getValue(),
                 Integer.parseInt(hotelHostNumber.getText()));
 
@@ -172,7 +173,7 @@ public class HotelListController {
     @FXML
     public void deleteHotel() {
         if (selectedHotel == null) {
-            AlertHelper.showNoObjectSelected("No hay ningún hotel seleccionado.");
+            AlertHelper.showNoObjectSelected(NO_HOTEL_SELECTED);
             return;
         }
 
@@ -198,47 +199,70 @@ public class HotelListController {
      */
     @FXML
     public void searchHotel(ActionEvent actionEvent) throws SQLException, IOException {
-        List<HotelDTO> resultList = new ArrayList<>();
-
         if (selectedHotel != null) {
-            clearTextFields();
-            setHotelList();
+            handleSelectedHotel();
             return;
         }
 
-        String nameText = hotelName.getText() != null ? hotelName.getText().trim().toLowerCase() : "";
-        String addressText = hotelAddress.getText() != null ? hotelAddress.getText().trim().toLowerCase() : "";
-        String classificationText = hotelClassification.getText() != null ? hotelClassification.getText().trim() : "";
-        RoomType roomTypeValue = hotelRoomType.getValue();
-        String hostNumberText = hotelHostNumber.getText() != null ? hotelHostNumber.getText().trim() : "";
-
-        for (HotelDTO hotel : hotelList) {
-            boolean matches = true;
-
-            if (!nameText.isEmpty()) {
-                matches &= hotel.getNombre() != null && hotel.getNombre().toLowerCase().contains(nameText);
-            }
-            if (!addressText.isEmpty()) {
-                matches &= hotel.getCalle() != null && hotel.getCalle().toLowerCase().contains(addressText);
-            }
-            if (!classificationText.isEmpty()) {
-                matches &= String.valueOf(hotel.getHotelClassification()).contains(classificationText);
-            }
-            if (roomTypeValue != null) {
-                matches &=
-                        hotel.getRoomType() != null && hotel.getRoomType().equals(roomTypeValue);
-            }
-            if (!hostNumberText.isEmpty()) {
-                matches &= String.valueOf(hotel.getHostNumber()).contains(hostNumberText);
-            }
-
-            if (matches) {
-                resultList.add(hotel);
-            }
-        }
+        List<HotelDTO> resultList = filterHotels(
+                hotelList,
+                getTrimmedText(hotelName),
+                getTrimmedText(hotelAddress),
+                getTrimmedText(hotelClassification),
+                hotelRoomType.getValue(),
+                getTrimmedText(hotelHostNumber)
+        );
 
         hotelDataTable.getItems().setAll(resultList);
     }
+
+    private void handleSelectedHotel() throws SQLException, IOException {
+        clearTextFields();
+        setHotelList();
+    }
+
+    private List<HotelDTO> filterHotels(List<HotelDTO> hotels, String nameText, String addressText, String classificationText, RoomType roomType, String hostNumberText) {
+        List<HotelDTO> resultList = new ArrayList<>();
+        for (HotelDTO hotel : hotels) {
+            if (matches(hotel, nameText, addressText, classificationText, roomType, hostNumberText)) {
+                resultList.add(hotel);
+            }
+        }
+        return resultList;
+    }
+
+    private boolean matches(HotelDTO hotel, String nameText, String addressText, String classificationText, RoomType roomType, String hostNumberText) {
+        return matchesName(hotel, nameText) &&
+                matchesAddress(hotel, addressText) &&
+                matchesClassification(hotel, classificationText) &&
+                matchesRoomType(hotel, roomType) &&
+                matchesHostNumber(hotel, hostNumberText);
+    }
+
+    private boolean matchesName(HotelDTO hotel, String nameText) {
+        return nameText.isEmpty() || (hotel.getNombre() != null && hotel.getNombre().toLowerCase().contains(nameText));
+    }
+
+    private boolean matchesAddress(HotelDTO hotel, String addressText) {
+        return addressText.isEmpty() || (hotel.getCalle() != null && hotel.getCalle().toLowerCase().contains(addressText));
+    }
+
+    private boolean matchesClassification(HotelDTO hotel, String classificationText) {
+        return classificationText.isEmpty() || String.valueOf(hotel.getHotelClassification()).contains(classificationText);
+    }
+
+    private boolean matchesRoomType(HotelDTO hotel, RoomType roomType) {
+        return roomType == null || (hotel.getRoomType() != null && hotel.getRoomType().equals(roomType));
+    }
+
+    private boolean matchesHostNumber(HotelDTO hotel, String hostNumberText) {
+        return hostNumberText.isEmpty() || String.valueOf(hotel.getHostNumber()).contains(hostNumberText);
+    }
+
+    private String getTrimmedText(TextField textField) {
+        return textField.getText() != null ? textField.getText().trim().toLowerCase() : "";
+    }
+
 
     /**
      * Selects a hotel for booking and navigates to the booking list view.
@@ -246,7 +270,7 @@ public class HotelListController {
     @FXML
     public void selectHotelForBooking() {
         if (selectedHotel == null) {
-            AlertHelper.showNoObjectSelected("No hay ningún hotel seleccionado.");
+            AlertHelper.showNoObjectSelected(NO_HOTEL_SELECTED);
             return;
         }
         if (dataForBooking == null)
@@ -261,7 +285,6 @@ public class HotelListController {
             BookingListController controller = loader.getController();
             controller.setTemplateComponent(templateComponent);
             controller.setDataForBooking(dataForBooking);
-            //controller.setSelectBookingCLientButton();
             templateComponent.getChildren().setAll(menu);
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -298,6 +321,7 @@ public class HotelListController {
     /**
      * Clears the text fields.
      */
+    @FXML
     private void clearTextFields() {
         selectedHotel = null;
         hotelIdLabel.setText("Id Alojamiento");

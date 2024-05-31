@@ -66,8 +66,8 @@ public class UserListController {
                     selectUserDetails(newValue);
                 }
             });
-        } catch (SQLException | IOException E){
-            System.out.println(E.getMessage());
+        } catch (SQLException | IOException e){
+            throw new RuntimeException(e);
         }
     }
 
@@ -96,8 +96,8 @@ public class UserListController {
                 setUserList();
                 userDataTable.getItems().setAll(userList);
                 clearTextFields();
-            } catch (SQLException | IOException E){
-                System.out.println(E.getMessage());
+            } catch (SQLException | IOException e){
+                System.err.println("Usuario ya existente");
             }
         }
     }
@@ -130,8 +130,8 @@ public class UserListController {
                 setUserList();
                 userDataTable.getItems().setAll(userList);
                 clearTextFields();
-            } catch (SQLException | IOException E){
-                System.out.println(E.getMessage());
+            } catch (SQLException | IOException e){
+                throw new RuntimeException(e);
             }
         }
     }
@@ -156,8 +156,8 @@ public class UserListController {
                 setUserList();
                 userDataTable.getItems().setAll(userList);
                 clearTextFields();
-            } catch (SQLException | IOException E){
-                System.out.println(E.getMessage());
+            } catch (SQLException | IOException e){
+                throw new RuntimeException(e);
             }
         }
     }
@@ -226,6 +226,7 @@ public class UserListController {
     /**
      * Clears the input fields.
      */
+    @FXML
     private void clearTextFields() {
         selectedUser = null;
         userIdLabel.setText("User ID");

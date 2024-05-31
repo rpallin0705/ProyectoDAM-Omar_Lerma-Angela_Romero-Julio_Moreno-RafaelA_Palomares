@@ -21,6 +21,7 @@ import java.util.List;
  * Handles selection of apartments for booking.
  */
 public class ApartmentListController {
+    public static final String NO_APARTMENT_SELECTED = "No hay ningún apartamento seleccionado.";
     @FXML
     public Label apartmentIdLabel;
     @FXML
@@ -122,7 +123,7 @@ public class ApartmentListController {
     @FXML
     public void updateApartment() {
         if (selectedApartment == null) {
-            AlertHelper.showNoObjectSelected("No hay ningún apartamento seleccionado.");
+            AlertHelper.showNoObjectSelected(NO_APARTMENT_SELECTED);
             return;
         }
 
@@ -155,7 +156,7 @@ public class ApartmentListController {
     @FXML
     public void deleteApartment() {
         if (selectedApartment == null) {
-            AlertHelper.showNoObjectSelected("No hay ningún apartamento seleccionado.");
+            AlertHelper.showNoObjectSelected(NO_APARTMENT_SELECTED);
             return;
         }
 
@@ -219,7 +220,7 @@ public class ApartmentListController {
     @FXML
     public void selectApartmentForBooking() {
         if (selectedApartment == null) {
-            AlertHelper.showNoObjectSelected("No hay ningún apartamento seleccionado.");
+            AlertHelper.showNoObjectSelected(NO_APARTMENT_SELECTED);
             return;
         }
 
@@ -295,6 +296,7 @@ public class ApartmentListController {
     /**
      * Clears the text fields and resets the selected apartment.
      */
+    @FXML
     private void clearTextFields() {
         selectedApartment = null;
         apartmentIdLabel.setText("Id Cliente");
