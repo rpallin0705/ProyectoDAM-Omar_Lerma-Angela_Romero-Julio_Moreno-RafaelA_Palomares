@@ -1,4 +1,4 @@
-package org.example.proyecto.gui.user;
+package org.example.proyecto.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

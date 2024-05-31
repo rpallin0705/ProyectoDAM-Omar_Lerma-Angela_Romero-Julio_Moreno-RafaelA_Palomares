@@ -26,16 +26,4 @@ module org.example.proyecto {
     exports org.example.proyecto.model.user to javafx.base;
     exports org.example.proyecto.gui.helpers;
     opens org.example.proyecto.gui.helpers to javafx.fxml;
-    exports org.example.proyecto.gui.apartment;
-    opens org.example.proyecto.gui.apartment to javafx.fxml;
-    exports org.example.proyecto.gui.booking;
-    opens org.example.proyecto.gui.booking to javafx.fxml;
-    exports org.example.proyecto.gui.user;
-    opens org.example.proyecto.gui.user to javafx.fxml;
-    exports org.example.proyecto.gui.hotel;
-    opens org.example.proyecto.gui.hotel to javafx.fxml;
-    exports org.example.proyecto.gui.client;
-    opens org.example.proyecto.gui.client to javafx.fxml;
-
-
 }

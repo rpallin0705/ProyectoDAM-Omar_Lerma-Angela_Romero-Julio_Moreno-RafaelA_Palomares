@@ -1,4 +1,4 @@
-package org.example.proyecto.gui.booking;
+package org.example.proyecto.gui;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -7,9 +7,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
-import org.example.proyecto.gui.client.ClientListController;
-import org.example.proyecto.gui.hotel.HotelListController;
-import org.example.proyecto.gui.apartment.ApartmentListController;
 import org.example.proyecto.gui.helpers.AlertHelper;
 import org.example.proyecto.gui.helpers.GuiEffectsHelper;
 import org.example.proyecto.model.booking.BookingDB;
@@ -174,9 +171,9 @@ public class BookingListController {
             return;
         }
 
-        BookingDTO updatedBooking = new BookingDTO(selectedBooking.getCheckInDate(), selectedBooking.getCheckOutDate(), 0, 0);
+        BookingDataHelper updatedBooking = new BookingDataHelper(selectedBooking.getBooking(), clientEmail.getText(), housingName.getText());
 
-        if (updatedBooking.equals(selectedBooking.getBooking())) {
+        if (selectedBooking.getBooking().getCheckInDate() == checkInDate.getValue() && selectedBooking.getBooking().getCheckOutDate() == checkOutDate.getValue()) {
             AlertHelper.showNoChangesAlert();
             return;
         }
@@ -184,7 +181,7 @@ public class BookingListController {
         if (AlertHelper.showConfirmationDialog("Confirmación de registro", "¿Desea registrar esta reserva?")) {
             try {
                 BookingDB bookingDB = new BookingDB();
-                bookingDB.updateBooking(updatedBooking);
+                bookingDB.updateBooking(updatedBooking.getBooking());
                 setBookingList();
                 bookingDataTable.getItems().setAll(bookingDataList);
                 clearTextFields();
