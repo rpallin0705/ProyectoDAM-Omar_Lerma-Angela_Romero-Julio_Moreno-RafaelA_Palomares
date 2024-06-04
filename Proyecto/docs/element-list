@@ -1,0 +1,11 @@
+module:org.example.proyecto
+org.example.proyecto
+org.example.proyecto.gui
+org.example.proyecto.gui.helpers
+org.example.proyecto.model.account
+org.example.proyecto.model.booking
+org.example.proyecto.model.client
+org.example.proyecto.model.hotel
+org.example.proyecto.model.housing
+org.example.proyecto.model.touristApartment
+org.example.proyecto.model.user
