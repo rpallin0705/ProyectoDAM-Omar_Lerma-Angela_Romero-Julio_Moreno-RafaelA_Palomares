@@ -39,13 +39,13 @@ public class AccountDB implements AccountDAO {
      */
     @Override
     public List<AccountDTO> getAccount() throws SQLException {
-        String sql = "SELECT * FROM accounts;";
+        String sql = "SELECT * FROM cuentas;";
         List<AccountDTO> accounts = new ArrayList<>();
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
         AccountDTO accountDTO = null;
-        while (resultSet.next()) {
-            accountDTO = new AccountDTO(resultSet.getInt("id_cuenta"), resultSet.getString("email"), resultSet.getString("nombre_apellidos"));
+        while (resultSet.next()){
+            accountDTO = new AccountDTO(resultSet.getInt("id_cuenta"),resultSet.getString("email"),resultSet.getString("nombre_apellidos"));
             accounts.add(accountDTO);
         }
         return accounts;
@@ -62,9 +62,9 @@ public class AccountDB implements AccountDAO {
     public boolean updateAccount(AccountDTO updatedAccount) throws SQLException {
         String sql = "UPDATE cuentas SET email = ?, nombre_apellidos = ? WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, updatedAccount.getEmail());
-        preparedStatement.setString(2, updatedAccount.getNombre_apellidos());
-        preparedStatement.setInt(3, updatedAccount.getId_cuenta());
+        preparedStatement.setString(1,updatedAccount.getEmail());
+        preparedStatement.setString(2,updatedAccount.getNombre_apellidos());
+        preparedStatement.setInt(3,updatedAccount.getId_cuenta());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }

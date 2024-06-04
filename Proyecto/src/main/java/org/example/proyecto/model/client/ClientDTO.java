@@ -16,14 +16,6 @@ import java.util.Objects;
 public class ClientDTO extends AccountDTO {
     private String direccion;
 
-    /**
-     * Constructs a {@code ClientDTO} object with the specified details.
-     *
-     * @param id_cuenta the ID of the client's account.
-     * @param email the email of the client.
-     * @param nombre_apellidos the name and surname of the client.
-     * @param direccion the address of the client.
-     */
     public ClientDTO(int id_cuenta, String email, String nombre_apellidos, String direccion) {
         super(id_cuenta, email, nombre_apellidos);
         this.direccion = direccion;
