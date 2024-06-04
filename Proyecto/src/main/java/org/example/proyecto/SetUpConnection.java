@@ -24,7 +24,7 @@ public class SetUpConnection {
         String driver = properties.getProperty("DRIVER");
         String db = properties.getProperty("DB");
         url = driver + ":" + db;
-        connection = DriverManager.getConnection(url, config.toProperties());
+        connection = DriverManager.getConnection(url, properties);
         System.out.println("Connected...");
     }
 

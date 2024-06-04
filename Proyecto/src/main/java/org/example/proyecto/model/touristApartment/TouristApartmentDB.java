@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Implementation of the TouristApartmentDAO interface for interacting with tourist apartments in the database.
@@ -18,6 +19,10 @@ public class TouristApartmentDB implements TouristApartmentDAO {
     private PreparedStatement preparedStatement;
     private Connection connection;
     private Statement statement;
+
+    public TouristApartmentDB() throws SQLException, IOException {
+        connection = SetUpConnection.getInstance().getConnection();
+    }
 
     /**
      * Constructs a new TouristApartmentDB object and initializes the database connection.
