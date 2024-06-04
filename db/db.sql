@@ -2,8 +2,7 @@
 DROP TABLE IF EXISTS cuentas;
 CREATE TABLE cuentas (
     id_cuenta INTEGER PRIMARY KEY AUTOINCREMENT,
-    email TEXT,
-    contrasena TEXT,
+    email TEXT UNIQUE,
     nombre_apellidos TEXT
 );
 
@@ -11,6 +10,7 @@ DROP TABLE IF EXISTS usuarios;
 CREATE TABLE usuarios (
     id_cuenta INTEGER PRIMARY KEY,
     admin INTEGER NOT NULL,
+    contrasena TEXT,
     FOREIGN KEY (id_cuenta) REFERENCES cuentas(id_cuenta) ON DELETE CASCADE
 );
 
@@ -21,6 +21,13 @@ CREATE TABLE clientes (
     FOREIGN KEY (id_cuenta) REFERENCES cuentas(id_cuenta) ON DELETE CASCADE
 );
 
+DROP TABLE IF EXISTS alojamientos;
+CREATE TABLE alojamientos (
+    id_alojamiento INTEGER PRIMARY KEY AUTOINCREMENT,
+    nombre TEXT,
+    calle TEXT
+);
+
 DROP TABLE IF EXISTS reservas;
 CREATE TABLE reservas (
     id_reserva INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -28,15 +35,8 @@ CREATE TABLE reservas (
     fecha_fin DATE,
     id_cuenta INTEGER NOT NULL,
     id_alojamiento INTEGER NOT NULL,
-    FOREIGN KEY (id_cuenta) REFERENCES usuarios(id_cuenta),
+    FOREIGN KEY (id_cuenta) REFERENCES clientes(id_cuenta),
     FOREIGN KEY (id_alojamiento) REFERENCES alojamientos(id_alojamiento)
-);
-
-DROP TABLE IF EXISTS alojamientos;
-CREATE TABLE alojamientos (
-    id_alojamiento INTEGER PRIMARY KEY AUTOINCREMENT,
-    nombre TEXT,
-    calle TEXT
 );
 
 DROP TABLE IF EXISTS hoteles;
@@ -89,7 +89,7 @@ CREATE VIEW vista_usuarios AS
 SELECT
     c.id_cuenta,
     c.email,
-    c.contrasena,
+    u.contrasena,
     c.nombre_apellidos,
     u.admin
 FROM
@@ -103,7 +103,6 @@ CREATE VIEW vista_clientes AS
 SELECT
     c.id_cuenta,
     c.email,
-    c.contrasena,
     c.nombre_apellidos,
     cl.direccion
 FROM
