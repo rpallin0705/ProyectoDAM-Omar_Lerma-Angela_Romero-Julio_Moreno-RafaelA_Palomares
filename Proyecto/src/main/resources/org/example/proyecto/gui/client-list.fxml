@@ -4,51 +4,46 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <top>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="712.0" style="-fx-background-color: black;" text="Clientes" textFill="WHITE" BorderPane.alignment="CENTER">
-            <font>
-                <Font size="35.0" />
-            </font>
-        </Label>
-    </top>
-   <right>
-      <TableView prefHeight="412.0" prefWidth="442.0" BorderPane.alignment="CENTER">
-        <columns>
-            <TableColumn prefWidth="100.33331298828125" text="Id Cliente" />
-            <TableColumn prefWidth="111.33334350585938" text="Email" />
-            <TableColumn prefWidth="100.33331298828125" text="Nombre" />
-            <TableColumn prefWidth="100.33331298828125" text="Dirección" />
-        </columns>
-      </TableView>
-   </right>
-   <left>
-      <Pane prefHeight="412.0" prefWidth="298.0" BorderPane.alignment="CENTER">
-         <children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.ClientListController">
+    <BorderPane layoutX="-5.0" prefHeight="640.0" prefWidth="900.0">
+        <top>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="910.0" style="-fx-background-color: grey;" text="Clientes" textFill="WHITE" BorderPane.alignment="CENTER">
+                <font>
+                    <Font size="35.0" />
+                </font>
+            </Label>
+        </top>
+        <right>
+            <TableView fx:id="clientDataTable" prefHeight="582.0" prefWidth="631.0" BorderPane.alignment="CENTER">
+                <columns>
+                    <TableColumn fx:id="clientIdColumn" prefWidth="35.0" text="Id" />
+                    <TableColumn fx:id="clientNameColumn" prefWidth="170.0" text="Nombre" />
+               <TableColumn fx:id="clientEmailColumn" prefWidth="163.0" text="Email" />
+               <TableColumn fx:id="clientAddressColumn" prefWidth="261.0" text="Dirección" />
+                </columns>
+            </TableView>
+        </right>
+      <center>
+            <Pane prefHeight="582.0" prefWidth="273.0" BorderPane.alignment="CENTER">
+                <Label layoutX="21.0" layoutY="100.0" prefHeight="25.0" prefWidth="65.0" text="Email:" />
+                <TextField fx:id="clientEmail" layoutX="85.0" layoutY="100.0" prefHeight="25.0" prefWidth="175.0" />
 
-             <Label layoutX="15.0" layoutY="25.0" prefHeight="25.0" prefWidth="65.0" text="Id Cliente:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-             <Label layoutX="79.0" layoutY="25.0" prefHeight="25.0" prefWidth="175.0" />
+                <Label layoutX="21.0" layoutY="150.0" prefHeight="25.0" prefWidth="65.0" text="Nombre:" />
+                <TextField fx:id="clientName" layoutX="85.0" layoutY="150.0" prefHeight="25.0" prefWidth="175.0" />
 
-            <Label layoutX="15.0" layoutY="75.0" prefHeight="25.0" prefWidth="65.0" text="Email:" />
-            <TextField layoutX="79.0" layoutY="75.0" prefHeight="25.0" prefWidth="175.0" />
+                <Label layoutX="21.0" layoutY="200.0" prefHeight="25.0" prefWidth="65.0" text="Dirección:" />
+                <TextField fx:id="clientAddress" layoutX="85.0" layoutY="200.0" prefHeight="25.0" prefWidth="175.0" />
 
-            <Label layoutX="15.0" layoutY="125.0" prefHeight="25.0" prefWidth="65.0" text="Nombre:" />
-            <TextField layoutX="79.0" layoutY="125.0" prefHeight="25.0" prefWidth="175.0" />
+                <Label layoutX="18.0" layoutY="46.0" prefHeight="25.0" prefWidth="65.0" text="Id Cliente:" />
 
-            <Label layoutX="15.0" layoutY="175.0" prefHeight="25.0" prefWidth="65.0" text="Dirección:" />
-            <TextField layoutX="79.0" layoutY="175.0" prefHeight="25.0" prefWidth="175.0" />
-
-
-
-             <Button layoutX="35.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Modificar" />
-             <Button layoutX="180.0" layoutY="315.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Eliminar" />
-            <Button layoutX="35.0" layoutY="260.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Ver Reservas" />
-            <Button layoutX="110.0" layoutY="360.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0"  text="Volver" />
-            <Button layoutX="180.0" layoutY="260.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="80.0" text="Crear" />
-         </children>
-      </Pane>
-   </left>
-</BorderPane>
+                <Button layoutX="15.0" layoutY="310.0" mnemonicParsing="false" onAction="#updateClient" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
+                <Button layoutX="185.0" layoutY="310.0" mnemonicParsing="false" onAction="#deleteClient" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
+            <Button layoutX="106.0" layoutY="310.0" mnemonicParsing="false" onAction="#registerClient" prefWidth="70.0" text="Registrar" />
+            <Button fx:id="searchClientButton" layoutX="223.0" layoutY="233.0" mnemonicParsing="false" onAction="#searchClient" prefHeight="30.0" prefWidth="30.0" />
+            <Button fx:id="selectClientButton" layoutX="92.0" layoutY="471.0" mnemonicParsing="false" onAction="#selectClientForBooking" prefHeight="47.0" prefWidth="90.0" style="-fx-background-color: orange;" text="Seleccionar para reserva" visible="false" />
+            <Label fx:id="clientId" alignment="CENTER" layoutX="118.0" layoutY="46.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Cliente" />
+            <Button layoutX="15.0" layoutY="235.0" mnemonicParsing="false" onAction="#clearTextFields" text="Limpiar Campos" />
+            </Pane>
+      </center>
+    </BorderPane>
+</AnchorPane>

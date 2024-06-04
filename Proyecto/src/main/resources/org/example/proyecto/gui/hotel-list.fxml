@@ -4,55 +4,59 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <top>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="51.0" prefWidth="745.0" style="-fx-background-color: black;" text="Habitaciones Hoteles" textFill="WHITE" BorderPane.alignment="CENTER">
-            <font>
-                <Font size="35.0" />
-            </font>
-        </Label>
-    </top>
-    <right>
-        <TableView prefHeight="412.0" prefWidth="445.0" BorderPane.alignment="CENTER">
-            <columns>
-                <TableColumn prefWidth="94.66668450832367" text="Id Alojamiento" />
-                <TableColumn prefWidth="54.66669464111328" text="Nombre" />
-                <TableColumn prefWidth="52.66668701171875" text="Calle" />
-                <TableColumn prefWidth="78.99998474121094" text="Clasificación" />
-                <TableColumn minWidth="0.0" prefWidth="67.66668701171875" text="T. Habitación" />
-                <TableColumn prefWidth="68.00001017252606" text="Nº Huespedes" />
-            </columns>
-        </TableView>
-    </right>
-    <left>
-        <Pane prefHeight="412.0" prefWidth="291.0" BorderPane.alignment="CENTER">
-            <children>
-                <Label layoutX="15.0" layoutY="25.0" prefHeight="25.0" prefWidth="90.0" style="" text="Id Alojamiento:">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font></Label>
-                <Label layoutX="110.0" layoutY="25.0" prefHeight="25.0" prefWidth="170.0" />
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.HotelListController">
+    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+        <top>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="900.0" style="-fx-background-color: grey;" text="Habitaciones Hoteles" textFill="WHITE" BorderPane.alignment="CENTER">
+                <font>
+                    <Font size="35.0" />
+                </font>
+            </Label>
+        </top>
+        <right>
+            <TableView fx:id="hotelDataTable" prefHeight="560.0" prefWidth="586.0" BorderPane.alignment="CENTER">
+                <columns>
+                    <TableColumn fx:id="hotelIdColumn" prefWidth="49.0" text="Id" />
+                    <TableColumn fx:id="hotelNameColumn" prefWidth="66.0" text="Nombre" />
+                    <TableColumn fx:id="hotelAddressColumn" prefWidth="109.0" text="Calle" />
+                    <TableColumn fx:id="hotelClassificationColumn" prefWidth="88.0" text="Clasificación" />
+                    <TableColumn fx:id="hotelRoomtypeColumn" minWidth="0.0" prefWidth="98.0" text="T. Habitación" />
+                    <TableColumn fx:id="hotelHostNumberColumn" minWidth="9.0" prefWidth="126.0" text="Nº Huespedes" />
+                </columns>
+            </TableView>
+        </right>
+        <left>
+            <Pane prefHeight="412.0" prefWidth="291.0" BorderPane.alignment="CENTER">
+                <Label layoutX="15.0" layoutY="25.0" prefHeight="25.0" prefWidth="90.0" text="Id Alojamiento:">
+                    <font>
+                        <Font name="System Bold" size="12.0" />
+                    </font>
+                </Label>
+                <Label fx:id="hotelIdLabel" alignment="CENTER" contentDisplay="BOTTOM" layoutX="140.0" layoutY="25.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Alojamiento" />
 
-                <Label layoutX="15.0" layoutY="75.0" prefHeight="25.0" prefWidth="90.0" text="Nombre:" />
-                <TextField layoutX="110.0" layoutY="75.0" prefHeight="25.0" prefWidth="170.0" />
+                <Label layoutX="14.0" layoutY="89.0" prefHeight="25.0" prefWidth="90.0" text="Nombre:" />
+                <TextField fx:id="hotelName" layoutX="109.0" layoutY="89.0" prefHeight="25.0" prefWidth="170.0" />
 
-                <Label layoutX="15.0" layoutY="125.0" prefHeight="25.0" prefWidth="90.0" text="Calle:" />
-                <TextField layoutX="110.0" layoutY="125.0" prefHeight="25.0" prefWidth="170.0" />
+                <Label layoutX="14.0" layoutY="139.0" prefHeight="25.0" prefWidth="90.0" text="Calle:" />
+                <TextField fx:id="hotelAddress" layoutX="109.0" layoutY="139.0" prefHeight="25.0" prefWidth="170.0" />
 
-                <Label layoutX="15.0" layoutY="175.0" prefHeight="25.0" prefWidth="90.0" text="Clasificación:" />
-                <TextField layoutX="110.0" layoutY="175.0" prefHeight="25.0" prefWidth="170.0" />
+                <Label layoutX="14.0" layoutY="189.0" prefHeight="25.0" prefWidth="90.0" text="Clasificación:" />
+                <TextField fx:id="hotelClassification" layoutX="109.0" layoutY="189.0" prefHeight="25.0" prefWidth="170.0" />
 
-                <Label layoutX="15.0" layoutY="225.0" prefHeight="25.0" prefWidth="90.0" text="T. Habitación:" />
-                <TextField layoutX="110.0" layoutY="225.0" prefHeight="25.0" prefWidth="170.0" />
+                <Label layoutX="14.0" layoutY="239.0" prefHeight="25.0" prefWidth="90.0" text="T. Habitación:" />
 
-                <Label layoutX="15.0" layoutY="275.0" prefHeight="25.0" prefWidth="90.0" text="Nº Huespedes:" />
-                <TextField layoutX="110.0" layoutY="275.0" prefHeight="25.0" prefWidth="170.0" />
+                <Label layoutX="14.0" layoutY="289.0" prefHeight="25.0" prefWidth="90.0" text="Nº Huespedes:" />
+                <TextField fx:id="hotelHostNumber" layoutX="109.0" layoutY="289.0" prefHeight="25.0" prefWidth="170.0" />
 
-                <Button layoutX="100.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Crear" />
-                <Button layoutX="14.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
-                <Button layoutX="186.0" layoutY="325.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
-            <Button layoutX="101.0" layoutY="367.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Volver" />
-            </children>
-        </Pane>
-    </left>
-</BorderPane>
+                <Button fx:id="insertHotelButton" layoutX="108.0" layoutY="381.0" mnemonicParsing="false" onAction="#registerHotel" prefHeight="25.0" prefWidth="75.0" text="Crear" visible="false" />
+                <Button fx:id="updateHotelButton" layoutX="15.0" layoutY="381.0" mnemonicParsing="false" onAction="#updateHotel" prefHeight="25.0" prefWidth="75.0" text="Modificar" visible="false" />
+                <Button fx:id="deleteHotelButton" layoutX="202.0" layoutY="381.0" mnemonicParsing="false" onAction="#deleteHotel" prefHeight="25.0" prefWidth="75.0" text="Eliminar" visible="false" />
+            <ChoiceBox fx:id="hotelRoomType" layoutX="108.0" layoutY="239.0" prefWidth="150.0" />
+            <Button fx:id="searchHotelButton" layoutX="243.0" layoutY="323.0" mnemonicParsing="false" onAction="#searchHotel" prefHeight="30.0" prefWidth="30.0" />
+            <Button fx:id="isSelectingHousingButton" layoutX="97.0" layoutY="502.0" mnemonicParsing="false" onAction="#selectHotelForBooking" prefHeight="44.0" prefWidth="99.0" style="-fx-background-color: orange;" text="Reservar" visible="false" />
+            <Button layoutX="8.0" layoutY="326.0" mnemonicParsing="false" onAction="#clearTextFields" text="Limpiar Campos" />
+            </Pane>
+        </left>
+    </BorderPane>
+
+</AnchorPane>

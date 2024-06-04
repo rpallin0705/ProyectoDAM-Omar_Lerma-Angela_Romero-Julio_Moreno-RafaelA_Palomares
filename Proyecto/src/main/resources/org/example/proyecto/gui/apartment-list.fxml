@@ -4,52 +4,51 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="712.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
-    <top>
-        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="712.0" style="-fx-background-color: black;" text="Apartamentos" textFill="WHITE" BorderPane.alignment="CENTER">
-            <font>
-                <Font size="35.0" />
-            </font>
-        </Label>
-    </top>
-    <right>
-        <TableView prefHeight="412.0" prefWidth="404.0" BorderPane.alignment="CENTER">
-            <columns>
-                <TableColumn prefWidth="91.99999749660492" text="Id Alojamiento" />
-                <TableColumn prefWidth="67.33332061767578" text="Calle" />
-                <TableColumn prefWidth="138.3333282470703" text="Distancia al Centro" />
-                <TableColumn prefWidth="117.33331298828125" text="Nombre" />
-            </columns>
-        </TableView>
-    </right>
-    <left>
-        <Pane prefHeight="412.0" prefWidth="309.0" BorderPane.alignment="CENTER">
-            <children>
-
+<AnchorPane prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.ApartmentListController">
+    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="640.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+        <top>
+            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="60.0" prefWidth="900.0" style="-fx-background-color: grey;" text="Apartamentos" textFill="WHITE" BorderPane.alignment="CENTER">
+                <font>
+                    <Font size="35.0" />
+                </font>
+            </Label>
+        </top>
+        <right>
+            <TableView fx:id="apartmentDataTable" prefHeight="580.0" prefWidth="586.0" BorderPane.alignment="CENTER">
+                <columns>
+                    <TableColumn fx:id="apartmentIdColumn" prefWidth="42.0" text="Id" />
+                    <TableColumn fx:id="apartmentAddressColumn" prefWidth="118.0" text="Dirección" />
+                    <TableColumn fx:id="apartmentDistanceColumn" prefWidth="175.0" text="Distancia al Centro" />
+                    <TableColumn fx:id="apartmentNameColumn" prefWidth="147.0" text="Nombre" />
+                </columns>
+            </TableView>
+        </right>
+        <left>
+            <Pane prefHeight="412.0" prefWidth="309.0" BorderPane.alignment="CENTER">
                 <Label layoutX="15.0" layoutY="50.0" prefHeight="25.0" prefWidth="90.0" text="Id Alojamiento:">
-                     <font>
+                    <font>
                         <Font name="System Bold" size="12.0" />
-                     </font></Label>
+                    </font>
+                </Label>
                 <Label layoutX="110.0" layoutY="50.0" prefHeight="25.0" prefWidth="170.0" />
 
                 <Label layoutX="15.0" layoutY="100.0" prefHeight="25.0" prefWidth="90.0" text="Nombre:" />
-                <TextField layoutX="110.0" layoutY="100.0" prefHeight="25.0" prefWidth="170.0" />
+                <TextField fx:id="apartmentName" layoutX="110.0" layoutY="100.0" prefHeight="25.0" prefWidth="170.0" />
 
-                <Label layoutX="15.0" layoutY="150.0" prefHeight="25.0" prefWidth="90.0" text="Calle:" />
-                <TextField layoutX="110.0" layoutY="150.0" prefHeight="25.0" prefWidth="170.0" />
+                <Label layoutX="15.0" layoutY="150.0" prefHeight="25.0" prefWidth="90.0" text="Dirección:" />
+                <TextField fx:id="apartmentAddress" layoutX="110.0" layoutY="150.0" prefHeight="25.0" prefWidth="170.0" />
 
                 <Label layoutX="15.0" layoutY="200.0" prefHeight="25.0" prefWidth="90.0" text="Distancia al Centro:" />
-                <TextField layoutX="110.0" layoutY="200.0" prefHeight="25.0" prefWidth="170.0" />
+                <TextField fx:id="apartmentDistanceToDowntown" layoutX="110.0" layoutY="200.0" prefHeight="25.0" prefWidth="170.0" />
 
-                <Button layoutX="110.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Crear" />
-                <Button layoutX="14.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Modificar" />
-                <Button layoutX="205.0" layoutY="300.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="75.0" text="Eliminar" />
-                  <Button layoutX="110.0" layoutY="355.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="74.0" text="Volver" />
-            </children>
-        </Pane>
-    </left>
-</BorderPane>
-    </children>
+                <Button fx:id="insertApartmentButton" layoutX="110.0" layoutY="300.0" mnemonicParsing="false" onAction="#registerApartment" prefHeight="25.0" prefWidth="75.0" text="Crear" visible="false" />
+                <Button fx:id="updateApartmentButton" layoutX="14.0" layoutY="300.0" mnemonicParsing="false" onAction="#updateApartment" prefHeight="25.0" prefWidth="75.0" text="Modificar" visible="false" />
+                <Button fx:id="deleteApartmentButton" layoutX="205.0" layoutY="300.0" mnemonicParsing="false" onAction="#deleteApartment" prefHeight="25.0" prefWidth="75.0" text="Eliminar" visible="false" />
+                <Button fx:id="isSelectingHousingButton" layoutX="97.0" layoutY="502.0" mnemonicParsing="false" onAction="#selectApartmentForBooking" prefHeight="44.0" prefWidth="99.0" style="-fx-background-color: orange;" text="Reservar" visible="false" />
+                <Label fx:id="apartmentIdLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="50.0" prefHeight="25.0" prefWidth="110.0" style="-fx-background-color: white; -fx-border-color: grey; -fx-background-insets: 0; -fx-background-radius: 3; -fx-border-radius: 3;" text="Id Apartamento" />
+            <Button fx:id="searchApartmentButton" layoutX="243.0" layoutY="232.0" mnemonicParsing="false" onAction="#searchApartment" prefHeight="30.0" prefWidth="30.0" />
+            <Button layoutX="15.0" layoutY="235.0" mnemonicParsing="false" onAction="#clearTextFields" text="Limpiar Campos" />
+            </Pane>
+        </left>
+    </BorderPane>
 </AnchorPane>

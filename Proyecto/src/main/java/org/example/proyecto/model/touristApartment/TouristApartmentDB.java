@@ -8,7 +8,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class TouristApartmentDB implements TouristApartmentDAO{
+/**
+ * Implementation of the TouristApartmentDAO interface for interacting with tourist apartments in the database.
+ *
+ * @version 1.0
+ * @since 2024-05-28
+ * @author Omar
+ */
+public class TouristApartmentDB implements TouristApartmentDAO {
     private PreparedStatement preparedStatement;
     private Connection connection;
     private Statement statement;
@@ -18,87 +25,106 @@ public class TouristApartmentDB implements TouristApartmentDAO{
     }
 
     /**
-     * TouristApartmentDB
-     * method that connects with the DataBase and gets a list of apartments, looking in a view, not directly the tables
-     * @return list of tourist apartments
-     * @throws SQLException
+     * Constructs a new TouristApartmentDB object and initializes the database connection.
+     *
+     * @throws SQLException if a database access error occurs.
+     * @throws IOException  if an I/O error occurs.
+     */
+    public TouristApartmentDB() throws SQLException, IOException {
+        connection = SetUpConnection.getInstance().getConnection();
+    }
+
+    /**
+     * Retrieves the list of tourist apartments from the database.
+     *
+     * @return a list of TouristApartmentDTO objects.
+     * @throws SQLException if a database access error occurs.
      */
     @Override
     public List<TouristApartmentDTO> getTouristApartments() throws SQLException {
-        ArrayList<TouristApartmentDTO> apartments = new ArrayList<>();
-        TouristApartmentDTO touristApartmentDTO= null;
+        List<TouristApartmentDTO> apartments = new ArrayList<>();
         String sql = "SELECT * FROM vista_aps_turisticos";
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
-        while (resultSet.next()){
-            touristApartmentDTO = new TouristApartmentDTO(resultSet.getInt("id_alojamiento"),resultSet.getString("nombre_alojamiento"),resultSet.getString("calle"),resultSet.getInt("dist_centro_km") );
+        while (resultSet.next()) {
+            TouristApartmentDTO touristApartmentDTO = new TouristApartmentDTO(
+                    resultSet.getInt("id_alojamiento"),
+                    resultSet.getString("nombre_alojamiento"),
+                    resultSet.getString("calle"),
+                    resultSet.getInt("dist_centro_km")
+            );
             apartments.add(touristApartmentDTO);
         }
         return apartments;
     }
+
     /**
-     * TouristApartmentDB
-     * method that connects with the DataBase and updates a concrete record in the housing table
-     * and then updates a concrete record in the tourist apartments table (both searching by ID)
-     * @return true if the rows affected are not 0
-     * @throws SQLException
+     * Updates a tourist apartment in the database.
+     *
+     * @param updatedApartment the updated tourist apartment.
+     * @return true if the update was successful, false otherwise.
+     * @throws SQLException if a database access error occurs.
      */
     @Override
     public boolean updateTourisApartment(TouristApartmentDTO updatedApartment) throws SQLException {
-        //alojamientos
         String sql = "UPDATE alojamientos SET nombre = ?, calle = ? WHERE id_alojamiento = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, updatedApartment.getNombre());
         preparedStatement.setString(2, updatedApartment.getCalle());
-        preparedStatement.setInt(3,updatedApartment.getHousingId());
+        preparedStatement.setInt(3, updatedApartment.getHousingId());
         int rowsAffected = preparedStatement.executeUpdate();
-        //apartamentos
+
         String sql2 = "UPDATE aps_turisticos SET dist_centro_km = ? WHERE id_alojamiento = ?";
         preparedStatement = connection.prepareStatement(sql2);
-        preparedStatement.setFloat(1,updatedApartment.getDowntownDistance());
-        preparedStatement.setInt(2,updatedApartment.getHousingId());
+        preparedStatement.setFloat(1, updatedApartment.getDowntownDistance());
+        preparedStatement.setInt(2, updatedApartment.getHousingId());
         rowsAffected += preparedStatement.executeUpdate();
+
         return rowsAffected != 0;
     }
+
     /**
-     * TouristApartmentDB
-     * method that connects with the DataBase and deletes a concrete apartment from the housing table (on cascade) searching by ID
-     * @return true if the rows affected are not 0
-     * @throws SQLException
+     * Deletes a tourist apartment from the database.
+     *
+     * @param deletedApartment the tourist apartment to delete.
+     * @return true if the deletion was successful, false otherwise.
+     * @throws SQLException if a database access error occurs.
      */
     @Override
     public boolean deleteTouristApartment(TouristApartmentDTO deletedApartment) throws SQLException {
-        //aps_turisticos && alojamientos
         String sql = "DELETE FROM alojamientos WHERE id_alojamiento = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, deletedApartment.getHousingId());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
+
     /**
-     * TouristApartmentDB
-     * method that connects with the DataBase and insert a record into the housing table, then takes de ID
-     * (autoincremental) and insert a record into the tourist apartments table
-     * @return true if the rows affected are not 0
-     * @throws SQLException
+     * Inserts a new tourist apartment into the database.
+     *
+     * @param insertedApartment the tourist apartment to insert.
+     * @return true if the insertion was successful, false otherwise.
+     * @throws SQLException if a database access error occurs.
      */
     @Override
     public boolean insertTouristApartment(TouristApartmentDTO insertedApartment) throws SQLException {
-        //alojamientos
         String sql = "INSERT INTO alojamientos (nombre, calle) VALUES (?, ?)";
-        preparedStatement = connection.prepareStatement(sql);
+        preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
         preparedStatement.setString(1, insertedApartment.getNombre());
         preparedStatement.setString(2, insertedApartment.getCalle());
         int rowsAffected = preparedStatement.executeUpdate();
-        //conseguir id del ultimo alojamiento insertado
+
         ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
-        int idGenerado = generatedKeys.getInt(1);
-        //apartamentos
-        String sql2 = "INSERT INTO aps_turisticos (id_alojamiento, dist_centro_km) VALUES (?, ?)";
-        preparedStatement = connection.prepareStatement(sql2);
-        preparedStatement.setInt(1,idGenerado);
-        preparedStatement.setInt(2,insertedApartment.getHousingId());
-        rowsAffected += preparedStatement.executeUpdate();
+        if (generatedKeys.next()) {
+            int idGenerado = generatedKeys.getInt(1);
+
+            String sql2 = "INSERT INTO aps_turisticos (id_alojamiento, dist_centro_km) VALUES (?, ?)";
+            preparedStatement = connection.prepareStatement(sql2);
+            preparedStatement.setInt(1, idGenerado);
+            preparedStatement.setFloat(2, insertedApartment.getDowntownDistance());
+            rowsAffected += preparedStatement.executeUpdate();
+        }
+
         return rowsAffected != 0;
     }
 }
