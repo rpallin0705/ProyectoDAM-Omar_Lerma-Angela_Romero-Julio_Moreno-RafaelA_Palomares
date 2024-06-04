@@ -49,7 +49,7 @@ public class ClientDB implements ClientDAO {
             String email = resultSet.getString("email");
             String nombre_apellidos = resultSet.getString("nombre_apellidos");
             String direccion = resultSet.getString("direccion");
-            clientDTO = new ClientDTO(id_cuenta, email, nombre_apellidos, direccion);
+            clientDTO = new ClientDTO(id_cuenta,email,nombre_apellidos,direccion);
             clients.add(clientDTO);
         }
         return clients;
@@ -64,9 +64,9 @@ public class ClientDB implements ClientDAO {
      */
     @Override
     public boolean insertClient(ClientDTO newClient) throws SQLException {
-        // cuentas
+        //cuentas
         String sql = "INSERT INTO cuentas (email, nombre_apellidos) VALUES (?, ?)";
-        preparedStatement = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+        preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setString(1, newClient.getEmail());
         preparedStatement.setString(2, newClient.getNombre_apellidos());
         int rowsAffected = preparedStatement.executeUpdate();
@@ -109,12 +109,12 @@ public class ClientDB implements ClientDAO {
      */
     @Override
     public boolean updateClient(ClientDTO updatedClient) throws SQLException {
-        // cuentas
+        //cuentas
         String sql = "UPDATE cuentas SET email = ?, nombre_apellidos = ? WHERE id_cuenta = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setString(1, updatedClient.getEmail());
-        preparedStatement.setString(2, updatedClient.getNombre_apellidos());
-        preparedStatement.setInt(3, updatedClient.getId_cuenta());
+        preparedStatement.setString(1,updatedClient.getEmail());
+        preparedStatement.setString(2,updatedClient.getNombre_apellidos());
+        preparedStatement.setInt(3,updatedClient.getId_cuenta());
         int rowsAffected = preparedStatement.executeUpdate();
         // clientes
         String sql2 = "UPDATE clientes SET direccion = ? WHERE id_cuenta = ?";
