@@ -7,6 +7,7 @@ public class BookingDTO {
     private LocalDate checkOutDate;
     private int bookingId;
     private int countId;
+    private int housingId;
 
     /**
      *
@@ -15,11 +16,12 @@ public class BookingDTO {
      * @param bookingId booking id
      * @param countId account id
      */
-    public BookingDTO(LocalDate fechaInicio, LocalDate checkOutDate, int bookingId, int countId) {
+    public BookingDTO(LocalDate fechaInicio, LocalDate checkOutDate, int bookingId, int countId, int housingId) {
         this.checkInDate = fechaInicio;
         this.checkOutDate = checkOutDate;
         this.bookingId = bookingId;
         this.countId = countId;
+        this.housingId = housingId;
     }
 
     /*GETTERS*/
@@ -39,6 +41,10 @@ public class BookingDTO {
     public int getCountId() {
         return countId;
     }
+
+    public int getHousingId() {
+        return housingId;
+    }
     /*SETTERS*/
 
     public void setCheckInDate(LocalDate checkInDate) {
@@ -56,6 +62,10 @@ public class BookingDTO {
 
     public void setCountId(int countId) {
         this.countId = countId;
+    }
+
+    public void setHousingId(int housingId) {
+        this.housingId = housingId;
     }
 
     @Override
