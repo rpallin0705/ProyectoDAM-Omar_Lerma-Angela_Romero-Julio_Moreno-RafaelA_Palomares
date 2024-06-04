@@ -1,11 +1,11 @@
 
-h
-java:S1192#"KDefine a constant instead of duplicating this literal "contrasena" 3 times.(æâòÇ8©’á•õ1
-m	java:S117!"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û¥ß·8ª’á•õ1
-m	java:S117<"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û¥ß·8ª’á•õ1
+Ž
+java:S1192#"KDefine a constant instead of duplicating this literal "contrasena" 3 times.(æâòÇ8èÈ•õ1J$43016f85-310b-425a-b3f0-6a3f1d9a8a7d
+“	java:S117!"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û¥ß·8éÈ•õ1J$06282684-4fc4-47a9-bd44-51782bbd486c
+“	java:S117<"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(û¥ß·8éÈ•õ1J$89216a70-3893-44ad-b09c-be316a1838fd
  
-java:S1450"XRemove the "statement" field and declare it as a local variable in the relevant methods.(„£„÷øÿÿÿÿ8ÂÜÎï1J$084b2726-8709-4d9d-9cfa-617f3c9e8dcc
-T
-java:S11352"2Complete the task associated to this TODO comment.(ìöÊøÿÿÿÿ8¼’á•õ1
-O
-java:S1135u"2Complete the task associated to this TODO comment.(®âó8Ò’á•õ1
+java:S1450"XRemove the "statement" field and declare it as a local variable in the relevant methods.(„£„÷øÿÿÿÿ8ÂÜÎï1J$75e29aaa-2700-41ba-b57d-c25e69027091
+z
+java:S11352"2Complete the task associated to this TODO comment.(ìöÊøÿÿÿÿ8úÈ•õ1J$ea110b73-a43f-477b-8f48-ff8d83143ba7
+u
+java:S1135j"2Complete the task associated to this TODO comment.(®âó8ˆÉ•õ1J$58d9e085-12c0-411b-b8d2-6f7682ef555b

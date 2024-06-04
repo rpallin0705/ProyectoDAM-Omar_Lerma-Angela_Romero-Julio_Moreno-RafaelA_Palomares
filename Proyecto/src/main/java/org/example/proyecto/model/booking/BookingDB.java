@@ -5,16 +5,29 @@ import org.example.proyecto.SetUpConnection;
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
-public class BookingDB implements BookingDAO{
+/**
+ * Implementation of the {@link BookingDAO} interface for accessing and manipulating booking data in the database.
+ * This class uses JDBC for database operations.
+ *
+ * @version 1.0
+ * @since 2024-05-28
+ *
+ * @Author Omar, Rafael
+ */
+public class BookingDB implements BookingDAO {
     private Connection connection;
     private Statement statement;
     private PreparedStatement preparedStatement;
 
+    /**
+     * Constructs a {@code BookingDB} object and establishes a database connection.
+     *
+     * @throws SQLException if a database access error occurs.
+     * @throws IOException if an I/O error occurs.
+     */
     public BookingDB() throws SQLException, IOException {
         connection = SetUpConnection.getInstance().getConnection();
     }
@@ -22,9 +35,8 @@ public class BookingDB implements BookingDAO{
     /**
      * Gets the list of all bookings stored in the database.
      *
-     * @return List of BookingDTO objects representing the bookings stored in the database.
+     * @return List of {@link BookingDTO} objects representing the bookings stored in the database.
      * @throws SQLException If an error occurs while executing the SQL query.
-     * @todo Convert dates to LocalDate and change to String format.
      */
     @Override
     public List<BookingDTO> getBookings() throws SQLException {
@@ -32,23 +44,25 @@ public class BookingDB implements BookingDAO{
         String sql = "SELECT * FROM reservas;";
         statement = connection.createStatement();
         ResultSet resultSet = statement.executeQuery(sql);
-        BookingDTO bookingDTO = null;
+
         while (resultSet.next()) {
-            LocalDate fecha_ini = LocalDate.of(resultSet.getDate("fecha_ini").getYear(),resultSet.getDate("fecha_ini").getMonth(),resultSet.getDate("fecha_ini").getDay());
-            LocalDate fecha_fin =LocalDate.of(resultSet.getDate("fecha_fin").getYear(),resultSet.getDate("fecha_fin").getMonth(),resultSet.getDate("fecha_fin").getDay());
+            LocalDate fecha_ini = resultSet.getDate("fecha_ini").toLocalDate();
+            LocalDate fecha_fin = resultSet.getDate("fecha_fin").toLocalDate();
             int id_cuenta = resultSet.getInt("id_cuenta");
             int id_alojamiento = resultSet.getInt("id_alojamiento");
             int id_reserva = resultSet.getInt("id_reserva");
-            bookingDTO = new BookingDTO(fecha_ini, fecha_fin, id_reserva, id_cuenta,id_alojamiento);
+
+            BookingDTO bookingDTO = new BookingDTO(fecha_ini, fecha_fin, id_reserva, id_cuenta, id_alojamiento);
             bookings.add(bookingDTO);
         }
+
         return bookings;
     }
 
     /**
      * Inserts a new booking into the database.
      *
-     * @param newBooking The BookingDTO object representing the new booking to insert.
+     * @param newBooking The {@link BookingDTO} object representing the new booking to insert.
      * @return true if the booking was successfully inserted, false otherwise.
      * @throws SQLException If an error occurs while executing the SQL query.
      */
@@ -65,15 +79,15 @@ public class BookingDB implements BookingDAO{
     }
 
     /**
-     * Elimina una reserva de la base de datos utilizando su identificador.
+     * Deletes a booking from the database based on its ID.
      *
-     * @param deletedBooking Objeto BookingDTO que contiene la información de la reserva que se desea eliminar.
-     * @return true si la reserva fue eliminada exitosamente, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
-     * * @todo excepciones propias para cuando se introduzca la contraseña incorrecta o no exista el usuario
+     * @param deletedBooking The {@link BookingDTO} object containing the ID of the booking to delete.
+     * @return true if the booking was successfully deleted, false otherwise.
+     * @throws SQLException If an error occurs while executing the SQL query.
+     * @todo Create custom exceptions for when an incorrect password is entered or the user does not exist.
      */
     @Override
-    public boolean deleteBookingByID(BookingDTO deletedBooking) throws SQLException {
+    public boolean deleteBooking(BookingDTO deletedBooking) throws SQLException {
         String sql = "DELETE FROM reservas WHERE id_reserva = ?";
         preparedStatement = connection.prepareStatement(sql);
         preparedStatement.setInt(1, deletedBooking.getBookingId());
@@ -82,26 +96,22 @@ public class BookingDB implements BookingDAO{
     }
 
     /**
-     * Actualiza la información de una reserva en la base de datos.
+     * Updates the details of an existing booking in the database.
      *
-     * @param updatedBooking Objeto BookingDTO que contiene la información actualizada de la reserva.
-     * @return true si la actualización fue exitosa, false en caso contrario.
-     * @throws SQLException Si ocurre un error al ejecutar la consulta SQL.
+     * @param updatedBooking The {@link BookingDTO} object containing the updated booking details.
+     * @return true if the update was successful, false otherwise.
+     * @throws SQLException If an error occurs while executing the SQL query.
      */
     @Override
     public boolean updateBooking(BookingDTO updatedBooking) throws SQLException {
         String sql = "UPDATE reservas SET fecha_ini = ?, fecha_fin = ?, id_cuenta = ?, id_alojamiento = ? WHERE id_reserva = ?";
         preparedStatement = connection.prepareStatement(sql);
-        preparedStatement.setDate(1,java.sql.Date.valueOf(updatedBooking.getCheckInDate()));
-        preparedStatement.setDate(2,java.sql.Date.valueOf(updatedBooking.getCheckOutDate()));
-        preparedStatement.setInt(3,updatedBooking.getCountId());
-        preparedStatement.setInt(4,updatedBooking.getHousingId());
-        preparedStatement.setInt(5,updatedBooking.getBookingId());
+        preparedStatement.setDate(1, java.sql.Date.valueOf(updatedBooking.getCheckInDate()));
+        preparedStatement.setDate(2, java.sql.Date.valueOf(updatedBooking.getCheckOutDate()));
+        preparedStatement.setInt(3, updatedBooking.getCountId());
+        preparedStatement.setInt(4, updatedBooking.getHousingId());
+        preparedStatement.setInt(5, updatedBooking.getBookingId());
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
-
     }
-
 }
-
-

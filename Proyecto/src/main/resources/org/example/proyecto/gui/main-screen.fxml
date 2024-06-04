@@ -1,110 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="494.0" prefWidth="750.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.MainScreenController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="720.0" prefWidth="1080.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.proyecto.gui.MainScreenController">
+   <center>
+      <AnchorPane fx:id="templateComponent" prefHeight="640.0" prefWidth="900.0" BorderPane.alignment="CENTER" />
+   </center>
    <top>
-      <HBox alignment="CENTER_RIGHT" prefHeight="53.0" prefWidth="600.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
+      <Pane prefHeight="80.0" prefWidth="1080.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <children>
-            <Label prefHeight="53.0" prefWidth="393.0" style="-fx-label-padding: 10;" text="Encarni's Resort" textFill="WHITE">
+            <Label fx:id="userNameLabel" alignment="CENTER" layoutX="893.0" layoutY="14.0" prefHeight="49.0" prefWidth="173.0" textFill="WHITE">
                <font>
-                  <Font name="Calibri Light" size="31.0" />
-               </font>
-            </Label>
-            <Label alignment="TOP_RIGHT" prefHeight="81.0" prefWidth="280.0" />
-            <Label alignment="CENTER_RIGHT" prefHeight="32.0" prefWidth="108.0" text="Usuario" textFill="WHITE">
-               <font>
-                  <Font size="22.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="20.0" />
-               </HBox.margin>
-            </Label>
+                  <Font size="29.0" />
+               </font></Label>
          </children>
-      </HBox>
+      </Pane>
    </top>
    <left>
-      <VBox alignment="TOP_CENTER" prefHeight="441.0" prefWidth="130.0" spacing="20.0" style="-fx-padding: 10; -fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="buscarClientesBTN" mnemonicParsing="false" onAction="#menuClientes" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30; -fx-border-radius: 30;" text="Clientes">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <VBox.margin>
-                  <Insets top="30.0" />
-               </VBox.margin>
-            </Button>
-            <Button layoutX="24.0" layoutY="20.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Hoteles ">
-               <font>
-                  <Font size="13.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button layoutX="24.0" layoutY="80.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Apartamentos">
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
-            </Button>
-            <Button layoutX="24.0" layoutY="140.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Reservas">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </Button>
-            <Button layoutX="20.0" layoutY="170.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="117.0" style="-fx-background-color: #ddd; -fx-label-padding: 1; -fx-background-radius: 30;" text="Cerrar Sesion">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-               <VBox.margin>
-                  <Insets top="80.0" />
-               </VBox.margin>
-            </Button>
-         </children>
-      </VBox>
+      <Pane prefHeight="640.0" prefWidth="180.0" style="-fx-background-color: #f4f4f4;" BorderPane.alignment="CENTER">
+         <Button fx:id="clientMenuBTN" mnemonicParsing="false" onAction="#loadClientMenu" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Clientes">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Button>
+         <Button fx:id="hotelMenuBTN" layoutY="60.0" mnemonicParsing="false" onAction="#loadHotelMenu" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Hoteles">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Button>
+         <Button fx:id="apartmentMenuBTN" layoutY="120.0" mnemonicParsing="false" onAction="#loadApartmentMenu" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Apartamentos">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Button>
+         <Button fx:id="bookingMenuBTN" layoutY="180.0" mnemonicParsing="false" onAction="#loadBookingMenu" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Reservas">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Button>
+         <Button fx:id="logOutButton" layoutY="580.0" mnemonicParsing="false" onAction="#logOut" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Cerrar Sesión">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Button>
+         <Button fx:id="userMenuButton" layoutY="240.0" mnemonicParsing="false" onAction="#loadUserMenu" prefHeight="60.0" prefWidth="180.0" style="-fx-background-color: #ddd;" text="Usuarios" visible="false">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Button>
+      </Pane>
    </left>
-   <center>
-      <AnchorPane fx:id="componenteMultiusos" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button layoutX="75.0" layoutY="59.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0" text="Crear Reserva">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Button layoutX="350.0" layoutY="59.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0"  text="Modificar Reserva">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Button layoutX="75.0" layoutY="250.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0" text="Eliminar Reserva">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-            <Button layoutX="350.0" layoutY="250.0" mnemonicParsing="false" prefHeight="125.0" prefWidth="190.0" text="Ver Reservas">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Button>
-         </children></AnchorPane>
-   </center>
 </BorderPane>
