@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserDBTest {
     UserDB userDB = new UserDB();
-    UserDTO userDTO = new UserDTO(1,"hugo@gmail.com","1234","Hugo Perez",true);
-    UserDTO userDTO1 = new UserDTO(2,"javi@gmail.com","1234b","Javier Paredes",false);
+    UserDTO userDTO = new UserDTO(1,"hugo@gmail.com", "Hugo Perez",true,"1234");
+    UserDTO userDTO1 = new UserDTO(2,"javi@gmail.com","Javier Paredes",false,"1234b");
 
     UserDBTest() throws SQLException, IOException {
     }

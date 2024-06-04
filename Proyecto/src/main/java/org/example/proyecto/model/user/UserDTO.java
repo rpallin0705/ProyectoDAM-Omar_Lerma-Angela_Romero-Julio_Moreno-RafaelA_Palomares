@@ -18,6 +18,18 @@ public class UserDTO extends AccountDTO {
         this.contrasena = contrasena;
     }
 
+    public UserDTO(String email, String nombre_apellidos, boolean admin, String contrasena) {
+        super(email, nombre_apellidos);
+        this.admin = admin;
+        this.contrasena = contrasena;
+    }
+
+    public UserDTO(UserDTO selectedUser) {
+        super(selectedUser.getId_cuenta(), selectedUser.getEmail(), selectedUser.getNombre_apellidos());
+        this.admin = selectedUser.isAdmin();
+        this.contrasena = selectedUser.getContrasena();
+    }
+
     /*GETTERS*/
     /**
      * Gets the administrator status of the user.
@@ -48,14 +60,15 @@ public class UserDTO extends AccountDTO {
 
     @Override
     public String toString() {
-        return String.format("%s,%s,%s",super.toString(),admin,contrasena);
+        return String.format("%s,%s,%s", super.toString(), admin, contrasena);
+    }
 
     /**
      * Indicates whether some other object is "equal to" this one.
      *
      * @param o The object to compare.
      * @return true if this object is the same as the obj argument; false otherwise.
-     */
+     **/
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

@@ -38,9 +38,7 @@ public interface UserDAO {
      * @throws SQLException If an error occurs while accessing the database.
      */
     boolean insertUser(UserDTO newUser) throws SQLException;
-<<<<<<< HEAD
-    boolean deleteUser(UserDTO deletedUser) throws SQLException;
-=======
+
 
     /**
      * Deletes a user from the database.
@@ -58,6 +56,6 @@ public interface UserDAO {
      * @return true if the user information is successfully updated, false otherwise.
      * @throws SQLException If an error occurs while accessing the database.
      */
->>>>>>> origin/rafa-gui-logic
+
     boolean updateUser(UserDTO updatedUser) throws SQLException;
 }

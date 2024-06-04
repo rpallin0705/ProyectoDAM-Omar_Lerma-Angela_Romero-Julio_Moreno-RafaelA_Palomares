@@ -20,9 +20,7 @@ public class TouristApartmentDB implements TouristApartmentDAO {
     private Connection connection;
     private Statement statement;
 
-    public TouristApartmentDB() throws SQLException, IOException {
-        connection = SetUpConnection.getInstance().getConnection();
-    }
+
 
     /**
      * Constructs a new TouristApartmentDB object and initializes the database connection.
