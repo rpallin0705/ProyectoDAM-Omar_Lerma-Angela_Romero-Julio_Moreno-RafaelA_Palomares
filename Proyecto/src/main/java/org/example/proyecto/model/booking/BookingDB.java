@@ -77,7 +77,6 @@ public class BookingDB implements BookingDAO {
         int rowsAffected = preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }
-
     /**
      * Deletes a booking from the database based on its ID.
      *

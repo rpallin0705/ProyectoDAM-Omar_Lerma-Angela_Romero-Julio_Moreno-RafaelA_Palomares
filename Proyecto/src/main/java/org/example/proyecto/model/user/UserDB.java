@@ -49,7 +49,7 @@ public class UserDB implements UserDAO {
             String contrasena = resultSet.getString("contrasena");
             String nombreApellidos = resultSet.getString("nombre_apellidos");
             boolean admin = resultSet.getBoolean("admin");
-            userDTO = new UserDTO(id_cuenta, email, nombreApellidos, admin, contrasena);
+            userDTO = new UserDTO(id_cuenta,email,nombreApellidos,admin,contrasena);
             users.add(userDTO);
         }
         return users;
@@ -76,7 +76,7 @@ public class UserDB implements UserDAO {
             String contrasena = resultSet.getString("contrasena");
             String nombreApellidos = resultSet.getString("nombre_apellidos");
             boolean admin = resultSet.getBoolean("admin");
-            logedUser = new UserDTO(id_cuenta, email, nombreApellidos, admin, contrasena);
+            logedUser = new UserDTO(id_cuenta,email,nombreApellidos,admin,contrasena);
         } else
             throw new SQLException("Contraseña o Email incorrectos");
         return logedUser;
@@ -104,9 +104,9 @@ public class UserDB implements UserDAO {
         //usuario
         String sql2 = "INSERT INTO usuarios (id_cuenta, contrasena, admin) VALUES (?, ?, ?)";
         preparedStatement = connection.prepareStatement(sql2);
-        preparedStatement.setInt(1, idConseguido);
-        preparedStatement.setString(2, newUser.getContrasena());
-        preparedStatement.setBoolean(3, newUser.isAdmin());
+        preparedStatement.setInt(1,idConseguido);
+        preparedStatement.setString(2,newUser.getContrasena());
+        preparedStatement.setBoolean(3,newUser.isAdmin());
         rowsAffected += preparedStatement.executeUpdate();
         return rowsAffected != 0;
     }

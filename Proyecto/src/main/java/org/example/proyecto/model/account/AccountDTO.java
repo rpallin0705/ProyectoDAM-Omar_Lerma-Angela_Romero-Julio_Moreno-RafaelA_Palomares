@@ -16,13 +16,6 @@ public class AccountDTO {
     private String email;
     private String nombre_apellidos;
 
-    /**
-     * Constructs an {@code AccountDTO} object with the specified id, email, and name.
-     *
-     * @param id_cuenta the account ID.
-     * @param email the account email.
-     * @param nombre_apellidos the account name and surname.
-     */
     public AccountDTO(int id_cuenta, String email, String nombre_apellidos) {
         this.id_cuenta = id_cuenta;
         this.email = email;
@@ -84,29 +77,16 @@ public class AccountDTO {
         return email;
     }
 
-    /**
-     * Gets the account name and surname.
-     *
-     * @return the account name and surname.
-     */
     public String getNombre_apellidos() {
         return nombre_apellidos;
     }
 
-    /**
-     * Sets the account email.
-     *
-     * @param email the new account email.
-     */
+
+    /*SETTERS*/
     public void setEmail(String email) {
         this.email = email;
     }
 
-    /**
-     * Sets the account name and surname.
-     *
-     * @param nombre_apellidos the new account name and surname.
-     */
     public void setNombre_apellidos(String nombre_apellidos) {
         this.nombre_apellidos = nombre_apellidos;
     }
